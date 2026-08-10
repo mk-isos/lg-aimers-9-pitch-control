@@ -1,0 +1,127 @@
+{
+  "experiment": "EXP-021",
+  "stage": "final_candidate_packages",
+  "results": {
+    "strict": {
+      "candidate": "strict_lowrank_s300_r6",
+      "validation": {
+        "season_briers": {
+          "2022": 0.24470458400867237,
+          "2023": 0.2477311440988816,
+          "2024": 0.24763380341629648
+        },
+        "season_skills": {
+          "2022": 1789.5967932082258,
+          "2023": 907.5416355312283,
+          "2024": 869.9211702032806
+        },
+        "mean_skill": 1189.0198663142448,
+        "min_skill": 869.9211702032806,
+        "latest_2024_skill": 869.9211702032806,
+        "season_skill_change_vs_base": {
+          "2022": 5.199395859112428,
+          "2023": 8.930770913562242,
+          "2024": 19.518330601309117
+        },
+        "season_skill_change_vs_saturated_s600": {
+          "2022": -2.0766262442073185,
+          "2023": -1.0320381099826363,
+          "2024": 6.572499395729437
+        },
+        "mean_skill_change_vs_base": 11.216165791327967,
+        "min_skill_change_vs_base": 19.518330601309117,
+        "mean_skill_change_vs_saturated_s600": 1.1546116805129714,
+        "min_skill_change_vs_saturated_s600": 6.572499395729437
+      },
+      "zip": {
+        "path": "/Users/moonki/Desktop/open/submit_exp021_strict.zip",
+        "bytes": 1942657,
+        "sha256": "e4b1cd4868551df0ec9886bd5dae9c6e3f9707029c9cad31ebd9bba5bb7a8be5",
+        "crc": "passed",
+        "files": [
+          "script.py",
+          "requirements.txt",
+          "model/feature_schemas.json",
+          "model/group_effects.json",
+          "model/histgradientboosting.json",
+          "model/history_state.json",
+          "model/lowrank_effects.json",
+          "model/metadata.json",
+          "model/multirate_state.json",
+          "model/pitcher_count_effects.json",
+          "model/rfull_lightgbm.txt",
+          "model/team_effects.json"
+        ]
+      },
+      "smoke": {
+        "runtime_seconds": 1.3881361484527588,
+        "stdout": "Saved: output/submission.csv | candidate=strict_lowrank_s300_r6 | rows=5 | mean=0.443329 | min=0.372917 | max=0.516242",
+        "rows": 5,
+        "row_id_order": "passed",
+        "row_id_unique": "passed",
+        "missing": 0,
+        "range": "passed",
+        "mean": 0.44332853920463455,
+        "min": 0.3729165651008432,
+        "max": 0.5162418838966417
+      }
+    },
+    "aggressive": {
+      "candidate": "r_gated_team_pc_all",
+      "validation": {
+        "season_skills": {
+          "2022": 1658.8314721890486,
+          "2023": 936.3250374376908,
+          "2024": 874.2857873166088
+        },
+        "season_briers": {
+          "2022": 0.24503040360046635,
+          "2023": 0.24765918559464187,
+          "2024": 0.24762290030042097
+        },
+        "mean_skill": 1156.4807656477826,
+        "min_skill": 874.2857873166088,
+        "latest_2024_skill": 874.2857873166088
+      },
+      "zip": {
+        "path": "/Users/moonki/Desktop/open/submit_exp021_aggr.zip",
+        "bytes": 1942498,
+        "sha256": "68fb18791010794cc4670403c56e24848629ea74cfff02d803010cb01c583191",
+        "crc": "passed",
+        "files": [
+          "script.py",
+          "requirements.txt",
+          "model/feature_schemas.json",
+          "model/group_effects.json",
+          "model/histgradientboosting.json",
+          "model/history_state.json",
+          "model/lowrank_effects.json",
+          "model/metadata.json",
+          "model/multirate_state.json",
+          "model/pitcher_count_effects.json",
+          "model/rfull_lightgbm.txt",
+          "model/team_effects.json"
+        ]
+      },
+      "smoke": {
+        "runtime_seconds": 1.2347588539123535,
+        "stdout": "Saved: output/submission.csv | candidate=r_gated_team_pc_all | rows=5 | mean=0.443119 | min=0.372917 | max=0.516242",
+        "rows": 5,
+        "row_id_order": "passed",
+        "row_id_unique": "passed",
+        "missing": 0,
+        "range": "passed",
+        "mean": 0.4431193217306933,
+        "min": 0.3729165651008432,
+        "max": 0.5162418838966417
+      }
+    }
+  },
+  "qa": {
+    "hgb_json_export_parity_rows": 4096,
+    "hgb_json_export_max_abs": 0.0,
+    "hgb_json_export_tolerance": 1e-12,
+    "hgb_json_export_passed": true
+  },
+  "total_seconds": 113.54602193832397
+}

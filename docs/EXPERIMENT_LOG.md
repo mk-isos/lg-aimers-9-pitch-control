@@ -611,6 +611,140 @@ LightGBM은 `iterations=200`, `num_leaves=15`, `min_child_samples=2000`, `learni
 
 다음 실험은 2022 고점에 좌우되는 단순 평균 대신 최신 시즌, 최저 시즌, 시즌별 예측 평균 오차에 제약을 두고 선택한다. EXP-013 대비 구성 요소를 한 번에 하나씩 바꾸고, 현재 시즌 `0~19` 표본 구간용 기준값은 이전 fold에서만 정한 규칙으로 검증한다.
 
+## EXP-019 — 안정 residual backbone과 source-season Team EB
+
+### 실험 목적과 가설
+
+EXP-018의 2025 일반화 실패가 단순 확률 보정보다 행별 순위 신호 부족과 시즌 구조 변화에 있는지 진단했다. 공식 입력과 과거 학습 이력으로 만든 계층적 기준값 위에서 서로 다른 트리 residual을 보수적으로 결합하고, 시즌별 팀 효과를 강하게 축소하면 2023·2024 최저 성능을 함께 높일 수 있다고 가정했다.
+
+### 기준 실험과 달라진 점
+
+- 기준 실험: EXP-018의 계층적 as-of 기준값, 그룹 효과, recent residual 15%
+- R행의 시즌 평균 제거 residual을 LightGBM과 HistGradientBoosting으로 따로 학습한다.
+- 각 branch를 먼저 `[0, 1]`로 제한한 뒤 50:50으로 결합한다.
+- 과거 OOF 시즌마다 투수 팀·타자 팀 효과를 별도로 추정하고, source season에 없는 key는 0으로 포함해 동일 가중 평균한다.
+- 현재 검증 fold 정답과 테스트 다른 행의 집계를 효과 학습에 사용하지 않는다.
+
+### 모델과 주요 파라미터
+
+- LightGBM: `num_leaves=63`, `min_child_samples=1000`, `iterations=300`, residual weight `0.75`
+- HistGradientBoosting: `max_leaf_nodes=15`, `max_depth=4`, `min_samples_leaf=3000`, `max_iter=160`, residual weight `1.0`
+- backbone: 두 branch 50:50
+- Team EB: 투수 팀·타자 팀 family 각각 50%, `all_prior_s1000`, source-season residual 평균 제거
+- 확률 보정: identity
+
+### 검증 기간과 결과
+
+2021을 warm-up OOF로 만들고 2022·2023·2024를 보고 시즌으로 사용했다. 각 효과에는 검증 시즌보다 앞선 OOF 시즌만 사용했다.
+
+| 검증 시즌 | 고정 50:50 Brier | 고정 50:50 Skill | Team EB Brier | Team EB Skill |
+| ---: | ---: | ---: | ---: | ---: |
+| 2022 | 0.244890133493 | 1715.13 | 0.244717539011 | 1784.40 |
+| 2023 | 0.247853474558 | 858.61 | 0.247753471026 | 898.61 |
+| 2024 | 0.247766621813 | 816.75 | 0.247682561558 | 850.40 |
+
+`all_prior_s1000`은 평균 Skill `1177.8037005229169`, 최저 Skill `850.4028396019714`를 기록했다. JSON에 기록된 고정 50:50 기준 대비 평균 변화는 `+47.640347107965226`, 최저 변화는 `+33.65008951217169`이며 세 보고 시즌 모두 개선했다.
+
+### 결과 해석과 채택 여부
+
+팀 ID를 트리의 순서형 숫자로 직접 넣는 방식은 시간 전이가 불안정했지만, source season마다 평균을 제거한 강한 shrinkage 효과는 세 시즌에 같은 방향으로 작동했다. 다만 후보 비교 자체는 완전한 nested 선택이 아니고 최저 Skill도 1100에 미달한다.
+
+- [x] 다음 실험의 고정 기준값으로 채택
+- [ ] 이 실험만 최종 제출 모델로 채택
+
+다음 실험에서는 팀 기준 위의 잔차를 선수×상황 문맥으로 분해하되, 현재 fold 성능으로 복잡도를 선택하지 않는 low-rank 구조를 검증한다.
+
+## EXP-020 — 투수 문맥 low-rank EB와 재가중 상한 감사
+
+### 실험 목적과 가설
+
+EXP-019 Team EB가 놓치는 투수별 count·타자 손 문맥을 계층적으로 공유하는 것이 목적이다. 투수×24개 공식 문맥의 잔차 행렬을 SVD로 저차원화하면 포화된 세부 group보다 표본 부족을 줄이고 2023·2024에 함께 전이될 것으로 가정했다.
+
+### 기준 실험과 달라진 점
+
+- 기준 실험: EXP-019 `all_prior_s1000` Team EB
+- 문맥: `count_index=4×balls_before+strikes_before`와 `batter_hand`의 24개 고정 조합
+- source OOF 시즌별 잔차를 평균 제거한 뒤 투수×문맥 효과를 smoothing `300` 또는 `600`으로 축소한다.
+- SVD rank 후보 `2, 4, 6, 8, 12`를 비교한다.
+- 각 검증 시즌의 rank는 그보다 과거인 OOF fold의 최저 Skill, 평균 Skill, 낮은 rank 순서로만 선택한다.
+- 별도로 13개 저장 후보의 nonnegative convex ensemble 상한을 감사한다.
+
+### rolling-origin 결과
+
+strict rank 경로는 2022 rank 2, 2023 rank 4, 2024 rank 6이었다.
+
+| 검증 시즌 | 선택 rank | Brier | Skill |
+| ---: | ---: | ---: | ---: |
+| 2022 | 2 | 0.244692096549 | 1794.61 |
+| 2023 | 4 | 0.247732737845 | 906.90 |
+| 2024 | 6 | 0.247633803416 | 869.92 |
+
+- strict 경로 평균 Skill: `1190.4779505072147`
+- strict 경로 최저 Skill: `869.9211702032806`
+- 2021~2024 OOF만 사용한 2025 prospective 선택: smoothing `300`, rank `6`
+- 2025 정답 사용 여부: `false`
+
+최종 고정 rank-6 후보의 2022·2023·2024 Brier는 `0.24470458400867237`, `0.2477311440988816`, `0.24763380341629648`이고 Skill은 `1789.5967932082258`, `907.5416355312283`, `869.9211702032806`이다. Team EB 기준 대비 Skill 변화는 JSON 기록상 `+5.199395859112428`, `+8.930770913562242`, `+19.518330601309117`로 모두 양수다.
+
+### ensemble 상한과 결과 해석
+
+13개 frozen 후보의 같은-fold 정답을 허용한 비배포 convex oracle도 다음 결과에 그쳤다.
+
+| 검증 시즌 | oracle Brier | oracle Skill | Skill 1100 Brier 기준 | 판정 |
+| ---: | ---: | ---: | ---: | --- |
+| 2023 | 0.247659185595 | 936.33 | 0.247249998191 | 1100 불가 인증 |
+| 2024 | 0.247607157188 | 880.59 | 0.247059050562 | 1100 불가 인증 |
+
+Frank-Wolfe gap은 두 시즌 모두 `0.0`으로 기록됐다. 따라서 저장 후보의 단순 convex 재가중은 1100 격차를 닫지 못하며, 다음 개선에는 새로운 시간 안정적 행별 신호가 필요하다.
+
+- [x] 과거 fold로 선택한 strict rank-6을 최종 패키지 후보로 채택
+- [ ] R-specific, F-transfer, parametric, weighted ALS 등 사후 우수 후보를 주 모델로 채택
+
+## EXP-021 — strict·aggressive 최종 패키지
+
+### 실험 목적과 기준 실험 대비 변화
+
+로컬 검증식을 전체 2019~2024 학습 상태와 네이티브/고정 모델 파일로 직렬화해 평가 환경에서 재학습 없이 실행하는 것이 목적이다. EXP-020 strict rank-6을 1순위로 유지하고, 최신 2023·2024가 조금 높은 `r_gated_team_pc_all`을 사후 선택 위험이 있는 2순위 진단 후보로만 패키징했다. 두 후보 모두 affine 또는 고정 offset을 사용하지 않는다.
+
+### 최종 구성과 주요 파라미터
+
+공통 backbone은 EXP-019의 branch별 clip 후 LightGBM·HistGradientBoosting 50:50이며, 2021~2024 source OOF의 Team EB를 missing=0 포함 동일 가중 평균한다.
+
+- strict: Team EB 위 투수×24문맥 low-rank, smoothing `300`, rank `6`
+- aggressive: `game_type=R`이면 Team EB, `F`이면 고정 backbone을 선택한 뒤 투수×count×타자 손 EB smoothing `600`을 두 regime 모두에 적용
+- LightGBM 모델 형식: native text
+- HistGradientBoosting 모델 형식: 각 트리를 JSON으로 내보내 NumPy로 추론하고 원본 모델과 parity 확인
+- 제출 `requirements.txt`: 평가 이미지 기본 NumPy·pandas·scikit-learn·joblib을 재설치하지 않고 `lightgbm==4.6.0`만 설치
+- 로컬 생성 환경: NumPy `2.5.1`, pandas `3.0.5`, LightGBM `4.6.0`, scikit-learn `1.9.0`, joblib `1.5.3`
+
+### 실제 validation_metrics.json 결과
+
+| 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 Skill | 최저 Skill |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| strict rank-6 | 0.244704584009 / 1789.60 | 0.247731144099 / 907.54 | 0.247633803416 / 869.92 | 1189.019866 | 869.921170 |
+| aggressive R/F gate | 0.245030403600 / 1658.83 | 0.247659185595 / 936.33 | 0.247622900300 / 874.29 | 1156.480766 | 874.285787 |
+
+strict는 Team EB 기준보다 세 시즌 모두 개선했고 2025 rank 선택도 과거 OOF만 사용했다. aggressive는 2023·2024는 strict보다 높지만 2022가 크게 낮고 후보 정의가 post-hoc/non-nested이므로 기대값보다 변동성 진단용 성격이 강하다.
+
+### 실행·구조·CRC 검증
+
+- `submit_exp021_strict.zip`: `1,942,657` bytes, SHA256 `e4b1cd4868551df0ec9886bd5dae9c6e3f9707029c9cad31ebd9bba5bb7a8be5`, CRC 통과
+- `submit_exp021_aggr.zip`: `1,942,498` bytes, SHA256 `68fb18791010794cc4670403c56e24848629ea74cfff02d803010cb01c583191`, CRC 통과
+- 두 ZIP 모두 최상위 `script.py`, `requirements.txt`, `model/` 구조와 총 12개 파일을 확인했다.
+- 별도 임시 디렉터리에서 train 없이 5행 smoke 추론을 실행했고 row_id 순서·중복·결측·확률 범위를 통과했다.
+- strict와 aggressive의 smoke 추론 시간은 각각 `1.3881361484527588`초, `1.2347588539123535`초였다.
+- 원본 HistGradientBoosting과 JSON-tree NumPy 추론은 고정 4,096행에서 최대 절대 오차 `0.0`으로 parity를 통과했다.
+- batch/singleton 및 행 순열 예측은 bitwise 동일했고 테스트 다른 행 집계가 없음을 확인했다.
+
+### 채택 여부와 다음 작업
+
+- [x] 최종 1순위 제출 후보: EXP-021 strict rank-6
+- [x] 최종 2순위 진단 후보: EXP-021 aggressive
+- [x] 모델·예측 배열·ZIP은 Git 제외
+- [x] Public 확인 전 리더보드 선택 유지: EXP-013
+
+사용자가 strict를 먼저 직접 제출하고, 남은 기회가 있으면 aggressive를 두 번째로 제출한다. 두 Public 결과가 나오기 전에는 로컬 점수만으로 EXP-013을 대체했다고 기록하지 않는다. 추가 실험을 재개한다면 2023·2024 oracle 상한을 넘길 새로운 행별 신호가 전제다.
+
 ---
 
 ## 새 실험 템플릿

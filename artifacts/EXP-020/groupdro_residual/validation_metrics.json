@@ -1,0 +1,3133 @@
+{
+  "experiment": "EXP-020",
+  "candidate_family": "bounded_season_phase_groupdro_R_residual",
+  "validation_protocol": {
+    "outer_folds": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reported_folds": [
+      2022,
+      2023,
+      2024
+    ],
+    "dro_groups": "training season x phase among R rows",
+    "phase_definition": {
+      "early": "game_month <= 5",
+      "mid": "6 <= game_month <= 7",
+      "late": "game_month >= 8"
+    },
+    "dro_loss": "training-only within-group residual MSE",
+    "F_prediction": "past-only all-row group offset; zero residual correction",
+    "current_fold_labels_used_for_training_or_weights": false,
+    "test_row_aggregation": false,
+    "candidate_comparison_status": "one predeclared config and two fixed blend weights"
+  },
+  "model": {
+    "dro_rounds": 4,
+    "dro_eta": 0.5,
+    "dro_max_group_weight_ratio": 4.0,
+    "iterations_per_refit": 200,
+    "refit_policy": "from scratch after each training-only DRO update",
+    "learning_rate": 0.015,
+    "num_leaves": 15,
+    "min_child_samples": 3000,
+    "blend_weights": [
+      0.5,
+      0.75
+    ],
+    "features": [
+      "game_month",
+      "game_dayofweek",
+      "inning",
+      "balls_before",
+      "strikes_before",
+      "outs_before",
+      "run_top_before",
+      "run_bot_before",
+      "run_total_before",
+      "score_diff_home",
+      "score_diff_pitcher_team",
+      "runner_on_1b",
+      "runner_on_2b",
+      "runner_on_3b",
+      "num_runners_on",
+      "home_win_expectancy",
+      "away_win_expectancy",
+      "li",
+      "pitcher_hand",
+      "batter_hand",
+      "asof_pitcher_n",
+      "asof_pitcher_success_rate",
+      "asof_pitcher_reverse_rate",
+      "asof_pitcher_middle_rate",
+      "asof_pitcher_ball_rate",
+      "asof_pitcher_strike_rate",
+      "asof_pitcher_prev1_game_success_rate",
+      "asof_pitcher_prev3_game_success_rate",
+      "asof_pitcher_prev5_game_success_rate",
+      "asof_pitcher_prev1_game_middle_rate",
+      "asof_pitcher_prev3_game_middle_rate",
+      "asof_pitcher_prev5_game_middle_rate",
+      "asof_batter_n",
+      "asof_batter_success_rate",
+      "asof_batter_middle_rate",
+      "asof_pitcher_pitchmix_n",
+      "asof_pitcher_fastball_rate",
+      "asof_pitcher_breaking_rate",
+      "asof_pitcher_offspeed_rate",
+      "count_index",
+      "count_out_index",
+      "is_full_count",
+      "has_two_strikes",
+      "has_three_balls",
+      "count_advantage",
+      "runner_in_scoring_position",
+      "bases_loaded",
+      "same_hand",
+      "late_inning",
+      "close_game",
+      "log_li",
+      "score_pressure",
+      "win_expectancy_gap",
+      "pitcher_batter_success_gap",
+      "pitcher_recent_success_delta_1_5",
+      "pitcher_recent_success_delta_3_5",
+      "pitcher_recent_middle_delta_1_5",
+      "log_pitcher_n",
+      "log_batter_n",
+      "log_pitchmix_n",
+      "temporal_prior_league_rate",
+      "temporal_pitcher_prior_exists",
+      "temporal_pitcher_prior_n",
+      "temporal_pitcher_log_prior_n",
+      "temporal_pitcher_prior_rate",
+      "temporal_pitcher_prior_rate_shrunk_200",
+      "temporal_pitcher_season_n",
+      "temporal_pitcher_log_season_n",
+      "temporal_pitcher_season_rate",
+      "temporal_pitcher_season_minus_prior_rate",
+      "temporal_pitcher_season_global_10",
+      "temporal_pitcher_season_player_10",
+      "temporal_pitcher_reliability_10",
+      "temporal_pitcher_season_global_30",
+      "temporal_pitcher_season_player_30",
+      "temporal_pitcher_reliability_30",
+      "temporal_pitcher_season_global_100",
+      "temporal_pitcher_season_player_100",
+      "temporal_pitcher_reliability_100",
+      "temporal_pitcher_season_global_300",
+      "temporal_pitcher_season_player_300",
+      "temporal_pitcher_reliability_300",
+      "temporal_batter_prior_exists",
+      "temporal_batter_prior_n",
+      "temporal_batter_log_prior_n",
+      "temporal_batter_prior_rate",
+      "temporal_batter_prior_rate_shrunk_200",
+      "temporal_batter_season_n",
+      "temporal_batter_log_season_n",
+      "temporal_batter_season_rate",
+      "temporal_batter_season_minus_prior_rate",
+      "temporal_batter_season_global_10",
+      "temporal_batter_season_player_10",
+      "temporal_batter_reliability_10",
+      "temporal_batter_season_global_30",
+      "temporal_batter_season_player_30",
+      "temporal_batter_reliability_30",
+      "temporal_batter_season_global_100",
+      "temporal_batter_season_player_100",
+      "temporal_batter_reliability_100",
+      "temporal_batter_season_global_300",
+      "temporal_batter_season_player_300",
+      "temporal_batter_reliability_300",
+      "temporal_base_global_30",
+      "temporal_base_player_30",
+      "multirate_pitcher_control_season_n",
+      "multirate_pitcher_control_log_season_n",
+      "multirate_pitcher_control_reliability_30",
+      "multirate_pitcher_control_success_prior_rate",
+      "multirate_pitcher_control_success_prior_shrunk_200",
+      "multirate_pitcher_control_success_season_rate",
+      "multirate_pitcher_control_success_season_global_30",
+      "multirate_pitcher_control_success_season_player_30",
+      "multirate_pitcher_control_success_season_minus_prior",
+      "multirate_pitcher_control_reverse_prior_rate",
+      "multirate_pitcher_control_reverse_prior_shrunk_200",
+      "multirate_pitcher_control_reverse_season_rate",
+      "multirate_pitcher_control_reverse_season_global_30",
+      "multirate_pitcher_control_reverse_season_player_30",
+      "multirate_pitcher_control_reverse_season_minus_prior",
+      "multirate_pitcher_control_middle_prior_rate",
+      "multirate_pitcher_control_middle_prior_shrunk_200",
+      "multirate_pitcher_control_middle_season_rate",
+      "multirate_pitcher_control_middle_season_global_30",
+      "multirate_pitcher_control_middle_season_player_30",
+      "multirate_pitcher_control_middle_season_minus_prior",
+      "multirate_pitcher_control_ball_prior_rate",
+      "multirate_pitcher_control_ball_prior_shrunk_200",
+      "multirate_pitcher_control_ball_season_rate",
+      "multirate_pitcher_control_ball_season_global_30",
+      "multirate_pitcher_control_ball_season_player_30",
+      "multirate_pitcher_control_ball_season_minus_prior",
+      "multirate_pitcher_control_strike_prior_rate",
+      "multirate_pitcher_control_strike_prior_shrunk_200",
+      "multirate_pitcher_control_strike_season_rate",
+      "multirate_pitcher_control_strike_season_global_30",
+      "multirate_pitcher_control_strike_season_player_30",
+      "multirate_pitcher_control_strike_season_minus_prior",
+      "multirate_batter_control_season_n",
+      "multirate_batter_control_log_season_n",
+      "multirate_batter_control_reliability_30",
+      "multirate_batter_control_success_prior_rate",
+      "multirate_batter_control_success_prior_shrunk_200",
+      "multirate_batter_control_success_season_rate",
+      "multirate_batter_control_success_season_global_30",
+      "multirate_batter_control_success_season_player_30",
+      "multirate_batter_control_success_season_minus_prior",
+      "multirate_batter_control_middle_prior_rate",
+      "multirate_batter_control_middle_prior_shrunk_200",
+      "multirate_batter_control_middle_season_rate",
+      "multirate_batter_control_middle_season_global_30",
+      "multirate_batter_control_middle_season_player_30",
+      "multirate_batter_control_middle_season_minus_prior",
+      "multirate_pitcher_pitchmix_season_n",
+      "multirate_pitcher_pitchmix_log_season_n",
+      "multirate_pitcher_pitchmix_reliability_30",
+      "multirate_pitcher_pitchmix_fastball_prior_rate",
+      "multirate_pitcher_pitchmix_fastball_prior_shrunk_200",
+      "multirate_pitcher_pitchmix_fastball_season_rate",
+      "multirate_pitcher_pitchmix_fastball_season_global_30",
+      "multirate_pitcher_pitchmix_fastball_season_player_30",
+      "multirate_pitcher_pitchmix_fastball_season_minus_prior",
+      "multirate_pitcher_pitchmix_breaking_prior_rate",
+      "multirate_pitcher_pitchmix_breaking_prior_shrunk_200",
+      "multirate_pitcher_pitchmix_breaking_season_rate",
+      "multirate_pitcher_pitchmix_breaking_season_global_30",
+      "multirate_pitcher_pitchmix_breaking_season_player_30",
+      "multirate_pitcher_pitchmix_breaking_season_minus_prior",
+      "multirate_pitcher_pitchmix_offspeed_prior_rate",
+      "multirate_pitcher_pitchmix_offspeed_prior_shrunk_200",
+      "multirate_pitcher_pitchmix_offspeed_season_rate",
+      "multirate_pitcher_pitchmix_offspeed_season_global_30",
+      "multirate_pitcher_pitchmix_offspeed_season_player_30",
+      "multirate_pitcher_pitchmix_offspeed_season_minus_prior",
+      "top_bottom_B",
+      "top_bottom_T",
+      "top_bottom_nan",
+      "base_state_123",
+      "base_state_12_",
+      "base_state_1_3",
+      "base_state_1__",
+      "base_state__23",
+      "base_state__2_",
+      "base_state___3",
+      "base_state____",
+      "base_state_nan"
+    ],
+    "feature_diagnostics": {
+      "numeric_features": 174,
+      "categorical_one_hot_features": 12,
+      "total_features": 186,
+      "matrix_mib": 1046.6274719238281,
+      "raw_player_ids_in_matrix": false,
+      "raw_team_ids_in_matrix": false,
+      "season_in_matrix": false
+    },
+    "excluded": [
+      "pitcher_id",
+      "batter_id",
+      "pitcher_team_id",
+      "batter_team_id",
+      "season",
+      "game_type"
+    ]
+  },
+  "reconstruction_diagnostics": {
+    "2019_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2019_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2019_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2020_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 216
+    },
+    "2020_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 30
+    },
+    "2020_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 724
+    },
+    "2021_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 278
+    },
+    "2021_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 64
+    },
+    "2021_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 816
+    },
+    "2022_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 285
+    },
+    "2022_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 59
+    },
+    "2022_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 838
+    },
+    "2023_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 304
+    },
+    "2023_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 78
+    },
+    "2023_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 858
+    },
+    "2024_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 319
+    },
+    "2024_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 68
+    },
+    "2024_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 886
+    }
+  },
+  "folds": {
+    "2021": {
+      "validation_season": 2021,
+      "training_seasons": [
+        2019,
+        2020
+      ],
+      "training_R_rows": 432501,
+      "validation_R_rows": 221227,
+      "dro_rounds": [
+        {
+          "round": 1,
+          "fit_seconds": 22.729001998901367,
+          "group_weight_ratio": 1.0,
+          "worst_group": "2020_mid",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 1.0,
+              "residual_mse": 0.24425506469337707
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 1.0,
+              "residual_mse": 0.24412021200594208
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 1.0,
+              "residual_mse": 0.24344262700078403
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 1.0,
+              "residual_mse": 0.24601158767856035
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.0,
+              "residual_mse": 0.2466844353174365
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0,
+              "residual_mse": 0.24697278244285406
+            }
+          },
+          "next_group_weight_ratio": 3.6527019045607227
+        },
+        {
+          "round": 2,
+          "fit_seconds": 22.646788120269775,
+          "group_weight_ratio": 3.6527019045607227,
+          "worst_group": "2020_mid",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.615450324599618,
+              "residual_mse": 0.24460862321405927
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.5857347927893903,
+              "residual_mse": 0.24446633652161726
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.45678489659627397,
+              "residual_mse": 0.2439609486129545
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 1.1725644417687433,
+              "residual_mse": 0.245668571868772
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.5009664824741915,
+              "residual_mse": 0.24635947245973017
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.6684990617717828,
+              "residual_mse": 0.24647962134285892
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 3,
+          "fit_seconds": 24.742319107055664,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2020_mid",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.4906248592653091,
+              "residual_mse": 0.24470939569612568
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.4906248592653091,
+              "residual_mse": 0.24452998645929847
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.4906248592653091,
+              "residual_mse": 0.24394468668138858
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.9065711774316221,
+              "residual_mse": 0.2460900133929765
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.6590548077112137,
+              "residual_mse": 0.24625441023934413
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.9624994370612363,
+              "residual_mse": 0.24628032984658565
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 4,
+          "fit_seconds": 24.804959297180176,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2020_mid",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.49981031181823776,
+              "residual_mse": 0.24469884878965523
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.49981031181823776,
+              "residual_mse": 0.24450079738138109
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.49981031181823776,
+              "residual_mse": 0.24394238406519064
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.8344126549603056,
+              "residual_mse": 0.24621105209979607
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.6669151623120302,
+              "residual_mse": 0.24623041636835058
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.999241247272951,
+              "residual_mse": 0.24625452517731344
+            }
+          }
+        }
+      ],
+      "final_group_weight_ratio": 4.0,
+      "correction_mean_R": -0.004798416019563321,
+      "correction_std_R": 0.01556133475095384,
+      "feature_importance": {
+        "asof_pitcher_reverse_rate": 89,
+        "asof_pitcher_prev5_game_success_rate": 79,
+        "temporal_batter_season_player_300": 72,
+        "count_advantage": 70,
+        "temporal_pitcher_season_n": 62,
+        "multirate_pitcher_control_reverse_prior_shrunk_200": 59,
+        "temporal_batter_prior_rate_shrunk_200": 49,
+        "asof_pitcher_middle_rate": 46,
+        "asof_pitcher_n": 45,
+        "temporal_pitcher_prior_rate_shrunk_200": 45,
+        "multirate_batter_control_middle_prior_rate": 45,
+        "temporal_pitcher_season_minus_prior_rate": 44,
+        "asof_batter_success_rate": 42,
+        "game_month": 41,
+        "pitcher_recent_middle_delta_1_5": 39,
+        "temporal_batter_season_global_300": 39,
+        "multirate_pitcher_control_ball_season_minus_prior": 38,
+        "temporal_pitcher_prior_rate": 37,
+        "multirate_pitcher_control_middle_season_global_30": 36,
+        "multirate_pitcher_control_ball_season_rate": 35,
+        "multirate_batter_control_middle_prior_shrunk_200": 35,
+        "multirate_pitcher_pitchmix_fastball_season_minus_prior": 35,
+        "li": 34,
+        "batter_hand": 33,
+        "pitcher_batter_success_gap": 33,
+        "multirate_pitcher_pitchmix_fastball_season_rate": 32,
+        "asof_pitcher_prev1_game_middle_rate": 31,
+        "asof_batter_n": 31,
+        "asof_pitcher_offspeed_rate": 31,
+        "score_pressure": 30,
+        "asof_pitcher_prev5_game_middle_rate": 29,
+        "pitcher_recent_success_delta_1_5": 29,
+        "inning": 27,
+        "home_win_expectancy": 27,
+        "asof_pitcher_prev3_game_middle_rate": 26,
+        "multirate_pitcher_control_reverse_season_rate": 26,
+        "multirate_pitcher_control_ball_prior_rate": 26,
+        "multirate_pitcher_pitchmix_fastball_prior_rate": 26,
+        "multirate_pitcher_pitchmix_offspeed_season_player_30": 26,
+        "asof_pitcher_ball_rate": 25,
+        "multirate_pitcher_pitchmix_fastball_prior_shrunk_200": 24,
+        "multirate_pitcher_pitchmix_offspeed_season_minus_prior": 24,
+        "temporal_batter_prior_rate": 23,
+        "temporal_batter_season_n": 23,
+        "asof_pitcher_fastball_rate": 22,
+        "pitcher_recent_success_delta_3_5": 21,
+        "temporal_pitcher_season_global_300": 21,
+        "temporal_batter_season_player_100": 21,
+        "multirate_pitcher_control_strike_prior_rate": 21,
+        "run_total_before": 20,
+        "temporal_pitcher_season_player_100": 20,
+        "temporal_base_global_30": 20,
+        "balls_before": 19,
+        "same_hand": 19,
+        "multirate_pitcher_control_strike_season_minus_prior": 19,
+        "multirate_batter_control_middle_season_minus_prior": 19,
+        "asof_pitcher_strike_rate": 18,
+        "asof_batter_middle_rate": 18,
+        "count_out_index": 18,
+        "temporal_pitcher_season_player_300": 18,
+        "multirate_pitcher_control_middle_prior_shrunk_200": 18,
+        "multirate_pitcher_control_middle_season_rate": 18,
+        "multirate_batter_control_middle_season_rate": 18,
+        "multirate_pitcher_pitchmix_offspeed_season_global_30": 18,
+        "asof_pitcher_prev3_game_success_rate": 17,
+        "multirate_pitcher_control_reverse_prior_rate": 17,
+        "multirate_pitcher_control_reverse_season_minus_prior": 17,
+        "multirate_pitcher_control_middle_season_minus_prior": 17,
+        "multirate_batter_control_middle_season_player_30": 17,
+        "multirate_pitcher_pitchmix_breaking_season_minus_prior": 17,
+        "win_expectancy_gap": 16,
+        "multirate_pitcher_control_middle_prior_rate": 16,
+        "multirate_pitcher_pitchmix_breaking_season_global_30": 16,
+        "score_diff_home": 15,
+        "temporal_batter_season_minus_prior_rate": 15,
+        "multirate_pitcher_control_reverse_season_player_30": 15,
+        "multirate_pitcher_control_ball_season_player_30": 15,
+        "multirate_pitcher_pitchmix_breaking_season_player_30": 15,
+        "count_index": 14,
+        "multirate_pitcher_control_middle_season_player_30": 14,
+        "multirate_pitcher_control_ball_prior_shrunk_200": 14,
+        "multirate_pitcher_control_ball_season_global_30": 14,
+        "outs_before": 13,
+        "asof_pitcher_pitchmix_n": 13,
+        "temporal_batter_prior_n": 13,
+        "multirate_pitcher_control_reverse_season_global_30": 13,
+        "multirate_pitcher_pitchmix_fastball_season_player_30": 13,
+        "multirate_pitcher_pitchmix_offspeed_season_rate": 13,
+        "strikes_before": 12,
+        "away_win_expectancy": 12,
+        "asof_pitcher_prev1_game_success_rate": 12,
+        "temporal_pitcher_prior_n": 12,
+        "temporal_pitcher_season_global_100": 12,
+        "multirate_pitcher_control_strike_season_global_30": 12,
+        "multirate_pitcher_control_strike_season_player_30": 12,
+        "multirate_pitcher_control_strike_prior_shrunk_200": 11,
+        "multirate_pitcher_pitchmix_fastball_season_global_30": 11,
+        "multirate_pitcher_pitchmix_breaking_prior_rate": 11,
+        "multirate_pitcher_pitchmix_offspeed_prior_shrunk_200": 11,
+        "asof_pitcher_success_rate": 10,
+        "temporal_pitcher_log_season_n": 10,
+        "multirate_pitcher_pitchmix_breaking_season_rate": 10,
+        "pitcher_hand": 8,
+        "temporal_batter_season_global_100": 8,
+        "multirate_pitcher_control_success_season_minus_prior": 8,
+        "multirate_pitcher_pitchmix_offspeed_prior_rate": 8,
+        "asof_pitcher_breaking_rate": 7,
+        "log_li": 7,
+        "log_batter_n": 7,
+        "temporal_pitcher_season_player_30": 7,
+        "temporal_base_player_30": 7,
+        "multirate_pitcher_control_strike_season_rate": 7,
+        "run_bot_before": 6,
+        "temporal_pitcher_season_rate": 6,
+        "temporal_batter_log_season_n": 6,
+        "multirate_batter_control_success_prior_shrunk_200": 6,
+        "multirate_batter_control_middle_season_global_30": 6,
+        "multirate_pitcher_pitchmix_breaking_prior_shrunk_200": 6,
+        "game_dayofweek": 5,
+        "score_diff_pitcher_team": 5,
+        "temporal_batter_season_player_10": 5,
+        "multirate_pitcher_control_success_prior_shrunk_200": 5,
+        "base_state_12_": 5,
+        "log_pitcher_n": 4,
+        "temporal_pitcher_season_player_10": 4,
+        "temporal_batter_season_global_10": 4,
+        "multirate_batter_control_success_season_minus_prior": 4,
+        "run_top_before": 3,
+        "temporal_prior_league_rate": 3,
+        "temporal_pitcher_season_global_10": 3,
+        "temporal_pitcher_season_global_30": 3,
+        "temporal_batter_log_prior_n": 3,
+        "temporal_batter_season_rate": 3,
+        "temporal_batter_season_player_30": 3,
+        "multirate_batter_control_success_season_rate": 3,
+        "num_runners_on": 2,
+        "has_two_strikes": 2,
+        "runner_in_scoring_position": 2,
+        "temporal_pitcher_log_prior_n": 2,
+        "temporal_pitcher_reliability_10": 2,
+        "temporal_batter_season_global_30": 2,
+        "multirate_pitcher_control_success_prior_rate": 2,
+        "multirate_batter_control_success_prior_rate": 2,
+        "is_full_count": 1,
+        "close_game": 1,
+        "temporal_batter_reliability_10": 1,
+        "temporal_batter_reliability_30": 1,
+        "multirate_batter_control_success_season_global_30": 1,
+        "multirate_batter_control_success_season_player_30": 1,
+        "top_bottom_B": 1,
+        "base_state___3": 1,
+        "runner_on_1b": 0,
+        "runner_on_2b": 0,
+        "runner_on_3b": 0,
+        "has_three_balls": 0,
+        "bases_loaded": 0,
+        "late_inning": 0,
+        "log_pitchmix_n": 0,
+        "temporal_pitcher_prior_exists": 0,
+        "temporal_pitcher_reliability_30": 0,
+        "temporal_pitcher_reliability_100": 0,
+        "temporal_pitcher_reliability_300": 0,
+        "temporal_batter_prior_exists": 0,
+        "temporal_batter_reliability_100": 0,
+        "temporal_batter_reliability_300": 0,
+        "multirate_pitcher_control_season_n": 0,
+        "multirate_pitcher_control_log_season_n": 0,
+        "multirate_pitcher_control_reliability_30": 0,
+        "multirate_pitcher_control_success_season_rate": 0,
+        "multirate_pitcher_control_success_season_global_30": 0,
+        "multirate_pitcher_control_success_season_player_30": 0,
+        "multirate_batter_control_season_n": 0,
+        "multirate_batter_control_log_season_n": 0,
+        "multirate_batter_control_reliability_30": 0,
+        "multirate_pitcher_pitchmix_season_n": 0,
+        "multirate_pitcher_pitchmix_log_season_n": 0,
+        "multirate_pitcher_pitchmix_reliability_30": 0,
+        "top_bottom_T": 0,
+        "top_bottom_nan": 0,
+        "base_state_123": 0,
+        "base_state_1_3": 0,
+        "base_state_1__": 0,
+        "base_state__23": 0,
+        "base_state__2_": 0,
+        "base_state____": 0,
+        "base_state_nan": 0
+      },
+      "groupdro_w050": {
+        "rows": 247088,
+        "actual_rate": 0.5327616333961487,
+        "prediction_mean": 0.525513357154172,
+        "mean_gap": -0.007248276241976659,
+        "prediction_min": 0.3185241767249512,
+        "prediction_max": 0.763268632503333,
+        "brier_score": 0.24578286400244262,
+        "baseline_brier": 0.24892667537721636,
+        "skill_score": 1262.9467573170627,
+        "skill_score_unclipped": 1262.9467573170627,
+        "diagnostic_calibration_slope": 1.2411127881148127,
+        "diagnostic_calibration_intercept": -0.11945974068851618
+      },
+      "regimes_groupdro_w050": {
+        "F": {
+          "rows": 25861,
+          "actual_rate": 0.7038397789001465,
+          "prediction_mean": 0.5773210796950748,
+          "mean_gap": -0.12651869920507164,
+          "prediction_min": 0.3185241767249512,
+          "prediction_max": 0.763268632503333,
+          "brier_score": 0.22412374079953593,
+          "baseline_brier": 0.2084493445379394,
+          "skill_score": 0.0,
+          "skill_score_unclipped": -7519.522930782663,
+          "diagnostic_calibration_slope": 0.5423981661421905,
+          "diagnostic_calibration_intercept": 0.39070186380818855
+        },
+        "R": {
+          "rows": 221227,
+          "actual_rate": 0.5127629041671753,
+          "prediction_mean": 0.5194571365634201,
+          "mean_gap": 0.006694232396244781,
+          "prediction_min": 0.3265445752175447,
+          "prediction_max": 0.68789766044952,
+          "brier_score": 0.24831477278912042,
+          "baseline_brier": 0.2498371082772195,
+          "skill_score": 609.3312152852359,
+          "skill_score_unclipped": 609.3312152852359,
+          "diagnostic_calibration_slope": 0.9898549257352757,
+          "diagnostic_calibration_intercept": -0.001424296649090742
+        }
+      },
+      "R_phases_groupdro_w050": {
+        "early": {
+          "rows": 72930,
+          "actual_rate": 0.5237213969230652,
+          "prediction_mean": 0.5273028851367937,
+          "mean_gap": 0.003581488213728501,
+          "prediction_min": 0.3497157630389471,
+          "prediction_max": 0.68789766044952,
+          "brier_score": 0.2479548358129455,
+          "baseline_brier": 0.2494372953280184,
+          "skill_score": 594.3215160040149,
+          "skill_score_unclipped": 594.3215160040149,
+          "diagnostic_calibration_slope": 0.9237408081963422,
+          "diagnostic_calibration_intercept": 0.03663018338202942
+        },
+        "mid": {
+          "rows": 48080,
+          "actual_rate": 0.5149126648902893,
+          "prediction_mean": 0.5171495246361565,
+          "mean_gap": 0.0022368597458671813,
+          "prediction_min": 0.36208961844180326,
+          "prediction_max": 0.6775630230486074,
+          "brier_score": 0.24818462828211965,
+          "baseline_brier": 0.24977761242586993,
+          "skill_score": 637.7609779671723,
+          "skill_score_unclipped": 637.7609779671723,
+          "diagnostic_calibration_slope": 1.0429014825071754,
+          "diagnostic_calibration_intercept": -0.024423360330247265
+        },
+        "late": {
+          "rows": 100217,
+          "actual_rate": 0.5037568211555481,
+          "prediction_mean": 0.5148547191891892,
+          "mean_gap": 0.01109789803364114,
+          "prediction_min": 0.3265445752175447,
+          "prediction_max": 0.6790921672330531,
+          "brier_score": 0.2486391444183753,
+          "baseline_brier": 0.24998588629480523,
+          "skill_score": 538.7271643174762,
+          "skill_score_unclipped": 538.7271643174762,
+          "diagnostic_calibration_slope": 0.9991145676440039,
+          "diagnostic_calibration_intercept": -0.010642002521560973
+        }
+      },
+      "groupdro_w075": {
+        "rows": 247088,
+        "actual_rate": 0.5327616333961487,
+        "prediction_mean": 0.5244393074423691,
+        "mean_gap": -0.008322325953779575,
+        "prediction_min": 0.3185241767249512,
+        "prediction_max": 0.763268632503333,
+        "brier_score": 0.24576553496051887,
+        "baseline_brier": 0.24892667537721636,
+        "skill_score": 1269.9082619037072,
+        "skill_score_unclipped": 1269.9082619037072,
+        "diagnostic_calibration_slope": 1.2010149854300165,
+        "diagnostic_calibration_intercept": -0.09709785998615351
+      },
+      "regimes_groupdro_w075": {
+        "F": {
+          "rows": 25861,
+          "actual_rate": 0.7038397789001465,
+          "prediction_mean": 0.5773210796950748,
+          "mean_gap": -0.12651869920507164,
+          "prediction_min": 0.3185241767249512,
+          "prediction_max": 0.763268632503333,
+          "brier_score": 0.22412374079953593,
+          "baseline_brier": 0.2084493445379394,
+          "skill_score": 0.0,
+          "skill_score_unclipped": -7519.522930782663,
+          "diagnostic_calibration_slope": 0.5423981661421905,
+          "diagnostic_calibration_intercept": 0.39070186380818855
+        },
+        "R": {
+          "rows": 221227,
+          "actual_rate": 0.5127629041671753,
+          "prediction_mean": 0.5182575325585292,
+          "mean_gap": 0.005494628391353951,
+          "prediction_min": 0.32267259663409903,
+          "prediction_max": 0.6951402075598146,
+          "brier_score": 0.24829541801637178,
+          "baseline_brier": 0.2498371082772195,
+          "skill_score": 617.0781720452268,
+          "skill_score_unclipped": 617.0781720452268,
+          "diagnostic_calibration_slope": 0.949155495674294,
+          "diagnostic_calibration_intercept": 0.020855923484023806
+        }
+      },
+      "R_phases_groupdro_w075": {
+        "early": {
+          "rows": 72930,
+          "actual_rate": 0.5237213969230652,
+          "prediction_mean": 0.5252705522433386,
+          "mean_gap": 0.0015491553202734432,
+          "prediction_min": 0.34138584033967684,
+          "prediction_max": 0.6951402075598146,
+          "brier_score": 0.24792123702017618,
+          "baseline_brier": 0.2494372953280184,
+          "skill_score": 607.7913512686828,
+          "skill_score_unclipped": 607.7913512686828,
+          "diagnostic_calibration_slope": 0.9024691176262051,
+          "diagnostic_calibration_intercept": 0.04968092486447706
+        },
+        "mid": {
+          "rows": 48080,
+          "actual_rate": 0.5149126648902893,
+          "prediction_mean": 0.5157399608513052,
+          "mean_gap": 0.0008272959610159392,
+          "prediction_min": 0.3515786238680376,
+          "prediction_max": 0.6844210339370029,
+          "brier_score": 0.24814380241995607,
+          "baseline_brier": 0.24977761242586993,
+          "skill_score": 654.1058624294216,
+          "skill_score_unclipped": 654.1058624294216,
+          "diagnostic_calibration_slope": 0.9997358624377685,
+          "diagnostic_calibration_intercept": -0.0006910889646181693
+        },
+        "late": {
+          "rows": 100217,
+          "actual_rate": 0.5037568211555481,
+          "prediction_mean": 0.5143618394333129,
+          "mean_gap": 0.010605018277764833,
+          "prediction_min": 0.32267259663409903,
+          "prediction_max": 0.6897694099988089,
+          "brier_score": 0.2486404562626595,
+          "baseline_brier": 0.24998588629480523,
+          "skill_score": 538.2023969781602,
+          "skill_score_unclipped": 538.2023969781602,
+          "diagnostic_calibration_slope": 0.9414365928282338,
+          "diagnostic_calibration_intercept": 0.019517790043656627
+        }
+      }
+    },
+    "2022": {
+      "validation_season": 2022,
+      "training_seasons": [
+        2019,
+        2020,
+        2021
+      ],
+      "training_R_rows": 653728,
+      "validation_R_rows": 217024,
+      "dro_rounds": [
+        {
+          "round": 1,
+          "fit_seconds": 23.51686191558838,
+          "group_weight_ratio": 1.0,
+          "worst_group": "2021_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 1.0,
+              "residual_mse": 0.24444303256476496
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 1.0,
+              "residual_mse": 0.2443285642158033
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 1.0,
+              "residual_mse": 0.24366569951017705
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 1.0,
+              "residual_mse": 0.24631530742517888
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.0,
+              "residual_mse": 0.24682346315556933
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0,
+              "residual_mse": 0.24714009834765455
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.0,
+              "residual_mse": 0.24745263216651822
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.0,
+              "residual_mse": 0.24814713881824207
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.0,
+              "residual_mse": 0.24760308335771028
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 2,
+          "fit_seconds": 20.970882892608643,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2021_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.503500806291358,
+              "residual_mse": 0.24478807022775265
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.4852490801239348,
+              "residual_mse": 0.24466137830896492
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.415752421116944,
+              "residual_mse": 0.2441127975215025
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.9210437557007326,
+              "residual_mse": 0.24637502827747448
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.085090416956845,
+              "residual_mse": 0.24678539013261092
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.2017722909189703,
+              "residual_mse": 0.24702819669729653
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.3292415200230259,
+              "residual_mse": 0.24729045921292564
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.663009684467776,
+              "residual_mse": 0.2478366990466645
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.3953400244004137,
+              "residual_mse": 0.2473604965488393
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 3,
+          "fit_seconds": 21.599320888519287,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2021_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.5147704690719164,
+              "residual_mse": 0.2447938999003712
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.5147704690719164,
+              "residual_mse": 0.24463224035067424
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.5147704690719164,
+              "residual_mse": 0.2440779122292259
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.6470771839615177,
+              "residual_mse": 0.24676230949047112
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.8937885784869566,
+              "residual_mse": 0.24686747859853397
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0876086436074759,
+              "residual_mse": 0.2471308195248262
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.3317164747356325,
+              "residual_mse": 0.24729379953967554
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 2.0590818762876655,
+              "residual_mse": 0.24764189345776763
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.4364158357050045,
+              "residual_mse": 0.2473042617933451
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 4,
+          "fit_seconds": 20.513508081436157,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2021_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.5721872113051872,
+              "residual_mse": 0.24477830002289952
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.5721872113051872,
+              "residual_mse": 0.2446234023832685
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.5721872113051872,
+              "residual_mse": 0.24404669509449692
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.5721872113051872,
+              "residual_mse": 0.2468914280011707
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.7360849148167545,
+              "residual_mse": 0.24694284733183933
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 0.9918617684965623,
+              "residual_mse": 0.24718771923822275
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.2935946570776629,
+              "residual_mse": 0.2473283910923451
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 2.288748845220749,
+              "residual_mse": 0.2475300324192799
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.4009609691675222,
+              "residual_mse": 0.24730274385800868
+            }
+          }
+        }
+      ],
+      "final_group_weight_ratio": 4.0,
+      "correction_mean_R": -0.001264685585239399,
+      "correction_std_R": 0.013298051171802513,
+      "feature_importance": {
+        "asof_pitcher_reverse_rate": 112,
+        "game_month": 88,
+        "count_advantage": 83,
+        "temporal_batter_season_player_300": 76,
+        "temporal_pitcher_season_n": 69,
+        "multirate_pitcher_control_success_season_minus_prior": 65,
+        "asof_pitcher_ball_rate": 61,
+        "asof_pitcher_prev5_game_success_rate": 60,
+        "asof_pitcher_n": 59,
+        "temporal_pitcher_season_minus_prior_rate": 51,
+        "multirate_pitcher_control_reverse_prior_shrunk_200": 47,
+        "asof_batter_success_rate": 43,
+        "asof_pitcher_fastball_rate": 43,
+        "asof_batter_n": 41,
+        "temporal_batter_season_global_300": 38,
+        "multirate_pitcher_control_reverse_season_rate": 36,
+        "multirate_pitcher_control_middle_season_rate": 36,
+        "multirate_pitcher_control_ball_season_player_30": 36,
+        "multirate_pitcher_pitchmix_fastball_prior_shrunk_200": 36,
+        "asof_pitcher_prev3_game_success_rate": 32,
+        "pitcher_recent_success_delta_3_5": 31,
+        "multirate_pitcher_control_ball_season_rate": 30,
+        "multirate_batter_control_middle_prior_rate": 30,
+        "li": 29,
+        "pitcher_recent_success_delta_1_5": 29,
+        "multirate_batter_control_success_prior_shrunk_200": 29,
+        "multirate_pitcher_control_reverse_season_minus_prior": 28,
+        "multirate_batter_control_middle_prior_shrunk_200": 28,
+        "multirate_batter_control_middle_season_player_30": 28,
+        "asof_pitcher_prev1_game_middle_rate": 27,
+        "asof_pitcher_middle_rate": 25,
+        "asof_pitcher_prev5_game_middle_rate": 25,
+        "multirate_pitcher_pitchmix_offspeed_season_rate": 25,
+        "home_win_expectancy": 24,
+        "multirate_pitcher_control_reverse_prior_rate": 24,
+        "multirate_pitcher_control_middle_season_global_30": 24,
+        "multirate_batter_control_middle_season_minus_prior": 24,
+        "asof_batter_middle_rate": 23,
+        "multirate_pitcher_control_strike_prior_rate": 23,
+        "multirate_pitcher_pitchmix_fastball_season_player_30": 23,
+        "multirate_pitcher_control_reverse_season_player_30": 22,
+        "multirate_pitcher_pitchmix_fastball_season_rate": 22,
+        "count_out_index": 21,
+        "temporal_pitcher_season_global_300": 21,
+        "multirate_pitcher_control_success_prior_shrunk_200": 21,
+        "multirate_pitcher_control_middle_season_player_30": 21,
+        "multirate_pitcher_control_ball_prior_shrunk_200": 21,
+        "asof_pitcher_offspeed_rate": 20,
+        "pitcher_recent_middle_delta_1_5": 20,
+        "multirate_pitcher_control_middle_season_minus_prior": 20,
+        "run_total_before": 19,
+        "temporal_base_global_30": 19,
+        "asof_pitcher_prev3_game_middle_rate": 18,
+        "score_pressure": 18,
+        "pitcher_batter_success_gap": 18,
+        "temporal_batter_prior_rate_shrunk_200": 18,
+        "multirate_pitcher_control_ball_season_global_30": 18,
+        "strikes_before": 17,
+        "temporal_batter_season_minus_prior_rate": 17,
+        "multirate_pitcher_pitchmix_fastball_prior_rate": 17,
+        "multirate_pitcher_pitchmix_fastball_season_minus_prior": 17,
+        "multirate_pitcher_pitchmix_offspeed_season_minus_prior": 17,
+        "temporal_batter_prior_rate": 16,
+        "multirate_pitcher_control_middle_prior_shrunk_200": 16,
+        "multirate_batter_control_success_season_minus_prior": 16,
+        "multirate_pitcher_pitchmix_offspeed_season_global_30": 16,
+        "multirate_pitcher_pitchmix_offspeed_season_player_30": 16,
+        "away_win_expectancy": 15,
+        "asof_pitcher_prev1_game_success_rate": 15,
+        "temporal_prior_league_rate": 15,
+        "temporal_pitcher_prior_n": 15,
+        "multirate_pitcher_control_strike_prior_shrunk_200": 15,
+        "multirate_batter_control_middle_season_rate": 15,
+        "multirate_batter_control_middle_season_global_30": 15,
+        "temporal_pitcher_log_season_n": 14,
+        "temporal_batter_prior_n": 14,
+        "temporal_batter_season_n": 14,
+        "multirate_pitcher_control_middle_prior_rate": 14,
+        "game_dayofweek": 13,
+        "run_top_before": 13,
+        "asof_pitcher_success_rate": 13,
+        "asof_pitcher_strike_rate": 13,
+        "temporal_pitcher_prior_rate_shrunk_200": 13,
+        "temporal_batter_season_global_100": 13,
+        "multirate_pitcher_control_ball_prior_rate": 13,
+        "multirate_pitcher_pitchmix_breaking_season_rate": 13,
+        "same_hand": 12,
+        "temporal_pitcher_season_player_300": 12,
+        "multirate_pitcher_control_success_prior_rate": 12,
+        "multirate_pitcher_pitchmix_offspeed_prior_shrunk_200": 12,
+        "inning": 11,
+        "outs_before": 11,
+        "win_expectancy_gap": 11,
+        "temporal_base_player_30": 11,
+        "multirate_pitcher_control_strike_season_global_30": 11,
+        "multirate_pitcher_pitchmix_fastball_season_global_30": 11,
+        "balls_before": 10,
+        "batter_hand": 10,
+        "asof_pitcher_pitchmix_n": 10,
+        "log_batter_n": 10,
+        "temporal_pitcher_prior_rate": 10,
+        "multirate_pitcher_control_ball_season_minus_prior": 10,
+        "multirate_pitcher_pitchmix_breaking_prior_rate": 10,
+        "multirate_pitcher_pitchmix_breaking_prior_shrunk_200": 10,
+        "temporal_pitcher_season_global_100": 9,
+        "multirate_pitcher_control_strike_season_rate": 9,
+        "multirate_pitcher_pitchmix_breaking_season_minus_prior": 9,
+        "close_game": 8,
+        "multirate_pitcher_control_strike_season_minus_prior": 8,
+        "multirate_pitcher_pitchmix_breaking_season_global_30": 8,
+        "score_diff_pitcher_team": 7,
+        "asof_pitcher_breaking_rate": 7,
+        "temporal_pitcher_season_player_100": 7,
+        "temporal_batter_season_rate": 7,
+        "temporal_batter_season_player_100": 7,
+        "multirate_pitcher_control_reverse_season_global_30": 7,
+        "multirate_pitcher_pitchmix_breaking_season_player_30": 7,
+        "log_li": 6,
+        "multirate_batter_control_success_prior_rate": 6,
+        "multirate_pitcher_pitchmix_offspeed_prior_rate": 6,
+        "score_diff_home": 5,
+        "temporal_pitcher_season_player_30": 5,
+        "temporal_batter_season_global_10": 5,
+        "multirate_pitcher_control_strike_season_player_30": 5,
+        "multirate_batter_control_success_season_global_30": 5,
+        "run_bot_before": 4,
+        "temporal_pitcher_season_rate": 4,
+        "temporal_batter_log_prior_n": 4,
+        "runner_on_3b": 3,
+        "count_index": 3,
+        "has_two_strikes": 3,
+        "temporal_pitcher_season_global_10": 3,
+        "temporal_batter_log_season_n": 3,
+        "temporal_batter_season_player_30": 3,
+        "num_runners_on": 2,
+        "runner_in_scoring_position": 2,
+        "log_pitcher_n": 2,
+        "temporal_batter_season_global_30": 2,
+        "multirate_batter_control_success_season_player_30": 2,
+        "base_state_12_": 2,
+        "runner_on_1b": 1,
+        "runner_on_2b": 1,
+        "log_pitchmix_n": 1,
+        "temporal_pitcher_log_prior_n": 1,
+        "temporal_pitcher_reliability_10": 1,
+        "temporal_pitcher_season_global_30": 1,
+        "temporal_batter_season_player_10": 1,
+        "multirate_pitcher_control_success_season_rate": 1,
+        "multirate_pitcher_control_success_season_global_30": 1,
+        "multirate_pitcher_control_success_season_player_30": 1,
+        "multirate_batter_control_success_season_rate": 1,
+        "top_bottom_T": 1,
+        "base_state___3": 1,
+        "pitcher_hand": 0,
+        "is_full_count": 0,
+        "has_three_balls": 0,
+        "bases_loaded": 0,
+        "late_inning": 0,
+        "temporal_pitcher_prior_exists": 0,
+        "temporal_pitcher_season_player_10": 0,
+        "temporal_pitcher_reliability_30": 0,
+        "temporal_pitcher_reliability_100": 0,
+        "temporal_pitcher_reliability_300": 0,
+        "temporal_batter_prior_exists": 0,
+        "temporal_batter_reliability_10": 0,
+        "temporal_batter_reliability_30": 0,
+        "temporal_batter_reliability_100": 0,
+        "temporal_batter_reliability_300": 0,
+        "multirate_pitcher_control_season_n": 0,
+        "multirate_pitcher_control_log_season_n": 0,
+        "multirate_pitcher_control_reliability_30": 0,
+        "multirate_batter_control_season_n": 0,
+        "multirate_batter_control_log_season_n": 0,
+        "multirate_batter_control_reliability_30": 0,
+        "multirate_pitcher_pitchmix_season_n": 0,
+        "multirate_pitcher_pitchmix_log_season_n": 0,
+        "multirate_pitcher_pitchmix_reliability_30": 0,
+        "top_bottom_B": 0,
+        "top_bottom_nan": 0,
+        "base_state_123": 0,
+        "base_state_1_3": 0,
+        "base_state_1__": 0,
+        "base_state__23": 0,
+        "base_state__2_": 0,
+        "base_state____": 0,
+        "base_state_nan": 0
+      },
+      "groupdro_w050": {
+        "rows": 247472,
+        "actual_rate": 0.5289204716682434,
+        "prediction_mean": 0.5211941644551503,
+        "mean_gap": -0.0077263072130930865,
+        "prediction_min": 0.3006847455750308,
+        "prediction_max": 0.7981277549350846,
+        "brier_score": 0.24491727711873496,
+        "baseline_brier": 0.24916360631848633,
+        "skill_score": 1704.2333198226456,
+        "skill_score_unclipped": 1704.2333198226456,
+        "diagnostic_calibration_slope": 1.2378971806254764,
+        "diagnostic_calibration_intercept": -0.11626434321255477
+      },
+      "regimes_groupdro_w050": {
+        "F": {
+          "rows": 30448,
+          "actual_rate": 0.7087493538856506,
+          "prediction_mean": 0.6044046619136169,
+          "mean_gap": -0.10434469197203378,
+          "prediction_min": 0.4116014023312085,
+          "prediction_max": 0.7981277549350846,
+          "brier_score": 0.22070069635997372,
+          "baseline_brier": 0.2064237072523234,
+          "skill_score": 0.0,
+          "skill_score_unclipped": -6916.351468389603,
+          "diagnostic_calibration_slope": 0.08098026942555904,
+          "diagnostic_calibration_intercept": 0.6598044907785782
+        },
+        "R": {
+          "rows": 217024,
+          "actual_rate": 0.5036908388137817,
+          "prediction_mean": 0.5095199107937333,
+          "mean_gap": 0.005829071979951528,
+          "prediction_min": 0.3006847455750308,
+          "prediction_max": 0.7040167584134329,
+          "brier_score": 0.2483148112667682,
+          "baseline_brier": 0.24998637770885068,
+          "skill_score": 668.6630117219039,
+          "skill_score_unclipped": 668.6630117219039,
+          "diagnostic_calibration_slope": 1.0161971114672446,
+          "diagnostic_calibration_intercept": -0.014081825547069875
+        }
+      },
+      "R_phases_groupdro_w050": {
+        "early": {
+          "rows": 75061,
+          "actual_rate": 0.5135822892189026,
+          "prediction_mean": 0.507849469257491,
+          "mean_gap": -0.005732819961411617,
+          "prediction_min": 0.3006847455750308,
+          "prediction_max": 0.7040167584134329,
+          "brier_score": 0.24770117939665232,
+          "baseline_brier": 0.24981552141957408,
+          "skill_score": 846.361351331193,
+          "skill_score_unclipped": 846.361351331193,
+          "diagnostic_calibration_slope": 1.0378794878855462,
+          "diagnostic_calibration_intercept": -0.013504260668854866
+        },
+        "mid": {
+          "rows": 64405,
+          "actual_rate": 0.5053179264068604,
+          "prediction_mean": 0.5139307517729494,
+          "mean_gap": 0.008612825366089094,
+          "prediction_min": 0.3386335501900695,
+          "prediction_max": 0.641586963368812,
+          "brier_score": 0.2484502385921456,
+          "baseline_brier": 0.24997171965873122,
+          "skill_score": 608.6612792290169,
+          "skill_score_unclipped": 608.6612792290169,
+          "diagnostic_calibration_slope": 0.9965339432199934,
+          "diagnostic_calibration_intercept": -0.006831528506164345
+        },
+        "late": {
+          "rows": 77558,
+          "actual_rate": 0.49276670813560486,
+          "prediction_mean": 0.5074737620906395,
+          "mean_gap": 0.014707053955034688,
+          "prediction_min": 0.36195448260896507,
+          "prediction_max": 0.6299250170200632,
+          "brier_score": 0.2487962267869187,
+          "baseline_brier": 0.24994767948880448,
+          "skill_score": 460.6774922818802,
+          "skill_score_unclipped": 460.6774922818802,
+          "diagnostic_calibration_slope": 1.0127837497714114,
+          "diagnostic_calibration_intercept": -0.021194476052512946
+        }
+      },
+      "groupdro_w075": {
+        "rows": 247472,
+        "actual_rate": 0.5289204716682434,
+        "prediction_mean": 0.5209168935674833,
+        "mean_gap": -0.008003578100760134,
+        "prediction_min": 0.2975987252359338,
+        "prediction_max": 0.7981277549350846,
+        "brier_score": 0.24488938336358987,
+        "baseline_brier": 0.24916360631848633,
+        "skill_score": 1715.4282754412552,
+        "skill_score_unclipped": 1715.4282754412552,
+        "diagnostic_calibration_slope": 1.2213974568192816,
+        "diagnostic_calibration_intercept": -0.10732612549260208
+      },
+      "regimes_groupdro_w075": {
+        "F": {
+          "rows": 30448,
+          "actual_rate": 0.7087493538856506,
+          "prediction_mean": 0.6044046619136169,
+          "mean_gap": -0.10434469197203378,
+          "prediction_min": 0.4116014023312085,
+          "prediction_max": 0.7981277549350846,
+          "brier_score": 0.22070069635997372,
+          "baseline_brier": 0.2064237072523234,
+          "skill_score": 0.0,
+          "skill_score_unclipped": -6916.351468389603,
+          "diagnostic_calibration_slope": 0.08098026942555904,
+          "diagnostic_calibration_intercept": 0.6598044907785782
+        },
+        "R": {
+          "rows": 217024,
+          "actual_rate": 0.5036908388137817,
+          "prediction_mean": 0.5092037393974234,
+          "mean_gap": 0.005512900583641622,
+          "prediction_min": 0.2975987252359338,
+          "prediction_max": 0.7062254462408512,
+          "brier_score": 0.24828300407782475,
+          "baseline_brier": 0.24998637770885068,
+          "skill_score": 681.3865805959218,
+          "skill_score_unclipped": 681.3865805959218,
+          "diagnostic_calibration_slope": 0.996432760847895,
+          "diagnostic_calibration_intercept": -0.003696451845281319
+        }
+      },
+      "R_phases_groupdro_w075": {
+        "early": {
+          "rows": 75061,
+          "actual_rate": 0.5135822892189026,
+          "prediction_mean": 0.5074687342293098,
+          "mean_gap": -0.006113554989592762,
+          "prediction_min": 0.2975987252359338,
+          "prediction_max": 0.7062254462408512,
+          "brier_score": 0.24764011765488314,
+          "baseline_brier": 0.24981552141957408,
+          "skill_score": 870.8040846818643,
+          "skill_score_unclipped": 870.8040846818643,
+          "diagnostic_calibration_slope": 1.0364931273134328,
+          "diagnostic_calibration_intercept": -0.012405568948068752
+        },
+        "mid": {
+          "rows": 64405,
+          "actual_rate": 0.5053179264068604,
+          "prediction_mean": 0.5135542580548101,
+          "mean_gap": 0.00823633164794979,
+          "prediction_min": 0.33227251352384624,
+          "prediction_max": 0.6388181761805136,
+          "brier_score": 0.24842090086120253,
+          "baseline_brier": 0.24997171965873122,
+          "skill_score": 620.3976992461003,
+          "skill_score_unclipped": 620.3976992461003,
+          "diagnostic_calibration_slope": 0.9723650301391539,
+          "diagnostic_calibration_intercept": 0.005955708488591864
+        },
+        "late": {
+          "rows": 77558,
+          "actual_rate": 0.49276670813560486,
+          "prediction_mean": 0.507270167990151,
+          "mean_gap": 0.014503459854546152,
+          "prediction_min": 0.3567925404023823,
+          "prediction_max": 0.6325879842033635,
+          "brier_score": 0.24879068162828988,
+          "baseline_brier": 0.24994767948880448,
+          "skill_score": 462.8960200314336,
+          "skill_score_unclipped": 462.8960200314336,
+          "diagnostic_calibration_slope": 0.9730366877736778,
+          "diagnostic_calibration_intercept": -0.0008257804392817502
+        }
+      }
+    },
+    "2023": {
+      "validation_season": 2023,
+      "training_seasons": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "training_R_rows": 870752,
+      "validation_R_rows": 219839,
+      "dro_rounds": [
+        {
+          "round": 1,
+          "fit_seconds": 27.578670263290405,
+          "group_weight_ratio": 1.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 1.0,
+              "residual_mse": 0.2445448145860583
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 1.0,
+              "residual_mse": 0.24445879508948956
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 1.0,
+              "residual_mse": 0.2438508123586862
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 1.0,
+              "residual_mse": 0.24652497833629863
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.0,
+              "residual_mse": 0.24693324018417542
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0,
+              "residual_mse": 0.2472926431703087
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.0,
+              "residual_mse": 0.24751247239490673
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.0,
+              "residual_mse": 0.248198700980803
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.0,
+              "residual_mse": 0.24770795491080616
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 1.0,
+              "residual_mse": 0.2472027653348272
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.0,
+              "residual_mse": 0.2483699140625133
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.0,
+              "residual_mse": 0.24798217636099215
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 2,
+          "fit_seconds": 27.578845024108887,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.43333954790462137,
+              "residual_mse": 0.24484445732058027
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.42105187025408153,
+              "residual_mse": 0.24476330417840939
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.38930733365063774,
+              "residual_mse": 0.244242367763488
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.8402530998793646,
+              "residual_mse": 0.2466689143691905
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.9631690769336791,
+              "residual_mse": 0.24696544943825763
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.086173246172143,
+              "residual_mse": 0.24724303842849962
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.1690287450034824,
+              "residual_mse": 0.2474165962633434
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.4705746463342286,
+              "residual_mse": 0.24800761228236187
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.2480022666043025,
+              "residual_mse": 0.24757335453385745
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 1.0540131387276042,
+              "residual_mse": 0.2471234649991149
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.557229334602551,
+              "residual_mse": 0.2481690604941317
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.3678576939333045,
+              "residual_mse": 0.24775754570121208
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 3,
+          "fit_seconds": 27.69524884223938,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.4828696035951111,
+              "residual_mse": 0.24483045621769114
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.4828696035951111,
+              "residual_mse": 0.24472674570713082
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.4828696035951111,
+              "residual_mse": 0.2441907277481902
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.5831922777733483,
+              "residual_mse": 0.24701499280750794
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.7497975613231876,
+              "residual_mse": 0.24706445923091536
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 0.9414474882492256,
+              "residual_mse": 0.24733821607853468
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.0836592907580067,
+              "residual_mse": 0.24747734377898928
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.7135196984232908,
+              "residual_mse": 0.24789782549680783
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.2292209143994597,
+              "residual_mse": 0.24757968109349063
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 0.8722597512131542,
+              "residual_mse": 0.2472479842995708
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.9314784143804444,
+              "residual_mse": 0.2479659783313533
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.446815792694552,
+              "residual_mse": 0.24768196656186595
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 4,
+          "fit_seconds": 27.331682920455933,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2021_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.5410280724102614,
+              "residual_mse": 0.24480876253525272
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.5410280724102614,
+              "residual_mse": 0.2446938719243955
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.5410280724102614,
+              "residual_mse": 0.2441604666754976
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.5410280724102614,
+              "residual_mse": 0.24709500153379238
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.5923732469558782,
+              "residual_mse": 0.24712351412334102
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 0.8270365344272084,
+              "residual_mse": 0.24739513742750974
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.004704918825184,
+              "residual_mse": 0.24754061920693024
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.869855042683637,
+              "residual_mse": 0.2478519867643137
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.1857702221846016,
+              "residual_mse": 0.2476071909911023
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 0.7399240304590562,
+              "residual_mse": 0.2473458551338388
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 2.1641122896410456,
+              "residual_mse": 0.2478461237353546
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.452111425182342,
+              "residual_mse": 0.2476677946380481
+            }
+          }
+        }
+      ],
+      "final_group_weight_ratio": 4.0,
+      "correction_mean_R": -0.0004119614197338621,
+      "correction_std_R": 0.012639575738872588,
+      "feature_importance": {
+        "asof_pitcher_prev3_game_middle_rate": 92,
+        "temporal_pitcher_season_n": 91,
+        "asof_pitcher_reverse_rate": 89,
+        "game_month": 82,
+        "count_advantage": 74,
+        "pitcher_recent_success_delta_1_5": 74,
+        "asof_pitcher_prev5_game_success_rate": 71,
+        "temporal_batter_season_player_300": 61,
+        "multirate_pitcher_control_reverse_prior_shrunk_200": 60,
+        "asof_pitcher_ball_rate": 54,
+        "li": 50,
+        "asof_batter_success_rate": 49,
+        "multirate_pitcher_control_success_season_minus_prior": 49,
+        "asof_pitcher_prev5_game_middle_rate": 43,
+        "temporal_pitcher_season_minus_prior_rate": 42,
+        "multirate_pitcher_control_ball_season_player_30": 41,
+        "asof_pitcher_offspeed_rate": 36,
+        "asof_pitcher_prev1_game_middle_rate": 35,
+        "pitcher_recent_success_delta_3_5": 35,
+        "temporal_base_global_30": 35,
+        "asof_pitcher_n": 34,
+        "multirate_pitcher_pitchmix_offspeed_season_rate": 34,
+        "multirate_pitcher_control_reverse_prior_rate": 32,
+        "asof_pitcher_fastball_rate": 31,
+        "asof_pitcher_prev1_game_success_rate": 30,
+        "multirate_pitcher_control_ball_prior_rate": 30,
+        "temporal_batter_season_global_300": 29,
+        "multirate_pitcher_pitchmix_fastball_season_rate": 29,
+        "inning": 27,
+        "run_total_before": 27,
+        "pitcher_recent_middle_delta_1_5": 27,
+        "multirate_pitcher_control_success_prior_rate": 27,
+        "multirate_pitcher_control_middle_season_global_30": 27,
+        "multirate_pitcher_pitchmix_fastball_prior_shrunk_200": 27,
+        "same_hand": 26,
+        "multirate_pitcher_control_success_prior_shrunk_200": 26,
+        "multirate_pitcher_control_middle_season_minus_prior": 26,
+        "asof_batter_n": 25,
+        "multirate_pitcher_pitchmix_offspeed_season_minus_prior": 25,
+        "temporal_batter_prior_n": 24,
+        "temporal_batter_season_n": 24,
+        "multirate_pitcher_pitchmix_fastball_prior_rate": 24,
+        "asof_pitcher_success_rate": 23,
+        "multirate_pitcher_control_strike_prior_rate": 23,
+        "pitcher_batter_success_gap": 22,
+        "multirate_pitcher_control_middle_season_rate": 22,
+        "multirate_pitcher_control_middle_season_player_30": 22,
+        "temporal_pitcher_prior_rate": 21,
+        "multirate_pitcher_control_strike_prior_shrunk_200": 21,
+        "multirate_pitcher_pitchmix_fastball_season_global_30": 21,
+        "asof_pitcher_middle_rate": 20,
+        "temporal_batter_prior_rate_shrunk_200": 20,
+        "multirate_batter_control_middle_prior_shrunk_200": 20,
+        "multirate_pitcher_pitchmix_fastball_season_player_30": 20,
+        "multirate_pitcher_pitchmix_offspeed_season_player_30": 20,
+        "temporal_prior_league_rate": 19,
+        "temporal_pitcher_prior_n": 19,
+        "multirate_pitcher_control_middle_prior_rate": 19,
+        "multirate_pitcher_control_reverse_season_player_30": 18,
+        "multirate_batter_control_success_prior_shrunk_200": 18,
+        "multirate_pitcher_control_ball_season_minus_prior": 17,
+        "multirate_pitcher_pitchmix_breaking_season_minus_prior": 17,
+        "outs_before": 16,
+        "log_li": 16,
+        "multirate_pitcher_control_ball_prior_shrunk_200": 16,
+        "temporal_base_player_30": 15,
+        "multirate_pitcher_control_middle_prior_shrunk_200": 15,
+        "multirate_pitcher_control_ball_season_rate": 15,
+        "multirate_pitcher_pitchmix_fastball_season_minus_prior": 15,
+        "temporal_pitcher_season_global_100": 14,
+        "multirate_batter_control_middle_prior_rate": 14,
+        "run_top_before": 13,
+        "temporal_pitcher_season_global_300": 13,
+        "multirate_pitcher_control_reverse_season_minus_prior": 13,
+        "multirate_pitcher_pitchmix_offspeed_season_global_30": 13,
+        "asof_pitcher_prev3_game_success_rate": 12,
+        "temporal_batter_prior_rate": 12,
+        "multirate_batter_control_middle_season_rate": 12,
+        "multirate_pitcher_pitchmix_breaking_prior_rate": 12,
+        "strikes_before": 11,
+        "asof_pitcher_strike_rate": 11,
+        "temporal_pitcher_prior_rate_shrunk_200": 11,
+        "temporal_pitcher_log_season_n": 11,
+        "balls_before": 10,
+        "score_diff_pitcher_team": 10,
+        "home_win_expectancy": 10,
+        "temporal_pitcher_season_player_100": 10,
+        "multirate_batter_control_middle_season_player_30": 10,
+        "multirate_batter_control_middle_season_minus_prior": 10,
+        "multirate_pitcher_pitchmix_offspeed_prior_rate": 10,
+        "run_bot_before": 9,
+        "temporal_batter_season_minus_prior_rate": 9,
+        "multirate_pitcher_control_reverse_season_global_30": 9,
+        "multirate_pitcher_control_ball_season_global_30": 9,
+        "multirate_batter_control_success_season_minus_prior": 9,
+        "multirate_batter_control_middle_season_global_30": 9,
+        "asof_batter_middle_rate": 8,
+        "count_out_index": 8,
+        "temporal_pitcher_season_player_300": 8,
+        "multirate_pitcher_control_strike_season_minus_prior": 8,
+        "multirate_pitcher_pitchmix_breaking_season_player_30": 8,
+        "away_win_expectancy": 7,
+        "temporal_pitcher_season_global_30": 7,
+        "multirate_pitcher_control_reverse_season_rate": 7,
+        "multirate_pitcher_control_strike_season_rate": 7,
+        "multirate_pitcher_pitchmix_breaking_season_global_30": 7,
+        "batter_hand": 6,
+        "asof_pitcher_pitchmix_n": 6,
+        "temporal_pitcher_log_prior_n": 6,
+        "temporal_pitcher_season_player_30": 6,
+        "multirate_pitcher_control_strike_season_player_30": 6,
+        "multirate_pitcher_pitchmix_breaking_prior_shrunk_200": 6,
+        "game_dayofweek": 5,
+        "runner_in_scoring_position": 5,
+        "score_pressure": 5,
+        "temporal_batter_season_player_100": 5,
+        "multirate_pitcher_pitchmix_breaking_season_rate": 5,
+        "multirate_pitcher_pitchmix_offspeed_prior_shrunk_200": 5,
+        "asof_pitcher_breaking_rate": 4,
+        "close_game": 4,
+        "temporal_pitcher_season_rate": 4,
+        "temporal_batter_log_season_n": 4,
+        "temporal_batter_season_player_10": 4,
+        "temporal_batter_season_global_30": 4,
+        "temporal_batter_season_global_100": 4,
+        "multirate_pitcher_control_success_season_global_30": 4,
+        "multirate_pitcher_control_success_season_player_30": 4,
+        "score_diff_home": 3,
+        "num_runners_on": 3,
+        "win_expectancy_gap": 3,
+        "log_batter_n": 3,
+        "temporal_batter_log_prior_n": 3,
+        "multirate_batter_control_success_prior_rate": 3,
+        "runner_on_3b": 2,
+        "count_index": 2,
+        "has_two_strikes": 2,
+        "temporal_pitcher_season_global_10": 2,
+        "temporal_batter_season_rate": 2,
+        "multirate_pitcher_control_success_season_rate": 2,
+        "multirate_pitcher_control_strike_season_global_30": 2,
+        "multirate_batter_control_success_season_player_30": 2,
+        "base_state___3": 2,
+        "runner_on_1b": 1,
+        "temporal_pitcher_season_player_10": 1,
+        "temporal_pitcher_reliability_10": 1,
+        "temporal_batter_season_global_10": 1,
+        "temporal_batter_reliability_10": 1,
+        "temporal_batter_season_player_30": 1,
+        "top_bottom_B": 1,
+        "runner_on_2b": 0,
+        "pitcher_hand": 0,
+        "is_full_count": 0,
+        "has_three_balls": 0,
+        "bases_loaded": 0,
+        "late_inning": 0,
+        "log_pitcher_n": 0,
+        "log_pitchmix_n": 0,
+        "temporal_pitcher_prior_exists": 0,
+        "temporal_pitcher_reliability_30": 0,
+        "temporal_pitcher_reliability_100": 0,
+        "temporal_pitcher_reliability_300": 0,
+        "temporal_batter_prior_exists": 0,
+        "temporal_batter_reliability_30": 0,
+        "temporal_batter_reliability_100": 0,
+        "temporal_batter_reliability_300": 0,
+        "multirate_pitcher_control_season_n": 0,
+        "multirate_pitcher_control_log_season_n": 0,
+        "multirate_pitcher_control_reliability_30": 0,
+        "multirate_batter_control_season_n": 0,
+        "multirate_batter_control_log_season_n": 0,
+        "multirate_batter_control_reliability_30": 0,
+        "multirate_batter_control_success_season_rate": 0,
+        "multirate_batter_control_success_season_global_30": 0,
+        "multirate_pitcher_pitchmix_season_n": 0,
+        "multirate_pitcher_pitchmix_log_season_n": 0,
+        "multirate_pitcher_pitchmix_reliability_30": 0,
+        "top_bottom_T": 0,
+        "top_bottom_nan": 0,
+        "base_state_123": 0,
+        "base_state_12_": 0,
+        "base_state_1_3": 0,
+        "base_state_1__": 0,
+        "base_state__23": 0,
+        "base_state__2_": 0,
+        "base_state____": 0,
+        "base_state_nan": 0
+      },
+      "groupdro_w050": {
+        "rows": 245525,
+        "actual_rate": 0.49995723366737366,
+        "prediction_mean": 0.49899883018927305,
+        "mean_gap": -0.0009584034781006112,
+        "prediction_min": 0.3027495404673384,
+        "prediction_max": 0.6587514832151623,
+        "brier_score": 0.24787093006453198,
+        "baseline_brier": 0.2499999981710408,
+        "skill_score": 851.627248833886,
+        "skill_score_unclipped": 851.627248833886,
+        "diagnostic_calibration_slope": 1.0663085317538228,
+        "diagnostic_calibration_intercept": -0.03212947546849407
+      },
+      "regimes_groupdro_w050": {
+        "F": {
+          "rows": 25686,
+          "actual_rate": 0.4729035198688507,
+          "prediction_mean": 0.49063989370694927,
+          "mean_gap": 0.017736373838098562,
+          "prediction_min": 0.3449870982864519,
+          "prediction_max": 0.6381703262214339,
+          "brier_score": 0.24823664735802312,
+          "baseline_brier": 0.24926578076450223,
+          "skill_score": 412.86589893034795,
+          "skill_score_unclipped": 412.86589893034795,
+          "diagnostic_calibration_slope": 0.8616814497443898,
+          "diagnostic_calibration_intercept": 0.050128232301430015
+        },
+        "R": {
+          "rows": 219839,
+          "actual_rate": 0.5031182169914246,
+          "prediction_mean": 0.4999754887552462,
+          "mean_gap": -0.003142728236178338,
+          "prediction_min": 0.3027495404673384,
+          "prediction_max": 0.6587514832151623,
+          "brier_score": 0.24782819963726196,
+          "baseline_brier": 0.2499902767227944,
+          "skill_score": 864.864471480975,
+          "skill_score_unclipped": 864.864471480975,
+          "diagnostic_calibration_slope": 1.0794479449030627,
+          "diagnostic_calibration_intercept": -0.036579322798947156
+        }
+      },
+      "R_phases_groupdro_w050": {
+        "early": {
+          "rows": 70795,
+          "actual_rate": 0.4929302930831909,
+          "prediction_mean": 0.4952147201175597,
+          "mean_gap": 0.0022844270343687634,
+          "prediction_min": 0.3027495404673384,
+          "prediction_max": 0.6587514832151623,
+          "brier_score": 0.2479283188603827,
+          "baseline_brier": 0.24995001924411042,
+          "skill_score": 808.8418596012392,
+          "skill_score_unclipped": 808.8418596012392,
+          "diagnostic_calibration_slope": 1.015426627456204,
+          "diagnostic_calibration_intercept": -0.009923921428375245
+        },
+        "mid": {
+          "rows": 63580,
+          "actual_rate": 0.507077693939209,
+          "prediction_mean": 0.5011114583561492,
+          "mean_gap": -0.0059662355830597535,
+          "prediction_min": 0.3246610452333174,
+          "prediction_max": 0.6571485125892645,
+          "brier_score": 0.24759903720055074,
+          "baseline_brier": 0.24994990624850288,
+          "skill_score": 940.5360791033379,
+          "skill_score_unclipped": 940.5360791033379,
+          "diagnostic_calibration_slope": 1.1464737085121393,
+          "diagnostic_calibration_intercept": -0.06743341465038478
+        },
+        "late": {
+          "rows": 85464,
+          "actual_rate": 0.508611798286438,
+          "prediction_mean": 0.503074029292544,
+          "mean_gap": -0.005537768993894021,
+          "prediction_min": 0.31493524063572076,
+          "prediction_max": 0.6334470562731012,
+          "brier_score": 0.2479157476963894,
+          "baseline_brier": 0.2499258369302737,
+          "skill_score": 804.274283352735,
+          "skill_score_unclipped": 804.274283352735,
+          "diagnostic_calibration_slope": 1.070150879073536,
+          "diagnostic_calibration_intercept": -0.02975330152538678
+        }
+      },
+      "groupdro_w075": {
+        "rows": 245525,
+        "actual_rate": 0.49995723366737366,
+        "prediction_mean": 0.49890661433900035,
+        "mean_gap": -0.0010506193283733034,
+        "prediction_min": 0.2975593747934236,
+        "prediction_max": 0.6606215518443694,
+        "brier_score": 0.24785936128143904,
+        "baseline_brier": 0.2499999981710408,
+        "skill_score": 856.2547621049243,
+        "skill_score_unclipped": 856.2547621049243,
+        "diagnostic_calibration_slope": 1.047239030803378,
+        "diagnostic_calibration_intercept": -0.02251724476426603
+      },
+      "regimes_groupdro_w075": {
+        "F": {
+          "rows": 25686,
+          "actual_rate": 0.4729035198688507,
+          "prediction_mean": 0.49063989370694927,
+          "mean_gap": 0.017736373838098562,
+          "prediction_min": 0.3449870982864519,
+          "prediction_max": 0.6381703262214339,
+          "brier_score": 0.24823664735802312,
+          "baseline_brier": 0.24926578076450223,
+          "skill_score": 412.86589893034795,
+          "skill_score_unclipped": 412.86589893034795,
+          "diagnostic_calibration_slope": 0.8616814497443898,
+          "diagnostic_calibration_intercept": 0.050128232301430015
+        },
+        "R": {
+          "rows": 219839,
+          "actual_rate": 0.5031182169914246,
+          "prediction_mean": 0.4998724984003127,
+          "mean_gap": -0.0032457185911118347,
+          "prediction_min": 0.2975593747934236,
+          "prediction_max": 0.6606215518443694,
+          "brier_score": 0.24781527915696094,
+          "baseline_brier": 0.2499902767227944,
+          "skill_score": 870.0328646162658,
+          "skill_score_unclipped": 870.0328646162658,
+          "diagnostic_calibration_slope": 1.0576642431006626,
+          "diagnostic_calibration_intercept": -0.02557907662760056
+        }
+      },
+      "R_phases_groupdro_w075": {
+        "early": {
+          "rows": 70795,
+          "actual_rate": 0.4929302930831909,
+          "prediction_mean": 0.4955401176621192,
+          "mean_gap": 0.002609824578928277,
+          "prediction_min": 0.2975593747934236,
+          "prediction_max": 0.6606215518443694,
+          "brier_score": 0.24786659759319274,
+          "baseline_brier": 0.24995001924411042,
+          "skill_score": 833.5353032651427,
+          "skill_score_unclipped": 833.5353032651427,
+          "diagnostic_calibration_slope": 1.0172378565703162,
+          "diagnostic_calibration_intercept": -0.011151875447951825
+        },
+        "mid": {
+          "rows": 63580,
+          "actual_rate": 0.507077693939209,
+          "prediction_mean": 0.5011462957502628,
+          "mean_gap": -0.005931398188946169,
+          "prediction_min": 0.3163953443889743,
+          "prediction_max": 0.6583108925003431,
+          "brier_score": 0.2476013249797916,
+          "baseline_brier": 0.24994990624850288,
+          "skill_score": 939.6207840047355,
+          "skill_score_unclipped": 939.6207840047355,
+          "diagnostic_calibration_slope": 1.115382175444722,
+          "diagnostic_calibration_intercept": -0.05189194818087609
+        },
+        "late": {
+          "rows": 85464,
+          "actual_rate": 0.508611798286438,
+          "prediction_mean": 0.5025136438984241,
+          "mean_gap": -0.0060981543880138656,
+          "prediction_min": 0.30576638492596747,
+          "prediction_max": 0.6322575724384057,
+          "brier_score": 0.2479319378423888,
+          "baseline_brier": 0.2499258369302737,
+          "skill_score": 797.7963032454238,
+          "skill_score_unclipped": 797.7963032454238,
+          "diagnostic_calibration_slope": 1.0338888902649528,
+          "diagnostic_calibration_intercept": -0.010931460472040713
+        }
+      }
+    },
+    "2024": {
+      "validation_season": 2024,
+      "training_seasons": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "training_R_rows": 1090591,
+      "validation_R_rows": 223497,
+      "dro_rounds": [
+        {
+          "round": 1,
+          "fit_seconds": 34.244396924972534,
+          "group_weight_ratio": 1.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 1.0,
+              "residual_mse": 0.24465563848719954
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 1.0,
+              "residual_mse": 0.24454267085262746
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 1.0,
+              "residual_mse": 0.24393766642769288
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 1.0,
+              "residual_mse": 0.24667169529482308
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 1.0,
+              "residual_mse": 0.24700601534108466
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0,
+              "residual_mse": 0.2473776167508349
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.0,
+              "residual_mse": 0.24758526528754812
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.0,
+              "residual_mse": 0.24825075855380763
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.0,
+              "residual_mse": 0.24782535111037327
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 1.0,
+              "residual_mse": 0.24733511051577445
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.0,
+              "residual_mse": 0.24836696007478556
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.0,
+              "residual_mse": 0.24806847094577902
+            },
+            "2023_early": {
+              "rows": 70795,
+              "weight": 1.0,
+              "residual_mse": 0.2474692413737952
+            },
+            "2023_late": {
+              "rows": 85464,
+              "weight": 1.0,
+              "residual_mse": 0.24755461511420815
+            },
+            "2023_mid": {
+              "rows": 63580,
+              "weight": 1.0,
+              "residual_mse": 0.24710942561718616
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 2,
+          "fit_seconds": 33.82962417602539,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.38808938451798897,
+              "residual_mse": 0.24493060408643616
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.3838277117051222,
+              "residual_mse": 0.24483273692674767
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.3838277117051222,
+              "residual_mse": 0.24429062849151484
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.819174904711275,
+              "residual_mse": 0.24681278159715136
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.9272117059347154,
+              "residual_mse": 0.2470417487452823
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 1.0640961653165029,
+              "residual_mse": 0.2473479522444675
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.1492058949265354,
+              "residual_mse": 0.24752266900151018
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.470604729040254,
+              "residual_mse": 0.24807101898736583
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.256131070920062,
+              "residual_mse": 0.24770078621247646
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 1.0474669568955877,
+              "residual_mse": 0.24727593202328166
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.5353108468204888,
+              "residual_mse": 0.2482148610941718
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.3745493482975348,
+              "residual_mse": 0.24788983742390627
+            },
+            "2023_early": {
+              "rows": 70795,
+              "weight": 1.1008447295093997,
+              "residual_mse": 0.2474219826610984
+            },
+            "2023_late": {
+              "rows": 85464,
+              "weight": 1.1362275089978195,
+              "residual_mse": 0.2474872476868133
+            },
+            "2023_mid": {
+              "rows": 63580,
+              "weight": 0.9634313307015933,
+              "residual_mse": 0.24709874927709288
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 3,
+          "fit_seconds": 34.30047821998596,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.48682064227162364,
+              "residual_mse": 0.244913679667947
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.48682064227162364,
+              "residual_mse": 0.24479373232693685
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.48682064227162364,
+              "residual_mse": 0.24426077811972963
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.575182032986501,
+              "residual_mse": 0.24709221420507363
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.7170427596013282,
+              "residual_mse": 0.24710385766881063
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 0.9363345839966548,
+              "residual_mse": 0.2474295017348638
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.088551652018462,
+              "residual_mse": 0.2475667725218138
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.7554262480069096,
+              "residual_mse": 0.24797610905476863
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.282655385768544,
+              "residual_mse": 0.24769102847158161
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 0.8941272695344407,
+              "residual_mse": 0.24737129073330089
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 1.9472825690864946,
+              "residual_mse": 0.24805319099940293
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.5200639745241118,
+              "residual_mse": 0.2478122867980611
+            },
+            "2023_early": {
+              "rows": 70795,
+              "weight": 0.9993914227660253,
+              "residual_mse": 0.24746746093316427
+            },
+            "2023_late": {
+              "rows": 85464,
+              "weight": 1.0602999732872092,
+              "residual_mse": 0.2474926990237531
+            },
+            "2023_mid": {
+              "rows": 63580,
+              "weight": 0.7631802016084518,
+              "residual_mse": 0.24717722985670784
+            }
+          },
+          "next_group_weight_ratio": 4.0
+        },
+        {
+          "round": 4,
+          "fit_seconds": 48.59310221672058,
+          "group_weight_ratio": 4.0,
+          "worst_group": "2022_late",
+          "best_group": "2019_mid",
+          "groups": {
+            "2019_early": {
+              "rows": 84837,
+              "weight": 0.5627798349301288,
+              "residual_mse": 0.24490519914941614
+            },
+            "2019_late": {
+              "rows": 63590,
+              "weight": 0.5627798349301288,
+              "residual_mse": 0.24477757585521087
+            },
+            "2019_mid": {
+              "rows": 63200,
+              "weight": 0.5627798349301288,
+              "residual_mse": 0.24423353507488677
+            },
+            "2020_early": {
+              "rows": 35596,
+              "weight": 0.5627798349301288,
+              "residual_mse": 0.24716309000282657
+            },
+            "2020_late": {
+              "rows": 113461,
+              "weight": 0.5627798349301288,
+              "residual_mse": 0.24717123483453787
+            },
+            "2020_mid": {
+              "rows": 71817,
+              "weight": 0.8318356492712096,
+              "residual_mse": 0.24748309342990732
+            },
+            "2021_early": {
+              "rows": 72930,
+              "weight": 1.0247695880721226,
+              "residual_mse": 0.24759040806201071
+            },
+            "2021_late": {
+              "rows": 100217,
+              "weight": 1.9643458929222137,
+              "residual_mse": 0.24791220844945538
+            },
+            "2021_mid": {
+              "rows": 48080,
+              "weight": 1.2725399564023059,
+              "residual_mse": 0.24771320876060593
+            },
+            "2022_early": {
+              "rows": 75061,
+              "weight": 0.7750539187801917,
+              "residual_mse": 0.24744921016907084
+            },
+            "2022_late": {
+              "rows": 77558,
+              "weight": 2.2511193397205154,
+              "residual_mse": 0.24793366919902912
+            },
+            "2022_mid": {
+              "rows": 64405,
+              "weight": 1.587295904269207,
+              "residual_mse": 0.24775965973887065
+            },
+            "2023_early": {
+              "rows": 70795,
+              "weight": 0.9021993052137924,
+              "residual_mse": 0.24752408796618977
+            },
+            "2023_late": {
+              "rows": 85464,
+              "weight": 0.9674386090586232,
+              "residual_mse": 0.24753088761929998
+            },
+            "2023_mid": {
+              "rows": 63580,
+              "weight": 0.609502661639175,
+              "residual_mse": 0.24725007456232265
+            }
+          }
+        }
+      ],
+      "final_group_weight_ratio": 4.0,
+      "correction_mean_R": -0.0001564241790406811,
+      "correction_std_R": 0.01110629640157446,
+      "feature_importance": {
+        "temporal_pitcher_season_n": 129,
+        "asof_pitcher_reverse_rate": 94,
+        "asof_pitcher_prev3_game_middle_rate": 91,
+        "pitcher_recent_success_delta_1_5": 86,
+        "count_advantage": 80,
+        "game_month": 69,
+        "multirate_pitcher_control_reverse_prior_shrunk_200": 68,
+        "asof_pitcher_ball_rate": 59,
+        "asof_pitcher_prev5_game_success_rate": 57,
+        "asof_batter_success_rate": 55,
+        "multirate_pitcher_control_success_season_minus_prior": 50,
+        "multirate_pitcher_pitchmix_offspeed_season_minus_prior": 49,
+        "asof_pitcher_prev1_game_middle_rate": 46,
+        "inning": 45,
+        "pitcher_recent_success_delta_3_5": 44,
+        "asof_pitcher_fastball_rate": 42,
+        "li": 40,
+        "temporal_pitcher_season_minus_prior_rate": 39,
+        "multirate_pitcher_control_reverse_prior_rate": 37,
+        "asof_pitcher_offspeed_rate": 36,
+        "pitcher_recent_middle_delta_1_5": 35,
+        "asof_pitcher_n": 34,
+        "asof_pitcher_prev5_game_middle_rate": 34,
+        "multirate_pitcher_control_strike_prior_rate": 32,
+        "asof_pitcher_prev1_game_success_rate": 31,
+        "same_hand": 31,
+        "multirate_pitcher_control_reverse_season_player_30": 31,
+        "multirate_pitcher_control_ball_season_player_30": 31,
+        "multirate_batter_control_middle_prior_shrunk_200": 30,
+        "temporal_pitcher_season_global_300": 29,
+        "multirate_pitcher_control_middle_season_minus_prior": 29,
+        "multirate_pitcher_control_success_prior_rate": 27,
+        "multirate_pitcher_control_middle_season_rate": 27,
+        "temporal_base_global_30": 26,
+        "multirate_pitcher_control_success_prior_shrunk_200": 26,
+        "multirate_pitcher_pitchmix_offspeed_season_rate": 26,
+        "asof_pitcher_middle_rate": 25,
+        "multirate_pitcher_pitchmix_fastball_season_rate": 24,
+        "temporal_batter_season_player_300": 23,
+        "multirate_pitcher_control_ball_prior_rate": 23,
+        "multirate_pitcher_pitchmix_fastball_prior_shrunk_200": 23,
+        "asof_pitcher_strike_rate": 22,
+        "temporal_prior_league_rate": 22,
+        "temporal_pitcher_prior_rate": 22,
+        "multirate_pitcher_control_strike_prior_shrunk_200": 22,
+        "multirate_pitcher_pitchmix_fastball_season_player_30": 22,
+        "multirate_pitcher_pitchmix_fastball_season_global_30": 21,
+        "multirate_pitcher_pitchmix_offspeed_season_player_30": 21,
+        "outs_before": 20,
+        "asof_pitcher_success_rate": 20,
+        "asof_pitcher_prev3_game_success_rate": 20,
+        "temporal_pitcher_prior_rate_shrunk_200": 20,
+        "asof_batter_n": 17,
+        "multirate_pitcher_control_ball_prior_shrunk_200": 17,
+        "asof_batter_middle_rate": 16,
+        "count_out_index": 16,
+        "temporal_pitcher_prior_n": 16,
+        "multirate_pitcher_control_middle_season_global_30": 16,
+        "multirate_pitcher_pitchmix_fastball_season_minus_prior": 16,
+        "multirate_pitcher_pitchmix_offspeed_season_global_30": 16,
+        "pitcher_batter_success_gap": 15,
+        "temporal_pitcher_log_season_n": 15,
+        "multirate_pitcher_pitchmix_fastball_prior_rate": 15,
+        "run_total_before": 14,
+        "temporal_pitcher_season_global_100": 14,
+        "temporal_pitcher_season_player_300": 14,
+        "temporal_batter_prior_n": 14,
+        "multirate_pitcher_control_reverse_season_global_30": 14,
+        "multirate_pitcher_control_middle_prior_shrunk_200": 14,
+        "multirate_pitcher_pitchmix_breaking_prior_shrunk_200": 14,
+        "temporal_base_player_30": 13,
+        "multirate_batter_control_success_prior_shrunk_200": 13,
+        "multirate_batter_control_middle_season_rate": 13,
+        "multirate_pitcher_pitchmix_breaking_season_minus_prior": 13,
+        "multirate_pitcher_control_reverse_season_rate": 12,
+        "multirate_pitcher_control_middle_prior_rate": 12,
+        "multirate_pitcher_control_ball_season_global_30": 12,
+        "multirate_pitcher_pitchmix_breaking_prior_rate": 12,
+        "multirate_pitcher_pitchmix_offspeed_prior_rate": 12,
+        "log_li": 11,
+        "multirate_batter_control_middle_prior_rate": 11,
+        "multirate_pitcher_pitchmix_breaking_season_global_30": 11,
+        "balls_before": 10,
+        "strikes_before": 10,
+        "num_runners_on": 10,
+        "temporal_batter_prior_rate": 10,
+        "multirate_pitcher_control_reverse_season_minus_prior": 10,
+        "multirate_pitcher_control_ball_season_rate": 10,
+        "multirate_pitcher_control_ball_season_minus_prior": 10,
+        "temporal_batter_season_n": 9,
+        "temporal_batter_season_global_300": 9,
+        "multirate_batter_control_success_season_minus_prior": 9,
+        "home_win_expectancy": 8,
+        "temporal_pitcher_season_global_30": 8,
+        "temporal_batter_season_minus_prior_rate": 8,
+        "multirate_pitcher_control_strike_season_minus_prior": 8,
+        "base_state___3": 8,
+        "close_game": 7,
+        "temporal_batter_season_global_100": 7,
+        "multirate_batter_control_middle_season_minus_prior": 7,
+        "multirate_pitcher_pitchmix_breaking_season_player_30": 7,
+        "multirate_pitcher_pitchmix_offspeed_prior_shrunk_200": 7,
+        "run_top_before": 6,
+        "score_diff_pitcher_team": 6,
+        "batter_hand": 6,
+        "asof_pitcher_breaking_rate": 6,
+        "temporal_pitcher_season_player_100": 6,
+        "temporal_batter_prior_rate_shrunk_200": 6,
+        "multirate_pitcher_control_middle_season_player_30": 6,
+        "multirate_pitcher_control_strike_season_rate": 6,
+        "multirate_pitcher_pitchmix_breaking_season_rate": 6,
+        "run_bot_before": 5,
+        "score_diff_home": 5,
+        "away_win_expectancy": 5,
+        "win_expectancy_gap": 5,
+        "temporal_batter_season_player_10": 5,
+        "multirate_pitcher_control_success_season_global_30": 5,
+        "multirate_batter_control_middle_season_player_30": 5,
+        "asof_pitcher_pitchmix_n": 4,
+        "count_index": 4,
+        "temporal_pitcher_season_player_30": 4,
+        "temporal_batter_log_prior_n": 4,
+        "temporal_batter_season_rate": 4,
+        "multirate_pitcher_control_strike_season_global_30": 4,
+        "multirate_batter_control_middle_season_global_30": 4,
+        "log_batter_n": 3,
+        "temporal_pitcher_log_prior_n": 3,
+        "temporal_pitcher_season_rate": 3,
+        "temporal_pitcher_season_global_10": 3,
+        "temporal_batter_log_season_n": 3,
+        "temporal_batter_season_player_100": 3,
+        "multirate_pitcher_control_success_season_player_30": 3,
+        "multirate_pitcher_control_strike_season_player_30": 3,
+        "multirate_batter_control_success_season_rate": 3,
+        "base_state____": 3,
+        "has_two_strikes": 2,
+        "score_pressure": 2,
+        "temporal_pitcher_season_player_10": 2,
+        "temporal_batter_season_global_30": 2,
+        "multirate_batter_control_success_prior_rate": 2,
+        "multirate_batter_control_success_season_global_30": 2,
+        "game_dayofweek": 1,
+        "runner_on_2b": 1,
+        "runner_on_3b": 1,
+        "pitcher_hand": 1,
+        "temporal_pitcher_reliability_10": 1,
+        "temporal_batter_season_player_30": 1,
+        "runner_on_1b": 0,
+        "is_full_count": 0,
+        "has_three_balls": 0,
+        "runner_in_scoring_position": 0,
+        "bases_loaded": 0,
+        "late_inning": 0,
+        "log_pitcher_n": 0,
+        "log_pitchmix_n": 0,
+        "temporal_pitcher_prior_exists": 0,
+        "temporal_pitcher_reliability_30": 0,
+        "temporal_pitcher_reliability_100": 0,
+        "temporal_pitcher_reliability_300": 0,
+        "temporal_batter_prior_exists": 0,
+        "temporal_batter_season_global_10": 0,
+        "temporal_batter_reliability_10": 0,
+        "temporal_batter_reliability_30": 0,
+        "temporal_batter_reliability_100": 0,
+        "temporal_batter_reliability_300": 0,
+        "multirate_pitcher_control_season_n": 0,
+        "multirate_pitcher_control_log_season_n": 0,
+        "multirate_pitcher_control_reliability_30": 0,
+        "multirate_pitcher_control_success_season_rate": 0,
+        "multirate_batter_control_season_n": 0,
+        "multirate_batter_control_log_season_n": 0,
+        "multirate_batter_control_reliability_30": 0,
+        "multirate_batter_control_success_season_player_30": 0,
+        "multirate_pitcher_pitchmix_season_n": 0,
+        "multirate_pitcher_pitchmix_log_season_n": 0,
+        "multirate_pitcher_pitchmix_reliability_30": 0,
+        "top_bottom_B": 0,
+        "top_bottom_T": 0,
+        "top_bottom_nan": 0,
+        "base_state_123": 0,
+        "base_state_12_": 0,
+        "base_state_1_3": 0,
+        "base_state_1__": 0,
+        "base_state__23": 0,
+        "base_state__2_": 0,
+        "base_state_nan": 0
+      },
+      "groupdro_w050": {
+        "rows": 253507,
+        "actual_rate": 0.48610490560531616,
+        "prediction_mean": 0.4914846751398055,
+        "mean_gap": 0.00537976953448932,
+        "prediction_min": 0.31729119554951707,
+        "prediction_max": 0.7175835511254138,
+        "brier_score": 0.2478330349405039,
+        "baseline_brier": 0.24980692635176283,
+        "skill_score": 790.1668060554146,
+        "skill_score_unclipped": 790.1668060554146,
+        "diagnostic_calibration_slope": 1.033151252142873,
+        "diagnostic_calibration_intercept": -0.021673087350004887
+      },
+      "regimes_groupdro_w050": {
+        "F": {
+          "rows": 30010,
+          "actual_rate": 0.45928025245666504,
+          "prediction_mean": 0.47024966918815486,
+          "mean_gap": 0.010969416731489823,
+          "prediction_min": 0.3375708455336256,
+          "prediction_max": 0.6088400285569252,
+          "brier_score": 0.24740263435911314,
+          "baseline_brier": 0.24834190216000707,
+          "skill_score": 378.2155941967291,
+          "skill_score_unclipped": 378.2155941967291,
+          "diagnostic_calibration_slope": 0.8443262554080511,
+          "diagnostic_calibration_intercept": 0.062236097627516584
+        },
+        "R": {
+          "rows": 223497,
+          "actual_rate": 0.48970678448677063,
+          "prediction_mean": 0.4943359998940932,
+          "mean_gap": 0.004629215407322584,
+          "prediction_min": 0.31729119554951707,
+          "prediction_max": 0.7175835511254138,
+          "brier_score": 0.24789082686365063,
+          "baseline_brier": 0.24989404971439821,
+          "skill_score": 801.6288715305797,
+          "skill_score_unclipped": 801.6288715305797,
+          "diagnostic_calibration_slope": 1.0456620209775453,
+          "diagnostic_calibration_intercept": -0.027201583731972165
+        }
+      },
+      "R_phases_groupdro_w050": {
+        "early": {
+          "rows": 87355,
+          "actual_rate": 0.49506038427352905,
+          "prediction_mean": 0.4984258947289823,
+          "mean_gap": 0.0033655104554532467,
+          "prediction_min": 0.32996465621691,
+          "prediction_max": 0.7175835511254138,
+          "brier_score": 0.24772161028798736,
+          "baseline_brier": 0.2499756001964748,
+          "skill_score": 901.6839670415222,
+          "skill_score_unclipped": 901.6839670415222,
+          "diagnostic_calibration_slope": 1.0625464840258738,
+          "diagnostic_calibration_intercept": -0.03454029620957854
+        },
+        "mid": {
+          "rows": 68816,
+          "actual_rate": 0.4900604486465454,
+          "prediction_mean": 0.4935697246693008,
+          "mean_gap": 0.0035092760227554143,
+          "prediction_min": 0.328201496840336,
+          "prediction_max": 0.6391436931429554,
+          "brier_score": 0.24776266512535677,
+          "baseline_brier": 0.24990120531889204,
+          "skill_score": 855.7542532883433,
+          "skill_score_unclipped": 855.7542532883433,
+          "diagnostic_calibration_slope": 1.0999846097494828,
+          "diagnostic_calibration_intercept": -0.05285864991662794
+        },
+        "late": {
+          "rows": 67326,
+          "actual_rate": 0.4823990762233734,
+          "prediction_mean": 0.48981262456461533,
+          "mean_gap": 0.007413548341241916,
+          "prediction_min": 0.31729119554951707,
+          "prediction_max": 0.6255426020237498,
+          "brier_score": 0.24824138225309153,
+          "baseline_brier": 0.24969020748220938,
+          "skill_score": 580.2491189892067,
+          "skill_score_unclipped": 580.2491189892067,
+          "diagnostic_calibration_slope": 0.9498691313652936,
+          "diagnostic_calibration_intercept": 0.017141180939438533
+        }
+      },
+      "groupdro_w075": {
+        "rows": 253507,
+        "actual_rate": 0.48610490560531616,
+        "prediction_mean": 0.49145019844414917,
+        "mean_gap": 0.0053452928388330045,
+        "prediction_min": 0.3147379702951104,
+        "prediction_max": 0.719566732748608,
+        "brier_score": 0.24781617874414383,
+        "baseline_brier": 0.24980692635176283,
+        "skill_score": 796.9144958037466,
+        "skill_score_unclipped": 796.9144958037466,
+        "diagnostic_calibration_slope": 1.0158077185814005,
+        "diagnostic_calibration_intercept": -0.013113984698208112
+      },
+      "regimes_groupdro_w075": {
+        "F": {
+          "rows": 30010,
+          "actual_rate": 0.45928025245666504,
+          "prediction_mean": 0.47024966918815486,
+          "mean_gap": 0.010969416731489823,
+          "prediction_min": 0.3375708455336256,
+          "prediction_max": 0.6088400285569252,
+          "brier_score": 0.24740263435911314,
+          "baseline_brier": 0.24834190216000707,
+          "skill_score": 378.2155941967291,
+          "skill_score_unclipped": 378.2155941967291,
+          "diagnostic_calibration_slope": 0.8443262554080511,
+          "diagnostic_calibration_intercept": 0.062236097627516584
+        },
+        "R": {
+          "rows": 223497,
+          "actual_rate": 0.48970678448677063,
+          "prediction_mean": 0.4942968938493331,
+          "mean_gap": 0.004590109362562489,
+          "prediction_min": 0.3147379702951104,
+          "prediction_max": 0.719566732748608,
+          "brier_score": 0.24787170730602506,
+          "baseline_brier": 0.24989404971439821,
+          "skill_score": 809.2799371111403,
+          "skill_score_unclipped": 809.2799371111403,
+          "diagnostic_calibration_slope": 1.025241386820943,
+          "diagnostic_calibration_intercept": -0.01706683599213159
+        }
+      },
+      "R_phases_groupdro_w075": {
+        "early": {
+          "rows": 87355,
+          "actual_rate": 0.49506038427352905,
+          "prediction_mean": 0.49827487927549263,
+          "mean_gap": 0.00321449500196358,
+          "prediction_min": 0.327277306189104,
+          "prediction_max": 0.719566732748608,
+          "brier_score": 0.24767945738123484,
+          "baseline_brier": 0.2499756001964748,
+          "skill_score": 918.5467755393861,
+          "skill_score_unclipped": 918.5467755393861,
+          "diagnostic_calibration_slope": 1.05155781430158,
+          "diagnostic_calibration_intercept": -0.028904457190167654
+        },
+        "mid": {
+          "rows": 68816,
+          "actual_rate": 0.4900604486465454,
+          "prediction_mean": 0.4936385269259798,
+          "mean_gap": 0.0035780782794344046,
+          "prediction_min": 0.32098060964118913,
+          "prediction_max": 0.6430122669491432,
+          "brier_score": 0.2477532372468057,
+          "baseline_brier": 0.24990120531889204,
+          "skill_score": 859.5268955767455,
+          "skill_score_unclipped": 859.5268955767455,
+          "diagnostic_calibration_slope": 1.0717061750104198,
+          "diagnostic_calibration_intercept": -0.03897500647172705
+        },
+        "late": {
+          "rows": 67326,
+          "actual_rate": 0.4823990762233734,
+          "prediction_mean": 0.48980842373816214,
+          "mean_gap": 0.007409347514788722,
+          "prediction_min": 0.3147379702951104,
+          "prediction_max": 0.628108258982705,
+          "brier_score": 0.24824224213321341,
+          "baseline_brier": 0.24969020748220938,
+          "skill_score": 579.9047401965685,
+          "skill_score_unclipped": 579.9047401965685,
+          "diagnostic_calibration_slope": 0.9241117453565691,
+          "diagnostic_calibration_intercept": 0.029761355815360827
+        }
+      }
+    }
+  },
+  "aggregate_2022_2024": {
+    "groupdro_w050": {
+      "season_skills": {
+        "2022": 1704.2333198226456,
+        "2023": 851.627248833886,
+        "2024": 790.1668060554146
+      },
+      "season_briers": {
+        "2022": 0.24491727711873496,
+        "2023": 0.24787093006453198,
+        "2024": 0.2478330349405039
+      },
+      "mean_skill": 1115.3424582373154,
+      "min_skill": 790.1668060554146,
+      "latest_2024_skill": 790.1668060554146,
+      "season_calibration": {
+        "2022": {
+          "mean_gap": -0.0077263072130930865,
+          "diagnostic_calibration_slope": 1.2378971806254764,
+          "diagnostic_calibration_intercept": -0.11626434321255477
+        },
+        "2023": {
+          "mean_gap": -0.0009584034781006112,
+          "diagnostic_calibration_slope": 1.0663085317538228,
+          "diagnostic_calibration_intercept": -0.03212947546849407
+        },
+        "2024": {
+          "mean_gap": 0.00537976953448932,
+          "diagnostic_calibration_slope": 1.033151252142873,
+          "diagnostic_calibration_intercept": -0.021673087350004887
+        }
+      }
+    },
+    "groupdro_w075": {
+      "season_skills": {
+        "2022": 1715.4282754412552,
+        "2023": 856.2547621049243,
+        "2024": 796.9144958037466
+      },
+      "season_briers": {
+        "2022": 0.24488938336358987,
+        "2023": 0.24785936128143904,
+        "2024": 0.24781617874414383
+      },
+      "mean_skill": 1122.8658444499754,
+      "min_skill": 796.9144958037466,
+      "latest_2024_skill": 796.9144958037466,
+      "season_calibration": {
+        "2022": {
+          "mean_gap": -0.008003578100760134,
+          "diagnostic_calibration_slope": 1.2213974568192816,
+          "diagnostic_calibration_intercept": -0.10732612549260208
+        },
+        "2023": {
+          "mean_gap": -0.0010506193283733034,
+          "diagnostic_calibration_slope": 1.047239030803378,
+          "diagnostic_calibration_intercept": -0.02251724476426603
+        },
+        "2024": {
+          "mean_gap": 0.0053452928388330045,
+          "diagnostic_calibration_slope": 1.0158077185814005,
+          "diagnostic_calibration_intercept": -0.013113984698208112
+        }
+      }
+    }
+  },
+  "references": {
+    "strict_team_allprior": {
+      "source": "artifacts/EXP-019/team_eb_ensemble/validation_metrics.json",
+      "variant": "all_prior_s1000",
+      "season_skills": {
+        "2022": 1784.3973973491134,
+        "2023": 898.610864617666,
+        "2024": 850.4028396019714
+      },
+      "season_briers": {
+        "2022": 0.24471753901098636,
+        "2023": 0.24775347102600218,
+        "2024": 0.24768256155812585
+      },
+      "mean_skill": 1177.8037005229169,
+      "min_skill": 850.4028396019714
+    },
+    "season_balanced_same_capacity": {
+      "source": "artifacts/EXP-019/r_full_residual/rfull_l15_m3000_i200/validation_metrics.json",
+      "training_weighting": "equal total mass per historical season",
+      "variants": {
+        "branch_w050": {
+          "season_metrics": {
+            "2022": {
+              "rows": 247472,
+              "actual_rate": 0.5289204716682434,
+              "prediction_mean": 0.5203665209470555,
+              "mean_gap": -0.00855395072118792,
+              "prediction_min": 0.2931202393445465,
+              "prediction_max": 0.7981277549350846,
+              "brier_score": 0.24493009112855776,
+              "baseline_brier": 0.24916360631848633,
+              "skill_score": 1699.0905102397646,
+              "skill_score_unclipped": 1699.0905102397646,
+              "diagnostic_calibration_slope": 1.2184909495439646,
+              "diagnostic_calibration_intercept": -0.10514145269474119
+            },
+            "2023": {
+              "rows": 245525,
+              "actual_rate": 0.49995723366737366,
+              "prediction_mean": 0.49884885744980156,
+              "mean_gap": -0.0011083762175720935,
+              "prediction_min": 0.2966274230633774,
+              "prediction_max": 0.6622049747251866,
+              "brier_score": 0.24788810740192618,
+              "baseline_brier": 0.2499999981710408,
+              "skill_score": 844.7563138259451,
+              "skill_score_unclipped": 844.7563138259451,
+              "diagnostic_calibration_slope": 1.0538434184997654,
+              "diagnostic_calibration_intercept": -0.025751350752094285
+            },
+            "2024": {
+              "rows": 253507,
+              "actual_rate": 0.48610490560531616,
+              "prediction_mean": 0.49155870296449766,
+              "mean_gap": 0.0054537973591815,
+              "prediction_min": 0.316705297306061,
+              "prediction_max": 0.720726561411016,
+              "brier_score": 0.2478241444091694,
+              "baseline_brier": 0.24980692635176283,
+              "skill_score": 793.7257671556285,
+              "skill_score_unclipped": 793.7257671556285,
+              "diagnostic_calibration_slope": 1.0249069317506552,
+              "diagnostic_calibration_intercept": -0.017697001850955227
+            }
+          },
+          "aggregate": {
+            "mean_skill": 1112.5241970737795,
+            "min_skill": 793.7257671556285,
+            "latest_2024_skill": 793.7257671556285
+          }
+        },
+        "branch_w075": {
+          "season_metrics": {
+            "2022": {
+              "rows": 247472,
+              "actual_rate": 0.5289204716682434,
+              "prediction_mean": 0.5196754283053411,
+              "mean_gap": -0.009245043362902328,
+              "prediction_min": 0.28625196589020735,
+              "prediction_max": 0.7981277549350846,
+              "brier_score": 0.2449072089798519,
+              "baseline_brier": 0.24916360631848633,
+              "skill_score": 1708.2740940881247,
+              "skill_score_unclipped": 1708.2740940881247,
+              "diagnostic_calibration_slope": 1.1951076884292118,
+              "diagnostic_calibration_intercept": -0.09214765633053273
+            },
+            "2023": {
+              "rows": 245525,
+              "actual_rate": 0.49995723366737366,
+              "prediction_mean": 0.49868165522979296,
+              "mean_gap": -0.0012755784375806933,
+              "prediction_min": 0.28837619868748215,
+              "prediction_max": 0.6664547420736671,
+              "brier_score": 0.247881713970135,
+              "baseline_brier": 0.2499999981710408,
+              "skill_score": 847.3136865611242,
+              "skill_score_unclipped": 847.3136865611242,
+              "diagnostic_calibration_slope": 1.0315630324079477,
+              "diagnostic_calibration_intercept": -0.014464325977556003
+            },
+            "2024": {
+              "rows": 253507,
+              "actual_rate": 0.48610490560531616,
+              "prediction_mean": 0.49156124018118735,
+              "mean_gap": 0.005456334575871191,
+              "prediction_min": 0.3119892415135311,
+              "prediction_max": 0.7242812481770112,
+              "brier_score": 0.24780312259107734,
+              "baseline_brier": 0.24980692635176283,
+              "skill_score": 802.1409934262036,
+              "skill_score_unclipped": 802.1409934262036,
+              "diagnostic_calibration_slope": 1.0044044440628892,
+              "diagnostic_calibration_intercept": -0.007621373987329736
+            }
+          },
+          "aggregate": {
+            "mean_skill": 1119.2429246918175,
+            "min_skill": 802.1409934262036,
+            "latest_2024_skill": 802.1409934262036
+          }
+        }
+      }
+    }
+  },
+  "selection": {
+    "best_fixed_weight": "groupdro_w075",
+    "best_min_skill": 796.9144958037466,
+    "team_allprior_min_skill": 850.4028396019714,
+    "beats_team_allprior": false,
+    "stop_rule_triggered": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.5",
+    "numpy": "2.5.1",
+    "lightgbm": "4.6.0"
+  },
+  "total_seconds": 460.2256429195404,
+  "comparison_to_season_balanced": {
+    "groupdro_w050": {
+      "reference_variant": "branch_w050",
+      "season_changes": {
+        "2022": {
+          "brier_change": -1.2814009822809114e-05,
+          "skill_change": 5.142809582881,
+          "mean_gap_change": 0.000827643508094833,
+          "calibration_slope_change": 0.019406231081511738
+        },
+        "2023": {
+          "brier_change": -1.7177337394203018e-05,
+          "skill_change": 6.870935007940943,
+          "mean_gap_change": 0.00014997273947148226,
+          "calibration_slope_change": 0.012465113254057414
+        },
+        "2024": {
+          "brier_change": 8.890531334515561e-06,
+          "skill_change": -3.558961100213992,
+          "mean_gap_change": -7.402782469217994e-05,
+          "calibration_slope_change": 0.008244320392217785
+        }
+      },
+      "mean_skill_change": 2.818261163535908,
+      "min_skill_change": -3.558961100213992
+    },
+    "groupdro_w075": {
+      "reference_variant": "branch_w075",
+      "season_changes": {
+        "2022": {
+          "brier_change": -1.782561626204049e-05,
+          "skill_change": 7.154181353130525,
+          "mean_gap_change": 0.001241465262142194,
+          "calibration_slope_change": 0.0262897683900698
+        },
+        "2023": {
+          "brier_change": -2.235268869596463e-05,
+          "skill_change": 8.941075543800139,
+          "mean_gap_change": 0.00022495910920738993,
+          "calibration_slope_change": 0.015675998395430435
+        },
+        "2024": {
+          "brier_change": 1.3056153066487441e-05,
+          "skill_change": -5.226497622457032,
+          "mean_gap_change": -0.00011104173703818665,
+          "calibration_slope_change": 0.011403274518511308
+        }
+      },
+      "mean_skill_change": 3.6229197581578774,
+      "min_skill_change": -5.226497622457032
+    }
+  },
+  "comparison_to_team_allprior": {
+    "groupdro_w050": {
+      "season_changes": {
+        "2022": {
+          "brier_change": 0.00019973810774859269,
+          "skill_change": -80.16407752646774
+        },
+        "2023": {
+          "brier_change": 0.00011745903852980466,
+          "skill_change": -46.98361578378001
+        },
+        "2024": {
+          "brier_change": 0.00015047338237805796,
+          "skill_change": -60.23603354655688
+        }
+      },
+      "mean_skill_change": -62.46124228560143,
+      "min_skill_change": -60.23603354655688
+    },
+    "groupdro_w075": {
+      "season_changes": {
+        "2022": {
+          "brier_change": 0.00017184435260350628,
+          "skill_change": -68.96912190785815
+        },
+        "2023": {
+          "brier_change": 0.00010589025543686348,
+          "skill_change": -42.3561025127417
+        },
+        "2024": {
+          "brier_change": 0.00013361718601798134,
+          "skill_change": -53.48834379822483
+        }
+      },
+      "mean_skill_change": -54.937856072941486,
+      "min_skill_change": -53.48834379822483
+    }
+  }
+}

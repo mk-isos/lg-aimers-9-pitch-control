@@ -1,0 +1,2208 @@
+{
+  "experiment": "EXP-020",
+  "candidate_family": "temporal_context_EB_on_team_allprior",
+  "validation_protocol": {
+    "evaluated_oof_seasons": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reported_seasons": [
+      2022,
+      2023,
+      2024
+    ],
+    "base": "EXP-019 team all_prior_s1000 temporal-safe OOF",
+    "effect_training": "one independent source-season EB map from centered OOF residual; equal average across all earlier source seasons, including zero for missing keys",
+    "current_fold_labels_used_for_effects": false,
+    "strict_selection_uses_current_fold": false,
+    "test_row_aggregation": false,
+    "candidate_comparison_post_hoc": true,
+    "nested_caveat": "candidate family and weights are fixed inside this run, but the team base and context family were proposed after earlier OOF inspection"
+  },
+  "effect_configuration": {
+    "source_residual_centering": "subtract source OOF season mean",
+    "source_effect_clip": 0.02,
+    "families": {
+      "count_hands": {
+        "columns": [
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 1000.0
+      },
+      "game_type_count_hands": {
+        "columns": [
+          "game_type",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 1000.0
+      },
+      "base_state_count_hands": {
+        "columns": [
+          "base_state",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 1000.0
+      },
+      "outs_count_hands": {
+        "columns": [
+          "outs_before",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 1000.0
+      },
+      "inning_bucket_count_hands": {
+        "columns": [
+          "inning_bucket",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 1000.0
+      },
+      "pitcher_team_count_hands": {
+        "columns": [
+          "pitcher_team_id",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 3000.0
+      },
+      "batter_team_count_hands": {
+        "columns": [
+          "batter_team_id",
+          "count_index",
+          "pitcher_hand",
+          "batter_hand"
+        ],
+        "smoothing": 3000.0
+      }
+    },
+    "composites": {
+      "situational_equal3": {
+        "members": [
+          "game_type_count_hands",
+          "base_state_count_hands",
+          "inning_bucket_count_hands"
+        ],
+        "weights": "equal"
+      }
+    },
+    "inning_bucket": {
+      "early": "inning <= 3",
+      "middle": "4 <= inning <= 6",
+      "late": "inning >= 7"
+    }
+  },
+  "correction_diagnostics": {
+    "2021": {
+      "source_oof_seasons": [],
+      "families": {
+        "count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "game_type_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "game_type",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "base_state_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "base_state",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "outs_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "outs_before",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "inning_bucket_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "inning_bucket",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "pitcher_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "pitcher_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        },
+        "batter_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "batter_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {},
+          "correction_mean": 0.0,
+          "correction_std": 0.0,
+          "correction_min": 0.0,
+          "correction_max": 0.0
+        }
+      }
+    },
+    "2022": {
+      "source_oof_seasons": [
+        2021
+      ],
+      "families": {
+        "count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 48,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007487881269935878,
+              "largest_group_rows": 24913,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00011764074249291835,
+              "applied_std": 0.007642599323580338
+            }
+          },
+          "correction_mean": -0.00011764074249291835,
+          "correction_std": 0.007642599323580338,
+          "correction_min": -0.014848996713588757,
+          "correction_max": 0.02
+        },
+        "game_type_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "game_type",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.015421690464989124,
+              "largest_group_rows": 22433,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.0073353251305223665,
+              "applied_std": 0.01261517384826897
+            }
+          },
+          "correction_mean": -0.0073353251305223665,
+          "correction_std": 0.01261517384826897,
+          "correction_min": -0.02,
+          "correction_max": 0.02
+        },
+        "base_state_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "base_state",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.005092583982454439,
+              "largest_group_rows": 12368,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.0007594848962967377,
+              "applied_std": 0.00819122253834368
+            }
+          },
+          "correction_mean": -0.0007594848962967377,
+          "correction_std": 0.00819122253834368,
+          "correction_min": -0.019613675608608574,
+          "correction_max": 0.02
+        },
+        "outs_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "outs_before",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006527771117952618,
+              "largest_group_rows": 8447,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00023131685451753347,
+              "applied_std": 0.00788646407839242
+            }
+          },
+          "correction_mean": -0.00023131685451753347,
+          "correction_std": 0.00788646407839242,
+          "correction_min": -0.02,
+          "correction_max": 0.02
+        },
+        "inning_bucket_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "inning_bucket",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007229724849912899,
+              "largest_group_rows": 8657,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00018484331568849883,
+              "applied_std": 0.008504530612322486
+            }
+          },
+          "correction_mean": -0.00018484331568849883,
+          "correction_std": 0.008504530612322486,
+          "correction_min": -0.02,
+          "correction_max": 0.02
+        },
+        "pitcher_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "pitcher_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 526,
+              "max_abs_effect": 0.018952413183131893,
+              "mean_abs_effect": 0.002646363335354385,
+              "largest_group_rows": 3002,
+              "target_row_key_coverage": 0.9999717139716816,
+              "applied_mean": 4.5468571160308074e-05,
+              "applied_std": 0.005152086480584029
+            }
+          },
+          "correction_mean": 4.5468571160308074e-05,
+          "correction_std": 0.005152086480584029,
+          "correction_min": -0.013830288998738241,
+          "correction_max": 0.018952413183131893
+        },
+        "batter_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "batter_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 528,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.002790463829566302,
+              "largest_group_rows": 3961,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 8.801320841725622e-05,
+              "applied_std": 0.006256381344457295
+            }
+          },
+          "correction_mean": 8.801320841725622e-05,
+          "correction_std": 0.006256381344457295,
+          "correction_min": -0.01860966853549908,
+          "correction_max": 0.02
+        }
+      }
+    },
+    "2023": {
+      "source_oof_seasons": [
+        2021,
+        2022
+      ],
+      "families": {
+        "count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 48,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007487881269935878,
+              "largest_group_rows": 24913,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00011933583140573828,
+              "applied_std": 0.0076896635304117885
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 48,
+              "max_abs_effect": 0.018816701822693776,
+              "mean_abs_effect": 0.006091230694854988,
+              "largest_group_rows": 24103,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 5.904132462580995e-05,
+              "applied_std": 0.006068258736119951
+            }
+          },
+          "correction_mean": -3.01472533899641e-05,
+          "correction_std": 0.005370324288136951,
+          "correction_min": -0.012155124641040835,
+          "correction_max": 0.0133295532031465
+        },
+        "game_type_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "game_type",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.015421690464989124,
+              "largest_group_rows": 22433,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00798792677130274,
+              "applied_std": 0.012148935566724436
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.013961121864706627,
+              "largest_group_rows": 21259,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.006168397911712237,
+              "applied_std": 0.010401737217785544
+            }
+          },
+          "correction_mean": -0.007078162341507488,
+          "correction_std": 0.010583461424698385,
+          "correction_min": -0.02,
+          "correction_max": 0.02
+        },
+        "base_state_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "base_state",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.005092583982454439,
+              "largest_group_rows": 12368,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.0007672491005107575,
+              "applied_std": 0.008167376512669878
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.004816470435499048,
+              "largest_group_rows": 12884,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.0004083952826289923,
+              "applied_std": 0.007410209908385083
+            }
+          },
+          "correction_mean": -0.000587822191569875,
+          "correction_std": 0.0061898975995884516,
+          "correction_min": -0.0174806072966294,
+          "correction_max": 0.018369169367577213
+        },
+        "outs_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "outs_before",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006527771117952618,
+              "largest_group_rows": 8447,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00024334340637597733,
+              "applied_std": 0.007852151470954331
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006514274178975914,
+              "largest_group_rows": 8654,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00019946691752913907,
+              "applied_std": 0.007250987092494688
+            }
+          },
+          "correction_mean": -2.193824442341911e-05,
+          "correction_std": 0.005988227823690901,
+          "correction_min": -0.01525970601977637,
+          "correction_max": 0.016822323138394196
+        },
+        "inning_bucket_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "inning_bucket",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007229724849912899,
+              "largest_group_rows": 8657,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -7.270600482407734e-05,
+              "applied_std": 0.00856072719697065
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.00549053209010922,
+              "largest_group_rows": 8680,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00012316173099744264,
+              "applied_std": 0.006805349469275232
+            }
+          },
+          "correction_mean": 2.5227863086682748e-05,
+          "correction_std": 0.005913106854679881,
+          "correction_min": -0.01842803146795894,
+          "correction_max": 0.01740937629055563
+        },
+        "pitcher_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "pitcher_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 526,
+              "max_abs_effect": 0.018952413183131893,
+              "mean_abs_effect": 0.002646363335354385,
+              "largest_group_rows": 3002,
+              "target_row_key_coverage": 0.9999674167600041,
+              "applied_mean": 1.549029590413505e-05,
+              "applied_std": 0.005118472349479513
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 527,
+              "max_abs_effect": 0.012871084430686588,
+              "mean_abs_effect": 0.0023879016524886365,
+              "largest_group_rows": 3971,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.0001478988438569542,
+              "applied_std": 0.0042747762126007895
+            }
+          },
+          "correction_mean": 8.16945698805446e-05,
+          "correction_std": 0.0035997327862568223,
+          "correction_min": -0.008957989242810306,
+          "correction_max": 0.012489798096680856
+        },
+        "batter_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "batter_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 528,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.002790463829566302,
+              "largest_group_rows": 3961,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 4.581720965998552e-05,
+              "applied_std": 0.005999871028767312
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 528,
+              "max_abs_effect": 0.01642510961705217,
+              "mean_abs_effect": 0.002348886388117762,
+              "largest_group_rows": 4423,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.0002235030117588101,
+              "applied_std": 0.00435557690319099
+            }
+          },
+          "correction_mean": 0.00013466011070939777,
+          "correction_std": 0.004039788129989834,
+          "correction_min": -0.012028556536211564,
+          "correction_max": 0.014263251604025296
+        }
+      }
+    },
+    "2024": {
+      "source_oof_seasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "families": {
+        "count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 48,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007487881269935878,
+              "largest_group_rows": 24913,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00013409077648590253,
+              "applied_std": 0.007682424996492615
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 48,
+              "max_abs_effect": 0.018816701822693776,
+              "mean_abs_effect": 0.006091230694854988,
+              "largest_group_rows": 24103,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 5.66957861900454e-05,
+              "applied_std": 0.0060719702881128785
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 48,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006582158959842314,
+              "largest_group_rows": 23292,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00016510967226459778,
+              "applied_std": 0.006850449593357855
+            }
+          },
+          "correction_mean": 2.9238227322913538e-05,
+          "correction_std": 0.0038781087760343946,
+          "correction_min": -0.01261900731440986,
+          "correction_max": 0.011533461467480409
+        },
+        "game_type_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "game_type",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.015421690464989124,
+              "largest_group_rows": 22433,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.007577373098821366,
+              "applied_std": 0.012562805987255584
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.013961121864706627,
+              "largest_group_rows": 21259,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.005775921831060637,
+              "applied_std": 0.010817004620121145
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 96,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.009399911138266973,
+              "largest_group_rows": 20366,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.0012916536715207787,
+              "applied_std": 0.008853226350152793
+            }
+          },
+          "correction_mean": -0.004020547086120409,
+          "correction_std": 0.005916130033540022,
+          "correction_min": -0.017865234201825706,
+          "correction_max": 0.019069840649245356
+        },
+        "base_state_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "base_state",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.005092583982454439,
+              "largest_group_rows": 12368,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.0007266243148546061,
+              "applied_std": 0.00812945431633609
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.004816470435499048,
+              "largest_group_rows": 12884,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00037305989800553297,
+              "applied_std": 0.007398029821823903
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 384,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.004994453877671099,
+              "largest_group_rows": 11712,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00013330534112914897,
+              "applied_std": 0.0077023961317421105
+            }
+          },
+          "correction_mean": -0.00041099651799642945,
+          "correction_std": 0.004953410242628337,
+          "correction_min": -0.011974188538691416,
+          "correction_max": 0.012583236205895377
+        },
+        "outs_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "outs_before",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006527771117952618,
+              "largest_group_rows": 8447,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": -0.00022893306864374513,
+              "applied_std": 0.007859362824999988
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006514274178975914,
+              "largest_group_rows": 8654,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00022598072191353706,
+              "applied_std": 0.007238424593502788
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.006472355302275713,
+              "largest_group_rows": 7883,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00011407634977482244,
+              "applied_std": 0.007371810153854201
+            }
+          },
+          "correction_mean": 3.704133434820481e-05,
+          "correction_std": 0.0044972715717378825,
+          "correction_min": -0.01159161630755036,
+          "correction_max": 0.013610661573355193
+        },
+        "inning_bucket_count_hands": {
+          "smoothing": 1000.0,
+          "columns": [
+            "inning_bucket",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007229724849912899,
+              "largest_group_rows": 8657,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 1.623406684982551e-05,
+              "applied_std": 0.00857456448771451
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.00549053209010922,
+              "largest_group_rows": 8680,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 7.994479162971777e-05,
+              "applied_std": 0.006790618403732426
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 144,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.007005565130349462,
+              "largest_group_rows": 8603,
+              "target_row_key_coverage": 1.0,
+              "applied_mean": 0.00016801279001660844,
+              "applied_std": 0.008313348427608268
+            }
+          },
+          "correction_mean": 8.80638828320506e-05,
+          "correction_std": 0.004845806300949777,
+          "correction_min": -0.013355194630259923,
+          "correction_max": 0.01234463609810122
+        },
+        "pitcher_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "pitcher_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 526,
+              "max_abs_effect": 0.018952413183131893,
+              "mean_abs_effect": 0.002646363335354385,
+              "largest_group_rows": 3002,
+              "target_row_key_coverage": 0.9988363240462788,
+              "applied_mean": 0.00013282851284310862,
+              "applied_std": 0.00516575185651261
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 527,
+              "max_abs_effect": 0.012871084430686588,
+              "mean_abs_effect": 0.0023879016524886365,
+              "largest_group_rows": 3971,
+              "target_row_key_coverage": 0.9988481580390285,
+              "applied_mean": 0.00021573519829858536,
+              "applied_std": 0.004238181935250483
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 527,
+              "max_abs_effect": 0.019379310660467535,
+              "mean_abs_effect": 0.0025459523834012476,
+              "largest_group_rows": 3712,
+              "target_row_key_coverage": 0.9988481580390285,
+              "applied_mean": 0.00020414051209321577,
+              "applied_std": 0.004562412341903766
+            }
+          },
+          "correction_mean": 0.00018423474107830324,
+          "correction_std": 0.003046733792260076,
+          "correction_min": -0.008336505712893384,
+          "correction_max": 0.01212677802043694
+        },
+        "batter_team_count_hands": {
+          "smoothing": 3000.0,
+          "columns": [
+            "batter_team_id",
+            "count_index",
+            "pitcher_hand",
+            "batter_hand"
+          ],
+          "source_details": {
+            "2021": {
+              "source_rows": 247088,
+              "groups": 528,
+              "max_abs_effect": 0.02,
+              "mean_abs_effect": 0.002790463829566302,
+              "largest_group_rows": 3961,
+              "target_row_key_coverage": 0.9988481580390285,
+              "applied_mean": 0.00020389572514139214,
+              "applied_std": 0.005977154535610582
+            },
+            "2022": {
+              "source_rows": 247472,
+              "groups": 528,
+              "max_abs_effect": 0.01642510961705217,
+              "mean_abs_effect": 0.002348886388117762,
+              "largest_group_rows": 4423,
+              "target_row_key_coverage": 0.9988481580390285,
+              "applied_mean": 0.0002775631093095871,
+              "applied_std": 0.004388246481263943
+            },
+            "2023": {
+              "source_rows": 245525,
+              "groups": 528,
+              "max_abs_effect": 0.012970018048493868,
+              "mean_abs_effect": 0.0022404750325267088,
+              "largest_group_rows": 3444,
+              "target_row_key_coverage": 0.9988481580390285,
+              "applied_mean": 0.00014783845088968251,
+              "applied_std": 0.004121148774691633
+            }
+          },
+          "correction_mean": 0.00020976576178022058,
+          "correction_std": 0.0028694846238795915,
+          "correction_min": -0.007799139378332875,
+          "correction_max": 0.009550456704162687
+        }
+      }
+    }
+  },
+  "folds": {
+    "2021": {
+      "validation_season": 2021,
+      "source_oof_seasons": [],
+      "candidates": {
+        "base_identity": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "game_type_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "base_state_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "outs_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "inning_bucket_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "pitcher_team_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "batter_team_count_hands": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        },
+        "situational_equal3": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        }
+      }
+    },
+    "2022": {
+      "validation_season": 2022,
+      "source_oof_seasons": [
+        2021
+      ],
+      "candidates": {
+        "base_identity": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5202424814955674,
+          "mean_gap": -0.008677962029356667,
+          "prediction_min": 0.3090063803382176,
+          "prediction_max": 0.8040655934842452,
+          "brier_score": 0.24471753901098636,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1784.3973973491134,
+          "skill_score_unclipped": 1784.3973973491134,
+          "diagnostic_calibration_slope": 1.1649282674107455,
+          "diagnostic_calibration_intercept": -0.07712472907717237
+        },
+        "count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5201248407530745,
+          "mean_gap": -0.008795602771849542,
+          "prediction_min": 0.29415738362462884,
+          "prediction_max": 0.805039391385606,
+          "brier_score": 0.24475527399035912,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1769.252738109428,
+          "skill_score_unclipped": 1769.252738109428,
+          "diagnostic_calibration_slope": 1.1573751333518045,
+          "diagnostic_calibration_intercept": -0.07305911340125035
+        },
+        "game_type_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.512907156365045,
+          "mean_gap": -0.01601328715987904,
+          "prediction_min": 0.28900638033821757,
+          "prediction_max": 0.8240655934842452,
+          "brier_score": 0.24441010207989064,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1907.7849713330152,
+          "skill_score_unclipped": 1907.7849713330152,
+          "diagnostic_calibration_slope": 1.0877415541362525,
+          "diagnostic_calibration_intercept": -0.02898998386720022
+        },
+        "base_state_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5194829965992707,
+          "mean_gap": -0.009437446925653403,
+          "prediction_min": 0.2977498480332957,
+          "prediction_max": 0.8101687283984603,
+          "brier_score": 0.24475261411898264,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1770.3202581210498,
+          "skill_score_unclipped": 1770.3202581210498,
+          "diagnostic_calibration_slope": 1.1555715362965575,
+          "diagnostic_calibration_intercept": -0.07137932093523415
+        },
+        "outs_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5200111646410498,
+          "mean_gap": -0.008909278883874272,
+          "prediction_min": 0.3017115413913164,
+          "prediction_max": 0.8074289792078291,
+          "brier_score": 0.244739358625018,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1775.6402541164061,
+          "skill_score_unclipped": 1775.6402541164061,
+          "diagnostic_calibration_slope": 1.1560480766425576,
+          "diagnostic_calibration_intercept": -0.0722374631910235
+        },
+        "inning_bucket_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5200576381798789,
+          "mean_gap": -0.008862805345045133,
+          "prediction_min": 0.305908351771348,
+          "prediction_max": 0.8084669702871715,
+          "brier_score": 0.24476393055390402,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1765.7784893552741,
+          "skill_score_unclipped": 1765.7784893552741,
+          "diagnostic_calibration_slope": 1.1478233024779179,
+          "diagnostic_calibration_intercept": -0.06801383220957084
+        },
+        "pitcher_team_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5202879500667278,
+          "mean_gap": -0.008632493458196278,
+          "prediction_min": 0.3110533702497904,
+          "prediction_max": 0.8208008668513658,
+          "brier_score": 0.24472513729487466,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1781.3478814302619,
+          "skill_score_unclipped": 1781.3478814302619,
+          "diagnostic_calibration_slope": 1.1374899793113264,
+          "diagnostic_calibration_intercept": -0.06290188603241009
+        },
+        "batter_team_count_hands": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5203304947039846,
+          "mean_gap": -0.008589948820939441,
+          "prediction_min": 0.31315290660005646,
+          "prediction_max": 0.8052537320983012,
+          "brier_score": 0.2447229447760506,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1782.2278328975426,
+          "skill_score_unclipped": 1782.2278328975426,
+          "diagnostic_calibration_slope": 1.1373080265528872,
+          "diagnostic_calibration_intercept": -0.06285560456215182
+        },
+        "situational_equal3": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5174825970480649,
+          "mean_gap": -0.011437846476859193,
+          "prediction_min": 0.29860546239500846,
+          "prediction_max": 0.8112252712273156,
+          "brier_score": 0.24458744775051192,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1836.6085776040043,
+          "skill_score_unclipped": 1836.6085776040043,
+          "diagnostic_calibration_slope": 1.140823873711113,
+          "diagnostic_calibration_intercept": -0.061436057417537306
+        }
+      }
+    },
+    "2023": {
+      "validation_season": 2023,
+      "source_oof_seasons": [
+        2021,
+        2022
+      ],
+      "candidates": {
+        "base_identity": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.49903285162251987,
+          "mean_gap": -0.0009243828749854743,
+          "prediction_min": 0.2874790191004826,
+          "prediction_max": 0.6571742839098722,
+          "brier_score": 0.24775347102600218,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 898.610864617666,
+          "skill_score_unclipped": 898.610864617666,
+          "diagnostic_calibration_slope": 1.0401420497826663,
+          "diagnostic_calibration_intercept": -0.019107818698033335
+        },
+        "count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.4990027043691299,
+          "mean_gap": -0.0009545301283754304,
+          "prediction_min": 0.28290705128803334,
+          "prediction_max": 0.6646028908270663,
+          "brier_score": 0.247800697791321,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 879.7201583519487,
+          "skill_score_unclipped": 879.7201583519487,
+          "diagnostic_calibration_slope": 1.013979161670062,
+          "diagnostic_calibration_intercept": -0.0060211093497991985
+        },
+        "game_type_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.4919546892810123,
+          "mean_gap": -0.008002545216493018,
+          "prediction_min": 0.26954823558416174,
+          "prediction_max": 0.6647882563805112,
+          "brier_score": 0.2481525917199453,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 738.9625858725046,
+          "skill_score_unclipped": 738.9625858725046,
+          "diagnostic_calibration_slope": 0.9255641679193273,
+          "diagnostic_calibration_intercept": 0.044621601859111695
+        },
+        "base_state_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.49844502943095004,
+          "mean_gap": -0.0015122050665553055,
+          "prediction_min": 0.28347943552466875,
+          "prediction_max": 0.6629338094868444,
+          "brier_score": 0.24778404190309133,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 886.3825136925518,
+          "skill_score_unclipped": 886.3825136925518,
+          "diagnostic_calibration_slope": 1.0189935002795942,
+          "diagnostic_calibration_intercept": -0.007955010739301648
+        },
+        "outs_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.49901091337809644,
+          "mean_gap": -0.0009463211194088994,
+          "prediction_min": 0.2838862457618386,
+          "prediction_max": 0.6629862506914495,
+          "brier_score": 0.24780150711041024,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 879.3964307138857,
+          "skill_score_unclipped": 879.3964307138857,
+          "diagnostic_calibration_slope": 1.0137661616862232,
+          "diagnostic_calibration_intercept": -0.005923143797343498
+        },
+        "inning_bucket_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.4990580794856065,
+          "mean_gap": -0.0008991550118988556,
+          "prediction_min": 0.28811008987972203,
+          "prediction_max": 0.6619740164098228,
+          "brier_score": 0.24778994962194928,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 884.0194261320877,
+          "skill_score_unclipped": 884.0194261320877,
+          "diagnostic_calibration_slope": 1.01536325615978,
+          "diagnostic_calibration_intercept": -0.006768002101845705
+        },
+        "pitcher_team_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.49911454619240037,
+          "mean_gap": -0.0008426883051049772,
+          "prediction_min": 0.28423465799858383,
+          "prediction_max": 0.6570022864969935,
+          "brier_score": 0.24774755487148328,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 900.9773264425424,
+          "skill_score_unclipped": 900.9773264425424,
+          "diagnostic_calibration_slope": 1.0281405875141172,
+          "diagnostic_calibration_intercept": -0.013202688261590483
+        },
+        "batter_team_count_hands": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.49916751173322926,
+          "mean_gap": -0.0007897227642760796,
+          "prediction_min": 0.2862257249207181,
+          "prediction_max": 0.6598495832962327,
+          "brier_score": 0.2477759704444595,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 889.6110971688964,
+          "skill_score_unclipped": 889.6110971688964,
+          "diagnostic_calibration_slope": 1.0251989463566755,
+          "diagnostic_calibration_intercept": -0.011788772586884537
+        },
+        "situational_equal3": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.4964859327325229,
+          "mean_gap": -0.0034713017649824485,
+          "prediction_min": 0.2834000876370572,
+          "prediction_max": 0.6576106938902673,
+          "brier_score": 0.247868371689594,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 852.6505988447175,
+          "skill_score_unclipped": 852.6505988447175,
+          "diagnostic_calibration_slope": 0.999512095355682,
+          "diagnostic_calibration_intercept": 0.003713539557401944
+        }
+      }
+    },
+    "2024": {
+      "validation_season": 2024,
+      "source_oof_seasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "candidates": {
+        "base_identity": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.49212919648674736,
+          "mean_gap": 0.006024276307028453,
+          "prediction_min": 0.3010309315039303,
+          "prediction_max": 0.7393246341722532,
+          "brier_score": 0.24768256155812585,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 850.4028396019714,
+          "skill_score_unclipped": 850.4028396019714,
+          "diagnostic_calibration_slope": 0.9927152006677566,
+          "diagnostic_calibration_intercept": -0.002439213865084964
+        },
+        "count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4921584347140703,
+          "mean_gap": 0.0060535145343513785,
+          "prediction_min": 0.29529979011434204,
+          "prediction_max": 0.739566078774232,
+          "brier_score": 0.24770473616313787,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 841.526142186122,
+          "skill_score_unclipped": 841.526142186122,
+          "diagnostic_calibration_slope": 0.9732867920957332,
+          "diagnostic_calibration_intercept": 0.00709361605400207
+        },
+        "game_type_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.48810864940062704,
+          "mean_gap": 0.0020037292209081348,
+          "prediction_min": 0.28856308742335296,
+          "prediction_max": 0.7308764615147721,
+          "brier_score": 0.2477375190430603,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 828.4028551948319,
+          "skill_score_unclipped": 828.4028551948319,
+          "diagnostic_calibration_slope": 0.968298302030138,
+          "diagnostic_calibration_intercept": 0.013470143758866394
+        },
+        "base_state_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.49171819996875094,
+          "mean_gap": 0.005613279789032033,
+          "prediction_min": 0.2914386211810101,
+          "prediction_max": 0.7379323960473956,
+          "brier_score": 0.247692780712074,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 846.3120187104711,
+          "skill_score_unclipped": 846.3120187104711,
+          "diagnostic_calibration_slope": 0.9749608474928553,
+          "diagnostic_calibration_intercept": 0.00669892721052428
+        },
+        "outs_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4921662378210956,
+          "mean_gap": 0.0060613176413766845,
+          "prediction_min": 0.2945694101550238,
+          "prediction_max": 0.7370624107234717,
+          "brier_score": 0.2476879698017676,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 848.2378701545779,
+          "skill_score_unclipped": 848.2378701545779,
+          "diagnostic_calibration_slope": 0.9779277630295137,
+          "diagnostic_calibration_intercept": 0.004801892188682719
+        },
+        "inning_bucket_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4922172603695794,
+          "mean_gap": 0.00611234018986051,
+          "prediction_min": 0.29553297925720545,
+          "prediction_max": 0.74317722023682,
+          "brier_score": 0.24769370296307322,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 845.9428331914042,
+          "skill_score_unclipped": 845.9428331914042,
+          "diagnostic_calibration_slope": 0.974588848959907,
+          "diagnostic_calibration_intercept": 0.0063954669579310616
+        },
+        "pitcher_team_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4923134312278257,
+          "mean_gap": 0.006208511048106824,
+          "prediction_min": 0.29716636892609877,
+          "prediction_max": 0.740447547732656,
+          "brier_score": 0.24769519900274983,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 845.3439548111952,
+          "skill_score_unclipped": 845.3439548111952,
+          "diagnostic_calibration_slope": 0.9783288576537573,
+          "diagnostic_calibration_intercept": 0.004460483398998715
+        },
+        "batter_team_count_hands": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4923389622485276,
+          "mean_gap": 0.006234042068808676,
+          "prediction_min": 0.2984715046311293,
+          "prediction_max": 0.7394245160907488,
+          "brier_score": 0.24769209250258295,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 846.5875152709579,
+          "skill_score_unclipped": 846.5875152709579,
+          "diagnostic_calibration_slope": 0.9834425344543767,
+          "diagnostic_calibration_intercept": 0.0019178433353887446
+        },
+        "situational_equal3": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.49068136991298583,
+          "mean_gap": 0.00457644973326693,
+          "prediction_min": 0.29184489595385615,
+          "prediction_max": 0.7366870885320073,
+          "brier_score": 0.2476911404849916,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 846.9686166293955,
+          "skill_score_unclipped": 846.9686166293955,
+          "diagnostic_calibration_slope": 0.978532386560959,
+          "diagnostic_calibration_intercept": 0.005957308237763707
+        }
+      }
+    }
+  },
+  "aggregate_2022_2024": {
+    "base_identity": {
+      "season_skills": {
+        "2022": 1784.3973973491134,
+        "2023": 898.610864617666,
+        "2024": 850.4028396019714
+      },
+      "season_briers": {
+        "2022": 0.24471753901098636,
+        "2023": 0.24775347102600218,
+        "2024": 0.24768256155812585
+      },
+      "mean_skill": 1177.8037005229169,
+      "min_skill": 850.4028396019714,
+      "latest_2024_skill": 850.4028396019714,
+      "season_skill_change_vs_base": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "season_brier_change_vs_base": {
+        "2022": 0.0,
+        "2023": 0.0,
+        "2024": 0.0
+      },
+      "mean_skill_change_vs_base": 0.0,
+      "min_skill_change_vs_base": 0.0
+    },
+    "count_hands": {
+      "season_skills": {
+        "2022": 1769.252738109428,
+        "2023": 879.7201583519487,
+        "2024": 841.526142186122
+      },
+      "season_briers": {
+        "2022": 0.24475527399035912,
+        "2023": 0.247800697791321,
+        "2024": 0.24770473616313787
+      },
+      "mean_skill": 1163.4996795491663,
+      "min_skill": 841.526142186122,
+      "latest_2024_skill": 841.526142186122,
+      "season_skill_change_vs_base": {
+        "2022": -15.144659239685325,
+        "2023": -18.890706265717313,
+        "2024": -8.876697415849435
+      },
+      "season_brier_change_vs_base": {
+        "2022": 3.7734979372761046e-05,
+        "2023": 4.722676531881964e-05,
+        "2024": 2.2174605012026394e-05
+      },
+      "mean_skill_change_vs_base": -14.30402097375054,
+      "min_skill_change_vs_base": -8.876697415849435
+    },
+    "game_type_count_hands": {
+      "season_skills": {
+        "2022": 1907.7849713330152,
+        "2023": 738.9625858725046,
+        "2024": 828.4028551948319
+      },
+      "season_briers": {
+        "2022": 0.24441010207989064,
+        "2023": 0.2481525917199453,
+        "2024": 0.2477375190430603
+      },
+      "mean_skill": 1158.3834708001173,
+      "min_skill": 738.9625858725046,
+      "latest_2024_skill": 828.4028551948319,
+      "season_skill_change_vs_base": {
+        "2022": 123.3875739839018,
+        "2023": -159.6482787451614,
+        "2024": -21.99998440713955
+      },
+      "season_brier_change_vs_base": {
+        "2022": -0.00030743693109572257,
+        "2023": 0.000399120693943128,
+        "2024": 5.4957484934448075e-05
+      },
+      "mean_skill_change_vs_base": -19.420229722799604,
+      "min_skill_change_vs_base": -111.4402537294668
+    },
+    "base_state_count_hands": {
+      "season_skills": {
+        "2022": 1770.3202581210498,
+        "2023": 886.3825136925518,
+        "2024": 846.3120187104711
+      },
+      "season_briers": {
+        "2022": 0.24475261411898264,
+        "2023": 0.24778404190309133,
+        "2024": 0.247692780712074
+      },
+      "mean_skill": 1167.6715968413575,
+      "min_skill": 846.3120187104711,
+      "latest_2024_skill": 846.3120187104711,
+      "season_skill_change_vs_base": {
+        "2022": -14.077139228063515,
+        "2023": -12.228350925114228,
+        "2024": -4.090820891500357
+      },
+      "season_brier_change_vs_base": {
+        "2022": 3.507510799627411e-05,
+        "2023": 3.057087708915884e-05,
+        "2024": 1.0219153948165527e-05
+      },
+      "mean_skill_change_vs_base": -10.132103681559329,
+      "min_skill_change_vs_base": -4.090820891500357
+    },
+    "outs_count_hands": {
+      "season_skills": {
+        "2022": 1775.6402541164061,
+        "2023": 879.3964307138857,
+        "2024": 848.2378701545779
+      },
+      "season_briers": {
+        "2022": 0.244739358625018,
+        "2023": 0.24780150711041024,
+        "2024": 0.2476879698017676
+      },
+      "mean_skill": 1167.7581849949565,
+      "min_skill": 848.2378701545779,
+      "latest_2024_skill": 848.2378701545779,
+      "season_skill_change_vs_base": {
+        "2022": -8.757143232707222,
+        "2023": -19.214433903780332,
+        "2024": -2.1649694473935597
+      },
+      "season_brier_change_vs_base": {
+        "2022": 2.1819614031637347e-05,
+        "2023": 4.803608440806517e-05,
+        "2024": 5.408243641757959e-06
+      },
+      "mean_skill_change_vs_base": -10.045515527960333,
+      "min_skill_change_vs_base": -2.1649694473935597
+    },
+    "inning_bucket_count_hands": {
+      "season_skills": {
+        "2022": 1765.7784893552741,
+        "2023": 884.0194261320877,
+        "2024": 845.9428331914042
+      },
+      "season_briers": {
+        "2022": 0.24476393055390402,
+        "2023": 0.24778994962194928,
+        "2024": 0.24769370296307322
+      },
+      "mean_skill": 1165.2469162262553,
+      "min_skill": 845.9428331914042,
+      "latest_2024_skill": 845.9428331914042,
+      "season_skill_change_vs_base": {
+        "2022": -18.61890799383923,
+        "2023": -14.591438485578351,
+        "2024": -4.460006410567189
+      },
+      "season_brier_change_vs_base": {
+        "2022": 4.639154291766201e-05,
+        "2023": 3.6478595947103676e-05,
+        "2024": 1.1141404947373479e-05
+      },
+      "mean_skill_change_vs_base": -12.55678429666159,
+      "min_skill_change_vs_base": -4.460006410567189
+    },
+    "pitcher_team_count_hands": {
+      "season_skills": {
+        "2022": 1781.3478814302619,
+        "2023": 900.9773264425424,
+        "2024": 845.3439548111952
+      },
+      "season_briers": {
+        "2022": 0.24472513729487466,
+        "2023": 0.24774755487148328,
+        "2024": 0.24769519900274983
+      },
+      "mean_skill": 1175.8897208946664,
+      "min_skill": 845.3439548111952,
+      "latest_2024_skill": 845.3439548111952,
+      "season_skill_change_vs_base": {
+        "2022": -3.0495159188515117,
+        "2023": 2.36646182487641,
+        "2024": -5.058884790776233
+      },
+      "season_brier_change_vs_base": {
+        "2022": 7.5982838882993065e-06,
+        "2023": -5.91615451889238e-06,
+        "2024": 1.2637444623986305e-05
+      },
+      "mean_skill_change_vs_base": -1.9139796282504449,
+      "min_skill_change_vs_base": -5.058884790776233
+    },
+    "batter_team_count_hands": {
+      "season_skills": {
+        "2022": 1782.2278328975426,
+        "2023": 889.6110971688964,
+        "2024": 846.5875152709579
+      },
+      "season_briers": {
+        "2022": 0.2447229447760506,
+        "2023": 0.2477759704444595,
+        "2024": 0.24769209250258295
+      },
+      "mean_skill": 1172.8088151124655,
+      "min_skill": 846.5875152709579,
+      "latest_2024_skill": 846.5875152709579,
+      "season_skill_change_vs_base": {
+        "2022": -2.16956445157075,
+        "2023": -8.999767448769603,
+        "2024": -3.815324331013585
+      },
+      "season_brier_change_vs_base": {
+        "2022": 5.405765064248058e-06,
+        "2023": 2.2499418457333498e-05,
+        "2024": 9.530944457103452e-06
+      },
+      "mean_skill_change_vs_base": -4.9948854104513885,
+      "min_skill_change_vs_base": -3.815324331013585
+    },
+    "situational_equal3": {
+      "season_skills": {
+        "2022": 1836.6085776040043,
+        "2023": 852.6505988447175,
+        "2024": 846.9686166293955
+      },
+      "season_briers": {
+        "2022": 0.24458744775051192,
+        "2023": 0.247868371689594,
+        "2024": 0.2476911404849916
+      },
+      "mean_skill": 1178.7425976927057,
+      "min_skill": 846.9686166293955,
+      "latest_2024_skill": 846.9686166293955,
+      "season_skill_change_vs_base": {
+        "2022": 52.211180254890905,
+        "2023": -45.96026577294856,
+        "2024": -3.4342229725759807
+      },
+      "season_brier_change_vs_base": {
+        "2022": -0.0001300912604744464,
+        "2023": 0.0001149006635918215,
+        "2024": 8.578926865759895e-06
+      },
+      "mean_skill_change_vs_base": 0.9388971697887882,
+      "min_skill_change_vs_base": -3.4342229725759807
+    }
+  },
+  "strict_previous_fold_selection": {
+    "objective": "maximize worst earlier-fold Skill, then earlier-fold mean Skill",
+    "tie_break": "CANDIDATE_ORDER; base_identity first",
+    "folds": {
+      "2021": {
+        "validation_season": 2021,
+        "selection_history_seasons": [],
+        "selected_candidate": "base_identity",
+        "selection_metrics": {},
+        "metrics": {
+          "rows": 247088,
+          "actual_rate": 0.5327616072006734,
+          "prediction_mean": 0.5239526023777193,
+          "mean_gap": -0.008809004822954103,
+          "prediction_min": 0.3180959692712628,
+          "prediction_max": 0.7632686326588105,
+          "brier_score": 0.2457973019900028,
+          "baseline_brier": 0.24892667709362878,
+          "skill_score": 1257.1473416041035,
+          "skill_score_unclipped": 1257.1473416041035,
+          "diagnostic_calibration_slope": 1.1716727642890523,
+          "diagnostic_calibration_intercept": -0.08113938678367118
+        }
+      },
+      "2022": {
+        "validation_season": 2022,
+        "selection_history_seasons": [
+          2021
+        ],
+        "selected_candidate": "base_identity",
+        "selection_metrics": {
+          "base_identity": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "game_type_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "base_state_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "outs_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "inning_bucket_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "pitcher_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "batter_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          },
+          "situational_equal3": {
+            "history_skills": {
+              "2021": 1257.1473416041035
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1257.1473416041035
+          }
+        },
+        "metrics": {
+          "rows": 247472,
+          "actual_rate": 0.5289204435249241,
+          "prediction_mean": 0.5202424814955674,
+          "mean_gap": -0.008677962029356667,
+          "prediction_min": 0.3090063803382176,
+          "prediction_max": 0.8040655934842452,
+          "brier_score": 0.24471753901098636,
+          "baseline_brier": 0.24916360794632167,
+          "skill_score": 1784.3973973491134,
+          "skill_score_unclipped": 1784.3973973491134,
+          "diagnostic_calibration_slope": 1.1649282674107455,
+          "diagnostic_calibration_intercept": -0.07712472907717237
+        }
+      },
+      "2023": {
+        "validation_season": 2023,
+        "selection_history_seasons": [
+          2021,
+          2022
+        ],
+        "selected_candidate": "game_type_count_hands",
+        "selection_metrics": {
+          "base_identity": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1784.3973973491134
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1520.7723694766084
+          },
+          "count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1769.252738109428
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1513.2000398567657
+          },
+          "game_type_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1907.7849713330152
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1582.4661564685593
+          },
+          "base_state_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1770.3202581210498
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1513.7337998625767
+          },
+          "outs_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1775.6402541164061
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1516.3937978602548
+          },
+          "inning_bucket_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1765.7784893552741
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1511.462915479689
+          },
+          "pitcher_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1781.3478814302619
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1519.2476115171826
+          },
+          "batter_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1782.2278328975426
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1519.687587250823
+          },
+          "situational_equal3": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1836.6085776040043
+            },
+            "history_min_skill": 1257.1473416041035,
+            "history_mean_skill": 1546.877959604054
+          }
+        },
+        "metrics": {
+          "rows": 245525,
+          "actual_rate": 0.49995723449750534,
+          "prediction_mean": 0.4919546892810123,
+          "mean_gap": -0.008002545216493018,
+          "prediction_min": 0.26954823558416174,
+          "prediction_max": 0.6647882563805112,
+          "brier_score": 0.2481525917199453,
+          "baseline_brier": 0.24999999817111176,
+          "skill_score": 738.9625858725046,
+          "skill_score_unclipped": 738.9625858725046,
+          "diagnostic_calibration_slope": 0.9255641679193273,
+          "diagnostic_calibration_intercept": 0.044621601859111695
+        }
+      },
+      "2024": {
+        "validation_season": 2024,
+        "selection_history_seasons": [
+          2021,
+          2022,
+          2023
+        ],
+        "selected_candidate": "pitcher_team_count_hands",
+        "selection_metrics": {
+          "base_identity": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1784.3973973491134,
+              "2023": 898.610864617666
+            },
+            "history_min_skill": 898.610864617666,
+            "history_mean_skill": 1313.3852011902943
+          },
+          "count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1769.252738109428,
+              "2023": 879.7201583519487
+            },
+            "history_min_skill": 879.7201583519487,
+            "history_mean_skill": 1302.04007935516
+          },
+          "game_type_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1907.7849713330152,
+              "2023": 738.9625858725046
+            },
+            "history_min_skill": 738.9625858725046,
+            "history_mean_skill": 1301.2982996032079
+          },
+          "base_state_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1770.3202581210498,
+              "2023": 886.3825136925518
+            },
+            "history_min_skill": 886.3825136925518,
+            "history_mean_skill": 1304.6167044725682
+          },
+          "outs_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1775.6402541164061,
+              "2023": 879.3964307138857
+            },
+            "history_min_skill": 879.3964307138857,
+            "history_mean_skill": 1304.0613421447986
+          },
+          "inning_bucket_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1765.7784893552741,
+              "2023": 884.0194261320877
+            },
+            "history_min_skill": 884.0194261320877,
+            "history_mean_skill": 1302.3150856971552
+          },
+          "pitcher_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1781.3478814302619,
+              "2023": 900.9773264425424
+            },
+            "history_min_skill": 900.9773264425424,
+            "history_mean_skill": 1313.1575164923026
+          },
+          "batter_team_count_hands": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1782.2278328975426,
+              "2023": 889.6110971688964
+            },
+            "history_min_skill": 889.6110971688964,
+            "history_mean_skill": 1309.6620905568475
+          },
+          "situational_equal3": {
+            "history_skills": {
+              "2021": 1257.1473416041035,
+              "2022": 1836.6085776040043,
+              "2023": 852.6505988447175
+            },
+            "history_min_skill": 852.6505988447175,
+            "history_mean_skill": 1315.4688393509418
+          }
+        },
+        "metrics": {
+          "rows": 253507,
+          "actual_rate": 0.4861049201797189,
+          "prediction_mean": 0.4923134312278257,
+          "mean_gap": 0.006208511048106824,
+          "prediction_min": 0.29716636892609877,
+          "prediction_max": 0.740447547732656,
+          "brier_score": 0.24769519900274983,
+          "baseline_brier": 0.24980692675678798,
+          "skill_score": 845.3439548111952,
+          "skill_score_unclipped": 845.3439548111952,
+          "diagnostic_calibration_slope": 0.9783288576537573,
+          "diagnostic_calibration_intercept": 0.004460483398998715
+        }
+      }
+    },
+    "aggregate_2022_2024": {
+      "season_skills": {
+        "2022": 1784.3973973491134,
+        "2023": 738.9625858725046,
+        "2024": 845.3439548111952
+      },
+      "season_briers": {
+        "2022": 0.24471753901098636,
+        "2023": 0.2481525917199453,
+        "2024": 0.24769519900274983
+      },
+      "mean_skill": 1122.9013126776042,
+      "min_skill": 738.9625858725046,
+      "latest_2024_skill": 845.3439548111952,
+      "selection_path": {
+        "2022": "base_identity",
+        "2023": "game_type_count_hands",
+        "2024": "pitcher_team_count_hands"
+      }
+    },
+    "next_2025_selection": {
+      "selection_history_seasons": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "selected_candidate": "base_identity",
+      "selection_metrics": {
+        "base_identity": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1784.3973973491134,
+            "2023": 898.610864617666,
+            "2024": 850.4028396019714
+          },
+          "history_min_skill": 850.4028396019714,
+          "history_mean_skill": 1197.6396107932135
+        },
+        "count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1769.252738109428,
+            "2023": 879.7201583519487,
+            "2024": 841.526142186122
+          },
+          "history_min_skill": 841.526142186122,
+          "history_mean_skill": 1186.9115950629005
+        },
+        "game_type_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1907.7849713330152,
+            "2023": 738.9625858725046,
+            "2024": 828.4028551948319
+          },
+          "history_min_skill": 738.9625858725046,
+          "history_mean_skill": 1183.074438501114
+        },
+        "base_state_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1770.3202581210498,
+            "2023": 886.3825136925518,
+            "2024": 846.3120187104711
+          },
+          "history_min_skill": 846.3120187104711,
+          "history_mean_skill": 1190.040533032044
+        },
+        "outs_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1775.6402541164061,
+            "2023": 879.3964307138857,
+            "2024": 848.2378701545779
+          },
+          "history_min_skill": 848.2378701545779,
+          "history_mean_skill": 1190.1054741472433
+        },
+        "inning_bucket_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1765.7784893552741,
+            "2023": 884.0194261320877,
+            "2024": 845.9428331914042
+          },
+          "history_min_skill": 845.9428331914042,
+          "history_mean_skill": 1188.2220225707174
+        },
+        "pitcher_team_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1781.3478814302619,
+            "2023": 900.9773264425424,
+            "2024": 845.3439548111952
+          },
+          "history_min_skill": 845.3439548111952,
+          "history_mean_skill": 1196.2041260720257
+        },
+        "batter_team_count_hands": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1782.2278328975426,
+            "2023": 889.6110971688964,
+            "2024": 846.5875152709579
+          },
+          "history_min_skill": 846.5875152709579,
+          "history_mean_skill": 1193.8934467353752
+        },
+        "situational_equal3": {
+          "history_skills": {
+            "2021": 1257.1473416041035,
+            "2022": 1836.6085776040043,
+            "2023": 852.6505988447175,
+            "2024": 846.9686166293955
+          },
+          "history_min_skill": 846.9686166293955,
+          "history_mean_skill": 1198.3437836705552
+        }
+      }
+    }
+  },
+  "base_reference": {
+    "source": "artifacts/EXP-019/team_eb_ensemble/validation_metrics.json",
+    "variant": "all_prior_s1000",
+    "mean_skill": 1177.8037005229169,
+    "min_skill": 850.4028396019714
+  },
+  "selection": {
+    "robust_best_candidate_including_identity": "base_identity",
+    "robust_best_min_skill": 850.4028396019714,
+    "best_nonidentity_context_candidate": "outs_count_hands",
+    "best_nonidentity_min_skill": 848.2378701545779,
+    "base_identity_min_skill": 850.4028396019714,
+    "any_context_beats_base_min": false,
+    "strict_path_beats_base_min": false,
+    "stop_rule_triggered": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.5",
+    "numpy": "2.5.1"
+  },
+  "total_seconds": 4.687582969665527
+}

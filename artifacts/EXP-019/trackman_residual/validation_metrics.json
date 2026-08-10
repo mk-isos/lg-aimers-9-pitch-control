@@ -1,0 +1,160 @@
+{
+  "experiment": "EXP-019",
+  "stage": "temporal_trackman_residual_candidate_search",
+  "selection_status": "not selected; nested selection required",
+  "mapping_audit": {
+    "2020": {
+      "mapping_cutoff_season": 2019,
+      "mapped_pitchers": 233,
+      "candidate_main_ids": 339,
+      "candidate_trackman_ids": 251,
+      "row_coverage_cost_0_10": 0.6342943294808818,
+      "row_coverage_cost_0_02": 0.4900752600507196
+    },
+    "2021": {
+      "mapping_cutoff_season": 2020,
+      "mapped_pitchers": 265,
+      "candidate_main_ids": 460,
+      "candidate_trackman_ids": 351,
+      "row_coverage_cost_0_10": 0.5878351032830409,
+      "row_coverage_cost_0_02": 0.4408227028427119
+    },
+    "2022": {
+      "mapping_cutoff_season": 2021,
+      "mapped_pitchers": 310,
+      "candidate_main_ids": 558,
+      "candidate_trackman_ids": 439,
+      "row_coverage_cost_0_10": 0.6056079071571734,
+      "row_coverage_cost_0_02": 0.4619472101894356
+    },
+    "2023": {
+      "mapping_cutoff_season": 2022,
+      "mapped_pitchers": 325,
+      "candidate_main_ids": 646,
+      "candidate_trackman_ids": 500,
+      "row_coverage_cost_0_10": 0.6562549638529681,
+      "row_coverage_cost_0_02": 0.48439873739945016
+    },
+    "2024": {
+      "mapping_cutoff_season": 2023,
+      "mapped_pitchers": 339,
+      "candidate_main_ids": 709,
+      "candidate_trackman_ids": 551,
+      "row_coverage_cost_0_10": 0.5342534920140273,
+      "row_coverage_cost_0_02": 0.4074956510076645
+    }
+  },
+  "summaries": {
+    "hist_c002_l7_i200": {
+      "group_plus_trackman_w025": {
+        "mean_skill": 1079.1669447284419,
+        "min_skill": 757.7411051907568,
+        "latest_2024_skill": 757.7411051907568
+      },
+      "group_plus_trackman_w050": {
+        "mean_skill": 1077.9221493683228,
+        "min_skill": 758.4869829354024,
+        "latest_2024_skill": 758.4869829354024
+      },
+      "group_plus_trackman_w075": {
+        "mean_skill": 1074.6397254169704,
+        "min_skill": 757.0499810740206,
+        "latest_2024_skill": 757.0499810740206
+      },
+      "group_plus_trackman_w100": {
+        "mean_skill": 1069.3196728743987,
+        "min_skill": 753.4300996066223,
+        "latest_2024_skill": 753.4300996066223
+      }
+    },
+    "hist_c010_l7_i200": {
+      "group_plus_trackman_w025": {
+        "mean_skill": 1080.7646838556875,
+        "min_skill": 756.9164461596722,
+        "latest_2024_skill": 756.9164461596722
+      },
+      "group_plus_trackman_w050": {
+        "mean_skill": 1081.0087939507737,
+        "min_skill": 757.2059894736637,
+        "latest_2024_skill": 757.2059894736637
+      },
+      "group_plus_trackman_w075": {
+        "mean_skill": 1079.1064417825623,
+        "min_skill": 755.680977782025,
+        "latest_2024_skill": 755.680977782025
+      },
+      "group_plus_trackman_w100": {
+        "mean_skill": 1075.0576273510912,
+        "min_skill": 752.3414110847782,
+        "latest_2024_skill": 752.3414110847782
+      }
+    },
+    "histlast_c002_l7_i200": {
+      "group_plus_trackman_w025": {
+        "mean_skill": 1078.1914547917106,
+        "min_skill": 757.0274443264747,
+        "latest_2024_skill": 757.0274443264747
+      },
+      "group_plus_trackman_w050": {
+        "mean_skill": 1076.1633519157597,
+        "min_skill": 757.565575948782,
+        "latest_2024_skill": 757.565575948782
+      },
+      "group_plus_trackman_w075": {
+        "mean_skill": 1072.2898028694751,
+        "min_skill": 756.4267427070392,
+        "latest_2024_skill": 756.4267427070392
+      },
+      "group_plus_trackman_w100": {
+        "mean_skill": 1066.5708076528633,
+        "min_skill": 753.6109446012018,
+        "latest_2024_skill": 753.6109446012018
+      }
+    },
+    "histlast_c010_l7_i200": {
+      "group_plus_trackman_w025": {
+        "mean_skill": 1078.1632026014343,
+        "min_skill": 756.2246512997306,
+        "latest_2024_skill": 756.2246512997306
+      },
+      "group_plus_trackman_w050": {
+        "mean_skill": 1074.0878902878967,
+        "min_skill": 755.5854167288878,
+        "latest_2024_skill": 755.5854167288878
+      },
+      "group_plus_trackman_w075": {
+        "mean_skill": 1066.1481745567764,
+        "min_skill": 752.8946441276219,
+        "latest_2024_skill": 752.8946441276219
+      },
+      "group_plus_trackman_w100": {
+        "mean_skill": 1054.3440554080444,
+        "min_skill": 748.1523334958995,
+        "latest_2024_skill": 748.1523334958995
+      }
+    },
+    "histlast_c010_l15_i200": {
+      "group_plus_trackman_w025": {
+        "mean_skill": 1079.0150132915066,
+        "min_skill": 757.1195828694366,
+        "latest_2024_skill": 757.1195828694366
+      },
+      "group_plus_trackman_w050": {
+        "mean_skill": 1075.0281053169626,
+        "min_skill": 756.7931850323229,
+        "latest_2024_skill": 756.7931850323229
+      },
+      "group_plus_trackman_w075": {
+        "mean_skill": 1066.4133875736948,
+        "min_skill": 753.8331543287313,
+        "latest_2024_skill": 753.8331543287313
+      },
+      "group_plus_trackman_w100": {
+        "mean_skill": 1053.1708600617178,
+        "min_skill": 748.2394907586731,
+        "latest_2024_skill": 748.2394907586731
+      }
+    }
+  },
+  "total_seconds": 92.10831379890442
+}

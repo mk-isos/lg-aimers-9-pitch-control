@@ -1,0 +1,230 @@
+{
+  "experiment": "EXP-019",
+  "stage": "stable_monotonic_candidate_search",
+  "selection_status": "not selected; nested temporal selection required",
+  "summaries": {
+    "strict_mono_i100": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1072.2495028411013,
+        "min_skill": 721.1061546813169,
+        "latest_2024_skill": 721.1061546813169
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1096.817401410155,
+        "min_skill": 771.0150583989273,
+        "latest_2024_skill": 771.0150583989273
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1107.7275611167818,
+        "min_skill": 776.3096181028328,
+        "latest_2024_skill": 776.3096181028328
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1112.6329016277007,
+        "min_skill": 776.3681732007254,
+        "latest_2024_skill": 776.3681732007254
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1111.5334229429266,
+        "min_skill": 771.1907236926163,
+        "latest_2024_skill": 771.1907236926163
+      }
+    },
+    "strict_mono_i200": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1093.68661972599,
+        "min_skill": 743.1260419981545,
+        "latest_2024_skill": 743.1260419981545
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1102.741785220233,
+        "min_skill": 775.3907140761962,
+        "latest_2024_skill": 775.3907140761962
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1114.4425934896988,
+        "min_skill": 780.6007846910545,
+        "latest_2024_skill": 780.6007846910545
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1115.0048473162476,
+        "min_skill": 776.1147059336392,
+        "latest_2024_skill": 776.1147059336392
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1104.4285466998724,
+        "min_skill": 761.9324778039172,
+        "latest_2024_skill": 761.9324778039172
+      }
+    },
+    "strict_mono_i400": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1109.2567162890493,
+        "min_skill": 760.2035344207669,
+        "latest_2024_skill": 760.2035344207669
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1110.1057464502776,
+        "min_skill": 781.1542812250493,
+        "latest_2024_skill": 781.1542812250493
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1122.2712755653563,
+        "min_skill": 786.289025736775,
+        "latest_2024_skill": 786.289025736775
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1116.3990098530642,
+        "min_skill": 775.8887276241966,
+        "latest_2024_skill": 775.8887276241966
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1092.4889493134194,
+        "min_skill": 749.9533868873253,
+        "latest_2024_skill": 749.9533868873253
+      }
+    },
+    "strict_free_i200": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1098.6031098090896,
+        "min_skill": 744.1080521826682,
+        "latest_2024_skill": 744.1080521826682
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1103.6397600162434,
+        "min_skill": 775.6922336884963,
+        "latest_2024_skill": 775.6922336884963
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1117.3235857810678,
+        "min_skill": 782.0548520292903,
+        "latest_2024_skill": 782.0548520292903
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1120.9538998023274,
+        "min_skill": 779.5723491114348,
+        "latest_2024_skill": 779.5723491114348
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1114.5307020800115,
+        "min_skill": 768.2447249348967,
+        "latest_2024_skill": 768.2447249348967
+      }
+    },
+    "pressure_mono_i200": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1092.8384576527153,
+        "min_skill": 735.7580094292215,
+        "latest_2024_skill": 735.7580094292215
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1102.4686207904867,
+        "min_skill": 773.725039843276,
+        "latest_2024_skill": 773.725039843276
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1114.8829618446396,
+        "min_skill": 778.2587628042181,
+        "latest_2024_skill": 778.2587628042181
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1117.1454456703052,
+        "min_skill": 774.0856629718462,
+        "latest_2024_skill": 774.0856629718462
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1109.2560722674987,
+        "min_skill": 761.2057403461824,
+        "latest_2024_skill": 761.2057403461824
+      }
+    },
+    "temporal_mono_i200": {
+      "base": {
+        "mean_skill": 970.7902631251691,
+        "min_skill": 626.3550706733012,
+        "latest_2024_skill": 626.3550706733012
+      },
+      "base_plus_group": {
+        "mean_skill": 1079.902422507839,
+        "min_skill": 760.4844940890199,
+        "latest_2024_skill": 760.4844940890199
+      },
+      "base_plus_stable_full": {
+        "mean_skill": 1127.5915182949977,
+        "min_skill": 736.628715570009,
+        "latest_2024_skill": 741.0255264419408
+      },
+      "group_plus_stable_w025": {
+        "mean_skill": 1119.86151890849,
+        "min_skill": 776.5978461706346,
+        "latest_2024_skill": 776.5978461706346
+      },
+      "group_plus_stable_w050": {
+        "mean_skill": 1144.3420939590535,
+        "min_skill": 783.4722971514219,
+        "latest_2024_skill": 783.4722971514219
+      },
+      "group_plus_stable_w075": {
+        "mean_skill": 1153.3441476595149,
+        "min_skill": 781.1078470313593,
+        "latest_2024_skill": 781.1078470313593
+      },
+      "group_plus_stable_w100": {
+        "mean_skill": 1146.867680009885,
+        "min_skill": 763.6654572867774,
+        "latest_2024_skill": 769.504495810469
+      }
+    }
+  },
+  "total_seconds": 176.2530539035797
+}

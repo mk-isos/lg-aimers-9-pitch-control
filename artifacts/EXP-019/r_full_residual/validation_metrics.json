@@ -1,0 +1,74 @@
+{
+  "experiment": "EXP-019",
+  "stage": "all_group_plus_R_full_residual",
+  "selection_status": "not selected; nested selection required",
+  "summaries": {
+    "rfull_l15_m3000_i200": {
+      "branch_w025": {
+        "mean_skill": 1099.3907943360489,
+        "min_skill": 779.7932423265763,
+        "latest_2024_skill": 779.7932423265763
+      },
+      "branch_w050": {
+        "mean_skill": 1112.5241970737795,
+        "min_skill": 793.7257671556285,
+        "latest_2024_skill": 793.7257671556285
+      },
+      "branch_w075": {
+        "mean_skill": 1119.2429246918175,
+        "min_skill": 802.1409934262036,
+        "latest_2024_skill": 802.1409934262036
+      },
+      "branch_w100": {
+        "mean_skill": 1119.546977190163,
+        "min_skill": 805.038921138268,
+        "latest_2024_skill": 805.038921138268
+      }
+    },
+    "rfull_l31_m2000_i300": {
+      "branch_w025": {
+        "mean_skill": 1106.2962107919163,
+        "min_skill": 786.6103779028522,
+        "latest_2024_skill": 786.6103779028522
+      },
+      "branch_w050": {
+        "mean_skill": 1121.7538051742933,
+        "min_skill": 803.3399780012718,
+        "latest_2024_skill": 803.3399780012718
+      },
+      "branch_w075": {
+        "mean_skill": 1126.2154996257489,
+        "min_skill": 810.5322192342501,
+        "latest_2024_skill": 810.5322192342501
+      },
+      "branch_w100": {
+        "mean_skill": 1119.6812941462983,
+        "min_skill": 808.1871016018094,
+        "latest_2024_skill": 808.1871016018094
+      }
+    },
+    "rfull_l63_m1000_i300": {
+      "branch_w025": {
+        "mean_skill": 1108.8408815528344,
+        "min_skill": 789.7286213610078,
+        "latest_2024_skill": 789.7286213610078
+      },
+      "branch_w050": {
+        "mean_skill": 1123.835171818155,
+        "min_skill": 806.7090919754771,
+        "latest_2024_skill": 806.7090919754771
+      },
+      "branch_w075": {
+        "mean_skill": 1124.825587274621,
+        "min_skill": 811.2848307824438,
+        "latest_2024_skill": 811.2848307824438
+      },
+      "branch_w100": {
+        "mean_skill": 1111.8121279222034,
+        "min_skill": 803.455837781919,
+        "latest_2024_skill": 803.455837781919
+      }
+    }
+  },
+  "total_seconds": 963.0658822059631
+}

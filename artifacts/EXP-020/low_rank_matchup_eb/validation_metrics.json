@@ -1,0 +1,3376 @@
+{
+  "experiment": "EXP-020",
+  "candidate_family": "low_rank_pitcher_batter_matchup_eb",
+  "validation_protocol": {
+    "outer_folds": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reported_folds": [
+      2022,
+      2023,
+      2024
+    ],
+    "immutable_base": "team all_prior_s1000 OOF",
+    "source_target": "source-season-centered y minus team OOF",
+    "source_season_weighting": "equal; unseen ID contributes zero",
+    "exact_pair_unseen_policy": "use low-rank prediction when both IDs are in source matrix",
+    "current_fold_labels_used_for_effect": false,
+    "test_row_aggregation": false,
+    "candidate_grid_predeclared": true,
+    "candidate_selection": "post-hoc diagnostic ranking only"
+  },
+  "candidates": [
+    {
+      "name": "lr_s200_r4",
+      "smoothing": 200.0,
+      "rank": 4
+    },
+    {
+      "name": "lr_s200_r8",
+      "smoothing": 200.0,
+      "rank": 8
+    },
+    {
+      "name": "lr_s500_r4",
+      "smoothing": 500.0,
+      "rank": 4
+    },
+    {
+      "name": "lr_s500_r8",
+      "smoothing": 500.0,
+      "rank": 8
+    }
+  ],
+  "folds": {
+    "2021": {
+      "validation_season": 2021,
+      "source_oof_seasons": [],
+      "base_team_all_prior": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "explicit_pair_s2000": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "candidates": {
+        "lr_s200_r4": {
+          "source_details": {},
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247088,
+            "actual_rate": 0.5327616072006734,
+            "prediction_mean": 0.5239526023777193,
+            "mean_gap": -0.008809004822954103,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.2457973019900028,
+            "baseline_brier": 0.24892667709362878,
+            "skill_score": 1257.1473416041035,
+            "skill_score_unclipped": 1257.1473416041035,
+            "diagnostic_calibration_slope": 1.1716727642890523,
+            "diagnostic_calibration_intercept": -0.08113938678367118
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 0,
+            "exact_pair_seen_any_rate": 0.0,
+            "both_ids_shared_any_rows": 0,
+            "both_ids_shared_any_rate": 0.0,
+            "latent_only_exact_unseen_rows": 0,
+            "latent_only_exact_unseen_rate": 0.0,
+            "mean_exact_source_count": 0.0,
+            "mean_shared_source_count": 0.0
+          },
+          "correction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "mean_absolute": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "coverage_segments": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          }
+        },
+        "lr_s200_r8": {
+          "source_details": {},
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247088,
+            "actual_rate": 0.5327616072006734,
+            "prediction_mean": 0.5239526023777193,
+            "mean_gap": -0.008809004822954103,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.2457973019900028,
+            "baseline_brier": 0.24892667709362878,
+            "skill_score": 1257.1473416041035,
+            "skill_score_unclipped": 1257.1473416041035,
+            "diagnostic_calibration_slope": 1.1716727642890523,
+            "diagnostic_calibration_intercept": -0.08113938678367118
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 0,
+            "exact_pair_seen_any_rate": 0.0,
+            "both_ids_shared_any_rows": 0,
+            "both_ids_shared_any_rate": 0.0,
+            "latent_only_exact_unseen_rows": 0,
+            "latent_only_exact_unseen_rate": 0.0,
+            "mean_exact_source_count": 0.0,
+            "mean_shared_source_count": 0.0
+          },
+          "correction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "mean_absolute": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "coverage_segments": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          }
+        },
+        "lr_s500_r4": {
+          "source_details": {},
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247088,
+            "actual_rate": 0.5327616072006734,
+            "prediction_mean": 0.5239526023777193,
+            "mean_gap": -0.008809004822954103,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.2457973019900028,
+            "baseline_brier": 0.24892667709362878,
+            "skill_score": 1257.1473416041035,
+            "skill_score_unclipped": 1257.1473416041035,
+            "diagnostic_calibration_slope": 1.1716727642890523,
+            "diagnostic_calibration_intercept": -0.08113938678367118
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 0,
+            "exact_pair_seen_any_rate": 0.0,
+            "both_ids_shared_any_rows": 0,
+            "both_ids_shared_any_rate": 0.0,
+            "latent_only_exact_unseen_rows": 0,
+            "latent_only_exact_unseen_rate": 0.0,
+            "mean_exact_source_count": 0.0,
+            "mean_shared_source_count": 0.0
+          },
+          "correction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "mean_absolute": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "coverage_segments": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          }
+        },
+        "lr_s500_r8": {
+          "source_details": {},
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247088,
+            "actual_rate": 0.5327616072006734,
+            "prediction_mean": 0.5239526023777193,
+            "mean_gap": -0.008809004822954103,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.2457973019900028,
+            "baseline_brier": 0.24892667709362878,
+            "skill_score": 1257.1473416041035,
+            "skill_score_unclipped": 1257.1473416041035,
+            "diagnostic_calibration_slope": 1.1716727642890523,
+            "diagnostic_calibration_intercept": -0.08113938678367118
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 0,
+            "exact_pair_seen_any_rate": 0.0,
+            "both_ids_shared_any_rows": 0,
+            "both_ids_shared_any_rate": 0.0,
+            "latent_only_exact_unseen_rows": 0,
+            "latent_only_exact_unseen_rate": 0.0,
+            "mean_exact_source_count": 0.0,
+            "mean_shared_source_count": 0.0
+          },
+          "correction": {
+            "mean": 0.0,
+            "std": 0.0,
+            "mean_absolute": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "coverage_segments": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_unseen": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 247088,
+              "actual_rate": 0.5327616072006734,
+              "prediction_mean": 0.5239526023777193,
+              "mean_gap": -0.008809004822954103,
+              "prediction_min": 0.3180959692712628,
+              "prediction_max": 0.7632686326588105,
+              "brier_score": 0.2457973019900028,
+              "baseline_brier": 0.24892667709362878,
+              "skill_score": 1257.1473416041035,
+              "skill_score_unclipped": 1257.1473416041035,
+              "diagnostic_calibration_slope": 1.1716727642890523,
+              "diagnostic_calibration_intercept": -0.08113938678367118
+            }
+          }
+        }
+      }
+    },
+    "2022": {
+      "validation_season": 2022,
+      "source_oof_seasons": [
+        2021
+      ],
+      "base_team_all_prior": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5202424814955674,
+        "mean_gap": -0.008677962029356667,
+        "prediction_min": 0.3090063803382176,
+        "prediction_max": 0.8040655934842452,
+        "brier_score": 0.24471753901098636,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1784.3973973491134,
+        "skill_score_unclipped": 1784.3973973491134,
+        "diagnostic_calibration_slope": 1.1649282674107455,
+        "diagnostic_calibration_intercept": -0.07712472907717237
+      },
+      "explicit_pair_s2000": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5202060717173429,
+        "mean_gap": -0.008714371807581167,
+        "prediction_min": 0.31051649108700563,
+        "prediction_max": 0.8040655934842452,
+        "brier_score": 0.24471596639339815,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1785.0285559686151,
+        "skill_score_unclipped": 1785.0285559686151,
+        "diagnostic_calibration_slope": 1.164309399365939,
+        "diagnostic_calibration_intercept": -0.07676037538281127
+      },
+      "candidates": {
+        "lr_s200_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.09958944267931678,
+              "validation_exact_rows": 97001,
+              "validation_shared_id_rows": 163618
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247472,
+            "actual_rate": 0.5289204435249241,
+            "prediction_mean": 0.5200432374988597,
+            "mean_gap": -0.008877206026064344,
+            "prediction_min": 0.3101006279407455,
+            "prediction_max": 0.8040655934842452,
+            "brier_score": 0.24471874630763957,
+            "baseline_brier": 0.24916360794632167,
+            "skill_score": 1783.9128576271346,
+            "skill_score_unclipped": 1783.9128576271346,
+            "diagnostic_calibration_slope": 1.1616097111212653,
+            "diagnostic_calibration_intercept": -0.07516683135669594
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 97001,
+            "exact_pair_seen_any_rate": 0.3919675761298248,
+            "both_ids_shared_any_rows": 163618,
+            "both_ids_shared_any_rate": 0.6611576259132347,
+            "latent_only_exact_unseen_rows": 66617,
+            "latent_only_exact_unseen_rate": 0.2691900497834098,
+            "mean_exact_source_count": 0.3919675761298248,
+            "mean_shared_source_count": 0.6611576259132347
+          },
+          "correction": {
+            "mean": -0.00019924399670767211,
+            "std": 0.0024247176965112006,
+            "mean_absolute": 0.0010627911147080371,
+            "min": -0.02813385331574749,
+            "max": 0.019703704386502062
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5100895712251754,
+              "mean_gap": -0.0054824331871502485,
+              "prediction_min": 0.3101006279407455,
+              "prediction_max": 0.8029261663046438,
+              "brier_score": 0.24687379748856245,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1154.605985258661,
+              "skill_score_unclipped": 1154.605985258661,
+              "diagnostic_calibration_slope": 1.1184288093783656,
+              "diagnostic_calibration_intercept": -0.05492686740936789
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264598598527596,
+              "mean_gap": -0.011065643400358982,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332949442787075,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2116.860412467336,
+              "skill_score_unclipped": 2116.860412467336,
+              "diagnostic_calibration_slope": 1.1732949570389406,
+              "diagnostic_calibration_intercept": -0.08016719539555042
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5108018852047018,
+              "mean_gap": -0.006971220443820925,
+              "prediction_min": 0.3101006279407455,
+              "prediction_max": 0.8029261663046438,
+              "brier_score": 0.24621684421787077,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1388.6636215971082,
+              "skill_score_unclipped": 1388.6636215971082,
+              "diagnostic_calibration_slope": 1.1435270702654219,
+              "diagnostic_calibration_intercept": -0.06634267762566445
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5118390854438004,
+              "mean_gap": -0.009139043262085478,
+              "prediction_min": 0.3242202556543803,
+              "prediction_max": 0.7979123399898496,
+              "brier_score": 0.24526025469552126,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1722.8982333931774,
+              "skill_score_unclipped": 1722.8982333931774,
+              "diagnostic_calibration_slope": 1.1687189543400276,
+              "diagnostic_calibration_intercept": -0.07721791202434926
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5105464647006157,
+              "mean_gap": -0.0050255397117099365,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24687506082950747,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1154.100158254101,
+              "skill_score_unclipped": 1154.100158254101,
+              "diagnostic_calibration_slope": 1.1262505569196941,
+              "diagnostic_calibration_intercept": -0.059431235790123736
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264930103358564,
+              "mean_gap": -0.01103249291726216,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332669443682678,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.9867531719296,
+              "skill_score_unclipped": 2117.9867531719296,
+              "diagnostic_calibration_slope": 1.1741329217871586,
+              "diagnostic_calibration_intercept": -0.08064727327303575
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5111032414757308,
+              "mean_gap": -0.006669864172791917,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24621501818334304,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1389.394959477841,
+              "skill_score_unclipped": 1389.394959477841,
+              "diagnostic_calibration_slope": 1.1485390160369406,
+              "diagnostic_calibration_intercept": -0.06924890840930556
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5119139640234734,
+              "mean_gap": -0.009064164682412446,
+              "prediction_min": 0.32323576253588854,
+              "prediction_max": 0.7979798436724826,
+              "brier_score": 0.24525393022200287,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1725.4324839115043,
+              "skill_score_unclipped": 1725.4324839115043,
+              "diagnostic_calibration_slope": 1.1706171817733448,
+              "diagnostic_calibration_intercept": -0.07827715316969437
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          }
+        },
+        "lr_s200_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.18240138164375885,
+              "validation_exact_rows": 97001,
+              "validation_shared_id_rows": 163618
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247472,
+            "actual_rate": 0.5289204435249241,
+            "prediction_mean": 0.5200347852447459,
+            "mean_gap": -0.008885658280178177,
+            "prediction_min": 0.3099730987304349,
+            "prediction_max": 0.8040655934842452,
+            "brier_score": 0.2447281040888461,
+            "baseline_brier": 0.24916360794632167,
+            "skill_score": 1780.157180269737,
+            "skill_score_unclipped": 1780.157180269737,
+            "diagnostic_calibration_slope": 1.1578774869057396,
+            "diagnostic_calibration_intercept": -0.07321612671782617
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 97001,
+            "exact_pair_seen_any_rate": 0.3919675761298248,
+            "both_ids_shared_any_rows": 163618,
+            "both_ids_shared_any_rate": 0.6611576259132347,
+            "latent_only_exact_unseen_rows": 66617,
+            "latent_only_exact_unseen_rate": 0.2691900497834098,
+            "mean_exact_source_count": 0.3919675761298248,
+            "mean_shared_source_count": 0.6611576259132347
+          },
+          "correction": {
+            "mean": -0.00020769625082145234,
+            "std": 0.0032877503796580805,
+            "mean_absolute": 0.001499792369413758,
+            "min": -0.036534278164567044,
+            "max": 0.033760043938208605
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5100507898836096,
+              "mean_gap": -0.005521214528716012,
+              "prediction_min": 0.3099730987304349,
+              "prediction_max": 0.8029595604196713,
+              "brier_score": 0.2468979832912147,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1144.9222714864927,
+              "skill_score_unclipped": 1144.9222714864927,
+              "diagnostic_calibration_slope": 1.1058650481964916,
+              "diagnostic_calibration_intercept": -0.04847533692497186
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264709592186384,
+              "mean_gap": -0.01105454403448014,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.2433292933378777,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2116.9413040990958,
+              "skill_score_unclipped": 2116.9413040990958,
+              "diagnostic_calibration_slope": 1.1731387778137303,
+              "diagnostic_calibration_intercept": -0.08009799439905724
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5107891011819778,
+              "mean_gap": -0.006984004466544902,
+              "prediction_min": 0.3099730987304349,
+              "prediction_max": 0.8029595604196713,
+              "brier_score": 0.24623099784907726,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1382.9950066316487,
+              "skill_score_unclipped": 1382.9950066316487,
+              "diagnostic_calibration_slope": 1.1366543482759408,
+              "diagnostic_calibration_intercept": -0.06281754726193171
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5118641561116958,
+              "mean_gap": -0.009113972594190112,
+              "prediction_min": 0.32298923899364407,
+              "prediction_max": 0.7975518457301825,
+              "brier_score": 0.24525980048394852,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1723.0802384107235,
+              "skill_score_unclipped": 1723.0802384107235,
+              "diagnostic_calibration_slope": 1.168156992657449,
+              "diagnostic_calibration_intercept": -0.07695956454669578
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5105464647006157,
+              "mean_gap": -0.0050255397117099365,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24687506082950747,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1154.100158254101,
+              "skill_score_unclipped": 1154.100158254101,
+              "diagnostic_calibration_slope": 1.1262505569196941,
+              "diagnostic_calibration_intercept": -0.059431235790123736
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264930103358564,
+              "mean_gap": -0.01103249291726216,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332669443682678,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.9867531719296,
+              "skill_score_unclipped": 2117.9867531719296,
+              "diagnostic_calibration_slope": 1.1741329217871586,
+              "diagnostic_calibration_intercept": -0.08064727327303575
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5111032414757308,
+              "mean_gap": -0.006669864172791917,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24621501818334304,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1389.394959477841,
+              "skill_score_unclipped": 1389.394959477841,
+              "diagnostic_calibration_slope": 1.1485390160369406,
+              "diagnostic_calibration_intercept": -0.06924890840930556
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5119139640234734,
+              "mean_gap": -0.009064164682412446,
+              "prediction_min": 0.32323576253588854,
+              "prediction_max": 0.7979798436724826,
+              "brier_score": 0.24525393022200287,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1725.4324839115043,
+              "skill_score_unclipped": 1725.4324839115043,
+              "diagnostic_calibration_slope": 1.1706171817733448,
+              "diagnostic_calibration_intercept": -0.07827715316969437
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          }
+        },
+        "lr_s500_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10406503287127153,
+              "validation_exact_rows": 97001,
+              "validation_shared_id_rows": 163618
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247472,
+            "actual_rate": 0.5289204435249241,
+            "prediction_mean": 0.520159996364948,
+            "mean_gap": -0.008760447159976037,
+            "prediction_min": 0.3101547359161048,
+            "prediction_max": 0.8040655934842452,
+            "brier_score": 0.24471705559286008,
+            "baseline_brier": 0.24916360794632167,
+            "skill_score": 1784.5914136945362,
+            "skill_score_unclipped": 1784.5914136945362,
+            "diagnostic_calibration_slope": 1.1640162143223305,
+            "diagnostic_calibration_intercept": -0.07655422628571992
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 97001,
+            "exact_pair_seen_any_rate": 0.3919675761298248,
+            "both_ids_shared_any_rows": 163618,
+            "both_ids_shared_any_rate": 0.6611576259132347,
+            "latent_only_exact_unseen_rows": 66617,
+            "latent_only_exact_unseen_rate": 0.2691900497834098,
+            "mean_exact_source_count": 0.3919675761298248,
+            "mean_shared_source_count": 0.6611576259132347
+          },
+          "correction": {
+            "mean": -8.248513061939772e-05,
+            "std": 0.0010532106854361017,
+            "mean_absolute": 0.000448468136726633,
+            "min": -0.013100499061149776,
+            "max": 0.009843680311979738
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5103562634915068,
+              "mean_gap": -0.00521574092081889,
+              "prediction_min": 0.3101547359161048,
+              "prediction_max": 0.8029207891197959,
+              "brier_score": 0.24687229110786224,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1155.2091225513261,
+              "skill_score_unclipped": 1155.2091225513261,
+              "diagnostic_calibration_slope": 1.1244633230252459,
+              "diagnostic_calibration_intercept": -0.05830489556008205
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.526479964282066,
+              "mean_gap": -0.011045538971052538,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332768488228648,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.588330812914,
+              "skill_score_unclipped": 2117.588330812914,
+              "diagnostic_calibration_slope": 1.1738569410136084,
+              "diagnostic_calibration_intercept": -0.08048665712398011
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5109784828290989,
+              "mean_gap": -0.00679462281942389,
+              "prediction_min": 0.3101547359161048,
+              "prediction_max": 0.8029207891197959,
+              "brier_score": 0.24621428701409184,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1389.687797188477,
+              "skill_score_unclipped": 1389.687797188477,
+              "diagnostic_calibration_slope": 1.1473193314186922,
+              "diagnostic_calibration_intercept": -0.0684823856402955
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5118844962786053,
+              "mean_gap": -0.009093632427280562,
+              "prediction_min": 0.32356785705191926,
+              "prediction_max": 0.797946374198954,
+              "brier_score": 0.2452561673884734,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1724.53603928715,
+              "skill_score_unclipped": 1724.53603928715,
+              "diagnostic_calibration_slope": 1.1700172883424447,
+              "diagnostic_calibration_intercept": -0.07793558157454794
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5105464647006157,
+              "mean_gap": -0.0050255397117099365,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24687506082950747,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1154.100158254101,
+              "skill_score_unclipped": 1154.100158254101,
+              "diagnostic_calibration_slope": 1.1262505569196941,
+              "diagnostic_calibration_intercept": -0.059431235790123736
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264930103358564,
+              "mean_gap": -0.01103249291726216,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332669443682678,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.9867531719296,
+              "skill_score_unclipped": 2117.9867531719296,
+              "diagnostic_calibration_slope": 1.1741329217871586,
+              "diagnostic_calibration_intercept": -0.08064727327303575
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5111032414757308,
+              "mean_gap": -0.006669864172791917,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24621501818334304,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1389.394959477841,
+              "skill_score_unclipped": 1389.394959477841,
+              "diagnostic_calibration_slope": 1.1485390160369406,
+              "diagnostic_calibration_intercept": -0.06924890840930556
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5119139640234734,
+              "mean_gap": -0.009064164682412446,
+              "prediction_min": 0.32323576253588854,
+              "prediction_max": 0.7979798436724826,
+              "brier_score": 0.24525393022200287,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1725.4324839115043,
+              "skill_score_unclipped": 1725.4324839115043,
+              "diagnostic_calibration_slope": 1.1706171817733448,
+              "diagnostic_calibration_intercept": -0.07827715316969437
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          }
+        },
+        "lr_s500_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.19009146606401164,
+              "validation_exact_rows": 97001,
+              "validation_shared_id_rows": 163618
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 247472,
+            "actual_rate": 0.5289204435249241,
+            "prediction_mean": 0.5201446103108587,
+            "mean_gap": -0.008775833214065387,
+            "prediction_min": 0.3097733938366767,
+            "prediction_max": 0.8040655934842452,
+            "brier_score": 0.24472082777973447,
+            "baseline_brier": 0.24916360794632167,
+            "skill_score": 1783.0774739561184,
+            "skill_score_unclipped": 1783.0774739561184,
+            "diagnostic_calibration_slope": 1.1626410514930663,
+            "diagnostic_calibration_intercept": -0.07582103313534735
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 97001,
+            "exact_pair_seen_any_rate": 0.3919675761298248,
+            "both_ids_shared_any_rows": 163618,
+            "both_ids_shared_any_rate": 0.6611576259132347,
+            "latent_only_exact_unseen_rows": 66617,
+            "latent_only_exact_unseen_rate": 0.2691900497834098,
+            "mean_exact_source_count": 0.3919675761298248,
+            "mean_shared_source_count": 0.6611576259132347
+          },
+          "correction": {
+            "mean": -9.787118470874142e-05,
+            "std": 0.001459821675270853,
+            "mean_absolute": 0.0006445509874954457,
+            "min": -0.015690092910998966,
+            "max": 0.018253564656821222
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5103124315205261,
+              "mean_gap": -0.005259572891799569,
+              "prediction_min": 0.3097733938366767,
+              "prediction_max": 0.8029289192108745,
+              "brier_score": 0.24688144711884963,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1151.5431623609018,
+              "skill_score_unclipped": 1151.5431623609018,
+              "diagnostic_calibration_slope": 1.1199283393419255,
+              "diagnostic_calibration_intercept": -0.05594134956599481
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264829158636966,
+              "mean_gap": -0.011042587389421987,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332798639160313,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.4670439192078,
+              "skill_score_unclipped": 2117.4670439192078,
+              "diagnostic_calibration_slope": 1.1737754412023498,
+              "diagnostic_calibration_intercept": -0.08044721360029017
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5109552114434469,
+              "mean_gap": -0.006817894205075836,
+              "prediction_min": 0.3097733938366767,
+              "prediction_max": 0.8029289192108745,
+              "brier_score": 0.246219992441552,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1387.4027389576215,
+              "skill_score_unclipped": 1387.4027389576215,
+              "diagnostic_calibration_slope": 1.1448393768763596,
+              "diagnostic_calibration_intercept": -0.06718854023212203
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5118911631570223,
+              "mean_gap": -0.009086965548863568,
+              "prediction_min": 0.3237849931637127,
+              "prediction_max": 0.7978137929472288,
+              "brier_score": 0.24525684842196913,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1724.2631455064106,
+              "skill_score_unclipped": 1724.2631455064106,
+              "diagnostic_calibration_slope": 1.1697572846387312,
+              "diagnostic_calibration_intercept": -0.07781028833923291
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 97001,
+              "actual_rate": 0.5155720044123256,
+              "prediction_mean": 0.5105464647006157,
+              "mean_gap": -0.0050255397117099365,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24687506082950747,
+              "baseline_brier": 0.2497575126785825,
+              "skill_score": 1154.100158254101,
+              "skill_score_unclipped": 1154.100158254101,
+              "diagnostic_calibration_slope": 1.1262505569196941,
+              "diagnostic_calibration_intercept": -0.059431235790123736
+            },
+            "exact_pair_unseen": {
+              "rows": 150471,
+              "actual_rate": 0.5375255032531185,
+              "prediction_mean": 0.5264930103358564,
+              "mean_gap": -0.01103249291726216,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24332669443682678,
+              "baseline_brier": 0.2485918366056002,
+              "skill_score": 2117.9867531719296,
+              "skill_score_unclipped": 2117.9867531719296,
+              "diagnostic_calibration_slope": 1.1741329217871586,
+              "diagnostic_calibration_intercept": -0.08064727327303575
+            },
+            "both_ids_shared_any_source": {
+              "rows": 163618,
+              "actual_rate": 0.5177731056485227,
+              "prediction_mean": 0.5111032414757308,
+              "mean_gap": -0.006669864172791917,
+              "prediction_min": 0.3090063803382176,
+              "prediction_max": 0.8029195668373558,
+              "brier_score": 0.24621501818334304,
+              "baseline_brier": 0.24968411671560645,
+              "skill_score": 1389.394959477841,
+              "skill_score_unclipped": 1389.394959477841,
+              "diagnostic_calibration_slope": 1.1485390160369406,
+              "diagnostic_calibration_intercept": -0.06924890840930556
+            },
+            "latent_only_exact_unseen": {
+              "rows": 66617,
+              "actual_rate": 0.5209781287058859,
+              "prediction_mean": 0.5119139640234734,
+              "mean_gap": -0.009064164682412446,
+              "prediction_min": 0.32323576253588854,
+              "prediction_max": 0.7979798436724826,
+              "brier_score": 0.24525393022200287,
+              "baseline_brier": 0.24955991811599929,
+              "skill_score": 1725.4324839115043,
+              "skill_score_unclipped": 1725.4324839115043,
+              "diagnostic_calibration_slope": 1.1706171817733448,
+              "diagnostic_calibration_intercept": -0.07827715316969437
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 83854,
+              "actual_rate": 0.5506714050611777,
+              "prediction_mean": 0.5380751927981362,
+              "mean_gap": -0.012596212263041529,
+              "prediction_min": 0.31847956601384886,
+              "prediction_max": 0.8040655934842452,
+              "brier_score": 0.24179562059060503,
+              "baseline_brier": 0.24743240870912606,
+              "skill_score": 2278.112292536205,
+              "skill_score_unclipped": 2278.112292536205,
+              "diagnostic_calibration_slope": 1.1790522376128318,
+              "diagnostic_calibration_intercept": -0.08374735501141843
+            }
+          }
+        }
+      }
+    },
+    "2023": {
+      "validation_season": 2023,
+      "source_oof_seasons": [
+        2021,
+        2022
+      ],
+      "base_team_all_prior": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49903285162251987,
+        "mean_gap": -0.0009243828749854743,
+        "prediction_min": 0.2874790191004826,
+        "prediction_max": 0.6571742839098722,
+        "brier_score": 0.24775347102600218,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 898.610864617666,
+        "skill_score_unclipped": 898.610864617666,
+        "diagnostic_calibration_slope": 1.0401420497826663,
+        "diagnostic_calibration_intercept": -0.019107818698033335
+      },
+      "explicit_pair_s2000": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.4990072770324191,
+        "mean_gap": -0.0009499574650862486,
+        "prediction_min": 0.28727205834544817,
+        "prediction_max": 0.6571742839098722,
+        "brier_score": 0.24775253341592196,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 898.9859086525054,
+        "skill_score_unclipped": 898.9859086525054,
+        "diagnostic_calibration_slope": 1.0400191017358351,
+        "diagnostic_calibration_intercept": -0.01901986552139801
+      },
+      "candidates": {
+        "lr_s200_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.09958944267931678,
+              "validation_exact_rows": 66300,
+              "validation_shared_id_rows": 126342
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.21746110853841863,
+                0.20731842923244648,
+                0.19857496168692618,
+                0.19216077028741793,
+                0.18646088520872342,
+                0.1829263351638411,
+                0.17950607555597828,
+                0.1764374277875076
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10749067530927653,
+              "validation_exact_rows": 101464,
+              "validation_shared_id_rows": 177067
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 245525,
+            "actual_rate": 0.49995723449750534,
+            "prediction_mean": 0.4988908208819246,
+            "mean_gap": -0.0010664136155807413,
+            "prediction_min": 0.28234002386723395,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24775279836379788,
+            "baseline_brier": 0.24999999817111176,
+            "skill_score": 898.8799295013616,
+            "skill_score_unclipped": 898.8799295013616,
+            "diagnostic_calibration_slope": 1.0376399803528993,
+            "diagnostic_calibration_intercept": -0.017711827080658143
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 119820,
+            "exact_pair_seen_any_rate": 0.48801547703899806,
+            "both_ids_shared_any_rows": 183619,
+            "both_ids_shared_any_rate": 0.7478627431015171,
+            "latent_only_exact_unseen_rows": 63799,
+            "latent_only_exact_unseen_rate": 0.25984726606251907,
+            "mean_exact_source_count": 0.6832868343345891,
+            "mean_shared_source_count": 1.2357560329905306
+          },
+          "correction": {
+            "mean": -0.00014203074059524157,
+            "std": 0.0014755088946185153,
+            "mean_absolute": 0.0007069047744361787,
+            "min": -0.017642673590035123,
+            "max": 0.016572020053150185
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49965444663936276,
+              "mean_gap": -0.002824271437752879,
+              "prediction_min": 0.28234002386723395,
+              "prediction_max": 0.6500038101990075,
+              "brier_score": 0.24768323330361466,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.2717762950825,
+              "skill_score_unclipped": 924.2717762950825,
+              "diagnostic_calibration_slope": 1.049227082195388,
+              "diagnostic_calibration_intercept": -0.021772259076255088
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.498162944995872,
+              "mean_gap": 0.0006091484086240828,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24781910666904547,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.9845915691395,
+              "skill_score_unclipped": 869.9845915691395,
+              "diagnostic_calibration_slope": 1.0251957318881804,
+              "diagnostic_calibration_intercept": -0.013160728407366215
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4977202763309987,
+              "mean_gap": -0.0012912638690895095,
+              "prediction_min": 0.28234002386723395,
+              "prediction_max": 0.6513666746895025,
+              "brier_score": 0.24780960476725386,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.7706946847854,
+              "skill_score_unclipped": 875.7706946847854,
+              "diagnostic_calibration_slope": 1.025588664539799,
+              "diagnostic_calibration_intercept": -0.011444733316599672
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.4940877384174236,
+              "mean_gap": 0.0015878559741250853,
+              "prediction_min": 0.2995244112315619,
+              "prediction_max": 0.6513666746895025,
+              "brier_score": 0.24804694122665363,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.893560396734,
+              "skill_score_unclipped": 758.893560396734,
+              "diagnostic_calibration_slope": 0.9713770282184618,
+              "diagnostic_calibration_intercept": 0.012554403420200037
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49992759929851704,
+              "mean_gap": -0.0025511187785985934,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.650307417387607,
+              "brier_score": 0.24768353403394236,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.1514812076135,
+              "skill_score_unclipped": 924.1514812076135,
+              "diagnostic_calibration_slope": 1.0540240384822825,
+              "diagnostic_calibration_intercept": -0.024456989084260108
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.49817999241613997,
+              "mean_gap": 0.0006261958288920622,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24782013385077925,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.573709040894,
+              "skill_score_unclipped": 869.573709040894,
+              "diagnostic_calibration_slope": 1.0254877240307887,
+              "diagnostic_calibration_intercept": -0.013323669993255084
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4979101918494616,
+              "mean_gap": -0.0011013483506265853,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.2478105042133227,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.4109148511602,
+              "skill_score_unclipped": 875.4109148511602,
+              "diagnostic_calibration_slope": 1.028738655050652,
+              "diagnostic_calibration_intercept": -0.013207920899136649
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49412132743864295,
+              "mean_gap": 0.0016214449953444454,
+              "prediction_min": 0.2985521542355235,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.24804896511229216,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.0838239449106,
+              "skill_score_unclipped": 758.0838239449106,
+              "diagnostic_calibration_slope": 0.9718102237535294,
+              "diagnostic_calibration_intercept": 0.012307724663759527
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          }
+        },
+        "lr_s200_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.18240138164375885,
+              "validation_exact_rows": 66300,
+              "validation_shared_id_rows": 126342
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.21746110853841863,
+                0.20731842923244648,
+                0.19857496168692618,
+                0.19216077028741793,
+                0.18646088520872342,
+                0.1829263351638411,
+                0.17950607555597828,
+                0.1764374277875076
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.19237357039698794,
+              "validation_exact_rows": 101464,
+              "validation_shared_id_rows": 177067
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 245525,
+            "actual_rate": 0.49995723449750534,
+            "prediction_mean": 0.49885058496471296,
+            "mean_gap": -0.0011066495327923809,
+            "prediction_min": 0.28256953624919107,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24775239444003025,
+            "baseline_brier": 0.24999999817111176,
+            "skill_score": 899.0414990095896,
+            "skill_score_unclipped": 899.0414990095896,
+            "diagnostic_calibration_slope": 1.0369984300061776,
+            "diagnostic_calibration_intercept": -0.01735003891856805
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 119820,
+            "exact_pair_seen_any_rate": 0.48801547703899806,
+            "both_ids_shared_any_rows": 183619,
+            "both_ids_shared_any_rate": 0.7478627431015171,
+            "latent_only_exact_unseen_rows": 63799,
+            "latent_only_exact_unseen_rate": 0.25984726606251907,
+            "mean_exact_source_count": 0.6832868343345891,
+            "mean_shared_source_count": 1.2357560329905306
+          },
+          "correction": {
+            "mean": -0.00018226665780691586,
+            "std": 0.0019601844496987602,
+            "mean_absolute": 0.0009855152829430266,
+            "min": -0.017721588964480096,
+            "max": 0.01661514535957948
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.4995739910421534,
+              "mean_gap": -0.002904727034962251,
+              "prediction_min": 0.28256953624919107,
+              "prediction_max": 0.6497194514491655,
+              "brier_score": 0.2476827365372785,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.470487713125,
+              "skill_score_unclipped": 924.470487713125,
+              "diagnostic_calibration_slope": 1.048129176338447,
+              "diagnostic_calibration_intercept": -0.021139357674007046
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.4981610458358086,
+              "mean_gap": 0.000607249248560704,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24781879124133263,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 870.1107656743368,
+              "skill_score_unclipped": 870.1107656743368,
+              "diagnostic_calibration_slope": 1.0250123976686876,
+              "diagnostic_calibration_intercept": -0.01306745143005355
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.497666475125386,
+              "mean_gap": -0.001345065074702223,
+              "prediction_min": 0.28256953624919107,
+              "prediction_max": 0.6524026820698386,
+              "brier_score": 0.24780906466310862,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.9867371872288,
+              "skill_score_unclipped": 875.9867371872288,
+              "diagnostic_calibration_slope": 1.0247891578011799,
+              "diagnostic_calibration_intercept": -0.010991667709539271
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.4940839964478665,
+              "mean_gap": 0.0015841140045679825,
+              "prediction_min": 0.29714040879922377,
+              "prediction_max": 0.6524026820698386,
+              "brier_score": 0.2480463197303819,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 759.1422148544247,
+              "skill_score_unclipped": 759.1422148544247,
+              "diagnostic_calibration_slope": 0.9710649157148897,
+              "diagnostic_calibration_intercept": 0.012712248076575642
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49992759929851704,
+              "mean_gap": -0.0025511187785985934,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.650307417387607,
+              "brier_score": 0.24768353403394236,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.1514812076135,
+              "skill_score_unclipped": 924.1514812076135,
+              "diagnostic_calibration_slope": 1.0540240384822825,
+              "diagnostic_calibration_intercept": -0.024456989084260108
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.49817999241613997,
+              "mean_gap": 0.0006261958288920622,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24782013385077925,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.573709040894,
+              "skill_score_unclipped": 869.573709040894,
+              "diagnostic_calibration_slope": 1.0254877240307887,
+              "diagnostic_calibration_intercept": -0.013323669993255084
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4979101918494616,
+              "mean_gap": -0.0011013483506265853,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.2478105042133227,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.4109148511602,
+              "skill_score_unclipped": 875.4109148511602,
+              "diagnostic_calibration_slope": 1.028738655050652,
+              "diagnostic_calibration_intercept": -0.013207920899136649
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49412132743864295,
+              "mean_gap": 0.0016214449953444454,
+              "prediction_min": 0.2985521542355235,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.24804896511229216,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.0838239449106,
+              "skill_score_unclipped": 758.0838239449106,
+              "diagnostic_calibration_slope": 0.9718102237535294,
+              "diagnostic_calibration_intercept": 0.012307724663759527
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          }
+        },
+        "lr_s500_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10406503287127153,
+              "validation_exact_rows": 66300,
+              "validation_shared_id_rows": 126342
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.09373015837468927,
+                0.08893372685295015,
+                0.08461266183536938,
+                0.08225157806851466,
+                0.07939259889549513,
+                0.07825813589627749,
+                0.0763636134692267,
+                0.07528463883471943
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.11191479848514484,
+              "validation_exact_rows": 101464,
+              "validation_shared_id_rows": 177067
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 245525,
+            "actual_rate": 0.49995723449750534,
+            "prediction_mean": 0.49897401979585787,
+            "mean_gap": -0.0009832147016474724,
+            "prediction_min": 0.2861555049433538,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24775242157631497,
+            "baseline_brier": 0.24999999817111176,
+            "skill_score": 899.0306444956242,
+            "skill_score_unclipped": 899.0306444956242,
+            "diagnostic_calibration_slope": 1.039415237962967,
+            "diagnostic_calibration_intercept": -0.018683965025945916
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 119820,
+            "exact_pair_seen_any_rate": 0.48801547703899806,
+            "both_ids_shared_any_rows": 183619,
+            "both_ids_shared_any_rate": 0.7478627431015171,
+            "latent_only_exact_unseen_rows": 63799,
+            "latent_only_exact_unseen_rate": 0.25984726606251907,
+            "mean_exact_source_count": 0.6832868343345891,
+            "mean_shared_source_count": 1.2357560329905306
+          },
+          "correction": {
+            "mean": -5.8831826661998545e-05,
+            "std": 0.0006383734363555366,
+            "mean_absolute": 0.0002993869689231705,
+            "min": -0.007303436588281484,
+            "max": 0.007644787763505584
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.4998139610112845,
+              "mean_gap": -0.002664757065831136,
+              "prediction_min": 0.2861555049433538,
+              "prediction_max": 0.6501818143267315,
+              "brier_score": 0.24768184531944348,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.8269836084288,
+              "skill_score_unclipped": 924.8269836084288,
+              "diagnostic_calibration_slope": 1.0526446469051218,
+              "diagnostic_calibration_intercept": -0.02364777242985827
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.4981734012330925,
+              "mean_gap": 0.0006196046458445958,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24781969373810916,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.7497583227798,
+              "skill_score_unclipped": 869.7497583227798,
+              "diagnostic_calibration_slope": 1.0253856157986159,
+              "diagnostic_calibration_intercept": -0.013266043210638694
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4978315252395728,
+              "mean_gap": -0.0011800149605153964,
+              "prediction_min": 0.2861555049433538,
+              "prediction_max": 0.6512535002159009,
+              "brier_score": 0.24780910094822234,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.9722230850198,
+              "skill_score_unclipped": 875.9722230850198,
+              "diagnostic_calibration_slope": 1.0278437882108231,
+              "diagnostic_calibration_intercept": -0.012681500592927974
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49410834064159315,
+              "mean_gap": 0.0016084581982946378,
+              "prediction_min": 0.299106656686379,
+              "prediction_max": 0.6512535002159009,
+              "brier_score": 0.24804809794567198,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.4307686579805,
+              "skill_score_unclipped": 758.4307686579805,
+              "diagnostic_calibration_slope": 0.971664372426502,
+              "diagnostic_calibration_intercept": 0.01239241172308428
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49992759929851704,
+              "mean_gap": -0.0025511187785985934,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.650307417387607,
+              "brier_score": 0.24768353403394236,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.1514812076135,
+              "skill_score_unclipped": 924.1514812076135,
+              "diagnostic_calibration_slope": 1.0540240384822825,
+              "diagnostic_calibration_intercept": -0.024456989084260108
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.49817999241613997,
+              "mean_gap": 0.0006261958288920622,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24782013385077925,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.573709040894,
+              "skill_score_unclipped": 869.573709040894,
+              "diagnostic_calibration_slope": 1.0254877240307887,
+              "diagnostic_calibration_intercept": -0.013323669993255084
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4979101918494616,
+              "mean_gap": -0.0011013483506265853,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.2478105042133227,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.4109148511602,
+              "skill_score_unclipped": 875.4109148511602,
+              "diagnostic_calibration_slope": 1.028738655050652,
+              "diagnostic_calibration_intercept": -0.013207920899136649
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49412132743864295,
+              "mean_gap": 0.0016214449953444454,
+              "prediction_min": 0.2985521542355235,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.24804896511229216,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.0838239449106,
+              "skill_score_unclipped": 758.0838239449106,
+              "diagnostic_calibration_slope": 0.9718102237535294,
+              "diagnostic_calibration_intercept": 0.012307724663759527
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          }
+        },
+        "lr_s500_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.19009146606401164,
+              "validation_exact_rows": 66300,
+              "validation_shared_id_rows": 126342
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.09373015837468927,
+                0.08893372685295015,
+                0.08461266183536938,
+                0.08225157806851466,
+                0.07939259889549513,
+                0.07825813589627749,
+                0.0763636134692267,
+                0.07528463883471943
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.1993682222277852,
+              "validation_exact_rows": 101464,
+              "validation_shared_id_rows": 177067
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 245525,
+            "actual_rate": 0.49995723449750534,
+            "prediction_mean": 0.49895277363037654,
+            "mean_gap": -0.001004460867128798,
+            "prediction_min": 0.28638849764103064,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24775195165406333,
+            "baseline_brier": 0.24999999817111176,
+            "skill_score": 899.2186133976566,
+            "skill_score_unclipped": 899.2186133976566,
+            "diagnostic_calibration_slope": 1.039211273909514,
+            "diagnostic_calibration_intercept": -0.018560113007603365
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 119820,
+            "exact_pair_seen_any_rate": 0.48801547703899806,
+            "both_ids_shared_any_rows": 183619,
+            "both_ids_shared_any_rate": 0.7478627431015171,
+            "latent_only_exact_unseen_rows": 63799,
+            "latent_only_exact_unseen_rate": 0.25984726606251907,
+            "mean_exact_source_count": 0.6832868343345891,
+            "mean_shared_source_count": 1.2357560329905306
+          },
+          "correction": {
+            "mean": -8.007799214337708e-05,
+            "std": 0.0008521421245697973,
+            "mean_absolute": 0.0004184192273045162,
+            "min": -0.008050092027048887,
+            "max": 0.007501038368803308
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49977256536067044,
+              "mean_gap": -0.002706152716445198,
+              "prediction_min": 0.28638849764103064,
+              "prediction_max": 0.650139598230689,
+              "brier_score": 0.24768109048607917,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 925.1289243747074,
+              "skill_score_unclipped": 925.1289243747074,
+              "diagnostic_calibration_slope": 1.0522536841272452,
+              "diagnostic_calibration_intercept": -0.02340880504937491
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.49817136123529415,
+              "mean_gap": 0.0006175646480462427,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24781949538858355,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.8291000321157,
+              "skill_score_unclipped": 869.8291000321157,
+              "diagnostic_calibration_slope": 1.0253642403873138,
+              "diagnostic_calibration_intercept": -0.0132533028084932
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.49780311606198324,
+              "mean_gap": -0.0012084241381049576,
+              "prediction_min": 0.28638849764103064,
+              "prediction_max": 0.6516618556935873,
+              "brier_score": 0.24780847259461614,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 876.2235655097927,
+              "skill_score_unclipped": 876.2235655097927,
+              "diagnostic_calibration_slope": 1.0275986838916034,
+              "diagnostic_calibration_intercept": -0.012530286702343803
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49410432117540654,
+              "mean_gap": 0.0016044387321080267,
+              "prediction_min": 0.29867126723163,
+              "prediction_max": 0.6516618556935873,
+              "brier_score": 0.24804770713191138,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.5871293444791,
+              "skill_score_unclipped": 758.5871293444791,
+              "diagnostic_calibration_slope": 0.9716409767079638,
+              "diagnostic_calibration_intercept": 0.012407877220801364
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 119820,
+              "actual_rate": 0.5024787180771156,
+              "prediction_mean": 0.49992759929851704,
+              "mean_gap": -0.0025511187785985934,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.650307417387607,
+              "brier_score": 0.24768353403394236,
+              "baseline_brier": 0.24999385595669418,
+              "skill_score": 924.1514812076135,
+              "skill_score_unclipped": 924.1514812076135,
+              "diagnostic_calibration_slope": 1.0540240384822825,
+              "diagnostic_calibration_intercept": -0.024456989084260108
+            },
+            "exact_pair_unseen": {
+              "rows": 125705,
+              "actual_rate": 0.4975537965872479,
+              "prediction_mean": 0.49817999241613997,
+              "mean_gap": 0.0006261958288920622,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.24782013385077925,
+              "baseline_brier": 0.24999401608886346,
+              "skill_score": 869.573709040894,
+              "skill_score_unclipped": 869.573709040894,
+              "diagnostic_calibration_slope": 1.0254877240307887,
+              "diagnostic_calibration_intercept": -0.013323669993255084
+            },
+            "both_ids_shared_any_source": {
+              "rows": 183619,
+              "actual_rate": 0.4990115402000882,
+              "prediction_mean": 0.4979101918494616,
+              "mean_gap": -0.0011013483506265853,
+              "prediction_min": 0.2874790191004826,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.2478105042133227,
+              "baseline_brier": 0.24999902294722395,
+              "skill_score": 875.4109148511602,
+              "skill_score_unclipped": 875.4109148511602,
+              "diagnostic_calibration_slope": 1.028738655050652,
+              "diagnostic_calibration_intercept": -0.013207920899136649
+            },
+            "latent_only_exact_unseen": {
+              "rows": 63799,
+              "actual_rate": 0.4924998824432985,
+              "prediction_mean": 0.49412132743864295,
+              "mean_gap": 0.0016214449953444454,
+              "prediction_min": 0.2985521542355235,
+              "prediction_max": 0.6511669817521863,
+              "brier_score": 0.24804896511229216,
+              "baseline_brier": 0.24994374823663568,
+              "skill_score": 758.0838239449106,
+              "skill_score_unclipped": 758.0838239449106,
+              "diagnostic_calibration_slope": 0.9718102237535294,
+              "diagnostic_calibration_intercept": 0.012307724663759527
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 61906,
+              "actual_rate": 0.5027622524472587,
+              "prediction_mean": 0.5023627657644314,
+              "mean_gap": -0.00039948668282729916,
+              "prediction_min": 0.29622586598983935,
+              "prediction_max": 0.6571742839098722,
+              "brier_score": 0.2475843052452603,
+              "baseline_brier": 0.2499923699614176,
+              "skill_score": 963.2552851628895,
+              "skill_score_unclipped": 963.2552851628895,
+              "diagnostic_calibration_slope": 1.0749872035703762,
+              "diagnostic_calibration_intercept": -0.03727129229972776
+            }
+          }
+        }
+      }
+    },
+    "2024": {
+      "validation_season": 2024,
+      "source_oof_seasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "base_team_all_prior": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49212919648674736,
+        "mean_gap": 0.006024276307028453,
+        "prediction_min": 0.3010309315039303,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24768256155812585,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 850.4028396019714,
+        "skill_score_unclipped": 850.4028396019714,
+        "diagnostic_calibration_slope": 0.9927152006677566,
+        "diagnostic_calibration_intercept": -0.002439213865084964
+      },
+      "explicit_pair_s2000": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49212630932172124,
+        "mean_gap": 0.006021389142002342,
+        "prediction_min": 0.3010309315039303,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.247680681744279,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 851.1553462963284,
+        "skill_score_unclipped": 851.1553462963284,
+        "diagnostic_calibration_slope": 0.9928704701150414,
+        "diagnostic_calibration_intercept": -0.002512759912520069
+      },
+      "candidates": {
+        "lr_s200_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.09958944267931678,
+              "validation_exact_rows": 47601,
+              "validation_shared_id_rows": 99659
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.21746110853841863,
+                0.20731842923244648,
+                0.19857496168692618,
+                0.19216077028741793,
+                0.18646088520872342,
+                0.1829263351638411,
+                0.17950607555597828,
+                0.1764374277875076
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10749067530927653,
+              "validation_exact_rows": 64603,
+              "validation_shared_id_rows": 132995
+            },
+            "2023": {
+              "matrix_shape": [
+                382,
+                397
+              ],
+              "matrix_nnz_exact_pairs": 25585,
+              "singular_values_top8": [
+                0.20624038084902113,
+                0.2042341669963437,
+                0.18781611670706228,
+                0.18371911252408082,
+                0.17837017715320946,
+                0.17538131752245792,
+                0.17361605792977394,
+                0.17097522149336372
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10079744429559064,
+              "validation_exact_rows": 96579,
+              "validation_shared_id_rows": 168863
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 253507,
+            "actual_rate": 0.4861049201797189,
+            "prediction_mean": 0.4920665955754613,
+            "mean_gap": 0.005961675395742383,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.24767885845410684,
+            "baseline_brier": 0.24980692675678798,
+            "skill_score": 851.8852260462006,
+            "skill_score_unclipped": 851.8852260462006,
+            "diagnostic_calibration_slope": 0.9926301199408701,
+            "diagnostic_calibration_intercept": -0.0023352036052457508
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 122987,
+            "exact_pair_seen_any_rate": 0.4851424221027427,
+            "both_ids_shared_any_rows": 179627,
+            "both_ids_shared_any_rate": 0.708568205217213,
+            "latent_only_exact_unseen_rows": 56640,
+            "latent_only_exact_unseen_rate": 0.2234257831144702,
+            "mean_exact_source_count": 0.8235788360873664,
+            "mean_shared_source_count": 1.5838497556280497
+          },
+          "correction": {
+            "mean": -6.260091128605629e-05,
+            "std": 0.0010435584875577773,
+            "mean_absolute": 0.0004685794418964963,
+            "min": -0.010685781197804686,
+            "max": 0.011881939621097681
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.495613253032181,
+              "mean_gap": 0.004569484178562344,
+              "prediction_min": 0.304307631590778,
+              "prediction_max": 0.6543537899166793,
+              "brier_score": 0.24781993837376062,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 840.2086061859216,
+              "skill_score_unclipped": 840.2086061859216,
+              "diagnostic_calibration_slope": 0.9816751305957525,
+              "diagnostic_calibration_intercept": 0.004512563958266636
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887246344918758,
+              "mean_gap": 0.007273515889362758,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2475459210033065,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.1703588772897,
+              "skill_score_unclipped": 845.1703588772897,
+              "diagnostic_calibration_slope": 0.9988658634918338,
+              "diagnostic_calibration_intercept": -0.00671923543894371
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.49206421509198933,
+              "mean_gap": 0.005088426374257604,
+              "prediction_min": 0.304307631590778,
+              "prediction_max": 0.662800010931412,
+              "brier_score": 0.2477763100552993,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 822.1818131356029,
+              "skill_score_unclipped": 822.1818131356029,
+              "diagnostic_calibration_slope": 0.9765949943411725,
+              "diagnostic_calibration_intercept": 0.006428339364477634
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.48435790278354374,
+              "mean_gap": 0.006215247416312075,
+              "prediction_min": 0.31730686206488856,
+              "prediction_max": 0.662800010931412,
+              "brier_score": 0.2476815763688126,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.681737379603,
+              "skill_score_unclipped": 737.681737379603,
+              "diagnostic_calibration_slope": 0.9576040736386,
+              "diagnostic_calibration_intercept": 0.014319554562661674
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.49573404849576513,
+              "mean_gap": 0.0046902796421464665,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6520503738317959,
+              "brier_score": 0.24782728235510418,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 837.2700708008884,
+              "skill_score_unclipped": 837.2700708008884,
+              "diagnostic_calibration_slope": 0.9820111009609969,
+              "diagnostic_calibration_intercept": 0.004227430106437624
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887323995664818,
+              "mean_gap": 0.007281280963968739,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754619336430134,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.0612643386535,
+              "skill_score_unclipped": 845.0612643386535,
+              "diagnostic_calibration_slope": 0.9987801460174605,
+              "diagnostic_calibration_intercept": -0.006685098799961984
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.492152563554177,
+              "mean_gap": 0.005176774836445297,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.24778153623393917,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 820.0899222892021,
+              "skill_score_unclipped": 820.0899222892021,
+              "diagnostic_calibration_slope": 0.9766463206204621,
+              "diagnostic_calibration_intercept": 0.0063167983386140806
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.4843757964547578,
+              "mean_gap": 0.006233141087526151,
+              "prediction_min": 0.31748330467659436,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.2476822039916419,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.430207580958,
+              "skill_score_unclipped": 737.430207580958,
+              "diagnostic_calibration_slope": 0.9573614897047321,
+              "diagnostic_calibration_intercept": 0.014419921296389112
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          }
+        },
+        "lr_s200_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.2067747868803299,
+                0.19666434185287698,
+                0.19189124371389427,
+                0.19076976797973091,
+                0.18487213022694235,
+                0.1824615595642496,
+                0.17724831831721477,
+                0.1723603679762673
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.18240138164375885,
+              "validation_exact_rows": 47601,
+              "validation_shared_id_rows": 99659
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.21746110853841863,
+                0.20731842923244648,
+                0.19857496168692618,
+                0.19216077028741793,
+                0.18646088520872342,
+                0.1829263351638411,
+                0.17950607555597828,
+                0.1764374277875076
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.19237357039698794,
+              "validation_exact_rows": 64603,
+              "validation_shared_id_rows": 132995
+            },
+            "2023": {
+              "matrix_shape": [
+                382,
+                397
+              ],
+              "matrix_nnz_exact_pairs": 25585,
+              "singular_values_top8": [
+                0.20624038084902113,
+                0.2042341669963437,
+                0.18781611670706228,
+                0.18371911252408082,
+                0.17837017715320946,
+                0.17538131752245792,
+                0.17361605792977394,
+                0.17097522149336372
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.18099488906295777,
+              "validation_exact_rows": 96579,
+              "validation_shared_id_rows": 168863
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 253507,
+            "actual_rate": 0.4861049201797189,
+            "prediction_mean": 0.49206728793075133,
+            "mean_gap": 0.005962367751032427,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.2476759965381764,
+            "baseline_brier": 0.24980692675678798,
+            "skill_score": 853.0308771967143,
+            "skill_score_unclipped": 853.0308771967143,
+            "diagnostic_calibration_slope": 0.9922354164573943,
+            "diagnostic_calibration_intercept": -0.0021416701853114797
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 122987,
+            "exact_pair_seen_any_rate": 0.4851424221027427,
+            "both_ids_shared_any_rows": 179627,
+            "both_ids_shared_any_rate": 0.708568205217213,
+            "latent_only_exact_unseen_rows": 56640,
+            "latent_only_exact_unseen_rate": 0.2234257831144702,
+            "mean_exact_source_count": 0.8235788360873664,
+            "mean_shared_source_count": 1.5838497556280497
+          },
+          "correction": {
+            "mean": -6.19085559960827e-05,
+            "std": 0.0013935097861749908,
+            "mean_absolute": 0.0006570651958119995,
+            "min": -0.013085375045508307,
+            "max": 0.011953394120615824
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.4956175036805026,
+              "mean_gap": 0.004573734826883946,
+              "prediction_min": 0.30532562991464,
+              "prediction_max": 0.6549366838806798,
+              "brier_score": 0.2478141949547402,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 842.5067111555662,
+              "skill_score_unclipped": 842.5067111555662,
+              "diagnostic_calibration_slope": 0.9809977225034298,
+              "diagnostic_calibration_intercept": 0.0048441265102099635
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887219739220579,
+              "mean_gap": 0.0072708553195448555,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754577428367186,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.2291276112578,
+              "skill_score_unclipped": 845.2291276112578,
+              "diagnostic_calibration_slope": 0.9987869393079885,
+              "diagnostic_calibration_intercept": -0.006678005903657092
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.4920651922107548,
+              "mean_gap": 0.005089403493023059,
+              "prediction_min": 0.30532562991464,
+              "prediction_max": 0.6622464389453296,
+              "brier_score": 0.24777227104266877,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 823.7985151529737,
+              "skill_score_unclipped": 823.7985151529737,
+              "diagnostic_calibration_slope": 0.976082867591133,
+              "diagnostic_calibration_intercept": 0.00667938486287439
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.48435177182357486,
+              "mean_gap": 0.0062091164563432,
+              "prediction_min": 0.3173392653127752,
+              "prediction_max": 0.6622464389453296,
+              "brier_score": 0.24768123827123642,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.8172353431634,
+              "skill_score_unclipped": 737.8172353431634,
+              "diagnostic_calibration_slope": 0.9574481031654822,
+              "diagnostic_calibration_intercept": 0.014400970169909212
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.49573404849576513,
+              "mean_gap": 0.0046902796421464665,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6520503738317959,
+              "brier_score": 0.24782728235510418,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 837.2700708008884,
+              "skill_score_unclipped": 837.2700708008884,
+              "diagnostic_calibration_slope": 0.9820111009609969,
+              "diagnostic_calibration_intercept": 0.004227430106437624
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887323995664818,
+              "mean_gap": 0.007281280963968739,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754619336430134,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.0612643386535,
+              "skill_score_unclipped": 845.0612643386535,
+              "diagnostic_calibration_slope": 0.9987801460174605,
+              "diagnostic_calibration_intercept": -0.006685098799961984
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.492152563554177,
+              "mean_gap": 0.005176774836445297,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.24778153623393917,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 820.0899222892021,
+              "skill_score_unclipped": 820.0899222892021,
+              "diagnostic_calibration_slope": 0.9766463206204621,
+              "diagnostic_calibration_intercept": 0.0063167983386140806
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.4843757964547578,
+              "mean_gap": 0.006233141087526151,
+              "prediction_min": 0.31748330467659436,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.2476822039916419,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.430207580958,
+              "skill_score_unclipped": 737.430207580958,
+              "diagnostic_calibration_slope": 0.9573614897047321,
+              "diagnostic_calibration_intercept": 0.014419921296389112
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          }
+        },
+        "lr_s500_r4": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10406503287127153,
+              "validation_exact_rows": 47601,
+              "validation_shared_id_rows": 99659
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.09373015837468927,
+                0.08893372685295015,
+                0.08461266183536938,
+                0.08225157806851466,
+                0.07939259889549513,
+                0.07825813589627749,
+                0.0763636134692267,
+                0.07528463883471943
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.11191479848514484,
+              "validation_exact_rows": 64603,
+              "validation_shared_id_rows": 132995
+            },
+            "2023": {
+              "matrix_shape": [
+                382,
+                397
+              ],
+              "matrix_nnz_exact_pairs": 25585,
+              "singular_values_top8": [
+                0.08840871632534827,
+                0.08690500869634579,
+                0.08020360436374722,
+                0.07837590151197715,
+                0.07582650198845745,
+                0.07480846510397747,
+                0.07384046201945509,
+                0.07279960531836167
+              ],
+              "rank": 4,
+              "captured_sparse_matrix_energy_fraction": 0.10483433356175922,
+              "validation_exact_rows": 96579,
+              "validation_shared_id_rows": 168863
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 253507,
+            "actual_rate": 0.4861049201797189,
+            "prediction_mean": 0.4921049595149599,
+            "mean_gap": 0.006000039335241014,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.24768077182751733,
+            "baseline_brier": 0.24980692675678798,
+            "skill_score": 851.1192851512361,
+            "skill_score_unclipped": 851.1192851512361,
+            "diagnostic_calibration_slope": 0.9927853880291992,
+            "diagnostic_calibration_intercept": -0.002449693003435112
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 122987,
+            "exact_pair_seen_any_rate": 0.4851424221027427,
+            "both_ids_shared_any_rows": 179627,
+            "both_ids_shared_any_rate": 0.708568205217213,
+            "latent_only_exact_unseen_rows": 56640,
+            "latent_only_exact_unseen_rate": 0.2234257831144702,
+            "mean_exact_source_count": 0.8235788360873664,
+            "mean_shared_source_count": 1.5838497556280497
+          },
+          "correction": {
+            "mean": -2.4236971787497335e-05,
+            "std": 0.00045365750511819705,
+            "mean_absolute": 0.00019958636301494275,
+            "min": -0.004701952011910268,
+            "max": 0.00555426960646184
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.4956873453446067,
+              "mean_gap": 0.004643576490988011,
+              "prediction_min": 0.3047169938762822,
+              "prediction_max": 0.6525994023635495,
+              "brier_score": 0.24782375234161858,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 838.6825293913769,
+              "skill_score_unclipped": 838.6825293913769,
+              "diagnostic_calibration_slope": 0.9820754551908585,
+              "diagnostic_calibration_intercept": 0.004241393541964666
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887293321319475,
+              "mean_gap": 0.007278213529434474,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754604347563433,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.1213024325166,
+              "skill_score_unclipped": 845.1213024325166,
+              "diagnostic_calibration_slope": 0.9988288778913242,
+              "diagnostic_calibration_intercept": -0.006705851803416673
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.4921183579948406,
+              "mean_gap": 0.005142569277108877,
+              "prediction_min": 0.3047169938762822,
+              "prediction_max": 0.6624241968261323,
+              "brier_score": 0.24777901039296107,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 821.1009446796758,
+              "skill_score_unclipped": 821.1009446796758,
+              "diagnostic_calibration_slope": 0.9767717257446612,
+              "diagnostic_calibration_intercept": 0.006288490908481156
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.4843687279244716,
+              "mean_gap": 0.006226072557239948,
+              "prediction_min": 0.3174304211289163,
+              "prediction_max": 0.6624241968261323,
+              "brier_score": 0.24768185859141548,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.5686321973828,
+              "skill_score_unclipped": 737.5686321973828,
+              "diagnostic_calibration_slope": 0.9574924246786524,
+              "diagnostic_calibration_intercept": 0.014363267628316244
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.49573404849576513,
+              "mean_gap": 0.0046902796421464665,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6520503738317959,
+              "brier_score": 0.24782728235510418,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 837.2700708008884,
+              "skill_score_unclipped": 837.2700708008884,
+              "diagnostic_calibration_slope": 0.9820111009609969,
+              "diagnostic_calibration_intercept": 0.004227430106437624
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887323995664818,
+              "mean_gap": 0.007281280963968739,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754619336430134,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.0612643386535,
+              "skill_score_unclipped": 845.0612643386535,
+              "diagnostic_calibration_slope": 0.9987801460174605,
+              "diagnostic_calibration_intercept": -0.006685098799961984
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.492152563554177,
+              "mean_gap": 0.005176774836445297,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.24778153623393917,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 820.0899222892021,
+              "skill_score_unclipped": 820.0899222892021,
+              "diagnostic_calibration_slope": 0.9766463206204621,
+              "diagnostic_calibration_intercept": 0.0063167983386140806
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.4843757964547578,
+              "mean_gap": 0.006233141087526151,
+              "prediction_min": 0.31748330467659436,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.2476822039916419,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.430207580958,
+              "skill_score_unclipped": 737.430207580958,
+              "diagnostic_calibration_slope": 0.9573614897047321,
+              "diagnostic_calibration_intercept": 0.014419921296389112
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          }
+        },
+        "lr_s500_r8": {
+          "source_details": {
+            "2021": {
+              "matrix_shape": [
+                386,
+                398
+              ],
+              "matrix_nnz_exact_pairs": 26050,
+              "singular_values_top8": [
+                0.0890568519856181,
+                0.08429564068272823,
+                0.08226387067499982,
+                0.08123497527442264,
+                0.07977348278515965,
+                0.07764630826410504,
+                0.07546796285596143,
+                0.07342850848423402
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.19009146606401164,
+              "validation_exact_rows": 47601,
+              "validation_shared_id_rows": 99659
+            },
+            "2022": {
+              "matrix_shape": [
+                390,
+                403
+              ],
+              "matrix_nnz_exact_pairs": 25074,
+              "singular_values_top8": [
+                0.09373015837468927,
+                0.08893372685295015,
+                0.08461266183536938,
+                0.08225157806851466,
+                0.07939259889549513,
+                0.07825813589627749,
+                0.0763636134692267,
+                0.07528463883471943
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.1993682222277852,
+              "validation_exact_rows": 64603,
+              "validation_shared_id_rows": 132995
+            },
+            "2023": {
+              "matrix_shape": [
+                382,
+                397
+              ],
+              "matrix_nnz_exact_pairs": 25585,
+              "singular_values_top8": [
+                0.08840871632534827,
+                0.08690500869634579,
+                0.08020360436374722,
+                0.07837590151197715,
+                0.07582650198845745,
+                0.07480846510397747,
+                0.07384046201945509,
+                0.07279960531836167
+              ],
+              "rank": 8,
+              "captured_sparse_matrix_energy_fraction": 0.18773755133804176,
+              "validation_exact_rows": 96579,
+              "validation_shared_id_rows": 168863
+            }
+          },
+          "current_fold_labels_used_for_effect": false,
+          "metrics": {
+            "rows": 253507,
+            "actual_rate": 0.4861049201797189,
+            "prediction_mean": 0.49210328989557595,
+            "mean_gap": 0.005998369715857044,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.24767905863741585,
+            "baseline_brier": 0.24980692675678798,
+            "skill_score": 851.8050908347341,
+            "skill_score_unclipped": 851.8050908347341,
+            "diagnostic_calibration_slope": 0.9927510524164701,
+            "diagnostic_calibration_intercept": -0.0024311387617212215
+          },
+          "coverage": {
+            "exact_pair_seen_any_rows": 122987,
+            "exact_pair_seen_any_rate": 0.4851424221027427,
+            "both_ids_shared_any_rows": 179627,
+            "both_ids_shared_any_rate": 0.708568205217213,
+            "latent_only_exact_unseen_rows": 56640,
+            "latent_only_exact_unseen_rate": 0.2234257831144702,
+            "mean_exact_source_count": 0.8235788360873664,
+            "mean_shared_source_count": 1.5838497556280497
+          },
+          "correction": {
+            "mean": -2.590659117139667e-05,
+            "std": 0.0006084747497010588,
+            "mean_absolute": 0.0002794239357713505,
+            "min": -0.005573399536133485,
+            "max": 0.005623401620771128
+          },
+          "coverage_segments": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.49568502944086745,
+              "mean_gap": 0.0046412605872487855,
+              "prediction_min": 0.30514850481274314,
+              "prediction_max": 0.6527079935439251,
+              "brier_score": 0.24782023330769104,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 840.0905947490434,
+              "skill_score_unclipped": 840.0905947490434,
+              "diagnostic_calibration_slope": 0.9820640782332646,
+              "diagnostic_calibration_intercept": 0.004249307321745053
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887282714964283,
+              "mean_gap": 0.007277152893915229,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754603190455393,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.1259372433074,
+              "skill_score_unclipped": 845.1259372433074,
+              "diagnostic_calibration_slope": 0.99878767111433,
+              "diagnostic_calibration_intercept": -0.006684653493134275
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.49211600166644254,
+              "mean_gap": 0.0051402129487108095,
+              "prediction_min": 0.30514850481274314,
+              "prediction_max": 0.6621723297023187,
+              "brier_score": 0.24777659257335125,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 822.0687291850659,
+              "skill_score_unclipped": 822.0687291850659,
+              "diagnostic_calibration_slope": 0.9767432510194718,
+              "diagnostic_calibration_intercept": 0.00630480537134763
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.48436628381875185,
+              "mean_gap": 0.006223628451520191,
+              "prediction_min": 0.3174421338622029,
+              "prediction_max": 0.6621723297023187,
+              "brier_score": 0.24768183192726634,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.579318277859,
+              "skill_score_unclipped": 737.579318277859,
+              "diagnostic_calibration_slope": 0.9574063263376144,
+              "diagnostic_calibration_intercept": 0.01440731097451768
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          },
+          "base_coverage_segments_same_masks": {
+            "exact_pair_seen_any_source": {
+              "rows": 122987,
+              "actual_rate": 0.49104376885361867,
+              "prediction_mean": 0.49573404849576513,
+              "mean_gap": 0.0046902796421464665,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6520503738317959,
+              "brier_score": 0.24782728235510418,
+              "baseline_brier": 0.24991978592365258,
+              "skill_score": 837.2700708008884,
+              "skill_score_unclipped": 837.2700708008884,
+              "diagnostic_calibration_slope": 0.9820111009609969,
+              "diagnostic_calibration_intercept": 0.004227430106437624
+            },
+            "exact_pair_unseen": {
+              "rows": 130520,
+              "actual_rate": 0.48145111860251305,
+              "prediction_mean": 0.4887323995664818,
+              "mean_gap": 0.007281280963968739,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.24754619336430134,
+              "baseline_brier": 0.24965593899890198,
+              "skill_score": 845.0612643386535,
+              "skill_score_unclipped": 845.0612643386535,
+              "diagnostic_calibration_slope": 0.9987801460174605,
+              "diagnostic_calibration_intercept": -0.006685098799961984
+            },
+            "both_ids_shared_any_source": {
+              "rows": 179627,
+              "actual_rate": 0.48697578871773173,
+              "prediction_mean": 0.492152563554177,
+              "mean_gap": 0.005176774836445297,
+              "prediction_min": 0.30502817775553753,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.24778153623393917,
+              "baseline_brier": 0.24983036992047483,
+              "skill_score": 820.0899222892021,
+              "skill_score_unclipped": 820.0899222892021,
+              "diagnostic_calibration_slope": 0.9766463206204621,
+              "diagnostic_calibration_intercept": 0.0063167983386140806
+            },
+            "latent_only_exact_unseen": {
+              "rows": 56640,
+              "actual_rate": 0.47814265536723166,
+              "prediction_mean": 0.4843757964547578,
+              "mean_gap": 0.006233141087526151,
+              "prediction_min": 0.31748330467659436,
+              "prediction_max": 0.6621563493534816,
+              "brier_score": 0.2476822039916419,
+              "baseline_brier": 0.2495222564856044,
+              "skill_score": 737.430207580958,
+              "skill_score_unclipped": 737.430207580958,
+              "diagnostic_calibration_slope": 0.9573614897047321,
+              "diagnostic_calibration_intercept": 0.014419921296389112
+            },
+            "one_or_both_ids_unseen_all_sources": {
+              "rows": 73880,
+              "actual_rate": 0.4839875473741202,
+              "prediction_mean": 0.49207238332728365,
+              "mean_gap": 0.00808483595316345,
+              "prediction_min": 0.3010309315039303,
+              "prediction_max": 0.7393246341722532,
+              "brier_score": 0.2474419210046294,
+              "baseline_brier": 0.24974360136090396,
+              "skill_score": 921.6173482452516,
+              "skill_score_unclipped": 921.6173482452516,
+              "diagnostic_calibration_slope": 1.0307917678740792,
+              "diagnostic_calibration_intercept": -0.02323661455782462
+            }
+          }
+        }
+      }
+    }
+  },
+  "aggregate_2022_2024": {
+    "base_team_all_prior": {
+      "season_skills": {
+        "2022": 1784.3973973491134,
+        "2023": 898.610864617666,
+        "2024": 850.4028396019714
+      },
+      "mean_skill": 1177.8037005229169,
+      "min_skill": 850.4028396019714
+    },
+    "explicit_pair_s2000": {
+      "season_skills": {
+        "2022": 1785.0285559686151,
+        "2023": 898.9859086525054,
+        "2024": 851.1553462963284
+      },
+      "mean_skill": 1178.389936972483,
+      "min_skill": 851.1553462963284
+    },
+    "lr_s200_r4": {
+      "season_skills": {
+        "2022": 1783.9128576271346,
+        "2023": 898.8799295013616,
+        "2024": 851.8852260462006
+      },
+      "season_briers": {
+        "2022": 0.24471874630763957,
+        "2023": 0.24775279836379788,
+        "2024": 0.24767885845410684
+      },
+      "mean_skill": 1178.2260043915658,
+      "min_skill": 851.8852260462006,
+      "latest_2024_skill": 851.8852260462006,
+      "season_skill_change_vs_base": {
+        "2022": -0.4845397219787628,
+        "2023": 0.26906488369559156,
+        "2024": 1.4823864442291779
+      },
+      "season_skill_change_vs_explicit_pair_s2000": {
+        "2022": -1.1156983414805381,
+        "2023": -0.10597915114374246,
+        "2024": 0.7298797498722251
+      },
+      "improved_every_season_vs_base": false
+    },
+    "lr_s200_r8": {
+      "season_skills": {
+        "2022": 1780.157180269737,
+        "2023": 899.0414990095896,
+        "2024": 853.0308771967143
+      },
+      "season_briers": {
+        "2022": 0.2447281040888461,
+        "2023": 0.24775239444003025,
+        "2024": 0.2476759965381764
+      },
+      "mean_skill": 1177.4098521586805,
+      "min_skill": 853.0308771967143,
+      "latest_2024_skill": 853.0308771967143,
+      "season_skill_change_vs_base": {
+        "2022": -4.240217079376407,
+        "2023": 0.4306343919236042,
+        "2024": 2.628037594742864
+      },
+      "season_skill_change_vs_explicit_pair_s2000": {
+        "2022": -4.8713756988781824,
+        "2023": 0.05559035708427018,
+        "2024": 1.875530900385911
+      },
+      "improved_every_season_vs_base": false
+    },
+    "lr_s500_r4": {
+      "season_skills": {
+        "2022": 1784.5914136945362,
+        "2023": 899.0306444956242,
+        "2024": 851.1192851512361
+      },
+      "season_briers": {
+        "2022": 0.24471705559286008,
+        "2023": 0.24775242157631497,
+        "2024": 0.24768077182751733
+      },
+      "mean_skill": 1178.2471144471322,
+      "min_skill": 851.1192851512361,
+      "latest_2024_skill": 851.1192851512361,
+      "season_skill_change_vs_base": {
+        "2022": 0.1940163454228241,
+        "2023": 0.419779877958149,
+        "2024": 0.7164455492646766
+      },
+      "season_skill_change_vs_explicit_pair_s2000": {
+        "2022": -0.43714227407895123,
+        "2023": 0.044735843118814955,
+        "2024": -0.03606114509227609
+      },
+      "improved_every_season_vs_base": true
+    },
+    "lr_s500_r8": {
+      "season_skills": {
+        "2022": 1783.0774739561184,
+        "2023": 899.2186133976566,
+        "2024": 851.8050908347341
+      },
+      "season_briers": {
+        "2022": 0.24472082777973447,
+        "2023": 0.24775195165406333,
+        "2024": 0.24767905863741585
+      },
+      "mean_skill": 1178.0337260628364,
+      "min_skill": 851.8050908347341,
+      "latest_2024_skill": 851.8050908347341,
+      "season_skill_change_vs_base": {
+        "2022": -1.3199233929949514,
+        "2023": 0.6077487799905157,
+        "2024": 1.4022512327626373
+      },
+      "season_skill_change_vs_explicit_pair_s2000": {
+        "2022": -1.9510820124967267,
+        "2023": 0.23270474515118167,
+        "2024": 0.6497445384056846
+      },
+      "improved_every_season_vs_base": false
+    }
+  },
+  "selection": {
+    "status": "post-hoc diagnostic; not a nested selection",
+    "posthoc_best_candidate": "lr_s200_r8",
+    "posthoc_best_min_skill": 853.0308771967143,
+    "posthoc_best_latest_2024_skill": 853.0308771967143,
+    "any_candidate_improved_every_season_vs_base": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.5",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0"
+  },
+  "total_seconds": 2.546471118927002
+}

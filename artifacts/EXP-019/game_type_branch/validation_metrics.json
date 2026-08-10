@@ -1,0 +1,96 @@
+{
+  "experiment": "EXP-019",
+  "stage": "game_type_R_F_branch",
+  "selection_status": "not selected; nested selection required",
+  "summaries": {
+    "r_mono_l7_i200": {
+      "branch_w025": {
+        "mean_skill": 1063.9156543718977,
+        "min_skill": 748.9126337246521,
+        "latest_2024_skill": 748.9126337246521
+      },
+      "branch_w050": {
+        "mean_skill": 1074.1624877711797,
+        "min_skill": 759.0295049061834,
+        "latest_2024_skill": 759.0295049061834
+      },
+      "branch_w075": {
+        "mean_skill": 1079.5894778390084,
+        "min_skill": 764.3078107284929,
+        "latest_2024_skill": 764.3078107284929
+      },
+      "branch_w100": {
+        "mean_skill": 1080.196624575395,
+        "min_skill": 764.7475511915691,
+        "latest_2024_skill": 764.7475511915691
+      }
+    },
+    "r_mono_l7_i400": {
+      "branch_w025": {
+        "mean_skill": 1069.533425163512,
+        "min_skill": 753.219200977151,
+        "latest_2024_skill": 753.219200977151
+      },
+      "branch_w050": {
+        "mean_skill": 1081.8035523074402,
+        "min_skill": 764.7230997826937,
+        "latest_2024_skill": 764.7230997826937
+      },
+      "branch_w075": {
+        "mean_skill": 1085.6593590729474,
+        "min_skill": 768.4688936004713,
+        "latest_2024_skill": 768.4688936004713
+      },
+      "branch_w100": {
+        "mean_skill": 1081.1008454600221,
+        "min_skill": 764.4565824304727,
+        "latest_2024_skill": 764.4565824304727
+      }
+    },
+    "r_mono_l15_i200": {
+      "branch_w025": {
+        "mean_skill": 1068.147352259748,
+        "min_skill": 751.8134835495682,
+        "latest_2024_skill": 751.8134835495682
+      },
+      "branch_w050": {
+        "mean_skill": 1080.4373409732393,
+        "min_skill": 762.9269227428236,
+        "latest_2024_skill": 762.9269227428236
+      },
+      "branch_w075": {
+        "mean_skill": 1085.7189437816069,
+        "min_skill": 767.2975147636097,
+        "latest_2024_skill": 767.2975147636097
+      },
+      "branch_w100": {
+        "mean_skill": 1083.9921606848582,
+        "min_skill": 764.9252596119371,
+        "latest_2024_skill": 764.9252596119371
+      }
+    },
+    "r_free_l7_i200": {
+      "branch_w025": {
+        "mean_skill": 1063.833330706295,
+        "min_skill": 749.2309351033622,
+        "latest_2024_skill": 749.2309351033622
+      },
+      "branch_w050": {
+        "mean_skill": 1074.7690067790638,
+        "min_skill": 760.5014846071789,
+        "latest_2024_skill": 760.5014846071789
+      },
+      "branch_w075": {
+        "mean_skill": 1081.656005859477,
+        "min_skill": 767.7688456953158,
+        "latest_2024_skill": 767.7688456953158
+      },
+      "branch_w100": {
+        "mean_skill": 1084.4943279474976,
+        "min_skill": 771.0330183677617,
+        "latest_2024_skill": 771.0330183677617
+      }
+    }
+  },
+  "total_seconds": 131.49456119537354
+}

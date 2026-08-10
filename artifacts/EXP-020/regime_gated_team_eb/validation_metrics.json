@@ -1,0 +1,696 @@
+{
+  "experiment": "EXP-020",
+  "candidate": "all_prior_team_eb_R_only",
+  "validation_protocol": {
+    "outer_folds": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reported_folds": [
+      2022,
+      2023,
+      2024
+    ],
+    "base_and_team_effect": "saved fixed OOF LGB/HGB 50/50 and all-prior team EB",
+    "fixed_base": {
+      "lightgbm": "r_full_residual/rfull_l63_m1000_i300/branch_w075",
+      "histgradientboosting": "histgb_residual/hist_l15_d4_m3000_i160/branch_w100",
+      "weights": [
+        0.5,
+        0.5
+      ]
+    },
+    "gate": "official current-row game_type only",
+    "current_fold_labels_used_for_gate": false,
+    "validation_or_test_row_aggregation": false,
+    "candidate_definition_nested": false,
+    "candidate_definition_caveat": "post-hoc diagnostic chosen after inspecting fold regimes; row transform is temporal-safe but candidate selection is non-nested"
+  },
+  "folds": {
+    "2021": {
+      "validation_season": 2021,
+      "source_candidate": "all_prior_s1000",
+      "gate": "current-row game_type == R",
+      "gate_rows": 221227,
+      "gate_rate": 0.8953368840251247,
+      "fixed_base": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "ungated_team_eb": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "R_gated_team_eb": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "game_type_segments": {
+        "fixed_base": {
+          "F": {
+            "rows": 25861,
+            "actual_rate": 0.7038397587100267,
+            "prediction_mean": 0.5773193664924495,
+            "mean_gap": -0.12652039221757716,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.22412346916851017,
+            "baseline_brier": 0.2084493527690381,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -7519.3883748053695,
+            "diagnostic_calibration_slope": 0.5424918740392475,
+            "diagnostic_calibration_intercept": 0.3906486936623864
+          },
+          "R": {
+            "rows": 221227,
+            "actual_rate": 0.5127629086865527,
+            "prediction_mean": 0.5177141329017013,
+            "mean_gap": 0.0049512242151485975,
+            "prediction_min": 0.32056359562020575,
+            "prediction_max": 0.6947845313965963,
+            "brier_score": 0.24833093030208322,
+            "baseline_brier": 0.24983710816185872,
+            "skill_score": 602.8639503783073,
+            "skill_score_unclipped": 602.8639503783073,
+            "diagnostic_calibration_slope": 0.9168386475200963,
+            "diagnostic_calibration_intercept": 0.03810258327491637
+          }
+        },
+        "ungated_team_eb": {
+          "F": {
+            "rows": 25861,
+            "actual_rate": 0.7038397587100267,
+            "prediction_mean": 0.5773193664924495,
+            "mean_gap": -0.12652039221757716,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.22412346916851017,
+            "baseline_brier": 0.2084493527690381,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -7519.3883748053695,
+            "diagnostic_calibration_slope": 0.5424918740392475,
+            "diagnostic_calibration_intercept": 0.3906486936623864
+          },
+          "R": {
+            "rows": 221227,
+            "actual_rate": 0.5127629086865527,
+            "prediction_mean": 0.5177141329017013,
+            "mean_gap": 0.0049512242151485975,
+            "prediction_min": 0.32056359562020575,
+            "prediction_max": 0.6947845313965963,
+            "brier_score": 0.24833093030208322,
+            "baseline_brier": 0.24983710816185872,
+            "skill_score": 602.8639503783073,
+            "skill_score_unclipped": 602.8639503783073,
+            "diagnostic_calibration_slope": 0.9168386475200963,
+            "diagnostic_calibration_intercept": 0.03810258327491637
+          }
+        },
+        "R_gated_team_eb": {
+          "F": {
+            "rows": 25861,
+            "actual_rate": 0.7038397587100267,
+            "prediction_mean": 0.5773193664924495,
+            "mean_gap": -0.12652039221757716,
+            "prediction_min": 0.3180959692712628,
+            "prediction_max": 0.7632686326588105,
+            "brier_score": 0.22412346916851017,
+            "baseline_brier": 0.2084493527690381,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -7519.3883748053695,
+            "diagnostic_calibration_slope": 0.5424918740392475,
+            "diagnostic_calibration_intercept": 0.3906486936623864
+          },
+          "R": {
+            "rows": 221227,
+            "actual_rate": 0.5127629086865527,
+            "prediction_mean": 0.5177141329017013,
+            "mean_gap": 0.0049512242151485975,
+            "prediction_min": 0.32056359562020575,
+            "prediction_max": 0.6947845313965963,
+            "brier_score": 0.24833093030208322,
+            "baseline_brier": 0.24983710816185872,
+            "skill_score": 602.8639503783073,
+            "skill_score_unclipped": 602.8639503783073,
+            "diagnostic_calibration_slope": 0.9168386475200963,
+            "diagnostic_calibration_intercept": 0.03810258327491637
+          }
+        }
+      },
+      "qa": {
+        "alignment_checked": true,
+        "finite_and_probability_range_checked": true,
+        "F_rows_equal_fixed_base": true,
+        "R_rows_equal_ungated_team_eb": true,
+        "game_type_counts": {
+          "F": 25861,
+          "R": 221227
+        }
+      }
+    },
+    "2022": {
+      "validation_season": 2022,
+      "source_candidate": "all_prior_s1000",
+      "gate": "current-row game_type == R",
+      "gate_rows": 217024,
+      "gate_rate": 0.8769638585375316,
+      "fixed_base": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5202628275727008,
+        "mean_gap": -0.008657615952223252,
+        "prediction_min": 0.2908331588977028,
+        "prediction_max": 0.7981279177446956,
+        "brier_score": 0.24489013349278274,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1715.1278586636897,
+        "skill_score_unclipped": 1715.1278586636897,
+        "diagnostic_calibration_slope": 1.200797367471614,
+        "diagnostic_calibration_intercept": -0.09580979021771283
+      },
+      "ungated_team_eb": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5202424814955674,
+        "mean_gap": -0.008677962029356667,
+        "prediction_min": 0.3090063803382176,
+        "prediction_max": 0.8040655934842452,
+        "brier_score": 0.24471753901098636,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1784.3973973491134,
+        "skill_score_unclipped": 1784.3973973491134,
+        "diagnostic_calibration_slope": 1.1649282674107455,
+        "diagnostic_calibration_intercept": -0.07712472907717237
+      },
+      "R_gated_team_eb": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5185090102757935,
+        "mean_gap": -0.01041143324913052,
+        "prediction_min": 0.3090063803382176,
+        "prediction_max": 0.7981279177446956,
+        "brier_score": 0.24505214564941372,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1650.1054591381958,
+        "skill_score_unclipped": 1650.1054591381958,
+        "diagnostic_calibration_slope": 1.1835079967693938,
+        "diagnostic_calibration_intercept": -0.08473911653346115
+      },
+      "game_type_segments": {
+        "fixed_base": {
+          "F": {
+            "rows": 30448,
+            "actual_rate": 0.7087493431424067,
+            "prediction_mean": 0.6044032467844023,
+            "mean_gap": -0.1043460963580044,
+            "prediction_min": 0.4112387674395319,
+            "prediction_max": 0.7981279177446956,
+            "brier_score": 0.2207014800181066,
+            "baseline_brier": 0.20642371173761376,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -6916.72878096552,
+            "diagnostic_calibration_slope": 0.08093887857080515,
+            "diagnostic_calibration_intercept": 0.6598296221431235
+          },
+          "R": {
+            "rows": 217024,
+            "actual_rate": 0.5036908360365674,
+            "prediction_mean": 0.5084581078912007,
+            "mean_gap": 0.004767271854633326,
+            "prediction_min": 0.2908331588977028,
+            "prediction_max": 0.6969618186970499,
+            "brier_score": 0.2482837495029795,
+            "baseline_brier": 0.24998637772935117,
+            "skill_score": 681.088402430885,
+            "skill_score_unclipped": 681.088402430885,
+            "diagnostic_calibration_slope": 0.9694231980226196,
+            "diagnostic_calibration_intercept": 0.010779751024149692
+          }
+        },
+        "ungated_team_eb": {
+          "F": {
+            "rows": 30448,
+            "actual_rate": 0.7087493431424067,
+            "prediction_mean": 0.6184923688843718,
+            "mean_gap": -0.09025697425803492,
+            "prediction_min": 0.41877459908575276,
+            "prediction_max": 0.8040655934842452,
+            "brier_score": 0.21798189994634867,
+            "baseline_brier": 0.20642371173761376,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -5599.254131921904,
+            "diagnostic_calibration_slope": 0.07285023227602724,
+            "diagnostic_calibration_intercept": 0.6636920304082301
+          },
+          "R": {
+            "rows": 217024,
+            "actual_rate": 0.5036908360365674,
+            "prediction_mean": 0.5064582338030803,
+            "mean_gap": 0.0027673977665129135,
+            "prediction_min": 0.3090063803382176,
+            "prediction_max": 0.6909931297017893,
+            "brier_score": 0.2484684916164129,
+            "baseline_brier": 0.24998637772935117,
+            "skill_score": 607.1875302667951,
+            "skill_score_unclipped": 607.1875302667951,
+            "diagnostic_calibration_slope": 0.9303919247460061,
+            "diagnostic_calibration_intercept": 0.032486185085057566
+          }
+        },
+        "R_gated_team_eb": {
+          "F": {
+            "rows": 30448,
+            "actual_rate": 0.7087493431424067,
+            "prediction_mean": 0.6044032467844023,
+            "mean_gap": -0.1043460963580044,
+            "prediction_min": 0.4112387674395319,
+            "prediction_max": 0.7981279177446956,
+            "brier_score": 0.2207014800181066,
+            "baseline_brier": 0.20642371173761376,
+            "skill_score": 0.0,
+            "skill_score_unclipped": -6916.72878096552,
+            "diagnostic_calibration_slope": 0.08093887857080515,
+            "diagnostic_calibration_intercept": 0.6598296221431235
+          },
+          "R": {
+            "rows": 217024,
+            "actual_rate": 0.5036908360365674,
+            "prediction_mean": 0.5064582338030803,
+            "mean_gap": 0.0027673977665129135,
+            "prediction_min": 0.3090063803382176,
+            "prediction_max": 0.6909931297017893,
+            "brier_score": 0.2484684916164129,
+            "baseline_brier": 0.24998637772935117,
+            "skill_score": 607.1875302667951,
+            "skill_score_unclipped": 607.1875302667951,
+            "diagnostic_calibration_slope": 0.9303919247460061,
+            "diagnostic_calibration_intercept": 0.032486185085057566
+          }
+        }
+      },
+      "qa": {
+        "alignment_checked": true,
+        "finite_and_probability_range_checked": true,
+        "F_rows_equal_fixed_base": true,
+        "R_rows_equal_ungated_team_eb": true,
+        "game_type_counts": {
+          "F": 30448,
+          "R": 217024
+        }
+      }
+    },
+    "2023": {
+      "validation_season": 2023,
+      "source_candidate": "all_prior_s1000",
+      "gate": "current-row game_type == R",
+      "gate_rows": 219839,
+      "gate_rate": 0.8953833621830771,
+      "fixed_base": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.4991573546510167,
+        "mean_gap": -0.0007998798464886603,
+        "prediction_min": 0.2916846344163917,
+        "prediction_max": 0.6633884623297495,
+        "brier_score": 0.24785347455808635,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 858.6094514913656,
+        "skill_score_unclipped": 858.6094514913656,
+        "diagnostic_calibration_slope": 1.031059080318758,
+        "diagnostic_calibration_intercept": -0.014703488523313737
+      },
+      "ungated_team_eb": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49903285162251987,
+        "mean_gap": -0.0009243828749854743,
+        "prediction_min": 0.2874790191004826,
+        "prediction_max": 0.6571742839098722,
+        "brier_score": 0.24775347102600218,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 898.610864617666,
+        "skill_score_unclipped": 898.610864617666,
+        "diagnostic_calibration_slope": 1.0401420497826663,
+        "diagnostic_calibration_intercept": -0.019107818698033335
+      },
+      "R_gated_team_eb": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49765849578718885,
+        "mean_gap": -0.0022987387103164947,
+        "prediction_min": 0.2874790191004826,
+        "prediction_max": 0.6571742839098722,
+        "brier_score": 0.24768638325942502,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 925.4459714448493,
+        "skill_score_unclipped": 925.4459714448493,
+        "diagnostic_calibration_slope": 1.057043899955636,
+        "diagnostic_calibration_intercept": -0.02608964273544063
+      },
+      "game_type_segments": {
+        "fixed_base": {
+          "F": {
+            "rows": 25686,
+            "actual_rate": 0.47290352721326795,
+            "prediction_mean": 0.49064032543709873,
+            "mean_gap": 0.017736798223830785,
+            "prediction_min": 0.3449870982070277,
+            "prediction_max": 0.6381784114519495,
+            "brier_score": 0.24823601960601002,
+            "baseline_brier": 0.24926578116251785,
+            "skill_score": 413.1178983754813,
+            "skill_score_unclipped": 413.1178983754813,
+            "diagnostic_calibration_slope": 0.8618803288831176,
+            "diagnostic_calibration_intercept": 0.0500302821622213
+          },
+          "R": {
+            "rows": 219839,
+            "actual_rate": 0.5031181910398064,
+            "prediction_mean": 0.5001524847798323,
+            "mean_gap": -0.0029657062599740547,
+            "prediction_min": 0.2916846344163917,
+            "prediction_max": 0.6633884623297495,
+            "brier_score": 0.24780877797512804,
+            "baseline_brier": 0.24999027688463926,
+            "skill_score": 872.6335026693399,
+            "skill_score_unclipped": 872.6335026693399,
+            "diagnostic_calibration_slope": 1.0391368896612991,
+            "diagnostic_calibration_intercept": -0.016608706350678275
+          }
+        },
+        "ungated_team_eb": {
+          "F": {
+            "rows": 25686,
+            "actual_rate": 0.47290352721326795,
+            "prediction_mean": 0.5037773929629749,
+            "mean_gap": 0.030873865749706908,
+            "prediction_min": 0.3501858319937983,
+            "prediction_max": 0.6447882563805112,
+            "brier_score": 0.24887729204581593,
+            "baseline_brier": 0.24926578116251785,
+            "skill_score": 155.853368597203,
+            "skill_score_unclipped": 155.853368597203,
+            "diagnostic_calibration_slope": 0.857384794563688,
+            "diagnostic_calibration_intercept": 0.04097245064187764
+          },
+          "R": {
+            "rows": 219839,
+            "actual_rate": 0.5031181910398064,
+            "prediction_mean": 0.4984784991697206,
+            "mean_gap": -0.0046396918700857825,
+            "prediction_min": 0.2874790191004826,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24762216372058807,
+            "baseline_brier": 0.24999027688463926,
+            "skill_score": 947.2821077533333,
+            "skill_score_unclipped": 947.2821077533333,
+            "diagnostic_calibration_slope": 1.0686437574659968,
+            "diagnostic_calibration_intercept": -0.02957774532893565
+          }
+        },
+        "R_gated_team_eb": {
+          "F": {
+            "rows": 25686,
+            "actual_rate": 0.47290352721326795,
+            "prediction_mean": 0.49064032543709873,
+            "mean_gap": 0.017736798223830785,
+            "prediction_min": 0.3449870982070277,
+            "prediction_max": 0.6381784114519495,
+            "brier_score": 0.24823601960601002,
+            "baseline_brier": 0.24926578116251785,
+            "skill_score": 413.1178983754813,
+            "skill_score_unclipped": 413.1178983754813,
+            "diagnostic_calibration_slope": 0.8618803288831176,
+            "diagnostic_calibration_intercept": 0.0500302821622213
+          },
+          "R": {
+            "rows": 219839,
+            "actual_rate": 0.5031181910398064,
+            "prediction_mean": 0.4984784991697206,
+            "mean_gap": -0.0046396918700857825,
+            "prediction_min": 0.2874790191004826,
+            "prediction_max": 0.6571742839098722,
+            "brier_score": 0.24762216372058807,
+            "baseline_brier": 0.24999027688463926,
+            "skill_score": 947.2821077533333,
+            "skill_score_unclipped": 947.2821077533333,
+            "diagnostic_calibration_slope": 1.0686437574659968,
+            "diagnostic_calibration_intercept": -0.02957774532893565
+          }
+        }
+      },
+      "qa": {
+        "alignment_checked": true,
+        "finite_and_probability_range_checked": true,
+        "F_rows_equal_fixed_base": true,
+        "R_rows_equal_ungated_team_eb": true,
+        "game_type_counts": {
+          "F": 25686,
+          "R": 219839
+        }
+      }
+    },
+    "2024": {
+      "validation_season": 2024,
+      "source_candidate": "all_prior_s1000",
+      "gate": "current-row game_type == R",
+      "gate_rows": 223497,
+      "gate_rate": 0.8816206258604299,
+      "fixed_base": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.4917331307396279,
+        "mean_gap": 0.005628210559908975,
+        "prediction_min": 0.31026053463335546,
+        "prediction_max": 0.7405200506280499,
+        "brier_score": 0.2477666218125871,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 816.7527500897997,
+        "skill_score_unclipped": 816.7527500897997,
+        "diagnostic_calibration_slope": 1.0009222305931795,
+        "diagnostic_calibration_intercept": -0.006081701896756953
+      },
+      "ungated_team_eb": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49212919648674736,
+        "mean_gap": 0.006024276307028453,
+        "prediction_min": 0.3010309315039303,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24768256155812585,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 850.4028396019714,
+        "skill_score_unclipped": 850.4028396019714,
+        "diagnostic_calibration_slope": 0.9927152006677566,
+        "diagnostic_calibration_intercept": -0.002439213865084964
+      },
+      "R_gated_team_eb": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.4908814240059975,
+        "mean_gap": 0.004776503826278589,
+        "prediction_min": 0.3010309315039303,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.2476562243568106,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 860.9458624305178,
+        "skill_score_unclipped": 860.9458624305178,
+        "diagnostic_calibration_slope": 0.9892131650376842,
+        "diagnostic_calibration_intercept": 0.0005185530805414081
+      },
+      "game_type_segments": {
+        "fixed_base": {
+          "F": {
+            "rows": 30010,
+            "actual_rate": 0.45928023992002664,
+            "prediction_mean": 0.47025030590110417,
+            "mean_gap": 0.010970065981077526,
+            "prediction_min": 0.3375515115505538,
+            "prediction_max": 0.6088893864242941,
+            "brier_score": 0.24740261816450781,
+            "baseline_brier": 0.2483419011390294,
+            "skill_score": 378.22170572647804,
+            "skill_score_unclipped": 378.22170572647804,
+            "diagnostic_calibration_slope": 0.8443395039554616,
+            "diagnostic_calibration_intercept": 0.0622293299005845
+          },
+          "R": {
+            "rows": 223497,
+            "actual_rate": 0.4897067969592433,
+            "prediction_mean": 0.49461773130878134,
+            "mean_gap": 0.004910934349538043,
+            "prediction_min": 0.31026053463335546,
+            "prediction_max": 0.7405200506280499,
+            "brier_score": 0.24781549830524185,
+            "baseline_brier": 0.2498940499711618,
+            "skill_score": 831.7731719341914,
+            "skill_score_unclipped": 831.7731719341914,
+            "diagnostic_calibration_slope": 1.0081415384745418,
+            "diagnostic_calibration_intercept": -0.008937883639179274
+          }
+        },
+        "ungated_team_eb": {
+          "F": {
+            "rows": 30010,
+            "actual_rate": 0.45928023992002664,
+            "prediction_mean": 0.480790761025312,
+            "mean_gap": 0.02151052110528534,
+            "prediction_min": 0.3472169599356129,
+            "prediction_max": 0.6201924832679033,
+            "brier_score": 0.24762509950052342,
+            "baseline_brier": 0.2483419011390294,
+            "skill_score": 288.63499684038675,
+            "skill_score_unclipped": 288.63499684038675,
+            "diagnostic_calibration_slope": 0.861370347766567,
+            "diagnostic_calibration_intercept": 0.04514133489270171
+          },
+          "R": {
+            "rows": 223497,
+            "actual_rate": 0.4897067969592433,
+            "prediction_mean": 0.49365166188090337,
+            "mean_gap": 0.003944864921660074,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.24769027726056772,
+            "baseline_brier": 0.2498940499711618,
+            "skill_score": 881.8828262811329,
+            "skill_score_unclipped": 881.8828262811329,
+            "diagnostic_calibration_slope": 0.9935587186354241,
+            "diagnostic_calibration_intercept": -0.0007651156713948556
+          }
+        },
+        "R_gated_team_eb": {
+          "F": {
+            "rows": 30010,
+            "actual_rate": 0.45928023992002664,
+            "prediction_mean": 0.47025030590110417,
+            "mean_gap": 0.010970065981077526,
+            "prediction_min": 0.3375515115505538,
+            "prediction_max": 0.6088893864242941,
+            "brier_score": 0.24740261816450781,
+            "baseline_brier": 0.2483419011390294,
+            "skill_score": 378.22170572647804,
+            "skill_score_unclipped": 378.22170572647804,
+            "diagnostic_calibration_slope": 0.8443395039554616,
+            "diagnostic_calibration_intercept": 0.0622293299005845
+          },
+          "R": {
+            "rows": 223497,
+            "actual_rate": 0.4897067969592433,
+            "prediction_mean": 0.49365166188090337,
+            "mean_gap": 0.003944864921660074,
+            "prediction_min": 0.3010309315039303,
+            "prediction_max": 0.7393246341722532,
+            "brier_score": 0.24769027726056772,
+            "baseline_brier": 0.2498940499711618,
+            "skill_score": 881.8828262811329,
+            "skill_score_unclipped": 881.8828262811329,
+            "diagnostic_calibration_slope": 0.9935587186354241,
+            "diagnostic_calibration_intercept": -0.0007651156713948556
+          }
+        }
+      },
+      "qa": {
+        "alignment_checked": true,
+        "finite_and_probability_range_checked": true,
+        "F_rows_equal_fixed_base": true,
+        "R_rows_equal_ungated_team_eb": true,
+        "game_type_counts": {
+          "F": 30010,
+          "R": 223497
+        }
+      }
+    }
+  },
+  "aggregate_2022_2024": {
+    "fixed_base": {
+      "season_skills": {
+        "2022": 1715.1278586636897,
+        "2023": 858.6094514913656,
+        "2024": 816.7527500897997
+      },
+      "season_briers": {
+        "2022": 0.24489013349278274,
+        "2023": 0.24785347455808635,
+        "2024": 0.2477666218125871
+      },
+      "mean_skill": 1130.1633534149516,
+      "min_skill": 816.7527500897997,
+      "latest_2024_skill": 816.7527500897997,
+      "uniform_1100_gate_passed": false
+    },
+    "ungated_team_eb": {
+      "season_skills": {
+        "2022": 1784.3973973491134,
+        "2023": 898.610864617666,
+        "2024": 850.4028396019714
+      },
+      "season_briers": {
+        "2022": 0.24471753901098636,
+        "2023": 0.24775347102600218,
+        "2024": 0.24768256155812585
+      },
+      "mean_skill": 1177.8037005229169,
+      "min_skill": 850.4028396019714,
+      "latest_2024_skill": 850.4028396019714,
+      "uniform_1100_gate_passed": false
+    },
+    "R_gated_team_eb": {
+      "season_skills": {
+        "2022": 1650.1054591381958,
+        "2023": 925.4459714448493,
+        "2024": 860.9458624305178
+      },
+      "season_briers": {
+        "2022": 0.24505214564941372,
+        "2023": 0.24768638325942502,
+        "2024": 0.2476562243568106
+      },
+      "mean_skill": 1145.4990976711877,
+      "min_skill": 860.9458624305178,
+      "latest_2024_skill": 860.9458624305178,
+      "uniform_1100_gate_passed": false
+    }
+  },
+  "selection": {
+    "status": "post-hoc non-nested diagnostic; regime gate chosen after fold audit",
+    "adopt_only_if_nested_confirmation_improves_robust_minimum": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.5",
+    "numpy": "2.5.1"
+  }
+}

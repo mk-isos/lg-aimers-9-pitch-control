@@ -1,0 +1,193 @@
+{
+  "experiment": "EXP-019",
+  "stage": "multirate_group_oof_residual_candidate_search",
+  "selection_status": "not selected; nested selection required",
+  "target": "season-centered y minus temporal group OOF prediction",
+  "reconstruction_diagnostics": {
+    "2019_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2019_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2019_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 0
+    },
+    "2020_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 216
+    },
+    "2020_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 30
+    },
+    "2020_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 724
+    },
+    "2021_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 278
+    },
+    "2021_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 64
+    },
+    "2021_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 816
+    },
+    "2022_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 285
+    },
+    "2022_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 59
+    },
+    "2022_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 838
+    },
+    "2023_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 304
+    },
+    "2023_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 78
+    },
+    "2023_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 858
+    },
+    "2024_pitcher_control": {
+      "negative_count": 0,
+      "above_n_count": 319
+    },
+    "2024_batter_control": {
+      "negative_count": 0,
+      "above_n_count": 68
+    },
+    "2024_pitcher_pitchmix": {
+      "negative_count": 0,
+      "above_n_count": 886
+    }
+  },
+  "summaries": {
+    "core_mono_l7_i200": {
+      "group_plus_multirate_w025": {
+        "mean_skill": 1102.964742891673,
+        "min_skill": 769.8504237172776,
+        "latest_2024_skill": 769.8504237172776
+      },
+      "group_plus_multirate_w050": {
+        "mean_skill": 1119.1401940825092,
+        "min_skill": 779.6252957183669,
+        "latest_2024_skill": 779.6252957183669
+      },
+      "group_plus_multirate_w075": {
+        "mean_skill": 1126.9004650698764,
+        "min_skill": 784.1369638433848,
+        "latest_2024_skill": 784.1369638433848
+      },
+      "group_plus_multirate_w100": {
+        "mean_skill": 1126.2455558537554,
+        "min_skill": 783.3854280923202,
+        "latest_2024_skill": 783.3854280923202
+      }
+    },
+    "core_mono_l7_i400": {
+      "group_plus_multirate_w025": {
+        "mean_skill": 1111.1462463842092,
+        "min_skill": 775.8074317200436,
+        "latest_2024_skill": 775.8074317200436
+      },
+      "group_plus_multirate_w050": {
+        "mean_skill": 1130.6620937153473,
+        "min_skill": 787.9395993840577,
+        "latest_2024_skill": 787.9395993840577
+      },
+      "group_plus_multirate_w075": {
+        "mean_skill": 1136.9216534907596,
+        "min_skill": 791.2088508321258,
+        "latest_2024_skill": 791.2088508321258
+      },
+      "group_plus_multirate_w100": {
+        "mean_skill": 1129.924925710457,
+        "min_skill": 785.6151860642591,
+        "latest_2024_skill": 785.6151860642591
+      }
+    },
+    "core_free_l7_i200": {
+      "group_plus_multirate_w025": {
+        "mean_skill": 1104.966562699583,
+        "min_skill": 770.3516778309382,
+        "latest_2024_skill": 770.3516778309382
+      },
+      "group_plus_multirate_w050": {
+        "mean_skill": 1123.887024508156,
+        "min_skill": 781.0984246755081,
+        "latest_2024_skill": 781.0984246755081
+      },
+      "group_plus_multirate_w075": {
+        "mean_skill": 1135.1354969230676,
+        "min_skill": 787.0525883738155,
+        "latest_2024_skill": 787.0525883738155
+      },
+      "group_plus_multirate_w100": {
+        "mean_skill": 1138.7119799443142,
+        "min_skill": 788.2141689258715,
+        "latest_2024_skill": 788.2141689258715
+      }
+    },
+    "core_mono_l15_i200": {
+      "group_plus_multirate_w025": {
+        "mean_skill": 1109.6433219972482,
+        "min_skill": 774.9661280410214,
+        "latest_2024_skill": 774.9661280410214
+      },
+      "group_plus_multirate_w050": {
+        "mean_skill": 1128.8652153662667,
+        "min_skill": 787.1246103538621,
+        "latest_2024_skill": 787.1246103538621
+      },
+      "group_plus_multirate_w075": {
+        "mean_skill": 1136.0397916044374,
+        "min_skill": 791.287794778639,
+        "latest_2024_skill": 791.287794778639
+      },
+      "group_plus_multirate_w100": {
+        "mean_skill": 1131.167050711738,
+        "min_skill": 787.4556813153522,
+        "latest_2024_skill": 787.4556813153522
+      }
+    },
+    "rich_mono_l7_i200": {
+      "group_plus_multirate_w025": {
+        "mean_skill": 1099.9037328450977,
+        "min_skill": 771.0736136630092,
+        "latest_2024_skill": 771.0736136630092
+      },
+      "group_plus_multirate_w050": {
+        "mean_skill": 1113.4968785317649,
+        "min_skill": 783.3644870312017,
+        "latest_2024_skill": 783.3644870312017
+      },
+      "group_plus_multirate_w075": {
+        "mean_skill": 1119.1535485573427,
+        "min_skill": 791.6849679446835,
+        "latest_2024_skill": 791.6849679446835
+      },
+      "group_plus_multirate_w100": {
+        "mean_skill": 1116.8737429218386,
+        "min_skill": 773.2915203138568,
+        "latest_2024_skill": 796.0350564034658
+      }
+    }
+  },
+  "total_seconds": 149.53552842140198
+}

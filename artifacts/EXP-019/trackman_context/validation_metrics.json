@@ -1,0 +1,74 @@
+{
+  "experiment": "EXP-019",
+  "stage": "trackman_context_residual",
+  "selection_status": "not selected; nested selection required",
+  "summaries": {
+    "ctx_c002_l7_i200": {
+      "group_plus_tmctx_w025": {
+        "mean_skill": 1083.3351036645734,
+        "min_skill": 764.4988767743444,
+        "latest_2024_skill": 764.4988767743444
+      },
+      "group_plus_tmctx_w050": {
+        "mean_skill": 1084.90663294382,
+        "min_skill": 767.2929121127714,
+        "latest_2024_skill": 767.2929121127714
+      },
+      "group_plus_tmctx_w075": {
+        "mean_skill": 1084.557304316358,
+        "min_skill": 768.725524954339,
+        "latest_2024_skill": 768.725524954339
+      },
+      "group_plus_tmctx_w100": {
+        "mean_skill": 1082.2871177821842,
+        "min_skill": 768.796715299036,
+        "latest_2024_skill": 768.796715299036
+      }
+    },
+    "ctx_c010_l7_i200": {
+      "group_plus_tmctx_w025": {
+        "mean_skill": 1083.612043738084,
+        "min_skill": 764.6849107889819,
+        "latest_2024_skill": 764.6849107889819
+      },
+      "group_plus_tmctx_w050": {
+        "mean_skill": 1085.375661358301,
+        "min_skill": 767.7324039996325,
+        "latest_2024_skill": 767.7324039996325
+      },
+      "group_plus_tmctx_w075": {
+        "mean_skill": 1085.1335693392732,
+        "min_skill": 769.4858985709429,
+        "latest_2024_skill": 769.4858985709429
+      },
+      "group_plus_tmctx_w100": {
+        "mean_skill": 1082.885767680993,
+        "min_skill": 769.9453945029244,
+        "latest_2024_skill": 769.9453945029244
+      }
+    },
+    "ctx_c010_l15_i300": {
+      "group_plus_tmctx_w025": {
+        "mean_skill": 1087.6132418147147,
+        "min_skill": 768.8900006269539,
+        "latest_2024_skill": 768.8900006269539
+      },
+      "group_plus_tmctx_w050": {
+        "mean_skill": 1091.092558792935,
+        "min_skill": 774.6026183748422,
+        "latest_2024_skill": 774.6026183748422
+      },
+      "group_plus_tmctx_w075": {
+        "mean_skill": 1090.2806674132978,
+        "min_skill": 777.4812721826896,
+        "latest_2024_skill": 777.4812721826896
+      },
+      "group_plus_tmctx_w100": {
+        "mean_skill": 1085.1775676757954,
+        "min_skill": 777.525962050507,
+        "latest_2024_skill": 777.525962050507
+      }
+    }
+  },
+  "total_seconds": 37.624835729599
+}
