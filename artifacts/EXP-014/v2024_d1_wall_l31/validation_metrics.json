@@ -1,0 +1,48 @@
+{
+  "experiment": "EXP-014",
+  "validation_season": 2024,
+  "decay": 1.0,
+  "window": null,
+  "num_leaves": 31,
+  "features": 80,
+  "categorical_features": [
+    "top_bottom",
+    "game_type",
+    "base_state",
+    "pitcher_id",
+    "batter_id",
+    "pitcher_hand",
+    "batter_hand",
+    "pitcher_team_id",
+    "batter_team_id",
+    "count_code",
+    "count_out_state",
+    "hand_matchup",
+    "team_matchup"
+  ],
+  "train_rows": 1221585,
+  "validation_rows": 253507,
+  "best_iteration": 231,
+  "fit_seconds": 34.05180382728577,
+  "total_seconds": 43.6009259223938,
+  "raw": {
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.5011081165213578,
+    "prediction_min": 0.3410012145033624,
+    "prediction_max": 0.6345046324011946,
+    "brier_score": 0.2489580377578979,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 339.8180386393168
+  },
+  "calibration": {
+    "scale": 0.8661419373934378,
+    "intercept": 0.05207416529233184,
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.4861049201797172,
+    "prediction_min": 0.3474296178757894,
+    "prediction_max": 0.6016452368854136,
+    "brier_score": 0.24870666292162225,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 440.445687175417
+  }
+}

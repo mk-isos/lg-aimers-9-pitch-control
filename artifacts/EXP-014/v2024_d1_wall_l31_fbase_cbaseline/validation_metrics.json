@@ -1,0 +1,40 @@
+{
+  "experiment": "EXP-014",
+  "validation_season": 2024,
+  "decay": 1.0,
+  "window": null,
+  "num_leaves": 31,
+  "feature_set": "base",
+  "category_mode": "baseline",
+  "features": 47,
+  "categorical_features": [
+    "top_bottom",
+    "game_type",
+    "base_state"
+  ],
+  "train_rows": 1221585,
+  "validation_rows": 253507,
+  "best_iteration": 303,
+  "fit_seconds": 31.963108777999878,
+  "total_seconds": 38.46259784698486,
+  "raw": {
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.49648233309413636,
+    "prediction_min": 0.3914413582153942,
+    "prediction_max": 0.6342733999091448,
+    "brier_score": 0.2482329877111541,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 630.0622108714626
+  },
+  "calibration": {
+    "scale": 1.1250742777505656,
+    "intercept": -0.07247458214208286,
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.4861049201797184,
+    "prediction_min": 0.3679260212338022,
+    "prediction_max": 0.6411301051570939,
+    "brier_score": 0.24810425415242124,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 681.5954331100161
+  }
+}

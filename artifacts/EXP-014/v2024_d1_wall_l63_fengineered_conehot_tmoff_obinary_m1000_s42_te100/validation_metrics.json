@@ -1,0 +1,46 @@
+{
+  "experiment": "EXP-014",
+  "validation_season": 2024,
+  "decay": 1.0,
+  "window": null,
+  "num_leaves": 63,
+  "min_child_samples": 1000,
+  "seed": 42,
+  "feature_set": "engineered",
+  "category_mode": "onehot",
+  "objective": "binary",
+  "trackman": {
+    "enabled": false
+  },
+  "temporal_target_features": {
+    "enabled": true,
+    "smoothing": 100.0
+  },
+  "features": 109,
+  "categorical_features": [],
+  "train_rows": 1221585,
+  "validation_rows": 253507,
+  "best_iteration": 326,
+  "fit_seconds": 79.30207586288452,
+  "total_seconds": 103.01756691932678,
+  "raw": {
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.4949208559223034,
+    "prediction_min": 0.34597597119365614,
+    "prediction_max": 0.6661623891795103,
+    "brier_score": 0.24797756555282416,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 732.310039482964
+  },
+  "calibration": {
+    "scale": 1.0649310695285215,
+    "intercept": -0.04095167624958991,
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.48610492017971985,
+    "prediction_min": 0.3274888847848393,
+    "prediction_max": 0.6684653493390211,
+    "brier_score": 0.2478927286156798,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 766.2710421844521
+  }
+}

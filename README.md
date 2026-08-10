@@ -30,11 +30,12 @@
 | EXP-008 | 로지스틱 회귀 | 0.249790 | 6.63 | EXP-003보다 하락 |
 | EXP-009 | 선수 ID 제거 + HistGradientBoosting | 0.248094 | 685.73 | EXP-003에 근접 |
 | EXP-010 | 작은 트리 + 강한 규제 HistGradientBoosting | 0.248151 | 663.02 | EXP-003보다 하락 |
-| EXP-011 | EXP-003 입력 표현 + LightGBM | 0.248043 | 706.03 | 단일 모델 최고 |
+| EXP-011 | EXP-003 입력 표현 + LightGBM | 0.248043 | 706.03 | 이전 단일 모델 기준 |
 | EXP-012 | EXP-003 입력 표현 + XGBoost | 0.248079 | 691.82 | EXP-011보다 하락 |
-| EXP-013 | CatBoost 28.7% + LightGBM 71.3% 앙상블 + 선형 확률 보정 | **0.247862497** | **778.37** | 로컬 최고, 제출 후보 채택 |
+| EXP-013 | CatBoost 28.7% + LightGBM 71.3% 앙상블 + 선형 확률 보정 | 0.247862497 | 778.37 | 앙상블 기준 실험 |
+| EXP-014 | 엔지니어드 피처 + LightGBM 규제 조정 + 선형 확률 보정 | **0.247857248** | **780.47** | 2024 로컬 최고, 다중 시즌 확인 필요 |
 
-EXP-013은 2024년 검증에서 Brier Score가 가장 낮고 Skill Score가 가장 높은 로컬 최고 실험입니다. EXP-011의 JSON 기록(`0.24804322476344168`, `706.0260563004462`)보다 개선되어 제출 후보로 채택했습니다. 다만 같은 검증 데이터로 앙상블 가중치와 선형 보정값을 선택했으므로 778.37점은 낙관적일 수 있으며, 실제 성능은 리더보드 제출과 다른 검증 시즌에서 확인해야 합니다.
+EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
 ## 베이스라인과 노트북
 
@@ -51,7 +52,7 @@ EXP-013은 2024년 검증에서 Brier Score가 가장 낮고 Skill Score가 가�
 ├── [Baseline_Train]_....ipynb
 ├── [Baseline_Inference]_....ipynb
 ├── [EXP-002_Train]_....ipynb
-├── experiments/              # EXP-002~013 학습·검증·최종 학습 코드
+├── experiments/              # EXP-002~016 학습·검증·패키징 코드
 ├── submissions/              # 모델을 제외한 추론 코드와 환경 명세
 ├── artifacts/                # 작은 validation_metrics.json만 추적
 ├── docs/                     # 실험·학습·환경·제출 기록
@@ -79,10 +80,15 @@ data/sample_submission.csv
 data/trackman_history.csv
 ```
 
-예를 들어 단일 모델 최고 실험인 EXP-011의 2024년 검증은 다음과 같이 실행합니다.
+예를 들어 최신 LightGBM 탐색 실험인 EXP-014의 2024년 검증은 다음과 같이 실행합니다.
 
 ```bash
-python experiments/train_exp011_lightgbm_hgb_features.py
+python experiments/train_exp014_temporal_categorical_lgbm.py \
+  --validation-season 2024 \
+  --num-leaves 63 \
+  --feature-set engineered \
+  --category-mode onehot \
+  --min-child-samples 1000
 ```
 
 검증 시즌을 인자로 받는 EXP-003의 2023년 추가 검증은 다음과 같이 실행합니다.
@@ -103,13 +109,12 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 
 ## 다음 단계
 
-- EXP-013 ZIP을 리더보드에 제출해 로컬 검증과 실제 점수 관계 확인하기
-- EXP-013의 앙상블 가중치와 확률 보정을 다른 검증 시즌에서도 확인하기
-- 여러 검증 시즌에서 안정적인 모델과 피처 찾기
-- EXP-002의 6개 피처를 개별 제거해 기여도 확인하기
-- 확률 보정 전후 Brier Score 비교하기
-- 학습과 추론의 공통 피처 생성 로직 분리하기
-- 평가 서버와 동일한 Python 3.11·scikit-learn 1.8.0 환경에서 최종 재현하기
+- 2022·2023·2024 다중 시간축 검증에서 일관되게 개선되는 설정만 채택하기
+- 2023년에서 EXP-014 성능이 급락한 원인을 시즌 성공률 변화와 보정 과적합 관점에서 분석하기
+- 같은 검증 시즌에서 선택한 선형 보정값을 그대로 평가하는 낙관 편향 줄이기
+- `asof_*` 기준 확률에 대한 잔차 학습과 표본 수 구간별 보정 검토하기
+- 학습과 추론의 공통 피처 생성 로직을 분리해 중복 구현 위험 줄이기
+- 평가 서버와 동일한 Python 3.11 환경에서 네이티브 CatBoost·LightGBM 모델 재현하기
 
 ## 관련 글
 

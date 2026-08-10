@@ -1,0 +1,45 @@
+{
+  "experiment": "EXP-014",
+  "validation_season": 2024,
+  "decay": 1.0,
+  "window": null,
+  "num_leaves": 63,
+  "feature_set": "engineered",
+  "category_mode": "onehot",
+  "trackman": {
+    "enabled": true,
+    "cutoff_season": 2023,
+    "max_mapping_cost": 0.1,
+    "mapped_pitchers": 339,
+    "candidate_main_ids": 709,
+    "candidate_trackman_ids": 551,
+    "feature_count": 42
+  },
+  "features": 119,
+  "categorical_features": [],
+  "train_rows": 1221585,
+  "validation_rows": 253507,
+  "best_iteration": 335,
+  "fit_seconds": 92.92858529090881,
+  "total_seconds": 109.12105393409729,
+  "raw": {
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.49524163822238254,
+    "prediction_min": 0.3504499480673985,
+    "prediction_max": 0.6348755004970221,
+    "brier_score": 0.2480378875666421,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 708.1625850464123
+  },
+  "calibration": {
+    "scale": 1.065130674113829,
+    "intercept": -0.04139213978932303,
+    "actual_rate": 0.4861049201797189,
+    "prediction_mean": 0.48610492017972023,
+    "prediction_min": 0.33188284963886144,
+    "prediction_max": 0.6348332300334247,
+    "brier_score": 0.2479474552275529,
+    "baseline_brier": 0.24980692675678798,
+    "skill_score": 744.3634783776298
+  }
+}
