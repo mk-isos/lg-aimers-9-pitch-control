@@ -1,0 +1,26 @@
+{
+  "experiment": "EXP-013",
+  "validation_season": 2024,
+  "training_seasons": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "brier_score": 0.247862497,
+  "skill_score": 778.37,
+  "reference_experiment": "EXP-011",
+  "reference_brier_score": 0.24804322476344168,
+  "reference_skill_score": 706.0260563004462,
+  "ensemble_weights": {
+    "catboost": 0.28719567,
+    "lightgbm": 0.71280433
+  },
+  "probability_calibration": {
+    "type": "linear_affine_then_clip",
+    "scale": 1.12708208,
+    "intercept": -0.07336118
+  },
+  "source": "submissions/EXP-013/model/metadata.json"
+}

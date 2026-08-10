@@ -43,6 +43,9 @@
 | numpy | 2.5.1 |
 | scikit-learn | 1.9.0 |
 | joblib | 1.5.3 |
+| catboost | 1.2.8 |
+| lightgbm | 4.6.0 |
+| xgboost | 3.0.2 |
 
 ## 확인된 호환성 사항
 
@@ -51,6 +54,7 @@
 - 현재 로컬 scikit-learn 1.9.0에서 기존 모델을 불러오면 `InconsistentVersionWarning`이 발생한다.
 - 기존 `baseline_submit/requirements.txt`에는 `pandas==2.3.3`이 적혀 있지만 평가 서버 기본 버전은 2.0.3이다.
 - 새 모델을 현재 로컬 scikit-learn 1.9.0으로 저장한 뒤 평가 서버 1.8.0에서 불러오는 방식은 피한다.
+- EXP-013은 scikit-learn pickle을 사용하지 않고 CatBoost `.cbm`과 LightGBM `.txt` 네이티브 형식으로 저장해 Python 3.12 학습 환경과 Python 3.11 평가 환경의 pickle 호환 문제를 피한다.
 
 ## 권장 학습 환경
 

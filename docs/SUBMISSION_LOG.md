@@ -30,6 +30,7 @@ output/
 | REF-BASELINE | 2026-08-10 확인 | EXP-000 | `baseline_submit.zip` | 운영진 참고 패키지 | 개인 제출 여부 미기록 |
 | SUB-001 | 예정 | EXP-001 | 생성 전 | 제출 보류: 모델 버전 확인 필요 | - |
 | SUB-002 | 예정 | EXP-002 | 생성 전 | 2024년 검증 개선, 호환 모델 준비 전 | - |
+| SUB-013 | 2026-08-10 준비 | EXP-013 | `submit_exp013.zip` | 로컬 검사 완료, 제출 전 | - |
 
 ## REF-BASELINE — 운영진 제공 베이스라인 패키지
 
@@ -113,6 +114,62 @@ script.py
 ### 결과 해석
 
 제출 후 로컬 검증 결과와 리더보드 결과의 차이를 작성한다.
+
+## SUB-013 — CatBoost + LightGBM 보정 앙상블
+
+### 기본 정보
+
+- 준비 날짜: 2026-08-10
+- 연결 실험: EXP-013
+- ZIP 파일: `submit_exp013.zip`
+- 모델: CatBoost `.cbm` + LightGBM `.txt`
+- 제출 상태: 로컬 검사 완료, 데이콘 제출 전
+
+### 로컬 검증
+
+- 검증 기간: 2024년
+- Brier Score: 0.247862497
+- Skill Score: 778.37
+- 지표 출처: `artifacts/EXP-013/2024/validation_metrics.json`
+- ZIP 크기: 약 17MB
+- ZIP SHA-256: `791aa743b3d70b476a67c34d4cdda396b3271a25a508303fde6d6fe4f399b0d0`
+- 압축 전 모델 및 코드: 약 47.2MB
+- 평가 규모와 비슷한 253,507행 모델 파이프라인 시간: 약 1.4초
+
+### 제출 전 검사
+
+- [x] `script.py` 문법 검사 통과
+- [x] 샘플 5행 추론 성공
+- [x] `output/submission.csv` 생성
+- [x] 행 개수와 `row_id` 순서 일치
+- [x] 중복 `row_id` 없음
+- [x] 예측값 결측 없음
+- [x] 예측값 0~1 범위
+- [x] ZIP 최상위에 `model/`, `script.py`, `requirements.txt` 배치
+- [x] 데이터와 학습 노트북 제외
+- [x] `.DS_Store`, `__MACOSX` 제외
+- [x] 추론 중 외부 인터넷 사용 없음
+- [x] 테스트 데이터 내부 집계 없음
+- [x] 10분 추론 제한 대비 충분한 여유 확인
+
+### 패키지
+
+```text
+catboost==1.2.8
+lightgbm==4.6.0
+```
+
+두 패키지는 Python 3.11 Linux wheel 제공 여부를 확인했다. 실제 평가 서버의 설치 성공 여부는 제출 후 확인한다.
+
+### 제출 후 기록할 항목
+
+- 설치 상태:
+- 실행 상태:
+- Public Score:
+- 팀 내 순위 변화:
+- 900점 돌파 여부:
+- 오류 메시지:
+- 다음 실험:
 
 ---
 

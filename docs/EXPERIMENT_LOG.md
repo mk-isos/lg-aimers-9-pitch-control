@@ -26,8 +26,9 @@
 | EXP-008 | 2026-08-10 | 로지스틱 회귀 | 2024 | 0.249790 | 6.63 | 기준 모델에 가까움 |
 | EXP-009 | 2026-08-10 | 선수 ID 제거 + HistGradientBoosting | 2024 | 0.248094 | 685.73 | EXP-003에 근접 |
 | EXP-010 | 2026-08-10 | 작은 트리 + 강한 규제 HistGradientBoosting | 2024 | 0.248151 | 663.02 | EXP-003보다 하락 |
-| EXP-011 | 2026-08-10 | EXP-003 입력 표현 + LightGBM | 2024 | 0.248043 | 706.03 | 현재 최고, 추가 검증 필요 |
+| EXP-011 | 2026-08-10 | EXP-003 입력 표현 + LightGBM | 2024 | 0.248043 | 706.03 | 단일 모델 최고 |
 | EXP-012 | 2026-08-10 | EXP-003 입력 표현 + XGBoost | 2024 | 0.248079 | 691.82 | EXP-011보다 하락 |
+| EXP-013 | 2026-08-10 | CatBoost + LightGBM 앙상블 + 선형 확률 보정 | 2024 | 0.247862497 | 778.37 | 로컬 최고, 제출 후보 채택 |
 
 ## EXP-000 — 운영진 베이스라인 구조 확인
 
@@ -276,6 +277,89 @@ EXP-002의 상황 조합 피처 6개를 유지하면서 모델 종류, 모델 �
 - 모델 복잡도를 높이거나 범주형 전용 모델을 사용하는 것만으로는 개선되지 않았다.
 - EXP-003을 2023년 검증에 적용했을 때 Brier Score가 0.253493으로 기준 예측보다 나빴다. 시즌별 성공률 변화와 시간 일반화 문제가 남아 있다.
 - 상세 수치와 실행 시간은 각 `artifacts/EXP-*/.../validation_metrics.json`에 보존한다.
+
+## EXP-013 — CatBoost + LightGBM 보정 앙상블
+
+### 기본 정보
+
+- 날짜: 2026-08-10
+- 상태: 검증 및 전체 데이터 최종 학습 완료
+- 기준 실험: EXP-011
+- 최종 학습 코드: `experiments/train_exp013_final_ensemble.py`
+- 제출 추론 코드: `submissions/EXP-013/script.py`
+- 검증 결과: `artifacts/EXP-013/2024/validation_metrics.json`
+
+### 실험 목적과 가설
+
+서로 다른 오차를 내는 CatBoost와 LightGBM의 2024년 검증 확률을 혼합하고, 평균 확률 편향을 줄여 첫 고득점 제출 후보를 만든다.
+
+CatBoost의 범주형 직접 처리와 LightGBM의 원-핫 입력 표현이 서로 다른 패턴을 학습하므로 두 확률을 앙상블하면 단일 모델 EXP-011보다 Brier Score가 낮아질 것이라고 가정했다. 여기에 선형 확률 보정을 적용하면 확률의 전체적인 치우침도 줄일 수 있다고 보았다.
+
+### 기준 실험과 달라진 점
+
+- EXP-011의 LightGBM 단일 예측에서 CatBoost와 LightGBM의 가중 평균으로 변경했다.
+- 가중 평균 확률에 선형 변환 후 0~1 범위로 자르는 확률 보정을 추가했다.
+- EXP-002에서 만든 상황 피처 6개와 원본 피처를 유지했다.
+- 최종 제출 모델은 scikit-learn pickle 대신 CatBoost와 LightGBM의 네이티브 형식으로 저장했다.
+
+### 모델과 주요 파라미터
+
+- CatBoost 가중치: 0.28719567
+- LightGBM 가중치: 0.71280433
+- 보정식: `clip(1.12708208 × ensemble - 0.07336118, 0, 1)`
+- CatBoost: 범주형 9개 직접 처리, `iterations=400`, `depth=8`, `learning_rate=0.05`, `l2_leaf_reg=5.0`, `subsample=0.8`, `rsm=0.8`, `has_time=True`, `random_seed=42`
+- LightGBM: 기본 범주형 3개 원-핫, `n_estimators=335`, `learning_rate=0.015`, `num_leaves=31`, `min_child_samples=500`, `subsample=0.85`, `colsample_bytree=0.9`, `reg_alpha=0.2`, `reg_lambda=3.0`, `random_state=42`
+
+### 검증 기간
+
+- 학습: 2019~2023년
+- 검증: 2024년
+- Target: `control_success`
+
+### Brier Score와 Skill Score
+
+- Brier Score: 0.247862497
+- Skill Score: 778.37
+
+위 값은 `artifacts/EXP-013/2024/validation_metrics.json`에 기록된 원값이다.
+
+### 기준 실험 대비 변화
+
+- EXP-011 Brier Score: 0.24804322476344168 → EXP-013: 0.247862497
+- EXP-011 Skill Score: 706.0260563004462 → EXP-013: 778.37
+- Brier Score는 낮아졌고 Skill Score는 높아져 같은 2024년 검증에서 개선됐다.
+
+### 결과 해석
+
+2024년 검증에서는 단일 LightGBM보다 CatBoost를 함께 사용하고 확률을 보정한 구성이 더 좋은 확률 예측을 만들었다. 따라서 현재 기록된 실험 중 EXP-013이 로컬 최고다.
+
+다만 앙상블 가중치와 확률 보정 계수를 2024년 검증 결과에 맞춰 선택했기 때문에 같은 시즌 점수는 실제 일반화 성능보다 낙관적일 수 있다. 특히 2025년 평균 제구 성공률이 달라지면 선형 보정 효과도 달라질 수 있다.
+
+### 최종 전체 학습
+
+- 학습 데이터: 2019~2024년 전체 1,475,092행
+- CatBoost 학습 시간: 179.1초
+- LightGBM 학습 시간: 38.6초
+- 저장 형식: CatBoost `.cbm`, LightGBM `.txt`
+- CatBoost 모델 크기: 45,970,516바이트
+- LightGBM 모델 크기: 1,230,044바이트
+- 제출 ZIP 크기: 약 17MB
+- 253,507행 피처 생성 및 모델 추론: 1.4초
+
+### 재현 파일
+
+- 최종 학습: `experiments/train_exp013_final_ensemble.py`
+- 제출 추론: `submissions/EXP-013/script.py`
+- 검증 지표: `artifacts/EXP-013/2024/validation_metrics.json`
+- 패키지: `catboost==1.2.8`, `lightgbm==4.6.0`
+
+### 채택 여부와 다음 실험
+
+- [x] 현재 로컬 최고 실험으로 채택
+- [x] 첫 앙상블 제출 후보로 채택
+- [ ] 다른 검증 시즌에서 일반화 성능 확인 완료
+
+다음 실험에서는 같은 모델 예측을 사용해 보정 전·후 제출 결과를 비교하거나, 다른 검증 시즌에서 앙상블 가중치와 보정 계수의 안정성을 확인한다. 실제 리더보드 점수가 나오면 로컬 점수와 함께 `docs/SUBMISSION_LOG.md`에 기록한다.
 
 ---
 
