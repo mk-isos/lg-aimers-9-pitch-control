@@ -55,6 +55,8 @@
 - 기존 `baseline_submit/requirements.txt`에는 `pandas==2.3.3`이 적혀 있지만 평가 서버 기본 버전은 2.0.3이다.
 - 새 모델을 현재 로컬 scikit-learn 1.9.0으로 저장한 뒤 평가 서버 1.8.0에서 불러오는 방식은 피한다.
 - EXP-013은 scikit-learn pickle을 사용하지 않고 CatBoost `.cbm`과 LightGBM `.txt` 네이티브 형식으로 저장해 Python 3.12 학습 환경과 Python 3.11 평가 환경의 pickle 호환 문제를 피한다.
+- EXP-018은 LightGBM `.txt` 네이티브 모델과 JSON 상태만 사용한다. 추론 의존성은 `lightgbm==4.6.0` 하나이며 scikit-learn, scipy, pickle을 사용하지 않는다.
+- EXP-018 최종 모델 디렉터리는 약 0.5MB이고 5행 격리 샘플 추론은 로컬에서 약 1초 이내에 완료됐다. 실제 245,789행 시간은 평가 서버에서 확인해야 한다.
 
 ## 권장 학습 환경
 
@@ -173,6 +175,7 @@ deactivate
 | --- | --- | --- | --- |
 | 2026-08-10 | 로컬과 평가 서버 버전 비교 | 모델 직렬화 호환성 확인 | 별도 Python 3.11 환경 필요 |
 | 2026-08-10 | 학습 노트북으로 `model/rf.pkl` 재생성 | 베이스라인 재현 | scikit-learn 1.9.0 모델이므로 그대로 제출하지 않음 |
+| 2026-08-10 | EXP-018 LightGBM 네이티브 모델 + JSON 이력 상태 | Python pickle 제거 및 행별 현재 시즌 복원 | 로컬 저장·재로드·격리 샘플 추론 통과 |
 
 ## 새 환경을 만들 때 확인할 항목
 

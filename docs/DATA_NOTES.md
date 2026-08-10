@@ -91,6 +91,27 @@ EXP-002에서는 6개 피처를 한 번에 추가해 2024년 Validation Score가
 
 Trackman 피처는 매핑과 시점 안전성이 확인되기 전까지 모델에 추가하지 않는다.
 
+## EXP-018 현재 시즌 as-of 복원
+
+공식 `asof_pitcher_n`, `asof_pitcher_success_rate`는 경력 누적값이다. 학습 데이터에서 직전 시즌 마지막 투구 직후 상태를 확정한 뒤 현재 행의 공식 누적값에서 빼면, 평가 데이터의 다른 행을 사용하지 않고 현재 시즌 값만 복원할 수 있다.
+
+```text
+career_successes_before = round(asof_n × asof_success_rate)
+season_n = asof_n - prior_season_end_n
+season_successes = career_successes_before - prior_season_end_successes
+```
+
+타자도 같은 방법을 사용한다. 이전 시즌에 없던 선수는 과거 누적을 0으로 둔다. 현재 시즌 성공률은 표본이 작을 때 직전 시즌 리그 성공률 또는 해당 선수의 과거 수축률로 shrink한다.
+
+검증한 불변식:
+
+- 2020~2024 모든 행에서 `season_n >= 0`
+- 모든 행에서 `0 <= season_successes <= season_n`
+- 평가는 저장한 2019~2024 종료 상태와 현재 행 공식 값만 사용
+- 평가 행끼리 groupby, 빈도, 분포, rolling, target encoding을 하지 않음
+
+이 피처는 `experiments/temporal_residual_features.py`에 구현했고 학습·추론 parity를 별도로 검사한다.
+
 ## 사용 금지 및 누수 점검
 
 - [ ] 현재 투구의 실제 위치나 코스를 사용하지 않는다.
