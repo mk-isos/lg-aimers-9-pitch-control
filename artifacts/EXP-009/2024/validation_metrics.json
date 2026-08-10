@@ -1,0 +1,13 @@
+{
+  "actual_rate": 0.4861049201797189,
+  "prediction_mean": 0.4958685120365155,
+  "prediction_min": 0.32652387836700103,
+  "prediction_max": 0.6700850860944456,
+  "brier_score": 0.2480939270153879,
+  "baseline_brier": 0.24980692675678798,
+  "skill_score": 685.7294806191904,
+  "brier_delta_vs_exp003": 1.8663322782108693e-05,
+  "score_delta_vs_exp003": -7.472899033044541,
+  "fit_seconds": 48.14277696609497,
+  "inference_seconds": 1.2401437759399414
+}

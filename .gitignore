@@ -1,0 +1,51 @@
+# macOS / editors
+.DS_Store
+README 2.md
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+
+# Competition data: keep only the usage note
+data/*
+!data/README.md
+
+# Trained models and serialized objects
+model/
+*.pkl
+*.pickle
+*.joblib
+*.cbm
+*.model
+
+# Generated predictions and outputs
+output/
+*.npy
+*.npz
+
+# Experiment artifacts: keep only compact metric summaries
+artifacts/**
+!artifacts/**/
+!artifacts/**/validation_metrics.json
+
+# Submission bundles
+*.zip
+*.tar
+*.tar.gz
+
+# Logs and temporary files
+*.log
+tmp/
+temp/

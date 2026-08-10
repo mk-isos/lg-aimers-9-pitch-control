@@ -1,0 +1,14 @@
+{
+  "best_iteration": 263,
+  "actual_rate": 0.4861049201797189,
+  "prediction_mean": 0.49614906311035156,
+  "prediction_min": 0.3466797173023224,
+  "prediction_max": 0.6344934105873108,
+  "brier_score": 0.24807870175310529,
+  "baseline_brier": 0.24980692675678798,
+  "skill_score": 691.8242925126327,
+  "brier_delta_vs_exp011": 3.547698966360757e-05,
+  "score_delta_vs_exp011": -14.201763787813434,
+  "fit_seconds": 20.764871835708618,
+  "inference_seconds": 0.14027023315429688
+}
