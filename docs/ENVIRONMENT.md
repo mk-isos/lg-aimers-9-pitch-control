@@ -57,6 +57,9 @@
 - EXP-013은 scikit-learn pickle을 사용하지 않고 CatBoost `.cbm`과 LightGBM `.txt` 네이티브 형식으로 저장해 Python 3.12 학습 환경과 Python 3.11 평가 환경의 pickle 호환 문제를 피한다.
 - EXP-018은 LightGBM `.txt` 네이티브 모델과 JSON 상태만 사용한다. 추론 의존성은 `lightgbm==4.6.0` 하나이며 scikit-learn, scipy, pickle을 사용하지 않는다.
 - EXP-018 최종 모델 디렉터리는 약 0.5MB이고 5행 격리 샘플 추론은 로컬에서 약 1초 이내에 완료됐다. 실제 245,789행 시간은 평가 서버에서 확인해야 한다.
+- EXP-021은 LightGBM `.txt`, JSON 상태와 HistGradientBoosting 트리의 JSON 내보내기를 사용한다. 원본 HistGradientBoosting과 JSON-tree NumPy 추론은 4,096행에서 최대 절대 오차 `0.0`으로 일치했다.
+- EXP-021 제출 패키지는 평가 서버 기본 NumPy·pandas·scikit-learn·joblib을 재설치하지 않고 `lightgbm==4.6.0`만 설치한다. 최종 strict와 aggressive 제출은 평가 서버에서 각각 8초에 실행됐다.
+- EXP-021 로컬 생성 환경은 Python `3.12.10`, pandas `3.0.5`, NumPy `2.5.1`, scikit-learn `1.9.0`, joblib `1.5.3`, LightGBM `4.6.0`이다. 모델 직렬화 호환 문제를 피하기 위해 최종 ZIP에는 pickle·joblib 모델을 넣지 않았다.
 
 ## 권장 학습 환경
 
