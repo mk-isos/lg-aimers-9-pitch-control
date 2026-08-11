@@ -34,6 +34,8 @@ output/
 | SUB-015 | 2026-08-10 | EXP-015 | `submit_exp015_best.zip` | 제출 완료, EXP-013보다 하락 | 927.712979 |
 | SUB-016 | 2026-08-10 | EXP-016 | `submit_exp016_no_season_adjustment.zip` | 진단 후보, 제출 보류 | - |
 | SUB-018 | 2026-08-10 | EXP-018 | `exp018_multiscale.zip` | 제출 완료, EXP-013보다 하락해 비채택 | 895.836877 |
+| SUB-021-STRICT | 2026-08-11 | EXP-021 | `submit_exp021_strict.zip` | 제출 완료, 현재 최종 리더보드 선택 | **1043.607420** |
+| SUB-021-AGGR | 2026-08-11 | EXP-021-AGGR | `submit_exp021_aggr.zip` | 제출 완료, strict보다 낮아 비채택 | 1043.187131 |
 
 ## REF-BASELINE — 운영진 제공 베이스라인 패키지
 
@@ -225,6 +227,50 @@ lightgbm==4.6.0
 - 채택 여부: 비채택
 - 리더보드 선택: EXP-013 유지
 - 해석: 2022 고점이 rolling 평균을 끌어올렸고, 현재 시즌 복원·계층적 기준값이 2025의 확률 수준과 초기 표본 구조에 충분히 일반화되지 못했다.
+
+---
+
+## SUB-021 — strict·aggressive 최종 제출 결과
+
+### 기본 정보
+
+| 항목 | strict | aggressive |
+| --- | --- | --- |
+| 연결 실험 | EXP-021 strict rank-6 | EXP-021 aggressive R/F gate |
+| 실제 제출 ZIP | `submit_exp021_strict.zip` | `submit_exp021_aggr.zip` |
+| ZIP 크기 | `1,942,657`바이트 | `1,942,498`바이트 |
+| SHA-256 | `e4b1cd4868551df0ec9886bd5dae9c6e3f9707029c9cad31ebd9bba5bb7a8be5` | `68fb18791010794cc4670403c56e24848629ea74cfff02d803010cb01c583191` |
+| 제출 기록 ID | `42698` | `42700` |
+| 제출 일시 | `2026-08-11 08:58:48` | `2026-08-11 09:03:41` |
+| 실행 시간 | `8초` | `8초` |
+
+### 제출 과정에서 수정한 호환성 문제
+
+- 첫 패키지는 로컬 학습 환경의 `numpy==2.5.1` 등을 강제 설치해 평가 서버 Python 3.11에서 설치에 실패했다.
+- 평가 이미지에 있는 NumPy·pandas·scikit-learn·joblib은 재설치하지 않고 `lightgbm==4.6.0`만 설치하도록 수정했다.
+- 다음 실행에서는 NumPy 2.5 환경에서 저장한 HistGradientBoosting Joblib을 서버 NumPy 1.26이 역직렬화하지 못했다.
+- 최종 패키지는 HGB 160개 수치형 트리를 JSON으로 내보내 NumPy로 직접 추론하며, 원본 모델과 최대 절대 오차 `0.0` parity를 확인했다.
+
+### 최종 Public 결과
+
+| 후보 | Public Score | EXP-013 대비 | strict 대비 | 채택 |
+| --- | ---: | ---: | ---: | --- |
+| strict rank-6 | **1043.6074197937** | **+107.7966100872** | - | **최종 선택** |
+| aggressive R/F gate | 1043.1871309639 | +107.3763212574 | -0.4202888298 | 비채택 |
+
+### 로컬 검증과 리더보드 비교
+
+- aggressive는 2023·2024 rolling Skill이 strict보다 각각 `+28.78`, `+4.36` 높았지만, 2022는 `-130.77` 낮고 후보 정의가 post-hoc이었다.
+- 실제 Public에서는 과거 OOF만으로 smoothing과 rank를 고정한 strict가 aggressive를 `0.4202888298` 앞섰다.
+- 두 후보 모두 기존 최고 EXP-013을 107점 이상 개선해 source-season Team EB와 투수 문맥 효과의 2025 전이 가능성을 확인했다.
+- 최신 두 fold의 작은 우위보다 여러 시즌 하방 안정성, 선택 절차의 독립성, 사후 선택 위험을 함께 본 strict 선택이 최종 결과에서도 더 높았다.
+
+### 최종 상태
+
+- 리더보드 선택: EXP-021 strict
+- aggressive 용도: 진단 결과로 보존
+- 제출 실행 상태: 두 후보 모두 성공
+- 추가 제출 오류: 없음
 
 ---
 
