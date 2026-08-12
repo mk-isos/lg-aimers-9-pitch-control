@@ -824,6 +824,91 @@ strict는 이전 리더보드 최고 EXP-013 `935.8108097065`보다 `107.7966100
 
 ---
 
+## EXP-023~026 — joint outcome taxonomy의 시간 전이 감사
+
+### 실험 목적과 가설
+
+EXP-022의 독립 보조 확률은 same-fold ceiling이 낮았으므로, 중첩 outcome을 하나의 shared multiclass 구조로 바꾸면 target 성공과 failure subtype을 함께 학습해 더 안정적인 split을 얻을 수 있는지 확인했다. same-fold 신호가 확인된 뒤에는 pooled 과거 학습의 전이 실패를 source-season expert, 행별 regime gate, 행별 trend 외삽으로 각각 분리 진단했다.
+
+### joint label과 기준 실험 대비 변화
+
+유효 pair `1,472,040`개는 다음 5개 class로 전부 분할됐고 invalid overlap은 `0`이었다.
+
+| class | 행 수 |
+| --- | ---: |
+| success | 770,759 |
+| reverse-only | 287,063 |
+| middle-only | 170,000 |
+| reverse+middle | 50,208 |
+| other-failure | 194,010 |
+
+공통 기준은 EXP-021 strict 고정 rank-6 OOF이며, 모든 deployable 후보의 model·expert·blend 선택에는 validation season보다 과거인 source만 사용했다.
+
+### EXP-023 모델과 결과
+
+- 모델: 5-class `HistGradientBoostingClassifier`
+- 파라미터: EXP-022와 같은 `max_iter=160`, `max_leaf_nodes=15`, `max_depth=4`, `min_samples_leaf=3000`, `l2_regularization=30`
+- blend 후보: `0.10`, `0.25`, `0.50`
+- 선택: prior OOF 최저 Skill, 평균 Skill, 작은 weight 순
+
+| 시즌 | direct multiclass Skill | 선택 weight | 선택 Brier | 선택 Skill | same-fold best Skill |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 2022 | 2077.80 | 0.50 | 0.244125145341 | 2022.15 | 2710.55 |
+| 2023 | 711.52 | 0.50 | 0.247876693515 | 849.32 | 1417.94 |
+| 2024 | 764.54 | 0.10 | 0.247629643815 | 871.59 | 1331.79 |
+
+same-fold best는 2023·2024 모두 1100을 넘었으므로 taxonomy 표현에 현재 시즌 내 신호가 있음은 확인됐다. 그러나 prior-only direct와 blend는 2023에서 기준 `907.5416355312283`보다 낮았다.
+
+### EXP-024 source-season expert bagging
+
+2019~2023 각 source season만으로 5개 multiclass expert를 학습하고 `last`, `equal`, `recency2`, `median`, `consensus` 정책과 blend `0.25`, `0.50`의 10개 후보를 사전 고정했다.
+
+| 시즌 | 선택 후보 | Brier | Skill |
+| ---: | --- | ---: | ---: |
+| 2022 | median_w050 | 0.244334536221 | 1938.11 |
+| 2023 | median_w050 | 0.247917870343 | 832.85 |
+| 2024 | last_w025 | 0.247609820933 | 879.52 |
+
+2024는 EXP-021 strict보다 높았지만 2023의 사후 최고 후보조차 Skill `892.3904772110358`로 기준에 못 미쳤다. 전역 source bagging으로 2023 구조 단절을 해결할 수 없었다.
+
+### EXP-025 row-local regime similarity gate
+
+stable 84개 공식 피처로 현재 행이 과거 어느 source season과 유사한지 분류하고 그 확률로 source expert를 결합했다. validation/test 행 간 집계는 없었다.
+
+| 시즌 | 평균 최대 gate weight | gate가 주로 선택한 source | 선택 Skill |
+| ---: | ---: | --- | ---: |
+| 2022 | 0.9997 | 2021 | 1863.45 |
+| 2023 | 0.9990 | 2021 | 900.11 |
+| 2024 | 0.9768 | 2019 | 865.60 |
+
+gate가 unseen season에서 확률을 거의 one-hot으로 외삽했고, 2023을 2021로, 2024를 2019로 보내며 유용한 expert를 안정적으로 선택하지 못했다.
+
+### EXP-026 행별 source expert trend
+
+저장된 source expert 예측만 사용해 `last + 0.25/0.50 × 직전 차이`, source-year 선형 외삽, `last±0.03` 제한 외삽을 만들고 base blend `0.10`, `0.25`를 prior OOF로 선택했다.
+
+| 시즌 | 선택 후보 | Brier | Skill |
+| ---: | --- | ---: | ---: |
+| 2022 | delta025_w010 | 0.244480296881 | 1879.61 |
+| 2023 | delta025_w010 | 0.247735158345 | 905.94 |
+| 2024 | linear_w010 | 0.247625302031 | 873.32 |
+
+2024는 소폭 개선됐지만 2023은 기준보다 낮았고 세 시즌 1100 gate는 `false`였다.
+
+### 결과 해석과 채택 여부
+
+joint taxonomy는 same-fold에서 1100을 넘을 만큼 target 관련 신호를 표현했지만, 그 관계가 다음 시즌으로 이전되지 않았다. source를 pooled·bagging·similarity gating·trend extrapolation으로 바꿔도 2023과 2024를 동시에 개선하지 못했다. 이는 모델 혼합 방식보다 feature-target 관계 자체의 시즌 전환이 병목이라는 증거다.
+
+- [ ] EXP-023~026 채택
+- [x] 2022·2023·2024 균일 1100 gate 실패
+- [x] outcome taxonomy branch 전체 중단
+- [x] final fit·모델·ZIP 생성 금지
+- [x] EXP-021 strict 리더보드 선택 유지
+
+다음 탐색은 동일 source expert의 weight·gate·trend를 추가하지 않는다. 규정 안에서 기존 공식 피처와 독립적인 새 행별 정보가 확인되지 않으면 제출 후보를 새로 만들지 않는다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown

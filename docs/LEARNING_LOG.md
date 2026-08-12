@@ -267,7 +267,11 @@ EXP-021 Public은 strict `1043.6074197937`, aggressive `1043.1871309639`로 확�
 
 ### 다음 학습
 
-- 중첩 multi-label을 상호 배타적인 joint outcome taxonomy로 변환했을 때 multiclass shared structure가 시간 일반화를 개선하는가?
+- joint multiclass는 같은 시즌에서 2023 Skill `1417.94`, 2024 `1331.79`까지 표현했지만 prior-only 전이는 각각 `849.32`, `871.59`에 그쳤다.
+- 같은 시즌 fit의 높은 점수는 feature resolution이 존재함을 보여 줄 뿐, 미래 시즌에서 사용할 수 있는 모델이라는 증거가 아니다.
+- source-season expert를 equal/last/median/recency로 섞거나 현재 행의 source-season similarity로 gate해도 unseen season의 구조를 맞히지 못했다.
+- season discriminator는 2023 행을 거의 전부 2021로, 2024 행을 거의 전부 2019로 분류했다. 과거 domain 분류 확률은 새로운 domain의 target 관계와 같은 의미가 아니다.
+- row-local trend 외삽도 2023과 2024 방향이 달라 안정적이지 않았다. outcome taxonomy branch는 추가 weight 탐색 없이 중단한다.
 
 ## 다음에 공부할 내용
 

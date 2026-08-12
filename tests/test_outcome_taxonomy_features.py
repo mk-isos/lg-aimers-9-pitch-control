@@ -15,6 +15,7 @@ if str(EXPERIMENTS) not in sys.path:
 
 from outcome_taxonomy_features import (  # noqa: E402
     assert_label_reconstruction_invariants,
+    derive_joint_taxonomy,
     reconstruct_outcome_labels,
 )
 
@@ -102,6 +103,24 @@ class OutcomeTaxonomyFeatureTests(unittest.TestCase):
         left = self.by_row_id(self.frame, original)
         right = self.by_row_id(shuffled_frame, shuffled)
         pd.testing.assert_frame_equal(left, right, check_dtype=True)
+
+    def test_joint_taxonomy_is_mutually_exclusive_and_complete(self) -> None:
+        labels, _ = reconstruct_outcome_labels(self.frame)
+        joint, diagnostics = derive_joint_taxonomy(labels)
+        result = pd.DataFrame(
+            {
+                "row_id": self.frame["row_id"],
+                "joint": joint,
+            }
+        ).set_index("row_id")
+        self.assertEqual(int(result.loc["a0", "joint"]), 0)
+        self.assertEqual(int(result.loc["a1", "joint"]), 3)
+        self.assertEqual(int(result.loc["a23_0", "joint"]), 4)
+        self.assertTrue(np.isnan(result.loc["a2", "joint"]))
+        self.assertEqual(diagnostics["invalid_overlap_rows"], 0)
+        self.assertEqual(diagnostics["class_counts"]["success"], 1)
+        self.assertEqual(diagnostics["class_counts"]["reverse_middle"], 1)
+        self.assertEqual(diagnostics["class_counts"]["other_failure"], 1)
 
     def test_invalid_nonbinary_delta_is_excluded(self) -> None:
         frame = pd.DataFrame(

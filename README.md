@@ -40,6 +40,10 @@
 | EXP-021 | strict rank-6 전체 학습·직렬화·제출 패키지 | **0.247633803** | **869.92** | **Public 1043.607420, 최종 리더보드 선택** |
 | EXP-021-AGGR | R/F gate + 투수×count×타자 손 EB | **0.247622900** | **874.29** | Public 1043.187131, strict보다 0.420289 낮아 비채택 |
 | EXP-022 | 누적 rate 증분 보조 outcome 4종 + prior-only Ridge residual | 0.247627980 | 872.25 | 2023 하락·same-fold ceiling도 1100 미달, 비채택 |
+| EXP-023 | success·failure joint taxonomy 5-class HGB + prior blend | 0.247629644 | 871.59 | same-fold 1100은 통과했지만 시간 전이 실패 |
+| EXP-024 | source-season별 joint expert bagging | **0.247609821** | **879.52** | 2024 개선, 2023 832.85로 붕괴해 비채택 |
+| EXP-025 | row-local source-season similarity gate | 0.247644599 | 865.60 | unseen 시즌 gate extrapolation 실패 |
+| EXP-026 | source expert 예측의 행별 시간 외삽 | 0.247625302 | 873.32 | 2023 기준 미달, taxonomy branch 중단 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -50,6 +54,8 @@ EXP-019는 R행 residual LightGBM과 HistGradientBoosting을 branch별로 확률
 EXP-021의 2025 Public 결과는 strict `1043.6074197937`, aggressive `1043.1871309639`였다. 두 후보 모두 이전 최고 EXP-013 `935.8108097065`를 크게 넘었지만, 과거 OOF만으로 선택한 strict가 최근 시즌 로컬 점수를 보고 사후 선택한 aggressive보다 `0.4202888298` 높았다. 따라서 최종 리더보드 선택은 strict로 변경한다. 이 결과는 최신 fold의 소폭 우위만 좇기보다 선택 절차의 시간적 독립성과 여러 시즌의 하방 안정성을 함께 보는 편이 더 안전하다는 근거로 기록한다.
 
 EXP-022는 `(pitcher_id, season, asof_pitcher_n+1)` 상태를 행 순서와 무관하게 찾아 누적 rate count 증분으로 reverse·middle·ball·strike 보조 label을 복원했다. 1,475,092행 중 1,472,040행이 유효했고 복원 success와 `control_success` mismatch는 `0`이었다. 그러나 prior-only residual 후보의 2022·2023·2024 Skill은 `1838.95`, `871.51`, `872.25`로 2023이 EXP-021 strict보다 하락했다. 현재 fold 정답까지 허용한 고정 Ridge 진단도 2023 `919.25`, 2024 `873.42`에 그쳐 linear multi-task family의 1100 gate를 통과하지 못했다. 전체 학습과 ZIP은 생성하지 않는다.
+
+EXP-023은 중첩 label을 success·reverse-only·middle-only·reverse+middle·other-failure의 5개 상호 배타 class로 바꿔 하나의 HistGradientBoostingClassifier가 공동 학습하게 했다. 같은 시즌 정답을 허용한 비배포 ceiling은 2023 `1417.94`, 2024 `1331.79`로 1100을 넘었지만 prior-only 선택은 `2022.15`, `849.32`, `871.59`로 전이되지 않았다. EXP-024 source-season expert bagging, EXP-025 row-local regime similarity gate, EXP-026 행별 expert trend 외삽까지 제한해 검증했지만 어느 후보도 2023과 2024를 함께 개선하지 못했다. EXP-026 최종 Skill은 `1879.61`, `905.94`, `873.32`였고 hard gate는 `false`다. outcome taxonomy branch는 종료하고 EXP-021 strict를 유지한다.
 
 ## 베이스라인과 노트북
 
@@ -66,7 +72,7 @@ EXP-022는 `(pitcher_id, season, asof_pitcher_n+1)` 상태를 행 순서와 무�
 ├── [Baseline_Train]_....ipynb
 ├── [Baseline_Inference]_....ipynb
 ├── [EXP-002_Train]_....ipynb
-├── experiments/              # EXP-002~021 학습·검증·패키징 코드
+├── experiments/              # EXP-002~026 학습·검증·패키징 코드
 ├── submissions/              # 모델을 제외한 추론 코드와 환경 명세
 ├── artifacts/                # 작은 validation_metrics.json만 추적
 ├── docs/                     # 실험·학습·환경·제출 기록
@@ -126,8 +132,8 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-021 strict Public `1043.6074197937`을 현재 최종 리더보드 선택으로 유지하기
 - aggressive Public `1043.1871309639`은 strict보다 `0.4202888298` 낮았으므로 사후 선택 위험을 보여 준 진단 결과로 보존하기
 - EXP-013 대비 strict 개선 `+107.7966100872`와 로컬 rolling 선택 기준의 성공·한계를 함께 기록하기
-- EXP-022 보조 outcome의 linear residual 결합은 same-fold ceiling도 낮았으므로 중단하기
-- 추가 탐색은 기존 예측 재가중이 아니라 보조 outcome의 상호 배타적 joint taxonomy처럼 학습 구조 자체가 다른 bounded 후보만 검토하기
+- EXP-022~026 outcome taxonomy는 same-fold signal이 있어도 2023·2024 시간 전이가 실패했으므로 branch 전체를 중단하기
+- 추가 탐색은 기존 예측·taxonomy 재가중이 아니라 규정 안에서 새로 입증되는 행별 정보가 있을 때만 재개하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 
 ## 관련 글

@@ -33,6 +33,13 @@ RATE_COLUMNS: Final[tuple[str, ...]] = tuple(
 LABEL_COLUMNS: Final[tuple[str, ...]] = tuple(
     f"aux_{name}" for name in OUTCOME_NAMES
 )
+JOINT_CLASS_NAMES: Final[tuple[str, ...]] = (
+    "success",
+    "reverse_only",
+    "middle_only",
+    "reverse_middle",
+    "other_failure",
+)
 REQUIRED_COLUMNS: Final[tuple[str, ...]] = (
     "row_id",
     *KEY_COLUMNS,
@@ -182,3 +189,43 @@ def assert_label_reconstruction_invariants(
         raise AssertionError(
             f"reconstructed success differs from control_success on {mismatch} rows"
         )
+
+
+def derive_joint_taxonomy(
+    labels: pd.DataFrame,
+) -> tuple[pd.Series, dict[str, object]]:
+    """Convert success/reverse/middle multi-labels into five disjoint classes."""
+    required = {"aux_success", "aux_reverse", "aux_middle", "pair_valid"}
+    missing = sorted(required.difference(labels.columns))
+    if missing:
+        raise ValueError(f"missing joint-taxonomy label columns: {missing}")
+    valid = labels["pair_valid"].to_numpy(dtype=bool)
+    success = labels["aux_success"].to_numpy(dtype=float)
+    reverse = labels["aux_reverse"].to_numpy(dtype=float)
+    middle = labels["aux_middle"].to_numpy(dtype=float)
+    joint = np.full(len(labels), np.nan, dtype=float)
+    class_masks = (
+        valid & (success == 1.0) & (reverse == 0.0) & (middle == 0.0),
+        valid & (success == 0.0) & (reverse == 1.0) & (middle == 0.0),
+        valid & (success == 0.0) & (reverse == 0.0) & (middle == 1.0),
+        valid & (success == 0.0) & (reverse == 1.0) & (middle == 1.0),
+        valid & (success == 0.0) & (reverse == 0.0) & (middle == 0.0),
+    )
+    for class_index, mask in enumerate(class_masks):
+        joint[mask] = class_index
+    assigned = np.isfinite(joint)
+    invalid_overlap = valid & ~assigned
+    diagnostics = {
+        "class_names": list(JOINT_CLASS_NAMES),
+        "valid_pair_rows": int(valid.sum()),
+        "assigned_rows": int(assigned.sum()),
+        "invalid_overlap_rows": int(invalid_overlap.sum()),
+        "class_counts": {
+            name: int(mask.sum())
+            for name, mask in zip(JOINT_CLASS_NAMES, class_masks, strict=True)
+        },
+    }
+    return (
+        pd.Series(joint, index=labels.index, name="joint_outcome_class"),
+        diagnostics,
+    )
