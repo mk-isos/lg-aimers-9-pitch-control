@@ -33,6 +33,7 @@
 | EXP-015 | 2026-08-10 | 개선 LightGBM + 고정 2025 `-0.005` 동시 변경 | Public 2025 | - | 927.712979 | EXP-013 Public보다 하락, 원인 분리 불완전 |
 | EXP-017 | 2026-08-10 | 현재 시즌 as-of 복원 + residual 후보 탐색 | 2021~2024 | 구성별 | 구성별 | residual 단독의 구조 변화 취약성 확인 |
 | EXP-018 | 2026-08-10 | 계층적 기준값 + 그룹 효과 + 최근 residual 15% | 2024 | 0.247820261 | 795.28 | Public 895.84, EXP-013보다 하락해 비채택 |
+| EXP-032 | 2026-08-12 | strict·R-specific·aggressive bounded consensus 3종 | 2022~2024 | 후보별 | 후보별 | stableaggr Public 1045.18, 당시 1위로 채택 |
 
 ## EXP-000 — 운영진 베이스라인 구조 확인
 
@@ -1019,6 +1020,58 @@ odds-ratio 재매개변수화, class prevalence 균형, 새로운 pitchmix 보�
 | 2024 | 0.247636685474 | 868.77 |
 
 2022의 개선 폭은 컸지만 2023에서 기준 `907.54`보다 크게 하락했고 2024도 기준에 못 미쳤다. 구종군별 조건부 성공 관계도 시간 전이가 안정적이지 않으므로 EXP-031은 비채택하고 pitchmix branch를 종료한다.
+
+---
+
+## EXP-032 — strict·R-specific·aggressive bounded consensus
+
+### 목적과 설계
+
+EXP-021 strict, 정규시즌 전용 R-specific low-rank, EXP-021 aggressive R/F gate의 세 branch는 모두 독립적인 과거 OOF 기반 시간 검증을 거쳤다. 이 실험에서는 branch 자체나 데이터 피처를 새로 탐색하지 않고, 다음 세 개의 사전 명시 조합만 제출 후보로 패키징했다.
+
+| 후보 | strict | R-specific | aggressive |
+| --- | ---: | ---: | ---: |
+| dualrank | 0.50 | 0.50 | 0.00 |
+| stableaggr | 0.50 | 0.00 | 0.50 |
+| threeway | 1/3 | 1/3 | 1/3 |
+
+- strict: all-row pitcher-context low-rank SVD, `smoothing=300`, `rank=6`
+- R-specific: R 행에서만 source season별 pitcher-context low-rank SVD, `smoothing=300`, `rank=4`; F 행 보정은 0
+- aggressive: R/F-gated team base + pitcher-count empirical-Bayes correction
+- 공통 backbone: LightGBM residual + HistGradientBoosting residual 50:50
+- source season: `2021~2024`; 보고 fold: `2022~2024`
+- 현재 fold 정답으로 component model을 적합하지 않았고, test 행 집계도 사용하지 않았다.
+- calibration: identity; 고정 offset 없음
+
+### 로컬 결과
+
+| 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 Skill | 최저 Skill |
+| --- | --- | --- | --- | ---: | ---: |
+| dualrank | 0.244690656 / 1795.19 | 0.247716002 / 913.60 | 0.247632158 / 870.58 | **1193.12** | 870.58 |
+| stableaggr | 0.244851775 / 1730.52 | 0.247686394 / 925.44 | 0.247622396 / 874.49 | 1176.82 | **874.49** |
+| threeway | 0.244792016 / 1754.51 | 0.247690219 / 923.91 | 0.247624242 / 873.75 | 1184.06 | 873.75 |
+
+평균만 보면 dualrank가 가장 높지만, 최신 2024와 하방 성능은 stableaggr가 가장 높았다. 단, 세 가중치는 같은 결과를 보고 고른 완전한 nested selection이 아니라 bounded post-hoc consensus 진단이라는 한계를 명시한다.
+
+### 패키지와 재현성
+
+- 생성 코드: `experiments/build_exp032_consensus_candidates.py`
+- 공통 inference 확장: `experiments/exp021_submission_inference.py`
+- 결과 artifact: `artifacts/EXP-032/consensus_candidates/validation_metrics.json`
+- ZIP 구조: 최상위 `script.py`, `requirements.txt`, `model/`만 포함
+- QA: 세 후보 모두 CRC·5행 smoke inference·행 순서·중복·결측·확률 범위 검사 통과
+
+### Public 결과와 결론
+
+2026-08-12에 세 후보를 모두 제출했다. Public Score는 dualrank `1042.9008134487`, threeway `1044.4711201305`, stableaggr `1045.1827084551`이었다.
+
+- [ ] dualrank 채택
+- [ ] threeway 채택
+- [x] stableaggr 채택 — 당시 확인 기준 리더보드 1위
+
+strict·aggressive 단독 후보가 각각 `1043.6074197937`, `1043.1871309639`였으므로 stableaggr는 두 후보보다 각각 `+1.5752886614`, `+1.9955774912` 높았다. 반대로 R-specific branch는 dualrank에서 strict보다 하락했고, threeway도 stableaggr보다 낮았다. 현재 선택은 strict 안정 신호와 R/F-gated aggressive 신호의 50:50 결합이다.
+
+다음 작업은 R-specific 가중치 확장이 아니라 strict:aggressive 비율의 독립적 재검증 또는 TrackMan처럼 기존 branch와 독립적인 새 행별 신호 탐색이다.
 
 ---
 

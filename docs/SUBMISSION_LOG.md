@@ -34,8 +34,11 @@ output/
 | SUB-015 | 2026-08-10 | EXP-015 | `submit_exp015_best.zip` | 제출 완료, EXP-013보다 하락 | 927.712979 |
 | SUB-016 | 2026-08-10 | EXP-016 | `submit_exp016_no_season_adjustment.zip` | 진단 후보, 제출 보류 | - |
 | SUB-018 | 2026-08-10 | EXP-018 | `exp018_multiscale.zip` | 제출 완료, EXP-013보다 하락해 비채택 | 895.836877 |
-| SUB-021-STRICT | 2026-08-11 | EXP-021 | `submit_exp021_strict.zip` | 제출 완료, 현재 최종 리더보드 선택 | **1043.607420** |
+| SUB-021-STRICT | 2026-08-11 | EXP-021 | `submit_exp021_strict.zip` | EXP-032 이전 최고, 비교 기준으로 보존 | 1043.607420 |
 | SUB-021-AGGR | 2026-08-11 | EXP-021-AGGR | `submit_exp021_aggr.zip` | 제출 완료, strict보다 낮아 비채택 | 1043.187131 |
+| SUB-032-DUALRANK | 2026-08-12 | EXP-032 | `submit_exp032_dualrank.zip` | 제출 완료, R-specific 혼합은 Public에서 하락 | 1042.900813 |
+| SUB-032-THREEWAY | 2026-08-12 | EXP-032 | `submit_exp032_threeway.zip` | 제출 완료, strict 대비 개선 | 1044.471120 |
+| SUB-032-STABLEAGGR | 2026-08-12 | EXP-032 | `submit_exp032_stableaggr.zip` | 제출 완료, 당시 리더보드 1위 | **1045.182708** |
 
 ## REF-BASELINE — 운영진 제공 베이스라인 패키지
 
@@ -271,6 +274,52 @@ lightgbm==4.6.0
 - aggressive 용도: 진단 결과로 보존
 - 제출 실행 상태: 두 후보 모두 성공
 - 추가 제출 오류: 없음
+
+---
+
+## SUB-032 — bounded consensus 세 후보 제출 결과
+
+### 기본 정보
+
+EXP-021 strict backbone에서 이미 시간 검증한 세 prediction branch만 고정 비율로 결합했다. 현재 test 행으로 모델을 다시 적합하거나 test 행 간 집계하지 않았고, 확률 보정은 모두 identity다.
+
+| 후보 | 제출 ZIP | 제출 기록 ID | 제출 일시 | 실행 시간 |
+| --- | --- | ---: | --- | ---: |
+| dualrank 50:50 | `submit_exp032_dualrank.zip` | `44863` | 2026-08-12 15:35:44 | 8초 |
+| threeway equal | `submit_exp032_threeway.zip` | `44865` | 2026-08-12 15:37:03 | 9초 |
+| stableaggr 50:50 | `submit_exp032_stableaggr.zip` | `44867` | 2026-08-12 15:37:30 | 9초 |
+
+| 후보 | 구성 | ZIP 크기 | SHA-256 |
+| --- | --- | ---: | --- |
+| dualrank | strict rank-6 50% + R-specific rank-4 50% | `2,217,405`바이트 | `fba3b321b923ed46e543894871ba30b5f9dd828ccfdccd7b0a18b9fc5be56af4` |
+| threeway | strict rank-6 / R-specific rank-4 / aggressive를 각 1/3 | `2,217,407`바이트 | `7f721539cecdd968afffd4286c176d2c9606f0ee2c0f5448f896191f704c523b` |
+| stableaggr | strict rank-6 50% + R/F-gated team·pitcher-count EB 50% | `2,217,409`바이트 | `5e5177703fad3e655a578b59f0686b42c99f743e357230f0ecda833151c513f0` |
+
+### 로컬 rolling 검증
+
+| 후보 | 2022 Skill | 2023 Skill | 2024 Skill | 평균 | 최저 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| dualrank | 1795.19 | 913.60 | 870.58 | **1193.12** | 870.58 |
+| threeway | 1754.51 | 923.91 | 873.75 | 1184.06 | 873.75 |
+| stableaggr | 1730.52 | 925.44 | **874.49** | 1176.82 | **874.49** |
+
+- R-specific branch는 source season `2021~2024`의 정규시즌(R) 행만 이용해 `smoothing=300`, `rank=4`로 적합하고, inference F 행의 보정값은 명시적으로 0으로 고정했다.
+- 후보 비율은 bounded post-hoc consensus 진단용이며 완전한 nested outer protocol에서 선택하지 않았다.
+- 세 ZIP 모두 CRC, 5행 smoke inference, `row_id` 순서·중복, 결측, 0~1 확률 범위 검사를 통과했다. 샘플 추론 시간은 각각 1.14초, 1.17초, 1.25초였다.
+
+### Public 결과
+
+| 후보 | Public Score | EXP-021 strict 대비 | 결과 |
+| --- | ---: | ---: | --- |
+| dualrank | 1042.9008134487 | -0.7066063450 | R-specific 50% 혼합은 Public에서 하락 |
+| threeway | 1044.4711201305 | +0.8637003368 | 세 branch 균등 결합은 개선 |
+| stableaggr | **1045.1827084551** | **+1.5752886614** | 당시 확인 기준 새 리더보드 1위 |
+
+### 해석 및 현재 선택
+
+- strict와 aggressive 단독의 Public Score는 각각 `1043.6074197937`, `1043.1871309639`였지만, 둘을 50:50으로 결합한 stableaggr가 두 단독 후보보다 각각 `+1.5752886614`, `+1.9955774912` 높았다.
+- R-specific branch는 dualrank에서 strict보다 낮았고, threeway에서도 stableaggr보다 `-0.7115883246` 낮았다. 현재 Public에서는 R-specific 신호가 안정·aggressive 조합을 희석한 것으로 해석한다.
+- 리더보드 선택을 EXP-021 strict에서 **EXP-032 stableaggr**로 갱신한다. 다음 후보는 R-specific 비중 확대보다 strict:aggressive 비율의 제한된 재검증 또는 독립적인 새 신호를 우선한다.
 
 ---
 

@@ -1,0 +1,203 @@
+{
+  "experiment": "EXP-032",
+  "stage": "three_consensus_submission_candidates",
+  "protocol": {
+    "reported_folds": [
+      2022,
+      2023,
+      2024
+    ],
+    "components": [
+      "strict",
+      "r_specific",
+      "aggressive"
+    ],
+    "current_fold_labels_used_to_fit_component_models": false,
+    "test_row_aggregation": false,
+    "candidate_weight_selection_nested": false,
+    "fixed_calibration": "identity"
+  },
+  "results": {
+    "dualrank": {
+      "candidate": "dualrank_consensus_50",
+      "component_weights": {
+        "strict": 0.5,
+        "r_specific": 0.5,
+        "aggressive": 0.0
+      },
+      "validation": {
+        "season_briers": {
+          "2022": 0.2446906559179629,
+          "2023": 0.24771600198181493,
+          "2024": 0.2476321577027891
+        },
+        "season_skills": {
+          "2022": 1795.1867310102455,
+          "2023": 913.5984824022114,
+          "2024": 870.5799643883516
+        },
+        "mean_skill": 1193.1217259336029,
+        "min_skill": 870.5799643883516,
+        "latest_2024_skill": 870.5799643883516
+      },
+      "zip": {
+        "path": "/Users/moonki/Desktop/open/submit_exp032_dualrank.zip",
+        "bytes": 2217405,
+        "sha256": "fba3b321b923ed46e543894871ba30b5f9dd828ccfdccd7b0a18b9fc5be56af4",
+        "crc": "passed",
+        "files": [
+          "script.py",
+          "requirements.txt",
+          "model/feature_schemas.json",
+          "model/group_effects.json",
+          "model/histgradientboosting.json",
+          "model/history_state.json",
+          "model/lowrank_effects.json",
+          "model/lowrank_rspecific_effects.json",
+          "model/metadata.json",
+          "model/multirate_state.json",
+          "model/pitcher_count_effects.json",
+          "model/rfull_lightgbm.txt",
+          "model/team_effects.json"
+        ]
+      },
+      "smoke": {
+        "runtime_seconds": 1.1435561180114746,
+        "stdout": "Saved: output/submission.csv | candidate=dualrank_consensus_50 | rows=5 | mean=0.443262 | min=0.372917 | max=0.516242",
+        "rows": 5,
+        "row_id_order": "passed",
+        "row_id_unique": "passed",
+        "missing": 0,
+        "range": "passed",
+        "mean": 0.44326161719473856,
+        "min": 0.3729165651008432,
+        "max": 0.5162418838966417
+      }
+    },
+    "stableaggr": {
+      "candidate": "strict_aggressive_consensus_50",
+      "component_weights": {
+        "strict": 0.5,
+        "r_specific": 0.0,
+        "aggressive": 0.5
+      },
+      "validation": {
+        "season_briers": {
+          "2022": 0.2448517746481835,
+          "2023": 0.24768639426084701,
+          "2024": 0.2476223955686585
+        },
+        "season_skills": {
+          "2022": 1730.5229016699286,
+          "2023": 925.4415708760177,
+          "2024": 874.4878360624209
+        },
+        "mean_skill": 1176.8174362027892,
+        "min_skill": 874.4878360624209,
+        "latest_2024_skill": 874.4878360624209
+      },
+      "zip": {
+        "path": "/Users/moonki/Desktop/open/submit_exp032_stableaggr.zip",
+        "bytes": 2217409,
+        "sha256": "5e5177703fad3e655a578b59f0686b42c99f743e357230f0ecda833151c513f0",
+        "crc": "passed",
+        "files": [
+          "script.py",
+          "requirements.txt",
+          "model/feature_schemas.json",
+          "model/group_effects.json",
+          "model/histgradientboosting.json",
+          "model/history_state.json",
+          "model/lowrank_effects.json",
+          "model/lowrank_rspecific_effects.json",
+          "model/metadata.json",
+          "model/multirate_state.json",
+          "model/pitcher_count_effects.json",
+          "model/rfull_lightgbm.txt",
+          "model/team_effects.json"
+        ]
+      },
+      "smoke": {
+        "runtime_seconds": 1.25083589553833,
+        "stdout": "Saved: output/submission.csv | candidate=strict_aggressive_consensus_50 | rows=5 | mean=0.443224 | min=0.372917 | max=0.516242",
+        "rows": 5,
+        "row_id_order": "passed",
+        "row_id_unique": "passed",
+        "missing": 0,
+        "range": "passed",
+        "mean": 0.44322393046766395,
+        "min": 0.3729165651008432,
+        "max": 0.5162418838966417
+      }
+    },
+    "threeway": {
+      "candidate": "threeway_consensus_equal",
+      "component_weights": {
+        "strict": 0.3333333333333333,
+        "r_specific": 0.3333333333333333,
+        "aggressive": 0.3333333333333333
+      },
+      "validation": {
+        "season_briers": {
+          "2022": 0.2447920156285838,
+          "2023": 0.24769021904520513,
+          "2024": 0.24762424169131078
+        },
+        "season_skills": {
+          "2022": 1754.506749107465,
+          "2023": 923.9116571215789,
+          "2024": 873.7488162617102
+        },
+        "mean_skill": 1184.0557408302514,
+        "min_skill": 873.7488162617102,
+        "latest_2024_skill": 873.7488162617102
+      },
+      "zip": {
+        "path": "/Users/moonki/Desktop/open/submit_exp032_threeway.zip",
+        "bytes": 2217407,
+        "sha256": "7f721539cecdd968afffd4286c176d2c9606f0ee2c0f5448f896191f704c523b",
+        "crc": "passed",
+        "files": [
+          "script.py",
+          "requirements.txt",
+          "model/feature_schemas.json",
+          "model/group_effects.json",
+          "model/histgradientboosting.json",
+          "model/history_state.json",
+          "model/lowrank_effects.json",
+          "model/lowrank_rspecific_effects.json",
+          "model/metadata.json",
+          "model/multirate_state.json",
+          "model/pitcher_count_effects.json",
+          "model/rfull_lightgbm.txt",
+          "model/team_effects.json"
+        ]
+      },
+      "smoke": {
+        "runtime_seconds": 1.166886806488037,
+        "stdout": "Saved: output/submission.csv | candidate=threeway_consensus_equal | rows=5 | mean=0.443214 | min=0.372917 | max=0.516242",
+        "rows": 5,
+        "row_id_order": "passed",
+        "row_id_unique": "passed",
+        "missing": 0,
+        "range": "passed",
+        "mean": 0.4432141853733901,
+        "min": 0.3729165651008432,
+        "max": 0.5162418838966417
+      }
+    }
+  },
+  "qa": {
+    "source_seasons": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "r_specific_smoothing": 300.0,
+    "r_specific_rank": 4,
+    "r_specific_context_count": 24,
+    "python": "3.12.10"
+  },
+  "total_seconds": 7.408519983291626
+}
