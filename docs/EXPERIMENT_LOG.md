@@ -909,7 +909,7 @@ joint taxonomy는 same-fold에서 1100을 넘을 만큼 target 관련 신호를 
 
 ---
 
-## EXP-027~030 — logit 문맥 효과와 pitchmix 보조 supervision
+## EXP-027~031 — logit 문맥 효과와 pitchmix 보조 supervision
 
 ### 실험 목적과 가설
 
@@ -1002,6 +1002,23 @@ EXP-021 strict의 2023·2024 병목이 additive 확률 residual의 표현 한계
 - [x] EXP-021 strict 유지
 
 odds-ratio 재매개변수화, class prevalence 균형, 새로운 pitchmix 보조 label 모두 2023·2024를 함께 개선하지 못했다. 이 네 후보의 추가 weight 탐색은 중단한다.
+
+### EXP-031 — pitch-group conditional mixture-of-experts
+
+15-class shared split과 저차원 residual의 실패를 분리하기 위해 fastball·breaking·offspeed마다 독립된 success HGB를 학습했다. 현재 행의 실제 구종은 사용하지 않고 EXP-030의 prior-only 3-class propensity로 세 expert를 확률 혼합했다.
+
+- success expert: 구종군별 `HistGradientBoostingClassifier` 3개
+- propensity: EXP-030 prior-only 3-class HGB 예측
+- 공통 파라미터: `max_iter=160`, `max_leaf_nodes=15`, `max_depth=4`, `min_samples_leaf=3000`, `l2_regularization=30`
+- 고정 base blend: `0.10`, `0.25`, `0.50`; 이전 OOF 최저 Skill 우선 선택
+
+| 시즌 | 선택 Brier | 선택 Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244277269498 | 1961.10 |
+| 2023 | 0.247854134076 | 858.35 |
+| 2024 | 0.247636685474 | 868.77 |
+
+2022의 개선 폭은 컸지만 2023에서 기준 `907.54`보다 크게 하락했고 2024도 기준에 못 미쳤다. 구종군별 조건부 성공 관계도 시간 전이가 안정적이지 않으므로 EXP-031은 비채택하고 pitchmix branch를 종료한다.
 
 ---
 

@@ -1,4 +1,4 @@
-"""Independent saved-artifact QA for EXP-027 through EXP-030."""
+"""Independent saved-artifact QA for EXP-027 through EXP-031."""
 
 from __future__ import annotations
 
@@ -15,6 +15,7 @@ ROOTS = {
     "EXP-028": Path("./artifacts/EXP-028/prevalence_invariant_taxonomy"),
     "EXP-029": Path("./artifacts/EXP-029/joint_pitchmix_taxonomy"),
     "EXP-030": Path("./artifacts/EXP-030/pitch_selection_residual"),
+    "EXP-031": Path("./artifacts/EXP-031/pitch_group_mixture_experts"),
 }
 REPORT_SEASONS = (2022, 2023, 2024)
 
@@ -62,7 +63,7 @@ def main() -> None:
 
         for season in REPORT_SEASONS:
             targets = np.load(BASE_ROOT / f"targets_{season}.npy").astype(float)
-            if experiment == "EXP-029":
+            if experiment in {"EXP-029", "EXP-031"}:
                 fold = metrics["folds"][str(season)]
                 name = fold["selected"]["candidate"]
                 predictions = np.load(candidate_file(experiment, name, season))
@@ -76,7 +77,7 @@ def main() -> None:
                 continue
             assert len(predictions) == len(targets)
             assert abs(brier(targets, predictions) - stored_brier) < 1e-14
-    print(f"EXP027_030_QA_OK experiments={len(ROOTS)} arrays={checked} uniform_1100=all_false")
+    print(f"EXP027_031_QA_OK experiments={len(ROOTS)} arrays={checked} uniform_1100=all_false")
 
 
 if __name__ == "__main__":

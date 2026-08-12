@@ -275,6 +275,7 @@ EXP-021 Public은 strict `1043.6074197937`, aggressive `1043.1871309639`로 확�
 - 확률 residual을 logit odds-ratio로 바꿔도 2023 소폭 개선과 2024 하락이 교차했다. 표현 공간보다 효과의 시간 전이가 병목이었다.
 - 누적 pitchmix 표본 수와 세 구종군 rate의 다음 keyed state는 train에서 현재 투구 구종군을 정확한 one-hot으로 복원한다. 이는 현재 투구 실제 구종을 추론 피처로 쓰지 않고 보조 supervision으로만 사용할 수 있다.
 - pitchmix label `1,472,832`개를 복원했지만 15-class joint model과 독립 propensity residual 모두 미래 시즌 성공률을 개선하지 못했다. 정확한 보조 label과 target 일반화 가능성은 별개의 문제다.
+- 구종군별 success 모델을 분리한 mixture-of-experts도 2022 Skill `1961.10` 뒤 2023 `858.35`로 역전됐다. latent 구종군을 더 명시적으로 모델링해도 구종군 내부의 success 관계가 다음 시즌에 유지된다는 보장은 없다.
 
 ## 다음에 공부할 내용
 

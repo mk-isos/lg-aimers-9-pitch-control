@@ -48,6 +48,7 @@
 | EXP-028 | 시즌·class prevalence 균형 joint taxonomy | 0.247623456 | 874.06 | 2024 개선·2023 하락, 비채택 |
 | EXP-029 | 복원 pitch group×outcome 15-class HGB | 0.247632500 | 870.44 | 신규 보조 label은 유효하나 시간 전이 실패 |
 | EXP-030 | 예측 구종 성향−공식 장기 mix Ridge residual | 0.247635566 | 869.22 | 2023·2024 모두 기준 하락, branch 중단 |
+| EXP-031 | 구종군별 success mixture-of-experts | 0.247636685 | 868.77 | 2022 개선·2023 급락, pitchmix branch 종료 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -62,6 +63,8 @@ EXP-022는 `(pitcher_id, season, asof_pitcher_n+1)` 상태를 행 순서와 무�
 EXP-023은 중첩 label을 success·reverse-only·middle-only·reverse+middle·other-failure의 5개 상호 배타 class로 바꿔 하나의 HistGradientBoostingClassifier가 공동 학습하게 했다. 같은 시즌 정답을 허용한 비배포 ceiling은 2023 `1417.94`, 2024 `1331.79`로 1100을 넘었지만 prior-only 선택은 `2022.15`, `849.32`, `871.59`로 전이되지 않았다. EXP-024 source-season expert bagging, EXP-025 row-local regime similarity gate, EXP-026 행별 expert trend 외삽까지 제한해 검증했지만 어느 후보도 2023과 2024를 함께 개선하지 못했다. EXP-026 최종 Skill은 `1879.61`, `905.94`, `873.32`였고 hard gate는 `false`다. outcome taxonomy branch는 종료하고 EXP-021 strict를 유지한다.
 
 EXP-027은 기존 additive 확률 residual 대신 source-season별 투수×24개 문맥 odds-ratio를 rank 6으로 압축해 logit 공간에 결합했지만 Skill `1795.16`, `908.50`, `868.94`에 그쳤다. EXP-028은 각 source season과 5개 outcome class에 같은 학습 질량을 주어 prevalence drift를 제거했으나 `1852.64`, `894.66`, `874.06`으로 2023이 악화됐다. EXP-029는 누적 pitchmix 상태의 다음 keyed state로 1,472,832개 fastball·breaking·offspeed label을 one-hot 오차 없이 복원하고 outcome taxonomy와 교차한 15-class 모델을 학습했다. 선택 Skill은 `1855.69`, `887.32`, `870.44`였다. EXP-030에서 구종 성향만 분리한 8차원 Ridge residual도 `1793.81`, `904.84`, `869.22`로 기준을 넘지 못했다. pitchmix supervision은 규정 내 새 label이지만 미래 시즌 성공 확률 개선으로 전이되지 않아 final fit과 ZIP을 생성하지 않는다.
+
+EXP-031은 앞선 두 pitchmix 모델과 구조를 달리해 fastball·breaking·offspeed별 success HGB를 독립 학습하고, EXP-030의 prior-only 행별 구종 성향으로 세 expert를 혼합했다. prior-only blend 선택 결과 Skill은 `1961.10`, `858.35`, `868.77`이었다. 2022의 큰 개선이 2023에서 역전됐고 2024도 기준보다 낮아 pitchmix conditional expert branch까지 종료했다.
 
 ## 베이스라인과 노트북
 
@@ -78,7 +81,7 @@ EXP-027은 기존 additive 확률 residual 대신 source-season별 투수×24개
 ├── [Baseline_Train]_....ipynb
 ├── [Baseline_Inference]_....ipynb
 ├── [EXP-002_Train]_....ipynb
-├── experiments/              # EXP-002~030 학습·검증·패키징 코드
+├── experiments/              # EXP-002~031 학습·검증·패키징 코드
 ├── submissions/              # 모델을 제외한 추론 코드와 환경 명세
 ├── artifacts/                # 작은 validation_metrics.json만 추적
 ├── docs/                     # 실험·학습·환경·제출 기록
@@ -140,6 +143,7 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-013 대비 strict 개선 `+107.7966100872`와 로컬 rolling 선택 기준의 성공·한계를 함께 기록하기
 - EXP-022~026 outcome taxonomy는 same-fold signal이 있어도 2023·2024 시간 전이가 실패했으므로 branch 전체를 중단하기
 - EXP-027~030의 logit 재매개변수화·prevalence 균형·pitchmix supervision도 균일 1100에 실패했으므로 추가 weight 탐색을 중단하기
+- EXP-031 구종군별 mixture-of-experts도 2023 전이 실패로 pitchmix branch를 종료하기
 - 추가 탐색은 기존 예측·taxonomy 재가중이 아니라 규정 안에서 새로 입증되는 행별 정보가 있을 때만 재개하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 
