@@ -756,6 +756,74 @@ strict는 이전 리더보드 최고 EXP-013 `935.8108097065`보다 `107.7966100
 
 ---
 
+## EXP-022 — 누적 outcome taxonomy 보조 감독과 temporal Ridge
+
+### 실험 목적과 가설
+
+기존 13개 frozen 후보의 same-fold convex oracle도 2023·2024 Skill이 각각 `936.3250374376797`, `880.587899179186`에 그쳤으므로 재가중 대신 새로운 행별 감독 신호를 검증했다. 같은 투수·시즌의 `asof_pitcher_n+1` 상태에서 누적 count 증분을 구해 reverse·middle·ball·strike 결과를 복원하고, 이 결과를 예측한 확률이 성공 residual의 시간 안정적 보조 표현이 될 것으로 가정했다.
+
+### 기준 실험과 달라진 점
+
+- 기준: EXP-021 strict 고정 smoothing `300`, rank `6` OOF
+- 파일 순서나 `row_id` 순서를 가정하지 않고 `(pitcher_id, season, asof_pitcher_n)` unique key로 후속 상태를 찾는다.
+- 같은 시즌 내부의 `n→n+1` count 증분이 binary인 행만 보조 label로 사용한다.
+- reverse·middle·ball·strike별 prior-season HistGradientBoostingClassifier를 학습한다.
+- 6개 보조 확률 표현으로 EXP-021 strict의 residual을 Ridge로 예측한다.
+- correction scale은 `0.25`, `0.50`만 사전 고정하고 prior OOF 최저 Skill, 평균 Skill, 작은 scale 순으로 선택한다.
+- same-fold와 5-fold cross-fit Ridge는 진단용이며 배포 후보 선택에는 사용하지 않는다.
+
+### 모델과 주요 파라미터
+
+- 보조 모델: `HistGradientBoostingClassifier`
+- `learning_rate=0.025`, `max_iter=160`, `max_leaf_nodes=15`, `max_depth=4`
+- `min_samples_leaf=3000`, `l2_regularization=30`, `max_bins=127`, `max_features=0.70`
+- stable row-local 피처 `84`개, source-season equal weighting
+- residual: `Ridge(alpha=5000, fit_intercept=False)`
+- 확률 보정: identity
+
+### label 복원 검증
+
+- train 전체 행: `1,475,092`
+- unique key 행: `1,475,092`
+- duplicate key 행: `0`
+- candidate pair: `1,472,832`
+- 유효 binary pair: `1,472,040`
+- invalid delta 행: `792`
+- 복원 success와 `control_success` mismatch: `0`
+- 원본 행 순열 전후 `row_id` 기준 label parity: 통과
+
+### rolling-origin 결과
+
+| 검증 시즌 | EXP-021 strict Brier / Skill | 선택 scale | EXP-022 Brier / Skill | same-fold Ridge Skill | 5-fold cross-fit Skill |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 2022 | 0.244704584009 / 1789.60 | 0.50 | 0.244581625862 / 1838.95 | 1893.08 | 1888.59 |
+| 2023 | 0.247731144099 / 907.54 | 0.50 | 0.247821222482 / 871.51 | 919.25 | 915.97 |
+| 2024 | 0.247633803416 / 869.92 | 0.25 | 0.247627979502 / 872.25 | 873.42 | 870.46 |
+
+- 평균 Skill: `1194.2359895912562`
+- 최저 Skill: `871.5102821166498`
+- 최신 2024 Skill: `872.2525365782108`
+- 시즌별 Skill 1100 통과: `false`
+- 세 시즌 모두 EXP-021 strict 이상: `false`
+- full fit 및 ZIP 허가: `false`
+
+### 기준 실험 대비 변화와 해석
+
+2022는 기준 `1789.5967932082258`에서 `1838.9451500789078`로 높아졌고 2024도 `869.9211702032806`에서 `872.2525365782108`로 소폭 높아졌다. 반면 2023은 기준 `907.5416355312283`에서 `871.5102821166498`로 하락했다. 보조 label 자체는 거의 전 행에서 정확하게 복원됐지만, 보조 결과 확률과 성공 residual의 관계가 2022에서 2023으로 전이되지 않았다.
+
+현재 fold 정답을 허용한 고정 Ridge조차 2023·2024 Skill `1100`에 도달하지 못했으므로 correction scale을 추가 탐색하거나 affine 보정을 붙일 근거가 없다. 이 결과는 label 복원 가능성과 최종 target에 유용한 시간 안정적 신호가 서로 다른 문제임을 보여 준다.
+
+### 채택 여부와 다음 실험
+
+- [ ] 최종 후보 채택
+- [x] linear outcome-probability residual family 중단
+- [x] 전체 학습·모델·ZIP 생성 금지
+- [x] EXP-021 strict 리더보드 선택 유지
+
+추가 실험은 같은 보조 확률의 weight 탐색이 아니라 success·reverse-only·middle-only·reverse-and-middle·other-failure의 상호 배타적 joint taxonomy를 직접 학습하는 단일 bounded multiclass 구조만 검토한다. 이 구조도 2023·2024 same-fold 또는 temporal gate를 통과하지 못하면 outcome taxonomy branch 전체를 중단한다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown

@@ -61,7 +61,7 @@
 
 **Interfaces:**
 - Consumes: `prepare_data()` from `train_exp017_rolling_residual.py`, `select_stable_features()` and `season_equal_weights()` from `train_exp019_histgb_residual.py`, and Task 1 labels.
-- Consumes frozen base arrays: `artifacts/EXP-020/low_rank_pitcher_context_eb/predictions_strict_rank_s300_{season}.npy` and `targets_{season}.npy` for 2021–2024.
+- Consumes frozen base arrays: `artifacts/EXP-020/low_rank_pitcher_context_eb/predictions_lowrank_s300_r6_{season}.npy` and `targets_{season}.npy` for 2021–2024. This is the fixed rank-6 candidate packaged as EXP-021 strict, not the diagnostic fold-varying rank path.
 - Produces: `build_auxiliary_oof(...) -> tuple[dict[int, numpy.ndarray], dict[str, object]]`, where each season matrix has six columns in the exact order `reverse`, `middle`, `ball`, `strike`, `strike_minus_ball`, `reverse_plus_middle`.
 
 - [ ] Add startup assertions that raw train row order, prepared feature rows, frozen targets, and season masks align exactly.

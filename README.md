@@ -39,6 +39,7 @@
 | EXP-020 | 투수×24개 count/타자 손 문맥 Team residual의 low-rank SVD | **0.247633803** | **869.92** | 이전 fold만으로 rank를 선택한 strict 후보 채택 |
 | EXP-021 | strict rank-6 전체 학습·직렬화·제출 패키지 | **0.247633803** | **869.92** | **Public 1043.607420, 최종 리더보드 선택** |
 | EXP-021-AGGR | R/F gate + 투수×count×타자 손 EB | **0.247622900** | **874.29** | Public 1043.187131, strict보다 0.420289 낮아 비채택 |
+| EXP-022 | 누적 rate 증분 보조 outcome 4종 + prior-only Ridge residual | 0.247627980 | 872.25 | 2023 하락·same-fold ceiling도 1100 미달, 비채택 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -47,6 +48,8 @@ EXP-018은 공식 누적 `asof_*`와 학습 데이터에서 확정한 직전 시
 EXP-019는 R행 residual LightGBM과 HistGradientBoosting을 branch별로 확률 범위에 자른 뒤 50:50으로 결합하고, 각 과거 OOF 시즌의 팀 잔차 효과를 독립적으로 추정해 동일 가중 평균했다. `all_prior_s1000`은 2022·2023·2024 Skill `1784.40`, `898.61`, `850.40`을 기록했고 고정 50:50 기준보다 세 시즌 모두 개선했다. EXP-020은 이 기준 위에 투수별 24개 `count_index × batter_hand` 문맥 효과를 smoothing `300`으로 축소한 뒤 rank `6` SVD로 압축했다. 고정 rank-6의 rolling Brier는 `0.244704584`, `0.247731144`, `0.247633803`, Skill은 `1789.60`, `907.54`, `869.92`이며 기준 대비 Skill 변화는 `+5.20`, `+8.93`, `+19.52`다. 2021~2024 OOF만 사용한 2025 prospective 선택도 rank `6`을 선택했으므로 이를 EXP-021 strict 최종 후보로 전체 학습·직렬화했다. 다만 13개 저장 후보의 같은-fold convex oracle조차 2023·2024 Skill이 `936.33`, `880.59`여서 1100에 미달했다. 현재 신호 집합의 단순 재가중만으로 목표를 달성할 수 있다는 근거는 없다.
 
 EXP-021의 2025 Public 결과는 strict `1043.6074197937`, aggressive `1043.1871309639`였다. 두 후보 모두 이전 최고 EXP-013 `935.8108097065`를 크게 넘었지만, 과거 OOF만으로 선택한 strict가 최근 시즌 로컬 점수를 보고 사후 선택한 aggressive보다 `0.4202888298` 높았다. 따라서 최종 리더보드 선택은 strict로 변경한다. 이 결과는 최신 fold의 소폭 우위만 좇기보다 선택 절차의 시간적 독립성과 여러 시즌의 하방 안정성을 함께 보는 편이 더 안전하다는 근거로 기록한다.
+
+EXP-022는 `(pitcher_id, season, asof_pitcher_n+1)` 상태를 행 순서와 무관하게 찾아 누적 rate count 증분으로 reverse·middle·ball·strike 보조 label을 복원했다. 1,475,092행 중 1,472,040행이 유효했고 복원 success와 `control_success` mismatch는 `0`이었다. 그러나 prior-only residual 후보의 2022·2023·2024 Skill은 `1838.95`, `871.51`, `872.25`로 2023이 EXP-021 strict보다 하락했다. 현재 fold 정답까지 허용한 고정 Ridge 진단도 2023 `919.25`, 2024 `873.42`에 그쳐 linear multi-task family의 1100 gate를 통과하지 못했다. 전체 학습과 ZIP은 생성하지 않는다.
 
 ## 베이스라인과 노트북
 
@@ -123,7 +126,8 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-021 strict Public `1043.6074197937`을 현재 최종 리더보드 선택으로 유지하기
 - aggressive Public `1043.1871309639`은 strict보다 `0.4202888298` 낮았으므로 사후 선택 위험을 보여 준 진단 결과로 보존하기
 - EXP-013 대비 strict 개선 `+107.7966100872`와 로컬 rolling 선택 기준의 성공·한계를 함께 기록하기
-- 추가 탐색을 재개한다면 기존 예측의 재가중이 아니라 2023·2024에 시간 전이되는 새로운 행별 신호를 요구하기
+- EXP-022 보조 outcome의 linear residual 결합은 same-fold ceiling도 낮았으므로 중단하기
+- 추가 탐색은 기존 예측 재가중이 아니라 보조 outcome의 상호 배타적 joint taxonomy처럼 학습 구조 자체가 다른 bounded 후보만 검토하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 
 ## 관련 글

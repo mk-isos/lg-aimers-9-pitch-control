@@ -135,7 +135,7 @@ p_reverse + p_middle
 
 ## 6. EXP-021 strict와 결합
 
-EXP-021 strict OOF 예측을 immutable base로 사용한다. 새 모델은 base 확률 자체를 다시 학습하지 않고 보조 OOF representation으로 `y - base` residual만 예측한다.
+EXP-021 strict의 고정 `lowrank_s300_r6` OOF 예측을 immutable base로 사용한다. 새 모델은 base 확률 자체를 다시 학습하지 않고 보조 OOF representation으로 `y - base` residual만 예측한다. fold마다 rank가 달라지는 진단용 strict path 배열은 사용하지 않는다.
 
 deployable residual combiner는 다음 규칙을 따른다.
 

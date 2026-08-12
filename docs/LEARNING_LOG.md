@@ -243,6 +243,32 @@ EXP-018은 rolling 평균은 높았지만 2023·2024와 2025 Public이 충분히
 
 EXP-021 Public은 strict `1043.6074197937`, aggressive `1043.1871309639`로 확인됐다. 두 후보 모두 이전 최고 EXP-013보다 107점 이상 높았고, 과거 OOF만으로 선택한 strict가 최신 시즌 점수를 보고 사후 정의한 aggressive보다 `0.4202888298` 높았다. 차이는 작지만 여러 시즌 하방과 선택 절차의 독립성을 우선한 판단이 실제 결과에서도 더 안전했음을 보여 준다. 다음 개선은 기존 예측의 보정이나 재가중이 아니라 2023·2024에 함께 전이되고 과거 fold만으로 선택 가능한 새로운 행별 신호를 요구한다.
 
+## STUDY-008 — 누적 상태 증분 label과 유용한 감독 신호의 차이
+
+### 공부하게 된 이유
+
+기존 예측의 convex hull 상한이 2023·2024 Skill 1100에 못 미쳐, train에 숨은 다른 투구 결과를 보조 감독으로 사용할 수 있는지 확인했다.
+
+### 공부한 내용
+
+- 현재 행의 누적 count와 같은 투수·시즌의 `n+1` 상태 count 차이로 현재 투구 결과를 복원할 수 있다.
+- 파일 순서를 시간 순서로 가정하면 안 된다. unique `(pitcher_id, season, asof_pitcher_n)` key join을 사용해야 행 순열에 독립적이다.
+- EXP-022에서는 147만 행 중 147만 행 이상에서 binary outcome을 복원했고 success mismatch가 0이어서 label 의미는 검증됐다.
+- reverse와 middle은 동시에 발생할 수 있으므로 단순 multinomial 두 범주로 만들 수 없다.
+- 정확하게 복원 가능한 새 label이라고 해서 최종 target에 시간 안정적으로 유용한 것은 아니다. 보조 확률 residual은 2022를 개선했지만 2023에서 기준보다 하락했다.
+- same-fold 진단 ceiling도 목표에 못 미치면 weight·보정을 더 탐색하기보다 해당 표현 family를 중단하는 편이 사후 과적합을 줄인다.
+
+### 프로젝트에 적용한 방법
+
+- 보조 label 복원 함수에 success parity, binary delta, duplicate key, 행 순열 불변식 테스트를 추가했다.
+- 보조 분류기와 Ridge는 validation season보다 과거인 source만 사용했다.
+- 2022·2023·2024 각각 Skill 1100이라는 hard gate를 JSON에 기계적으로 기록했다.
+- gate 실패로 final fit과 ZIP 생성을 차단했다.
+
+### 다음 학습
+
+- 중첩 multi-label을 상호 배타적인 joint outcome taxonomy로 변환했을 때 multiclass shared structure가 시간 일반화를 개선하는가?
+
 ## 다음에 공부할 내용
 
 - [ ] 베이스라인 Brier Score를 직접 계산한다.
