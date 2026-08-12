@@ -272,6 +272,9 @@ EXP-021 Public은 strict `1043.6074197937`, aggressive `1043.1871309639`로 확�
 - source-season expert를 equal/last/median/recency로 섞거나 현재 행의 source-season similarity로 gate해도 unseen season의 구조를 맞히지 못했다.
 - season discriminator는 2023 행을 거의 전부 2021로, 2024 행을 거의 전부 2019로 분류했다. 과거 domain 분류 확률은 새로운 domain의 target 관계와 같은 의미가 아니다.
 - row-local trend 외삽도 2023과 2024 방향이 달라 안정적이지 않았다. outcome taxonomy branch는 추가 weight 탐색 없이 중단한다.
+- 확률 residual을 logit odds-ratio로 바꿔도 2023 소폭 개선과 2024 하락이 교차했다. 표현 공간보다 효과의 시간 전이가 병목이었다.
+- 누적 pitchmix 표본 수와 세 구종군 rate의 다음 keyed state는 train에서 현재 투구 구종군을 정확한 one-hot으로 복원한다. 이는 현재 투구 실제 구종을 추론 피처로 쓰지 않고 보조 supervision으로만 사용할 수 있다.
+- pitchmix label `1,472,832`개를 복원했지만 15-class joint model과 독립 propensity residual 모두 미래 시즌 성공률을 개선하지 못했다. 정확한 보조 label과 target 일반화 가능성은 별개의 문제다.
 
 ## 다음에 공부할 내용
 

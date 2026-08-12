@@ -909,6 +909,102 @@ joint taxonomy는 same-fold에서 1100을 넘을 만큼 target 관련 신호를 
 
 ---
 
+## EXP-027~030 — logit 문맥 효과와 pitchmix 보조 supervision
+
+### 실험 목적과 가설
+
+EXP-021 strict의 2023·2024 병목이 additive 확률 residual의 표현 한계인지, taxonomy class prevalence drift인지, 제공된 누적 pitchmix에서 복원할 수 있는 구종군 supervision의 부재인지 순서대로 분리했다. 모든 후보는 현재 검증 시즌보다 과거인 OOF만 학습에 사용했고 평가 행끼리 집계하지 않았다.
+
+### 기준 실험
+
+고정 기준은 EXP-021 strict rank-6 OOF다.
+
+| 시즌 | Brier | Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244704584009 | 1789.60 |
+| 2023 | 0.247731144099 | 907.54 |
+| 2024 | 0.247633803416 | 869.92 |
+
+### EXP-027 — logit-offset pitcher-context EB
+
+- 가설: 투수×`count_index × batter_hand` 효과를 확률에 더하지 않고 odds-ratio로 추정하면 현재 행의 as-of 기준 확률과 더 자연스럽게 결합된다.
+- 모델: source-season별 penalized logistic offset, ridge `75`, rank `6` SVD
+- nuisance source global logit offset: 추정 후 폐기
+- 고정 effect weight: `0.50`, `1.00`
+
+| 시즌 | `logit_offset_w100` Brier | Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244690717086 | 1795.16 |
+| 2023 | 0.247728748411 | 908.50 |
+| 2024 | 0.247636243208 | 868.94 |
+
+2023은 기준보다 소폭 높지만 2024는 낮았다. additive 표현이 최신 시즌 병목의 원인이라는 가설을 기각했다.
+
+### EXP-028 — prevalence-invariant joint taxonomy
+
+- 가설: 각 source season과 5개 outcome class에 같은 학습 질량을 주면 시즌별 class prevalence drift를 제거하고 공통 경계만 남길 수 있다.
+- 모델: 5-class `HistGradientBoostingClassifier`
+- 파라미터: `max_iter=160`, `max_leaf_nodes=15`, `max_depth=4`, `min_samples_leaf=3000`, `l2_regularization=30`
+- source-only score 중심화·표준화, 고정 logit weight `0.02`, `0.05`, `0.10`
+
+| 시즌 | `invariant_logit_w020` Brier | Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244547494472 | 1852.64 |
+| 2023 | 0.247763345026 | 894.66 |
+| 2024 | 0.247623456306 | 874.06 |
+
+2024는 개선됐지만 2023은 악화됐다. 단순 class prevalence가 아니라 피처와 outcome의 조건부 관계가 시즌 사이에 바뀐다는 증거다.
+
+### EXP-029 — pitch group×outcome 15-class taxonomy
+
+누적 `asof_pitcher_pitchmix_n`과 fastball·breaking·offspeed rate의 keyed 다음 상태를 이용해 train-only 현재 구종군 label을 복원했다.
+
+- 전체 행: `1,475,092`
+- unique pitcher-state key: `1,475,092`
+- 연속 pair 및 유효 one-hot label: `1,472,832`
+- invalid pair: `0`
+- 2019~2024 모든 시즌에서 pitchmix 표본 수 증분은 정확히 `1`, 세 count 증분은 정확히 one-hot
+- 추론 입력에는 현재 투구 실제 구종을 사용하지 않음
+
+복원 구종군 3개와 outcome taxonomy 5개를 교차한 15-class HGB의 success class 합을 EXP-021 strict와 prior-only weight로 결합했다.
+
+| 시즌 | 선택 Brier | 선택 Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244539915730 | 1855.69 |
+| 2023 | 0.247781700121 | 887.32 |
+| 2024 | 0.247632499827 | 870.44 |
+
+새 label은 정확히 복원됐지만 2023 전이가 실패했다.
+
+### EXP-030 — pitch-selection propensity residual
+
+15-class 결합 실패와 구종 성향 자체의 가치를 분리하기 위해 3-class 구종군 HGB를 별도로 학습했다. 예측 확률 3개, 공식 장기 pitchmix와의 차이 3개, entropy와 최대 확률을 합친 8개 표현만 Ridge residual에 사용했다.
+
+- Ridge alpha: `5000`
+- source residual: 시즌별 중심화
+- 고정 correction scale: `0.25`, `0.50`
+
+| 시즌 | `pitch_residual_w025` Brier | Skill |
+| ---: | ---: | ---: |
+| 2022 | 0.244694088083 | 1793.81 |
+| 2023 | 0.247737897344 | 904.84 |
+| 2024 | 0.247635566184 | 869.22 |
+
+구종 선택 성향 residual은 2023·2024에서 모두 기준보다 낮았다.
+
+### 결과 해석과 채택 여부
+
+- [ ] EXP-027~030 채택
+- [x] 세 시즌 균일 Skill 1100 gate 실패
+- [x] 현재 fold label을 학습·선택·보정에 사용하지 않음
+- [x] 테스트 행 집계 없음
+- [x] 모델 전체 학습 및 ZIP 생성 없음
+- [x] EXP-021 strict 유지
+
+odds-ratio 재매개변수화, class prevalence 균형, 새로운 pitchmix 보조 label 모두 2023·2024를 함께 개선하지 못했다. 이 네 후보의 추가 weight 탐색은 중단한다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown
