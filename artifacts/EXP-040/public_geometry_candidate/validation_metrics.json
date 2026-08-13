@@ -1,0 +1,91 @@
+{
+  "experiment": "EXP-040",
+  "stage": "public_geometry_recency_aggressive_candidate",
+  "candidate": "recency_aggressive_consensus_70",
+  "component_weights": {
+    "recency": 0.7,
+    "aggressive": 0.3
+  },
+  "validation": {
+    "season_briers": {
+      "2022": 0.24478912579484643,
+      "2023": 0.24770133211649664,
+      "2024": 0.24762031405261933
+    },
+    "season_skills": {
+      "2022": 1755.666562838365,
+      "2023": 919.4664285724574,
+      "2024": 875.3210859911542
+    },
+    "mean_skill": 1183.4846924673254,
+    "min_skill": 875.3210859911542,
+    "latest_2024_skill": 875.3210859911542
+  },
+  "public_geometry": {
+    "public_scores": {
+      "strict": 1043.6074197937,
+      "aggressive": 1043.1871309639,
+      "strict_aggressive_50": 1045.1827084551,
+      "strict_r_specific_50": 1042.9008134487,
+      "strict_r_specific_aggressive_equal": 1044.4711201305,
+      "recency_aggressive_50": 1046.9889925352
+    },
+    "estimates": {
+      "2024": {
+        "distance_ratio": 1.243138243674331,
+        "estimated_recency_score": 1046.3517738291605,
+        "estimated_optimal_recency_weight": 0.6782262691562133,
+        "estimated_score_at_recency_0_70": 1047.2667946860647
+      },
+      "pooled_2022_2024": {
+        "distance_ratio": 1.0869276935740106,
+        "estimated_recency_score": 1046.9095807951928,
+        "estimated_optimal_recency_weight": 0.7397698855971072,
+        "estimated_score_at_recency_0_70": 1047.422980636554
+      }
+    },
+    "diagnostic_only": true,
+    "leaderboard_overfit_risk": "aggregate Public scores informed the convex weight; not nested"
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp040_rec70.zip",
+    "bytes": 2579310,
+    "sha256": "24784b3b764e999a964f25ca16d55d8818f4ad28b1b537c9752937385ca4bf2c",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.127251148223877,
+    "stdout": "Saved: output/submission.csv | candidate=recency_aggressive_consensus_70 | rows=5 | mean=0.443719 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.4437191425267722,
+    "min": 0.3729165651008431,
+    "max": 0.5162418838966416
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "test_row_aggregation": false,
+    "fixed_calibration": "identity",
+    "python": "3.12.10"
+  },
+  "total_seconds": 1.7989630699157715
+}

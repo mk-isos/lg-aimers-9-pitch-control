@@ -395,7 +395,16 @@ def map_lowrank_effects(
         values = np.zeros(len(frame), dtype=float)
         values[seen] = source_matrix[indexer[seen], context[seen]]
         corrections.append(values)
-    return np.mean(np.vstack(corrections), axis=0)
+    correction_matrix = np.vstack(corrections)
+    source_weights = stored.get("source_weights")
+    if source_weights is None:
+        return np.mean(correction_matrix, axis=0)
+    weights = np.asarray(source_weights, dtype=float)
+    if len(weights) != len(corrections) or not np.isfinite(weights).all() or (
+        weights < 0.0
+    ).any() or weights.sum() <= 0.0:
+        raise ValueError("invalid serialized low-rank source weights")
+    return np.average(correction_matrix, axis=0, weights=weights)
 
 
 def encoded_matrix(frame: pd.DataFrame, names: list[str]) -> np.ndarray:
@@ -560,7 +569,6 @@ def main() -> None:
         "strict_lowrank_s300_r6",
         "dualrank_consensus_50",
         "strict_aggressive_consensus_50",
-        "threeway_consensus_equal",
     }
     if candidate in lowrank_candidates:
         lowrank_state = json.loads(
@@ -573,7 +581,7 @@ def main() -> None:
     aggressive_candidates = {
         "r_gated_team_pc_all",
         "strict_aggressive_consensus_50",
-        "threeway_consensus_equal",
+        "recency_aggressive_consensus_50",
     }
     if candidate in aggressive_candidates:
         pitcher_count_state = json.loads(
@@ -590,7 +598,6 @@ def main() -> None:
 
     rank_consensus_candidates = {
         "dualrank_consensus_50",
-        "threeway_consensus_equal",
     }
     if candidate in rank_consensus_candidates:
         r_specific_state = json.loads(
@@ -604,6 +611,16 @@ def main() -> None:
             team_base + r_specific_correction, 0.0, 1.0
         )
 
+    if candidate == "recency_aggressive_consensus_50":
+        recency_state = json.loads(
+            (MODEL_DIR / "lowrank_recency_effects.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        recency_predictions = np.clip(
+            team_base + map_lowrank_effects(frame, recency_state), 0.0, 1.0
+        )
+
     if candidate == "strict_lowrank_s300_r6":
         predictions = strict_predictions
     elif candidate == "r_gated_team_pc_all":
@@ -612,12 +629,8 @@ def main() -> None:
         predictions = 0.5 * strict_predictions + 0.5 * r_specific_predictions
     elif candidate == "strict_aggressive_consensus_50":
         predictions = 0.5 * strict_predictions + 0.5 * aggressive_predictions
-    elif candidate == "threeway_consensus_equal":
-        predictions = (
-            strict_predictions
-            + r_specific_predictions
-            + aggressive_predictions
-        ) / 3.0
+    elif candidate == "recency_aggressive_consensus_50":
+        predictions = 0.5 * recency_predictions + 0.5 * aggressive_predictions
     else:
         raise ValueError(f"unknown candidate: {candidate}")
 

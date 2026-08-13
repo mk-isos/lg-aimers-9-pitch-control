@@ -10,7 +10,8 @@
     "components": [
       "strict",
       "r_specific",
-      "aggressive"
+      "aggressive",
+      "recency"
     ],
     "current_fold_labels_used_to_fit_component_models": false,
     "test_row_aggregation": false,
@@ -42,8 +43,8 @@
       },
       "zip": {
         "path": "/Users/moonki/Desktop/open/submit_exp032_dualrank.zip",
-        "bytes": 2217405,
-        "sha256": "fba3b321b923ed46e543894871ba30b5f9dd828ccfdccd7b0a18b9fc5be56af4",
+        "bytes": 2579012,
+        "sha256": "6d4338df50712b120d0c8208e23cf9baec229e341e08b2fb4001c7f9cf91da1f",
         "crc": "passed",
         "files": [
           "script.py",
@@ -53,6 +54,7 @@
           "model/histgradientboosting.json",
           "model/history_state.json",
           "model/lowrank_effects.json",
+          "model/lowrank_recency_effects.json",
           "model/lowrank_rspecific_effects.json",
           "model/metadata.json",
           "model/multirate_state.json",
@@ -62,7 +64,7 @@
         ]
       },
       "smoke": {
-        "runtime_seconds": 1.1435561180114746,
+        "runtime_seconds": 1.0679450035095215,
         "stdout": "Saved: output/submission.csv | candidate=dualrank_consensus_50 | rows=5 | mean=0.443262 | min=0.372917 | max=0.516242",
         "rows": 5,
         "row_id_order": "passed",
@@ -98,8 +100,8 @@
       },
       "zip": {
         "path": "/Users/moonki/Desktop/open/submit_exp032_stableaggr.zip",
-        "bytes": 2217409,
-        "sha256": "5e5177703fad3e655a578b59f0686b42c99f743e357230f0ecda833151c513f0",
+        "bytes": 2579016,
+        "sha256": "6b90f85c12bbe84ae7c1b7b425fde01f6c02fb8f35a1221b7497d4d7856eb4e4",
         "crc": "passed",
         "files": [
           "script.py",
@@ -109,6 +111,7 @@
           "model/histgradientboosting.json",
           "model/history_state.json",
           "model/lowrank_effects.json",
+          "model/lowrank_recency_effects.json",
           "model/lowrank_rspecific_effects.json",
           "model/metadata.json",
           "model/multirate_state.json",
@@ -118,7 +121,7 @@
         ]
       },
       "smoke": {
-        "runtime_seconds": 1.25083589553833,
+        "runtime_seconds": 1.1242539882659912,
         "stdout": "Saved: output/submission.csv | candidate=strict_aggressive_consensus_50 | rows=5 | mean=0.443224 | min=0.372917 | max=0.516242",
         "rows": 5,
         "row_id_order": "passed",
@@ -130,32 +133,33 @@
         "max": 0.5162418838966417
       }
     },
-    "threeway": {
-      "candidate": "threeway_consensus_equal",
+    "recentaggr": {
+      "candidate": "recency_aggressive_consensus_50",
       "component_weights": {
-        "strict": 0.3333333333333333,
-        "r_specific": 0.3333333333333333,
-        "aggressive": 0.3333333333333333
+        "strict": 0.0,
+        "r_specific": 0.0,
+        "aggressive": 0.5,
+        "recency": 0.5
       },
       "validation": {
         "season_briers": {
-          "2022": 0.2447920156285838,
-          "2023": 0.24769021904520513,
-          "2024": 0.24762424169131078
+          "2022": 0.2448517746481835,
+          "2023": 0.24768531042320127,
+          "2024": 0.24761809118395597
         },
         "season_skills": {
-          "2022": 1754.506749107465,
-          "2023": 923.9116571215789,
-          "2024": 873.7488162617102
+          "2022": 1730.5229016699286,
+          "2023": 925.8751059374904,
+          "2024": 876.2109206695623
         },
-        "mean_skill": 1184.0557408302514,
-        "min_skill": 873.7488162617102,
-        "latest_2024_skill": 873.7488162617102
+        "mean_skill": 1177.5363094256604,
+        "min_skill": 876.2109206695623,
+        "latest_2024_skill": 876.2109206695623
       },
       "zip": {
-        "path": "/Users/moonki/Desktop/open/submit_exp032_threeway.zip",
-        "bytes": 2217407,
-        "sha256": "7f721539cecdd968afffd4286c176d2c9606f0ee2c0f5448f896191f704c523b",
+        "path": "/Users/moonki/Desktop/open/submit_exp032_recentaggr.zip",
+        "bytes": 2579020,
+        "sha256": "5fe57bcd4d128a3232f3be342bee05c9a5752f1387fda76684c39a6d03546090",
         "crc": "passed",
         "files": [
           "script.py",
@@ -165,6 +169,7 @@
           "model/histgradientboosting.json",
           "model/history_state.json",
           "model/lowrank_effects.json",
+          "model/lowrank_recency_effects.json",
           "model/lowrank_rspecific_effects.json",
           "model/metadata.json",
           "model/multirate_state.json",
@@ -174,14 +179,14 @@
         ]
       },
       "smoke": {
-        "runtime_seconds": 1.166886806488037,
-        "stdout": "Saved: output/submission.csv | candidate=threeway_consensus_equal | rows=5 | mean=0.443214 | min=0.372917 | max=0.516242",
+        "runtime_seconds": 1.1671459674835205,
+        "stdout": "Saved: output/submission.csv | candidate=recency_aggressive_consensus_50 | rows=5 | mean=0.443548 | min=0.372917 | max=0.516242",
         "rows": 5,
         "row_id_order": "passed",
         "row_id_unique": "passed",
         "missing": 0,
         "range": "passed",
-        "mean": 0.4432141853733901,
+        "mean": 0.44354776515646394,
         "min": 0.3729165651008432,
         "max": 0.5162418838966417
       }
@@ -199,5 +204,5 @@
     "r_specific_context_count": 24,
     "python": "3.12.10"
   },
-  "total_seconds": 7.408519983291626
+  "total_seconds": 7.404843091964722
 }

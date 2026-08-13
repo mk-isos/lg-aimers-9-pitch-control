@@ -33,7 +33,19 @@
 | EXP-015 | 2026-08-10 | 개선 LightGBM + 고정 2025 `-0.005` 동시 변경 | Public 2025 | - | 927.712979 | EXP-013 Public보다 하락, 원인 분리 불완전 |
 | EXP-017 | 2026-08-10 | 현재 시즌 as-of 복원 + residual 후보 탐색 | 2021~2024 | 구성별 | 구성별 | residual 단독의 구조 변화 취약성 확인 |
 | EXP-018 | 2026-08-10 | 계층적 기준값 + 그룹 효과 + 최근 residual 15% | 2024 | 0.247820261 | 795.28 | Public 895.84, EXP-013보다 하락해 비채택 |
-| EXP-032 | 2026-08-12 | strict·R-specific·aggressive bounded consensus 3종 | 2022~2024 | 후보별 | 후보별 | stableaggr Public 1045.18, 당시 1위로 채택 |
+| EXP-032 | 2026-08-12 | strict·aggressive·recency bounded consensus | 2022~2024 | 0.247618091 | 876.21 | recentaggr Public 1046.99, 현재 리더보드 선택 |
+| EXP-033 | 2026-08-12 | TrackMan sequence·fine-pitch·시간 추세 residual | 2022~2024 | 0.247639600 | 867.60 | 2023·2024 하락, 비채택 |
+| EXP-034 | 2026-08-12 | EXP-033 매핑 비용 범위 확장 | 2022~2024 | 0.247641946 | 866.66 | 매핑 확대도 하락, 비채택 |
+| EXP-035 | 2026-08-12 | TrackMan 타자·matchup profile residual | 2022~2024 | 0.247638519 | 868.03 | 기준보다 하락, 비채택 |
+| EXP-036 | 2026-08-12 | TrackMan count-transition control proxy | 2022~2024 | 0.247630668 | 871.18 | 2024 개선·2023 하락, 비채택 |
+| EXP-037 | 2026-08-12 | low-rank source-season recency 정책 | 2022~2024 | 0.247628091 | 872.21 | hard gate 미달, 비채택 |
+| EXP-038 | 2026-08-12 | 저장 예측 전체 same-fold convex oracle 감사 | 2022~2024 | 0.247577414 | 892.49 | 비배포 상한도 2023·2024 Skill 1000 미달 |
+| EXP-039 | 2026-08-12 | prior-OOF 4-expert LightGBM stack | 2022~2024 | 0.247631638 | 870.79 | 2023 하락, 비채택 |
+| EXP-040 | 2026-08-12 | recency:aggressive 70:30 bounded consensus | 2022~2024 | 0.247620314 | 875.32 | hard gate 미달, 비채택 |
+| EXP-041 | 2026-08-12 | exact game-sequence TrackMan 정렬 residual | 2022~2024 | 0.247636022 | 869.03 | 2023 하락, 비채택 |
+| EXP-042 | 2026-08-12 | EXP-041 + source recency2 정책 | 2022~2024 | 0.247647232 | 864.55 | 최신 성능 하락, 비채택 |
+| EXP-043 | 2026-08-12 | exact fine-pitch control empirical Bayes | 2022~2024 | 0.247616774 | 876.74 | 2023·2024 개선, hard gate 미달 |
+| EXP-044 | 2026-08-12 | exact TrackMan control + recentaggr 50:50 | 2022~2024 | 0.247611615 | 878.80 | Public 1046.95, recentaggr보다 낮아 비채택 |
 
 ## EXP-000 — 운영진 베이스라인 구조 확인
 
@@ -1023,21 +1035,21 @@ odds-ratio 재매개변수화, class prevalence 균형, 새로운 pitchmix 보�
 
 ---
 
-## EXP-032 — strict·R-specific·aggressive bounded consensus
+## EXP-032 — strict·aggressive·recency bounded consensus
 
 ### 목적과 설계
 
-EXP-021 strict, 정규시즌 전용 R-specific low-rank, EXP-021 aggressive R/F gate의 세 branch는 모두 독립적인 과거 OOF 기반 시간 검증을 거쳤다. 이 실험에서는 branch 자체나 데이터 피처를 새로 탐색하지 않고, 다음 세 개의 사전 명시 조합만 제출 후보로 패키징했다.
+EXP-021 strict, EXP-021 aggressive R/F gate, EXP-037 recency2 low-rank branch는 모두 과거 OOF 기반 시간 검증을 거쳤다. 이 실험에서는 branch 자체나 데이터 피처를 새로 탐색하지 않고, 아래의 고정 조합을 제출 후보로 패키징했다.
 
-| 후보 | strict | R-specific | aggressive |
+| 후보 | strict | aggressive | recency |
 | --- | ---: | ---: | ---: |
-| dualrank | 0.50 | 0.50 | 0.00 |
-| stableaggr | 0.50 | 0.00 | 0.50 |
-| threeway | 1/3 | 1/3 | 1/3 |
+| dualrank | 0.50 | 0.00 | 0.00 |
+| stableaggr | 0.50 | 0.50 | 0.00 |
+| recentaggr | 0.00 | 0.50 | 0.50 |
 
 - strict: all-row pitcher-context low-rank SVD, `smoothing=300`, `rank=6`
-- R-specific: R 행에서만 source season별 pitcher-context low-rank SVD, `smoothing=300`, `rank=4`; F 행 보정은 0
 - aggressive: R/F-gated team base + pitcher-count empirical-Bayes correction
+- recency: source season별 pitcher-context low-rank SVD, `smoothing=300`, `rank=6`, 가중치 `1:2:4:8`
 - 공통 backbone: LightGBM residual + HistGradientBoosting residual 50:50
 - source season: `2021~2024`; 보고 fold: `2022~2024`
 - 현재 fold 정답으로 component model을 적합하지 않았고, test 행 집계도 사용하지 않았다.
@@ -1048,14 +1060,14 @@ EXP-021 strict, 정규시즌 전용 R-specific low-rank, EXP-021 aggressive R/F 
 | 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 Skill | 최저 Skill |
 | --- | --- | --- | --- | ---: | ---: |
 | dualrank | 0.244690656 / 1795.19 | 0.247716002 / 913.60 | 0.247632158 / 870.58 | **1193.12** | 870.58 |
-| stableaggr | 0.244851775 / 1730.52 | 0.247686394 / 925.44 | 0.247622396 / 874.49 | 1176.82 | **874.49** |
-| threeway | 0.244792016 / 1754.51 | 0.247690219 / 923.91 | 0.247624242 / 873.75 | 1184.06 | 873.75 |
+| stableaggr | 0.244851775 / 1730.52 | 0.247686394 / 925.44 | 0.247622396 / 874.49 | 1176.82 | 874.49 |
+| recentaggr | 0.244851775 / 1730.52 | 0.247685310 / 925.88 | 0.247618091 / 876.21 | 1177.54 | **876.21** |
 
-평균만 보면 dualrank가 가장 높지만, 최신 2024와 하방 성능은 stableaggr가 가장 높았다. 단, 세 가중치는 같은 결과를 보고 고른 완전한 nested selection이 아니라 bounded post-hoc consensus 진단이라는 한계를 명시한다.
+평균만 보면 dualrank가 가장 높지만, 최신 2024와 하방 성능은 recentaggr가 가장 높았다. 단, 이 고정 가중치들은 같은 결과를 보고 고른 완전한 nested selection이 아니라 bounded post-hoc consensus 진단이라는 한계를 명시한다.
 
 ### 패키지와 재현성
 
-- 생성 코드: `experiments/build_exp032_consensus_candidates.py`
+- 생성 코드: `experiments/build_exp032_consensus_candidates.py`, `experiments/exp021_submission_inference.py`
 - 공통 inference 확장: `experiments/exp021_submission_inference.py`
 - 결과 artifact: `artifacts/EXP-032/consensus_candidates/validation_metrics.json`
 - ZIP 구조: 최상위 `script.py`, `requirements.txt`, `model/`만 포함
@@ -1063,15 +1075,55 @@ EXP-021 strict, 정규시즌 전용 R-specific low-rank, EXP-021 aggressive R/F 
 
 ### Public 결과와 결론
 
-2026-08-12에 세 후보를 모두 제출했다. Public Score는 dualrank `1042.9008134487`, threeway `1044.4711201305`, stableaggr `1045.1827084551`이었다.
+2026-08-12에 확인한 Public Score는 dualrank `1042.9008134487`, stableaggr `1045.1827084551`, recentaggr `1046.9889925352`였다.
 
 - [ ] dualrank 채택
-- [ ] threeway 채택
-- [x] stableaggr 채택 — 당시 확인 기준 리더보드 1위
+- [ ] stableaggr 채택
+- [x] recentaggr 채택 — 현재 확인 기준 리더보드 1위
 
-strict·aggressive 단독 후보가 각각 `1043.6074197937`, `1043.1871309639`였으므로 stableaggr는 두 후보보다 각각 `+1.5752886614`, `+1.9955774912` 높았다. 반대로 R-specific branch는 dualrank에서 strict보다 하락했고, threeway도 stableaggr보다 낮았다. 현재 선택은 strict 안정 신호와 R/F-gated aggressive 신호의 50:50 결합이다.
+strict·aggressive 단독 후보가 각각 `1043.6074197937`, `1043.1871309639`였고, recentaggr는 aggressive보다 `+3.8018615713` 높았다. 현재 선택은 recency low-rank와 R/F-gated aggressive 신호의 50:50 결합이다.
 
-다음 작업은 R-specific 가중치 확장이 아니라 strict:aggressive 비율의 독립적 재검증 또는 TrackMan처럼 기존 branch와 독립적인 새 행별 신호 탐색이다.
+다음 작업은 bounded consensus 비율 탐색이 아니라 TrackMan처럼 기존 branch와 독립적인 새 행별 신호의 과거 OOF 검증이다.
+
+---
+
+## EXP-033~044 — TrackMan 신호·source policy·결합 후보
+
+### 공통 목적·가설과 검증 기준
+
+목적은 EXP-021 strict의 2023·2024 병목을 기존 예측의 추가 재가중이 아닌, 과거 TrackMan 이력과 정확 정렬된 행별 상태로 완화할 수 있는지 확인하는 것이다. EXP-033~037·039·041~043은 2021~2024 outer fold 중 2022~2024를 보고했고, 현재 validation season보다 과거의 OOF season만 residual 적합·후보 선택에 사용했다. EXP-040·044는 고정된 배포 branch만 결합했고, 테스트 행 집계는 사용하지 않았다.
+
+고정 비교 기준 EXP-021 strict는 2022/2023/2024 Brier `0.244704584009`/`0.247731144099`/`0.247633803416`, Skill `1789.60`/`907.54`/`869.92`다. 아래 Brier·Skill은 각 JSON의 선택 후보 2024 값이며, 변화는 같은 기준 대비 Skill 변화다.
+
+| 실험 | 목적·기준 대비 변경 | 모델·주요 파라미터 | 2024 Brier / Skill | 기준 대비 Skill | 해석·채택 여부 |
+| --- | --- | --- | --- | ---: | --- |
+| EXP-033 | TrackMan sequence·fine-pitch·시간 추세 추가 | LightGBM residual, 208 features, `iter=200`, `lr=.015`, leaves `7`, min child `2000`, mapping cost `.10`, clip `.03` | 0.247639600 / 867.60 | -2.32 | 2022 개선이 2023·2024로 전이되지 않아 비채택 |
+| EXP-034 | EXP-033의 mapping cost를 `.50`으로 확장 | EXP-033 동일, mapping cost `.50` | 0.247641946 / 866.66 | -3.26 | 넓은 매핑도 최신 성능을 개선하지 못해 비채택 |
+| EXP-035 | TrackMan 타자와 pitcher×batter matchup profile 추가 | LightGBM residual, 116 features, `iter=200`, leaves `7`, min child `2000`, mapping cost `.02` | 0.247638519 / 868.03 | -1.89 | 기준보다 낮아 비채택 |
+| EXP-036 | count-transition 기반 control proxy 추가 | Ridge `alpha=5000` 및 LightGBM `iter=160`, leaves `7`, min child `3000`; smoothing `300/100/100` | 0.247630668 / 871.18 | +1.26 | 2024만 소폭 개선, 2023 하락으로 비채택 |
+| EXP-037 | low-rank source season을 recency policy로 결합 | smoothing `300`, rank `6`, 정책 `equal/last/recency2/...`; 선택 `recency2` | 0.247628091 / 872.21 | +2.29 | hard gate 미달, 단독 후보 비채택 |
+| EXP-038 | 저장된 2022~2024 예측 전체의 convex 재가중 상한 감사 | same-fold Frank-Wolfe convex oracle, 최대 300회; 배포 불가 진단 | 0.247577414 / 892.49 | +22.57 | 2023 937.43·2024 892.49로 Skill 1000 불가, 재가중 탐색 중단 |
+| EXP-039 | strict/R-specific/aggressive/recency 4 expert의 prior-OOF stack | LightGBM residual, 59 features, `iter=200`, `lr=.015`, leaves `7`, min child `5000`, weight `.25` | 0.247631638 / 870.79 | +0.87 | 2023 Skill 869.88로 하락, 비채택 |
+| EXP-040 | recency:aggressive 비율을 70:30으로 고정 | EXP-032 frozen branch convex blend, identity calibration | 0.247620314 / 875.32 | +5.40 | 2024 개선이나 세 시즌 Skill 1000 gate 미달, 비채택 |
+| EXP-041 | exact full-game sequence TrackMan ID 정렬 | EXP-033 구성, exact match·mapping purity `.99`, mapping cost `.10` | 0.247636022 / 869.03 | -0.89 | 2023 하락, 비채택 |
+| EXP-042 | EXP-041에 source recency2 적용 | EXP-041 + source weights `1:2:4:8` | 0.247647232 / 864.55 | -5.38 | recency가 최신 성능을 더 낮춰 비채택 |
+| EXP-043 | exact-aligned pitcher×fine-pitch control EB | smoothing pitcher/type/context/propensity `500/200/100/20`, direct residual weight `.25` | 0.247616774 / 876.74 | +6.82 | 2023·2024는 개선하나 hard gate 미달, 단독 비채택 |
+| EXP-044 | EXP-043 exact control과 recentaggr 50:50 결합 | TrackMan/recent `50:50`, direct correction `.25`, identity calibration | **0.247611615 / 878.80** | **+8.88** | Public 1046.949994가 recentaggr보다 0.038999 낮아 비채택 |
+
+### EXP-038 해석
+
+EXP-038은 388개 고유 저장 후보(423개 완전 후보에서 중복 제거)를 현재 fold 정답으로 최적으로 섞는 낙관적 상한 감사다. 2022에서는 Brier `0.243206653836`, Skill `2390.78`로 1000 달성이 가능했지만, 2023은 `0.247656426198`/`937.43`, 2024는 `0.247577413835`/`892.49`였다. 이는 valid selection procedure가 아니며, 같은 저장 예측을 더 많이 재가중해도 2023·2024 목표를 달성할 근거가 없다는 중단 기준으로만 사용한다.
+
+### EXP-044 결과 해석·다음 실험
+
+EXP-044의 exact game alignment는 4,868개 공식 게임 중 2,418개를 exact match하고, 728,342개 행을 정렬했다. 해당 상태에서 587개 pitcher mapping과 fine-pitch control·propensity 표를 동결해 추론 시 평가 행 집계를 하지 않는다. 로컬 2024는 이번 범위 최고지만, 2026-08-12 Public `1046.9499938833`은 EXP-032 recentaggr `1046.9889925352`보다 `0.03899865189987395` 낮았다.
+
+- [ ] EXP-033~042 채택
+- [ ] EXP-043 단독 채택
+- [ ] EXP-044 채택
+- [x] EXP-032 recentaggr 유지
+
+다음 실험은 기존 TrackMan 결합의 weight를 다시 탐색하지 않고, 2023·2024·Public에서 동시에 재현될 수 있는 독립 행별 신호가 확보될 때만 과거 OOF 선택 절차로 검증한다.
 
 ---
 

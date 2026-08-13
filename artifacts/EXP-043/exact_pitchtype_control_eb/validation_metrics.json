@@ -1,0 +1,554 @@
+{
+  "experiment": "EXP-043",
+  "candidate_family": "exact_aligned_fine_pitchtype_control_eb",
+  "validation_protocol": {
+    "outer_folds": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "reported_folds": [
+      2022,
+      2023,
+      2024
+    ],
+    "history_and_mapping_cutoff": "validation season-1",
+    "source_residuals": "earlier OOF seasons, centered and season-equal",
+    "current_fold_labels_used_for_fit_or_selection": false,
+    "test_row_aggregation": false,
+    "candidate_grid_predeclared": true
+  },
+  "model": {
+    "fine_pitch_types": [
+      "fastball",
+      "sinker",
+      "cutter",
+      "slider",
+      "curveball",
+      "changeup",
+      "splitter",
+      "other"
+    ],
+    "pitcher_smoothing": 500.0,
+    "type_smoothing": 200.0,
+    "context_smoothing": 100.0,
+    "propensity_smoothing": 20.0,
+    "correction_clip": 0.03,
+    "residual_feature_names": [
+      "expected_fine_control",
+      "pitcher_aligned_control",
+      "pitcher_aligned_log_n",
+      "fine_control_dispersion",
+      "fine_selection_entropy",
+      "expected_minus_official",
+      "official_success_rate",
+      "official_log_n",
+      "count_index",
+      "batter_hand"
+    ]
+  },
+  "exact_alignment": {
+    "official_games": 4868,
+    "core_trackman_games": 3938,
+    "exact_matched_games": 2418,
+    "exact_aligned_rows": 728342,
+    "exact_aligned_fraction_of_train": 0.4937603891825052,
+    "matched_games_by_season": {
+      "2019": 406,
+      "2020": 413,
+      "2021": 370,
+      "2022": 360,
+      "2023": 435,
+      "2024": 434
+    }
+  },
+  "fold_feature_audit": {
+    "2021": {
+      "cutoff_season": 2020,
+      "source_aligned_rows": 243439,
+      "observed_official_pitchers": 339,
+      "accepted_pitchers": 339,
+      "minimum_rows": 5,
+      "minimum_purity": 0.99,
+      "weighted_majority_purity": 1.0,
+      "row_mapping_coverage": 0.7490448747005115,
+      "aligned_label_rows": 243439,
+      "propensity_contexts": 12169,
+      "pitch_types": [
+        "fastball",
+        "sinker",
+        "cutter",
+        "slider",
+        "curveball",
+        "changeup",
+        "splitter",
+        "other"
+      ]
+    },
+    "2022": {
+      "cutoff_season": 2021,
+      "source_aligned_rows": 355687,
+      "observed_official_pitchers": 422,
+      "accepted_pitchers": 419,
+      "minimum_rows": 5,
+      "minimum_purity": 0.99,
+      "weighted_majority_purity": 0.9998791071925598,
+      "row_mapping_coverage": 0.775473588931273,
+      "aligned_label_rows": 355687,
+      "propensity_contexts": 14406,
+      "pitch_types": [
+        "fastball",
+        "sinker",
+        "cutter",
+        "slider",
+        "curveball",
+        "changeup",
+        "splitter",
+        "other"
+      ]
+    },
+    "2023": {
+      "cutoff_season": 2022,
+      "source_aligned_rows": 463380,
+      "observed_official_pitchers": 483,
+      "accepted_pitchers": 480,
+      "minimum_rows": 5,
+      "minimum_purity": 0.99,
+      "weighted_majority_purity": 0.9999072035910053,
+      "row_mapping_coverage": 0.827944201201507,
+      "aligned_label_rows": 463380,
+      "propensity_contexts": 16677,
+      "pitch_types": [
+        "fastball",
+        "sinker",
+        "cutter",
+        "slider",
+        "curveball",
+        "changeup",
+        "splitter",
+        "other"
+      ]
+    },
+    "2024": {
+      "cutoff_season": 2023,
+      "source_aligned_rows": 594649,
+      "observed_official_pitchers": 535,
+      "accepted_pitchers": 531,
+      "minimum_rows": 5,
+      "minimum_purity": 0.99,
+      "weighted_majority_purity": 0.999899100141428,
+      "row_mapping_coverage": 0.7527602788088692,
+      "aligned_label_rows": 594649,
+      "propensity_contexts": 18430,
+      "pitch_types": [
+        "fastball",
+        "sinker",
+        "cutter",
+        "slider",
+        "curveball",
+        "changeup",
+        "splitter",
+        "other"
+      ]
+    }
+  },
+  "folds": {
+    "2021": {
+      "validation_season": 2021,
+      "source_oof_seasons": [],
+      "base": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "fine_lgb_w025": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "fine_lgb_w050": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5239526023777193,
+        "mean_gap": -0.008809004822954103,
+        "prediction_min": 0.3180959692712628,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2457973019900028,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1257.1473416041035,
+        "skill_score_unclipped": 1257.1473416041035,
+        "diagnostic_calibration_slope": 1.1716727642890523,
+        "diagnostic_calibration_intercept": -0.08113938678367118
+      },
+      "fine_direct_w025": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5237640275460955,
+        "mean_gap": -0.008997579654577925,
+        "prediction_min": 0.3216001117269548,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.24583917821824308,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1240.324625481748,
+        "skill_score_unclipped": 1240.324625481748,
+        "diagnostic_calibration_slope": 1.1864886997358257,
+        "diagnostic_calibration_intercept": -0.08867849281089196
+      },
+      "fine_blend_w025": {
+        "rows": 247088,
+        "actual_rate": 0.5327616072006734,
+        "prediction_mean": 0.5238583149619075,
+        "mean_gap": -0.008903292238765959,
+        "prediction_min": 0.3210818536735803,
+        "prediction_max": 0.7632686326588105,
+        "brier_score": 0.2458134536796801,
+        "baseline_brier": 0.24892667709362878,
+        "skill_score": 1250.6588085686387,
+        "skill_score_unclipped": 1250.6588085686387,
+        "diagnostic_calibration_slope": 1.1813594099502518,
+        "diagnostic_calibration_intercept": -0.0861033426602585
+      }
+    },
+    "2022": {
+      "validation_season": 2022,
+      "source_oof_seasons": [
+        2021
+      ],
+      "base": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5192081564178136,
+        "mean_gap": -0.009712287107110473,
+        "prediction_min": 0.3063232056544285,
+        "prediction_max": 0.8192965475126625,
+        "brier_score": 0.24470458400867237,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1789.5967932082258,
+        "skill_score_unclipped": 1789.5967932082258,
+        "diagnostic_calibration_slope": 1.122218546116616,
+        "diagnostic_calibration_intercept": -0.05374457890216178
+      },
+      "fine_lgb_w025": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5180468776511453,
+        "mean_gap": -0.010873565873778746,
+        "prediction_min": 0.3008213308280784,
+        "prediction_max": 0.8267965475126624,
+        "brier_score": 0.24472384363514288,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1781.8670823450566,
+        "skill_score_unclipped": 1781.8670823450566,
+        "diagnostic_calibration_slope": 1.1119922685009649,
+        "diagnostic_calibration_intercept": -0.047143679144215835
+      },
+      "fine_lgb_w050": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5168855988844772,
+        "mean_gap": -0.012034844640446907,
+        "prediction_min": 0.2953194560017282,
+        "prediction_max": 0.8342965475126625,
+        "brier_score": 0.24477243863462195,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1762.363833102676,
+        "skill_score_unclipped": 1762.363833102676,
+        "diagnostic_calibration_slope": 1.0944219600123541,
+        "diagnostic_calibration_intercept": -0.03677050670838369
+      },
+      "fine_direct_w025": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5191186826670702,
+        "mean_gap": -0.009801760857853892,
+        "prediction_min": 0.3091350734546546,
+        "prediction_max": 0.8117965475126625,
+        "brier_score": 0.24473901013473964,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1775.7801181524258,
+        "skill_score_unclipped": 1775.7801181524258,
+        "diagnostic_calibration_slope": 1.1320598434859337,
+        "diagnostic_calibration_intercept": -0.05875297112578192
+      },
+      "fine_blend_w025": {
+        "rows": 247472,
+        "actual_rate": 0.5289204435249241,
+        "prediction_mean": 0.5185827801591077,
+        "mean_gap": -0.010337663365816319,
+        "prediction_min": 0.3051564573624455,
+        "prediction_max": 0.8192965475126625,
+        "brier_score": 0.24472075766646154,
+        "baseline_brier": 0.24916360794632167,
+        "skill_score": 1783.1056134077428,
+        "skill_score_unclipped": 1783.1056134077428,
+        "diagnostic_calibration_slope": 1.1250229483899161,
+        "diagnostic_calibration_intercept": -0.054497084793915594
+      }
+    },
+    "2023": {
+      "validation_season": 2023,
+      "source_oof_seasons": [
+        2021,
+        2022
+      ],
+      "base": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49841122823742445,
+        "mean_gap": -0.00154600626008089,
+        "prediction_min": 0.251380259506705,
+        "prediction_max": 0.6687470266595795,
+        "brier_score": 0.2477311440988816,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 907.5416355312283,
+        "skill_score_unclipped": 907.5416355312283,
+        "diagnostic_calibration_slope": 1.015932202381623,
+        "diagnostic_calibration_intercept": -0.006394782297470973
+      },
+      "fine_lgb_w025": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.4981049439742087,
+        "mean_gap": -0.0018522905232966624,
+        "prediction_min": 0.2531915745974833,
+        "prediction_max": 0.6664006424724493,
+        "brier_score": 0.24776564374558682,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 893.7417767481915,
+        "skill_score_unclipped": 893.7417767481915,
+        "diagnostic_calibration_slope": 1.005107955960497,
+        "diagnostic_calibration_intercept": -0.0006920075942312506
+      },
+      "fine_lgb_w050": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49779865971099274,
+        "mean_gap": -0.0021585747865126015,
+        "prediction_min": 0.2550028896882617,
+        "prediction_max": 0.6665336764617187,
+        "brier_score": 0.24780964311401016,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 876.1420292501043,
+        "skill_score_unclipped": 876.1420292501043,
+        "diagnostic_calibration_slope": 0.9902834050483228,
+        "diagnostic_calibration_intercept": 0.006995482730410586
+      },
+      "fine_direct_w025": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.4983268871397842,
+        "mean_gap": -0.0016303473577211625,
+        "prediction_min": 0.243880259506705,
+        "prediction_max": 0.6750911727324738,
+        "brier_score": 0.2477115353977903,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 915.3851160251247,
+        "skill_score_unclipped": 915.3851160251247,
+        "diagnostic_calibration_slope": 1.0247388568765545,
+        "diagnostic_calibration_intercept": -0.010697690180972783
+      },
+      "fine_blend_w025": {
+        "rows": 245525,
+        "actual_rate": 0.49995723449750534,
+        "prediction_mean": 0.49821591555699635,
+        "mean_gap": -0.0017413189405089957,
+        "prediction_min": 0.24853591705209419,
+        "prediction_max": 0.6707459076024614,
+        "brier_score": 0.24773064458882335,
+        "baseline_brier": 0.24999999817111176,
+        "skill_score": 907.741439555998,
+        "skill_score_unclipped": 907.741439555998,
+        "diagnostic_calibration_slope": 1.0185258918341198,
+        "diagnostic_calibration_intercept": -0.007488575221138088
+      }
+    },
+    "2024": {
+      "validation_season": 2024,
+      "source_oof_seasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "base": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49199780486167455,
+        "mean_gap": 0.005892884681955646,
+        "prediction_min": 0.2982982174219066,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24763380341629648,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 869.9211702032806,
+        "skill_score_unclipped": 869.9211702032806,
+        "diagnostic_calibration_slope": 0.9836806961029653,
+        "diagnostic_calibration_intercept": 0.0021361770122552957
+      },
+      "fine_lgb_w025": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.4921291774102319,
+        "mean_gap": 0.006024257230512975,
+        "prediction_min": 0.30062776843067723,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24763987312347516,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 867.4914108457332,
+        "skill_score_unclipped": 867.4914108457332,
+        "diagnostic_calibration_slope": 0.9782355755226355,
+        "diagnostic_calibration_intercept": 0.004686651084339903
+      },
+      "fine_lgb_w050": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.4922605499587893,
+        "mean_gap": 0.006155629779070415,
+        "prediction_min": 0.30295731943944787,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24764961934908478,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 863.5899074982634,
+        "skill_score_unclipped": 863.5899074982634,
+        "diagnostic_calibration_slope": 0.9713684519502556,
+        "diagnostic_calibration_intercept": 0.00793855181006808
+      },
+      "fine_direct_w025": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49168587857644724,
+        "mean_gap": 0.005580958396728342,
+        "prediction_min": 0.3057982174219066,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.24761677415492162,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 876.7381394506724,
+        "skill_score_unclipped": 876.7381394506724,
+        "diagnostic_calibration_slope": 0.9919255031849218,
+        "diagnostic_calibration_intercept": -0.0016108423361457637
+      },
+      "fine_blend_w025": {
+        "rows": 253507,
+        "actual_rate": 0.4861049201797189,
+        "prediction_mean": 0.49190752799333953,
+        "mean_gap": 0.0058026078136206305,
+        "prediction_min": 0.3032129929262919,
+        "prediction_max": 0.7393246341722532,
+        "brier_score": 0.2476231849402054,
+        "baseline_brier": 0.24980692675678798,
+        "skill_score": 874.1718434047474,
+        "skill_score_unclipped": 874.1718434047474,
+        "diagnostic_calibration_slope": 0.9872147831278509,
+        "diagnostic_calibration_intercept": 0.00048653661281765624
+      }
+    }
+  },
+  "aggregate_2022_2024": {
+    "base": {
+      "season_briers": {
+        "2022": 0.24470458400867237,
+        "2023": 0.2477311440988816,
+        "2024": 0.24763380341629648
+      },
+      "season_skills": {
+        "2022": 1789.5967932082258,
+        "2023": 907.5416355312283,
+        "2024": 869.9211702032806
+      },
+      "mean_skill": 1189.0198663142448,
+      "min_skill": 869.9211702032806,
+      "latest_2024_skill": 869.9211702032806
+    },
+    "fine_lgb_w025": {
+      "season_briers": {
+        "2022": 0.24472384363514288,
+        "2023": 0.24776564374558682,
+        "2024": 0.24763987312347516
+      },
+      "season_skills": {
+        "2022": 1781.8670823450566,
+        "2023": 893.7417767481915,
+        "2024": 867.4914108457332
+      },
+      "mean_skill": 1181.0334233129938,
+      "min_skill": 867.4914108457332,
+      "latest_2024_skill": 867.4914108457332
+    },
+    "fine_lgb_w050": {
+      "season_briers": {
+        "2022": 0.24477243863462195,
+        "2023": 0.24780964311401016,
+        "2024": 0.24764961934908478
+      },
+      "season_skills": {
+        "2022": 1762.363833102676,
+        "2023": 876.1420292501043,
+        "2024": 863.5899074982634
+      },
+      "mean_skill": 1167.3652566170147,
+      "min_skill": 863.5899074982634,
+      "latest_2024_skill": 863.5899074982634
+    },
+    "fine_direct_w025": {
+      "season_briers": {
+        "2022": 0.24473901013473964,
+        "2023": 0.2477115353977903,
+        "2024": 0.24761677415492162
+      },
+      "season_skills": {
+        "2022": 1775.7801181524258,
+        "2023": 915.3851160251247,
+        "2024": 876.7381394506724
+      },
+      "mean_skill": 1189.301124542741,
+      "min_skill": 876.7381394506724,
+      "latest_2024_skill": 876.7381394506724
+    },
+    "fine_blend_w025": {
+      "season_briers": {
+        "2022": 0.24472075766646154,
+        "2023": 0.24773064458882335,
+        "2024": 0.2476231849402054
+      },
+      "season_skills": {
+        "2022": 1783.1056134077428,
+        "2023": 907.741439555998,
+        "2024": 874.1718434047474
+      },
+      "mean_skill": 1188.3396321228295,
+      "min_skill": 874.1718434047474,
+      "latest_2024_skill": 874.1718434047474
+    }
+  },
+  "selection": {
+    "best_fixed_candidate": "fine_direct_w025",
+    "best_min_skill": 876.7381394506724,
+    "gate_each_season_1000": false,
+    "gate_mean_1050": true,
+    "adopt_for_full_fit": false
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "lightgbm": "4.6.0"
+  },
+  "total_seconds": 29.970714807510376
+}

@@ -277,6 +277,31 @@ EXP-021 Public은 strict `1043.6074197937`, aggressive `1043.1871309639`로 확�
 - pitchmix label `1,472,832`개를 복원했지만 15-class joint model과 독립 propensity residual 모두 미래 시즌 성공률을 개선하지 못했다. 정확한 보조 label과 target 일반화 가능성은 별개의 문제다.
 - 구종군별 success 모델을 분리한 mixture-of-experts도 2022 Skill `1961.10` 뒤 2023 `858.35`로 역전됐다. latent 구종군을 더 명시적으로 모델링해도 구종군 내부의 success 관계가 다음 시즌에 유지된다는 보장은 없다.
 
+## STUDY-009 — exact game alignment와 배포 가능한 상한 감사
+
+### 공부하게 된 이유
+
+EXP-033~044에서 TrackMan 이력을 현재 공식 투구 행의 독립 신호로 쓰고, 저장된 예측의 추가 재가중이 실제로 남은 개선 여지가 있는지 분리해 확인했다.
+
+### 공부한 내용
+
+- TrackMan 식별자는 이름만 맞추는 방식보다 팀·상대·경기 날짜·순서가 일치하는 full-game sequence를 먼저 exact match하고, 그 정렬된 과거 행으로만 pitcher mapping을 만드는 편이 의미를 분명히 한다.
+- 검증 season의 TrackMan history·mapping·residual 적합에 미래 season을 넣지 않으면, 외부 데이터도 rolling-origin 기준의 과거 정보로 제한할 수 있다.
+- exact alignment로 만든 fine-pitch control rate와 현재 행의 prior-only pitch-type propensity는 현재 실제 구종을 입력으로 쓰지 않아도 계층적 empirical-Bayes 기준값을 만들 수 있다.
+- same-fold convex oracle은 검증 정답을 사용하므로 배포 모델이 아니다. 후보 pool의 낙관적 Brier 하한을 구해, 그 상한마저 목표에 못 미칠 때 후속 weight 탐색을 멈추는 감사 도구다.
+- 로컬 최신 fold 개선과 Public 개선은 별개다. EXP-044는 2024 Skill `878.80`으로 기준보다 높았지만 Public `1046.9499938833`은 recentaggr `1046.9889925352`보다 낮았다.
+
+### 프로젝트에 적용한 방법
+
+- EXP-041에서 exact full-game sequence 정렬을 도입했고, EXP-043에서 mapping purity `0.99`, pitcher/type/context/propensity smoothing `500/200/100/20`으로 fine-pitch control EB를 검증했다.
+- EXP-038에서 388개 unique 저장 후보의 same-fold convex upper bound를 감사해 2023 Skill `937.43`, 2024 Skill `892.49`로 1000 달성이 불가함을 기록했다.
+- EXP-044에서는 exact TrackMan control과 recentaggr를 50:50으로만 결합하고, 평가·테스트 행 집계와 current-fold label 선택을 사용하지 않았다.
+
+### 다음 학습
+
+- exact alignment coverage가 낮은 pitcher의 shrinkage가 시간축 안정성에 미치는 영향
+- 새 외부 신호를 도입할 때 mapping·history cutoff·추론 parity를 자동 점검하는 방법
+
 ## 다음에 공부할 내용
 
 - [ ] 베이스라인 Brier Score를 직접 계산한다.

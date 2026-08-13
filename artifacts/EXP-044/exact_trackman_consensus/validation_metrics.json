@@ -1,0 +1,109 @@
+{
+  "experiment": "EXP-044",
+  "candidate": "trackman_recent_consensus_50",
+  "purpose": "exact aligned fine-pitch control plus recentaggr consensus",
+  "validation": {
+    "season_briers": {
+      "2022": 0.2447875634290133,
+      "2023": 0.24769200212701312,
+      "2024": 0.24761161511381488
+    },
+    "season_skills": {
+      "2022": 1756.2936069906,
+      "2023": 923.1984243931679,
+      "2024": 878.803350841606
+    },
+    "mean_skill": 1186.0984607417913,
+    "min_skill": 878.803350841606,
+    "latest_2024_skill": 878.803350841606,
+    "component_mse_distance": {
+      "2022": 3.1315849793050755e-05,
+      "2023": 2.5683133930821123e-05,
+      "2024": 2.327022249567073e-05
+    },
+    "gate_each_season_1000": false,
+    "gate_mean_1050": true
+  },
+  "trackman_state_audit": {
+    "alignment": {
+      "official_games": 4868,
+      "core_trackman_games": 3938,
+      "exact_matched_games": 2418,
+      "exact_aligned_rows": 728342,
+      "exact_aligned_fraction_of_train": 0.4937603891825052,
+      "matched_games_by_season": {
+        "2019": 406,
+        "2020": 413,
+        "2021": 370,
+        "2022": 360,
+        "2023": 435,
+        "2024": 434
+      }
+    },
+    "mapping": {
+      "cutoff_season": 2024,
+      "source_aligned_rows": 728342,
+      "observed_official_pitchers": 590,
+      "accepted_pitchers": 587,
+      "minimum_rows": 5,
+      "minimum_purity": 0.99,
+      "weighted_majority_purity": 0.9999176211175519
+    },
+    "mapping_entries": 587,
+    "pitcher_rates": 591,
+    "type_rates": 3321,
+    "context_rates": 47292,
+    "propensity_contexts": 20706
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp044_trackrec.zip",
+    "bytes": 4456189,
+    "sha256": "22fdea799dd4dd512922061d7631766afb94f0c708d01a9554c649f251a67ee3",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/exact_pitchtype_control.json",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.3643391132354736,
+    "stdout": "Saved: output/submission.csv | candidate=trackman_recent_consensus_50 | rows=5 | mean=0.444188 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.44418815218054924,
+    "min": 0.3729165651008432,
+    "max": 0.5162418838966417
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "candidate_comparison_fully_nested": false,
+    "test_row_aggregation": false,
+    "test_rows_used_for_mapping_or_propensity": false,
+    "fixed_calibration": "identity",
+    "python": "3.12.10"
+  },
+  "public_result": {
+    "submitted_at": "2026-08-12 17:04:12",
+    "score": 1046.9499938833,
+    "reference_recentaggr_score": 1046.9889925352,
+    "delta_vs_recentaggr": -0.03899865189987395,
+    "source": "user-provided DACON leaderboard result"
+  },
+  "total_seconds": 22.27377200126648
+}

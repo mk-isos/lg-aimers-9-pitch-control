@@ -38,6 +38,7 @@ TEMPLATE = ROOT / "experiments" / "exp021_submission_inference.py"
 SOURCE_DIR = ROOT / "submissions" / "EXP-021-STRICT"
 LOWRANK_ROOT = ROOT / "artifacts" / "EXP-020" / "low_rank_pitcher_context_eb"
 AGGRESSIVE_ROOT = ROOT / "artifacts" / "EXP-020" / "pitcher_count_eb_atop_team"
+RECENCY_ROOT = ROOT / "artifacts" / "EXP-037" / "lowrank_source_policies"
 ARTIFACT_DIR = ROOT / "artifacts" / "EXP-032" / "consensus_candidates"
 SOURCE_SEASONS = (2021, 2022, 2023, 2024)
 REPORT_SEASONS = (2022, 2023, 2024)
@@ -55,14 +56,15 @@ VARIANTS = {
         "zip": ROOT / "submit_exp032_stableaggr.zip",
         "weights": {"strict": 0.5, "r_specific": 0.0, "aggressive": 0.5},
     },
-    "threeway": {
-        "candidate": "threeway_consensus_equal",
-        "directory": ROOT / "submissions" / "EXP-032-THREEWAY",
-        "zip": ROOT / "submit_exp032_threeway.zip",
+    "recentaggr": {
+        "candidate": "recency_aggressive_consensus_50",
+        "directory": ROOT / "submissions" / "EXP-032-RECENTAGGR",
+        "zip": ROOT / "submit_exp032_recentaggr.zip",
         "weights": {
-            "strict": 1.0 / 3.0,
-            "r_specific": 1.0 / 3.0,
-            "aggressive": 1.0 / 3.0,
+            "strict": 0.0,
+            "r_specific": 0.0,
+            "aggressive": 0.5,
+            "recency": 0.5,
         },
     },
 }
@@ -134,6 +136,9 @@ def load_component_predictions(season: int) -> dict[str, np.ndarray]:
             AGGRESSIVE_ROOT
             / f"predictions_r_gated_team_pc_all_{season}.npy"
         ).astype(float),
+        "recency": np.load(
+            RECENCY_ROOT / f"predictions_recency2_{season}.npy"
+        ).astype(float),
     }
 
 
@@ -180,6 +185,15 @@ def main() -> None:
     if not SOURCE_DIR.exists():
         raise FileNotFoundError("verified EXP-021 strict package source is missing")
     r_specific_state = build_r_specific_state()
+    recency_state = json.loads(
+        (SOURCE_DIR / "model" / "lowrank_effects.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    recency_state["source_weights"] = [1.0, 2.0, 4.0, 8.0]
+    recency_state["source_combination"] = (
+        "recency2 weights over 2021--2024 source seasons"
+    )
     strict_metadata = json.loads(
         (SOURCE_DIR / "model" / "metadata.json").read_text(encoding="utf-8")
     )
@@ -191,6 +205,10 @@ def main() -> None:
         write_json(
             destination / "model" / "lowrank_rspecific_effects.json",
             r_specific_state,
+        )
+        write_json(
+            destination / "model" / "lowrank_recency_effects.json",
+            recency_state,
         )
         weights = details["weights"]
         metrics = calculate_variant_metrics(weights)
@@ -234,7 +252,12 @@ def main() -> None:
         "stage": "three_consensus_submission_candidates",
         "protocol": {
             "reported_folds": list(REPORT_SEASONS),
-            "components": ["strict", "r_specific", "aggressive"],
+            "components": [
+                "strict",
+                "r_specific",
+                "aggressive",
+                "recency",
+            ],
             "current_fold_labels_used_to_fit_component_models": False,
             "test_row_aggregation": False,
             "candidate_weight_selection_nested": False,
