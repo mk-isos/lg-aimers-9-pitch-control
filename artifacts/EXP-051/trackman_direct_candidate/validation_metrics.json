@@ -1,0 +1,111 @@
+{
+  "experiment": "EXP-051",
+  "candidate": "trackman_direct_recent_w010",
+  "validation": {
+    "season_briers": {
+      "2022": 0.24486245917960822,
+      "2023": 0.24767446621578296,
+      "2024": 0.24760804255875157
+    },
+    "season_skills": {
+      "2022": 1726.234742771926,
+      "2023": 930.2127889365463,
+      "2024": 880.2334773435838
+    },
+    "mean_skill": 1178.8936696840187,
+    "min_skill": 880.2334773435838,
+    "latest_2024_skill": 880.2334773435838
+  },
+  "public_geometry": {
+    "known_public_scores": {
+      "strict": 1043.6074197937,
+      "aggressive": 1043.1871309639,
+      "strict_aggressive_50": 1045.1827084551,
+      "recentaggr": 1046.9889925352,
+      "trackman_recent_50": 1046.9499938833
+    },
+    "correction_weight": 0.1,
+    "scenarios": {
+      "2024": {
+        "seasons": [
+          2024
+        ],
+        "affine_weights": {
+          "strict": -0.4,
+          "aggressive": 0.5,
+          "recency": 0.5,
+          "trackman": 0.4
+        },
+        "estimated_score": 1047.8856314538416,
+        "negative_weight_extrapolation": true
+      },
+      "pooled_2022_2024": {
+        "seasons": [
+          2022,
+          2023,
+          2024
+        ],
+        "affine_weights": {
+          "strict": -0.4,
+          "aggressive": 0.5,
+          "recency": 0.5,
+          "trackman": 0.4
+        },
+        "estimated_score": 1047.9156896371485,
+        "negative_weight_extrapolation": true
+      }
+    },
+    "selection": "fixed 0.10 where both scenario curves are near their maxima",
+    "leaderboard_overfit_risk": true
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp051_tmdirect.zip",
+    "bytes": 4456494,
+    "sha256": "5ebb639227a14038668d14659bb2e2ef334349487bc157e010fd73a02454f0a3",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/exact_pitchtype_control.json",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.3141131401062012,
+    "stdout": "Saved: output/submission.csv | candidate=trackman_direct_recent_w010 | rows=5 | mean=0.444148 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.4441477651564639,
+    "min": 0.3729165651008432,
+    "max": 0.5162418838966417
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "test_row_aggregation": false,
+    "weight_informed_by_public_scores": true,
+    "negative_weight_geometry_extrapolation": true,
+    "python": "3.12.10"
+  },
+  "public_result": {
+    "submitted_at": "2026-08-13 09:01:44",
+    "score": 1047.9791516638,
+    "reference_recentaggr_score": 1046.9889925352,
+    "delta_vs_recentaggr": 0.9901591285999236,
+    "source": "user-provided DACON leaderboard result"
+  },
+  "total_seconds": 3.045783042907715
+}

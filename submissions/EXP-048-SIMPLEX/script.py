@@ -412,78 +412,6 @@ def map_exact_pitchtype_control(
     return correction
 
 
-def map_trackman_physical_ridge(
-    frame: pd.DataFrame, stored: dict[str, object]
-) -> np.ndarray:
-    """Apply a frozen exact-mapped physical-profile Ridge model per row."""
-    feature_names = [str(value) for value in stored["feature_names"]]
-    state_names = [str(value) for value in stored["state_feature_names"]]
-    pitcher_ids = np.asarray(stored["official_pitcher_ids"], dtype=int)
-    state_values = np.asarray(stored["state_values"], dtype=float)
-    context_lookup = {
-        (int(item["count_index"]), int(item["batter_hand"])): int(
-            item["position"]
-        )
-        for item in stored["contexts"]
-    }
-    if state_values.shape != (len(pitcher_ids), len(context_lookup), len(state_names)):
-        raise ValueError("physical lookup shape/schema mismatch")
-    row_pitcher = frame["pitcher_id"].to_numpy(dtype=int)
-    pitcher_position = pd.Index(pitcher_ids).get_indexer(row_pitcher)
-    context_position = np.fromiter(
-        (
-            context_lookup[(int(count), int(hand))]
-            for count, hand in zip(
-                frame["count_index"], frame["batter_hand"], strict=True
-            )
-        ),
-        dtype=np.int16,
-        count=len(frame),
-    )
-    lookup = np.full((len(frame), len(state_names)), np.nan, dtype=float)
-    seen = pitcher_position >= 0
-    lookup[seen] = state_values[
-        pitcher_position[seen], context_position[seen]
-    ]
-    values: dict[str, np.ndarray] = {
-        name: lookup[:, position] for position, name in enumerate(state_names)
-    }
-    values.update(
-        {
-            "official_success_rate": frame[
-                "asof_pitcher_success_rate"
-            ].to_numpy(dtype=float),
-            "official_log_n": np.log1p(
-                frame["asof_pitcher_n"].to_numpy(dtype=float)
-            ),
-            "count_index": frame["count_index"].to_numpy(dtype=float),
-            "batter_hand": frame["batter_hand"].to_numpy(dtype=float),
-            "balls_before": frame["balls_before"].to_numpy(dtype=float),
-            "strikes_before": frame["strikes_before"].to_numpy(dtype=float),
-        }
-    )
-    matrix = np.column_stack([values[name] for name in feature_names])
-    statistics = np.asarray(stored["imputer_statistics"], dtype=float)
-    if matrix.shape[1] != len(statistics):
-        raise ValueError("physical Ridge input width mismatch")
-    missing = np.isnan(matrix)
-    matrix = np.where(missing, statistics, matrix)
-    indicator_features = np.asarray(stored["indicator_features"], dtype=int)
-    if indicator_features.size:
-        matrix = np.column_stack(
-            [matrix, missing[:, indicator_features].astype(float)]
-        )
-    mean = np.asarray(stored["scaler_mean"], dtype=float)
-    scale = np.asarray(stored["scaler_scale"], dtype=float)
-    coefficient = np.asarray(stored["ridge_coefficient"], dtype=float)
-    if matrix.shape[1] != len(mean) or len(mean) != len(coefficient):
-        raise ValueError("physical Ridge transformed width mismatch")
-    standardized = (matrix - mean) / scale
-    prediction = standardized @ coefficient + float(stored["ridge_intercept"])
-    prediction[~seen] = 0.0
-    return np.clip(prediction, -0.03, 0.03)
-
-
 def map_lowrank_effects(
     frame: pd.DataFrame,
     stored: dict[str, object],
@@ -691,9 +619,6 @@ def main() -> None:
         "trackman_recent_consensus_50",
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
-        "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
-        "trackman_physical_recent_w015",
     }
     if candidate in lowrank_candidates:
         lowrank_state = json.loads(
@@ -711,9 +636,6 @@ def main() -> None:
         "trackman_recent_consensus_50",
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
-        "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
-        "trackman_physical_recent_w015",
     }
     if candidate in aggressive_candidates:
         pitcher_count_state = json.loads(
@@ -749,9 +671,6 @@ def main() -> None:
         "trackman_recent_consensus_50",
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
-        "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
-        "trackman_physical_recent_w015",
     }:
         recency_state = json.loads(
             (MODEL_DIR / "lowrank_recency_effects.json").read_text(
@@ -809,47 +728,6 @@ def main() -> None:
             0.25 * aggressive_predictions
             + 0.60 * recency_predictions
             + 0.15 * exact_prediction
-        )
-    elif candidate in {
-        "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
-    }:
-        exact_state = json.loads(
-            (MODEL_DIR / "exact_pitchtype_control.json").read_text(
-                encoding="utf-8"
-            )
-        )
-        exact_correction = map_exact_pitchtype_control(frame, exact_state)
-        recent_prediction = 0.5 * recency_predictions + 0.5 * aggressive_predictions
-        correction_weight = {
-            "trackman_direct_recent_w010": 0.10,
-            "trackman_direct_recent_w0125": 0.125,
-        }[candidate]
-        predictions = np.clip(
-            recent_prediction + correction_weight * exact_correction,
-            0.0,
-            1.0,
-        )
-    elif candidate == "trackman_physical_recent_w015":
-        exact_state = json.loads(
-            (MODEL_DIR / "exact_pitchtype_control.json").read_text(
-                encoding="utf-8"
-            )
-        )
-        physical_state = json.loads(
-            (MODEL_DIR / "trackman_physical_ridge.json").read_text(
-                encoding="utf-8"
-            )
-        )
-        exact_correction = map_exact_pitchtype_control(frame, exact_state)
-        physical_correction = map_trackman_physical_ridge(frame, physical_state)
-        recent_prediction = 0.5 * recency_predictions + 0.5 * aggressive_predictions
-        predictions = np.clip(
-            recent_prediction
-            + 0.10 * exact_correction
-            + 0.15 * physical_correction,
-            0.0,
-            1.0,
         )
     else:
         raise ValueError(f"unknown candidate: {candidate}")

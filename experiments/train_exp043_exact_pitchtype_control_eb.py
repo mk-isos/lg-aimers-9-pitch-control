@@ -52,6 +52,8 @@ def load_main() -> pd.DataFrame:
         "pitcher_id",
         "batter_id",
         "pitcher_hand",
+        "inning",
+        "top_bottom",
         "balls_before",
         "strikes_before",
         "batter_hand",
@@ -59,6 +61,10 @@ def load_main() -> pd.DataFrame:
         "asof_pitcher_success_rate",
         "asof_batter_n",
         "asof_batter_success_rate",
+        "asof_pitcher_pitchmix_n",
+        "asof_pitcher_fastball_rate",
+        "asof_pitcher_breaking_rate",
+        "asof_pitcher_offspeed_rate",
         "control_success",
     ]
     frame = pd.read_csv(

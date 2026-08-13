@@ -302,6 +302,43 @@ EXP-033~044에서 TrackMan 이력을 현재 공식 투구 행의 독립 신호�
 - exact alignment coverage가 낮은 pitcher의 shrinkage가 시간축 안정성에 미치는 영향
 - 새 외부 신호를 도입할 때 mapping·history cutoff·추론 parity를 자동 점검하는 방법
 
+## STUDY-010 — TrackMan coverage, 시간 전이와 convex ceiling
+
+### 공부하게 된 이유
+
+EXP-045~071에서 TrackMan 물리값·구종 taxonomy·역할·부분 game alignment를 모두 확장했지만 2023·2024 Skill 1000을 함께 넘기지 못했다. 데이터 coverage 부족인지 신호의 시간 전이 문제인지 분리해 판단할 필요가 있었다.
+
+### 공부한 내용
+
+- 정렬 coverage 증가는 일반화 보장이 아니다. EXP-066은 exact 728,342행을 partial 1,143,829행까지 늘렸지만, 이후 물리·상황·타자·matchup 후보의 2024 Skill은 `881.46~886.24` 범위에 머물렀다.
+- 외부 로그를 직접 현재 행에 붙일 수 없을 때는 과거 repertoire 전체의 기대값으로 적분해야 한다. 이 방식은 규정상 안전하지만 실제 현재 구종·물리 측정값이 없어 신호가 크게 축소된다.
+- 같은 fold 정답을 쓰는 convex oracle은 배포 후보가 아니라 후보군의 낙관적 상한이다. EXP-060은 2023 certified upper Skill `942.7742472055578`, 2024 `897.2735431238888`로 1000 미달을 인증해 추가 재가중 탐색의 중단 근거가 됐다.
+- 모델 feature importance에서 투수 ID가 가장 컸더라도 미래 season 개선을 의미하지 않는다. EXP-070은 2024 `886.24`로 개선했지만 2022는 `1714.04`로 EXP-051보다 낮았다.
+
+### 프로젝트에 적용한 방법
+
+- validation season보다 과거 TrackMan만 사용하고, mapping·source table·residual fit cutoff를 fold별로 고정했다.
+- exact match 재식별 정확도 `1.0`, partial match score `.98`, length ratio `.75`, mutual one-to-one 조건을 machine artifact에 저장했다.
+- 후보군의 certified upper가 목표에 못 미치면 같은 신호의 weight·blend·구조 변형을 중단하는 stop rule을 적용했다.
+
+## STUDY-011 — Public-informed weight와 제출 이력 관리
+
+### 공부하게 된 이유
+
+EXP-051·053·058의 로컬 개선과 실제 Public 순서가 달랐고, EXP-058 동일 ZIP이 두 번 제출됐다.
+
+### 공부한 내용
+
+- 로컬 2024는 EXP-053 `883.31`이 EXP-051 `880.23`보다 높았지만 Public은 `1046.7664784878` 대 `1047.9791516638`로 역전됐다. 한 시즌 개선은 2025 일반화 근거가 아니다.
+- TrackMan direct correction을 `.10→.125`로 늘린 EXP-058은 Public `1047.8300661031`로 `.10`보다 낮았다. 관측 Public을 이용한 quadratic geometry는 진단 도구일 뿐 정확한 leaderboard 예측기가 아니다.
+- 제출 파일명만 보고 신규 후보로 판단하면 중복 제출 위험이 있다. ZIP SHA-256과 제출 시각·점수를 함께 확인해야 한다.
+
+### 프로젝트에 적용한 방법
+
+- 최종 리더보드 선택은 Public 최고 EXP-051로 고정했다.
+- EXP-058 artifact에 두 제출 시각과 동일 점수를 기록했다.
+- 앞으로 제출 추천 전 `docs/SUBMISSION_LOG.md`, artifact의 `public_result`, ZIP SHA-256을 함께 확인한다.
+
 ## 다음에 공부할 내용
 
 - [ ] 베이스라인 Brier Score를 직접 계산한다.

@@ -315,11 +315,42 @@ EXP-021 strict backbone에서 이미 시간 검증한 세 prediction branch만 �
 | threeway | 1044.4711201305 | +0.8637003368 | 세 branch 균등 결합은 개선 |
 | stableaggr | **1045.1827084551** | **+1.5752886614** | 당시 확인 기준 새 리더보드 1위 |
 
-### 해석 및 현재 선택
+### 해석 및 당시 선택
 
 - strict와 aggressive 단독의 Public Score는 각각 `1043.6074197937`, `1043.1871309639`였지만, 둘을 50:50으로 결합한 stableaggr가 두 단독 후보보다 각각 `+1.5752886614`, `+1.9955774912` 높았다.
 - R-specific branch는 dualrank에서 strict보다 낮았고, threeway에서도 stableaggr보다 `-0.7115883246` 낮았다. 현재 Public에서는 R-specific 신호가 안정·aggressive 조합을 희석한 것으로 해석한다.
 - 리더보드 선택을 EXP-021 strict에서 **EXP-032 stableaggr**로 갱신한다. 다음 후보는 R-specific 비중 확대보다 strict:aggressive 비율의 제한된 재검증 또는 독립적인 새 신호를 우선한다.
+
+---
+
+## SUB-051~058 — TrackMan direct·physical 제출 결과
+
+### 제출 파일과 검증
+
+| 실험 | 제출 ZIP | 크기 | SHA-256 | CRC·5행 smoke |
+| --- | --- | ---: | --- | --- |
+| EXP-051 | `submit_exp051_tmdirect.zip` | 4,456,494 | `5ebb639227a14038668d14659bb2e2ef334349487bc157e010fd73a02454f0a3` | 통과, 1.314초 |
+| EXP-053 | `submit_exp053_tmphys.zip` | 11,350,406 | `eb2b84ce2376f6d872093c9c49cf87b259f2d25ed3b1819e1bdc0fa85c9ee020` | 통과, 2.038초 |
+| EXP-058 | `submit_exp058_tmdir125.zip` | 4,457,309 | `de10e030b1b522db048c515c627394e4426ead8a0a9073a2c157be4fc762b1ae` | 통과, 1.269초 |
+
+세 ZIP 모두 `row_id` 순서·중복, 결측, 확률 범위와 테스트 행 독립성 검사를 통과했다. 모델·ZIP은 Git에 포함하지 않고 `script.py`와 `requirements.txt`만 저장한다.
+
+### 로컬과 Public 결과
+
+| 실험 | 핵심 변경 | 2022/2023/2024 Skill | 제출 일시 | Public Score | 판정 |
+| --- | --- | --- | --- | ---: | --- |
+| EXP-051 | recentaggr + exact TrackMan direct correction `.10` | 1726.23 / 930.21 / 880.23 | 2026-08-13 09:01:44 | **1047.9791516638** | **최종 선택** |
+| EXP-053 | EXP-051 + TrackMan physical Ridge `.15` | 1727.01 / 933.13 / 883.31 | 2026-08-13 09:21:55 | 1046.7664784878 | 로컬 개선과 Public 역전, 비채택 |
+| EXP-058 | direct correction `.10→.125` | 1724.77 / 930.87 / 880.86 | 2026-08-13 09:38:46 | 1047.8300661031 | EXP-051보다 낮아 비채택 |
+| EXP-058 중복 | 동일 ZIP 재제출 | 동일 | 2026-08-13 10:40:05 | 1047.8300661031 | 새 정보 없음 |
+
+### 해석과 최종 상태
+
+- EXP-051은 이전 recentaggr Public `1046.9889925352`보다 높은 `1047.9791516638`을 기록해 리더보드 선택이 됐다.
+- EXP-053은 로컬 2023·2024가 EXP-051보다 높았지만 Public은 `1046.7664784878`로 하락했다. physical Ridge는 2025에 전이되지 않았다.
+- EXP-058의 `.125`는 `.10`보다 낮아 direct correction의 추가 강도 탐색을 중단한다.
+- 최종 리더보드 선택: **EXP-051**.
+- 추가 제출은 새로운 규정 내 행 단위 신호가 로컬 hard gate를 통과할 때만 검토한다.
 
 ---
 

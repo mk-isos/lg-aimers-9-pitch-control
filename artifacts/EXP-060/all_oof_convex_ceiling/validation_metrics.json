@@ -1,0 +1,152 @@
+{
+  "experiment": "EXP-060",
+  "purpose": "all saved OOF nonnegative convex-hull ceiling audit",
+  "protocol": {
+    "same_fold_labels_used": true,
+    "deployable": false,
+    "candidate_selection_nested": false,
+    "test_rows_used": false,
+    "scope": "all unique finite [0,1] predictions_* OOF arrays",
+    "max_iterations": 80,
+    "gap_tolerance": 1e-11
+  },
+  "folds": {
+    "2022": {
+      "rows": 247472,
+      "discovered_prediction_files": 541,
+      "unique_valid_candidates": 447,
+      "iterations": 1,
+      "frank_wolfe_gap_brier": 3.6637039666430436e-09,
+      "oracle_brier": 0.24320665387504387,
+      "oracle_skill": 2390.7801465778757,
+      "certified_lower_brier": 0.2432066502113399,
+      "certified_upper_skill": 2390.781616978799,
+      "skill_1000_brier_threshold": 0.24667197186685846,
+      "certified_margin_to_1000_brier": -0.0034653216555185773,
+      "can_convex_hull_reach_1000": true,
+      "active_weights": [
+        {
+          "path": "artifacts/EXP-038/expanded_ensemble_ceiling/predictions_oracle_2022.npy",
+          "weight": 1.0
+        }
+      ]
+    },
+    "2023": {
+      "rows": 245525,
+      "discovered_prediction_files": 542,
+      "unique_valid_candidates": 469,
+      "iterations": 80,
+      "frank_wolfe_gap_brier": 3.599638430701069e-07,
+      "oracle_brier": 0.24764342253418323,
+      "oracle_skill": 942.6302616672766,
+      "certified_lower_brier": 0.24764306257034016,
+      "certified_upper_skill": 942.7742472055578,
+      "skill_1000_brier_threshold": 0.24749999818940063,
+      "certified_margin_to_1000_brier": 0.00014306438093952822,
+      "can_convex_hull_reach_1000": false,
+      "active_weights": [
+        {
+          "path": "artifacts/EXP-060/all_oof_convex_ceiling/predictions_oracle_2023.npy",
+          "weight": 0.33355784953868994
+        },
+        {
+          "path": "artifacts/EXP-071/partial_player_physics_residual/predictions_playerphys_resid_w100_2023.npy",
+          "weight": 0.2871100810444265
+        },
+        {
+          "path": "artifacts/EXP-020/ensemble_ceiling_audit/predictions_diagnostic_samefold_oracle_2023.npy",
+          "weight": 0.10300573277805686
+        },
+        {
+          "path": "artifacts/EXP-020/season_bagged_trend/predictions_linear_trend_x050_w050_2023.npy",
+          "weight": 0.09314052259368678
+        },
+        {
+          "path": "artifacts/EXP-020/pitcher_count_eb_atop_team/predictions_r_gated_team_pc_all_2023.npy",
+          "weight": 0.06549434108139802
+        },
+        {
+          "path": "artifacts/EXP-020/final_ensemble_ceiling_audit/predictions_samefold_oracle_2023.npy",
+          "weight": 0.062276702813061274
+        },
+        {
+          "path": "artifacts/EXP-019/hierarchical_groups/predictions_base_state_2023.npy",
+          "weight": 0.028346870187742793
+        },
+        {
+          "path": "artifacts/EXP-019/multirate_residual/core_mono_l15_i200/predictions_group_plus_multirate_w100_2023.npy",
+          "weight": 0.01967128958919448
+        },
+        {
+          "path": "artifacts/EXP-045/exact_trackman_physical_residual/predictions_ridge_a1000_w025_2023.npy",
+          "weight": 0.007396610373743123
+        }
+      ]
+    },
+    "2024": {
+      "rows": 253507,
+      "discovered_prediction_files": 543,
+      "unique_valid_candidates": 473,
+      "iterations": 80,
+      "frank_wolfe_gap_brier": 1.5368360582096423e-06,
+      "oracle_brier": 0.24756701213016666,
+      "oracle_skill": 896.6583335785926,
+      "certified_lower_brier": 0.24756547529410844,
+      "certified_upper_skill": 897.2735431238888,
+      "skill_1000_brier_threshold": 0.2473088574892201,
+      "certified_margin_to_1000_brier": 0.0002566178048883372,
+      "can_convex_hull_reach_1000": false,
+      "active_weights": [
+        {
+          "path": "artifacts/EXP-060/all_oof_convex_ceiling/predictions_oracle_2024.npy",
+          "weight": 0.5940677157981984
+        },
+        {
+          "path": "artifacts/EXP-070/partial_player_physics_integration/predictions_playerphys_w015_2024.npy",
+          "weight": 0.11441332824312501
+        },
+        {
+          "path": "artifacts/EXP-024/source_bagged_joint_taxonomy/predictions_source2023_to_2024.npy",
+          "weight": 0.07255587226118873
+        },
+        {
+          "path": "artifacts/EXP-071/partial_player_physics_residual/predictions_playerphys_resid_w100_2024.npy",
+          "weight": 0.051748457483925245
+        },
+        {
+          "path": "artifacts/EXP-067/partial_physical_control/predictions_partial_physical_w015_2024.npy",
+          "weight": 0.04228102161023297
+        },
+        {
+          "path": "artifacts/EXP-028/prevalence_invariant_taxonomy/predictions_invariant_logit_w100_2024.npy",
+          "weight": 0.040769707495827125
+        },
+        {
+          "path": "artifacts/EXP-020/parametric_logit_extrapolation/predictions_ridge_w100_2024.npy",
+          "weight": 0.03558456906160258
+        },
+        {
+          "path": "artifacts/EXP-020/weighted_als_pitcher_context/predictions_weighted_als_ridge30_rank4_2024.npy",
+          "weight": 0.03051392964498939
+        },
+        {
+          "path": "artifacts/EXP-029/joint_pitchmix_taxonomy/predictions_joint15_success_2024.npy",
+          "weight": 0.01242685902800226
+        },
+        {
+          "path": "artifacts/EXP-019/r_recent_residual/rrecent1_l63_m1000_i300/predictions_branch_w100_2024.npy",
+          "weight": 0.003617443021621885
+        },
+        {
+          "path": "artifacts/EXP-024/source_bagged_joint_taxonomy/predictions_source2020_to_2024.npy",
+          "weight": 0.002021096351286323
+        }
+      ]
+    }
+  },
+  "conclusion": {
+    "latest_2023_2024_certified_below_1000": true,
+    "reweighting_adopt": false
+  },
+  "total_seconds": 7.489220857620239
+}

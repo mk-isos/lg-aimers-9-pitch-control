@@ -1,0 +1,116 @@
+{
+  "experiment": "EXP-058",
+  "candidate": "trackman_direct_recent_w0125",
+  "validation": {
+    "season_briers": {
+      "2022": 0.24486611554945215,
+      "2023": 0.24767283218457017,
+      "2024": 0.24760647610532732
+    },
+    "season_skills": {
+      "2022": 1724.7672853554775,
+      "2023": 930.8664014264334,
+      "2024": 880.8605429916794
+    },
+    "mean_skill": 1178.8314099245301,
+    "min_skill": 880.8605429916794,
+    "latest_2024_skill": 880.8605429916794
+  },
+  "public_geometry": {
+    "method": "retain prior Brier quadratic curvature and anchor the line at recentaggr w=0 and observed EXP-051 w=.10",
+    "scenarios": {
+      "2024": {
+        "seasons": [
+          2024
+        ],
+        "anchor_w000": 1046.9889925351997,
+        "anchor_w010_actual": 1047.9791516638,
+        "retained_quadratic_curvature": -90.7136103422772,
+        "refit_linear_term": 18.97295232022998,
+        "estimated_optimum_weight": 0.1045761063231964,
+        "candidate_weight": 0.125,
+        "candidate_estimated_score": 1047.9432114136303,
+        "leaderboard_model_is_diagnostic": true
+      },
+      "pooled_2022_2024": {
+        "seasons": [
+          2022,
+          2023,
+          2024
+        ],
+        "anchor_w000": 1046.9889925352,
+        "anchor_w010_actual": 1047.9791516638,
+        "retained_quadratic_curvature": -56.578308877112704,
+        "refit_linear_term": 15.559422173711255,
+        "estimated_optimum_weight": 0.13750342209331584,
+        "candidate_weight": 0.125,
+        "candidate_estimated_score": 1048.049884230709,
+        "leaderboard_model_is_diagnostic": true
+      }
+    },
+    "selection": "fixed .125 between local mean optimum .10 and latest-fold plateau; one bounded follow-up to observed EXP-051",
+    "leaderboard_overfit_risk": true
+  },
+  "references": {
+    "recentaggr_public": 1046.9889925352,
+    "exp051_public": 1047.9791516638,
+    "exp053_public": 1046.7664784878
+  },
+  "public_result": {
+    "submitted_at": [
+      "2026-08-13 09:38:46",
+      "2026-08-13 10:40:05"
+    ],
+    "score": 1047.8300661031,
+    "reference_exp051_score": 1047.9791516638,
+    "duplicate_submission_same_score": true,
+    "source": "user-provided DACON leaderboard result"
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp058_tmdir125.zip",
+    "bytes": 4457309,
+    "sha256": "de10e030b1b522db048c515c627394e4426ead8a0a9073a2c157be4fc762b1ae",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/exact_pitchtype_control.json",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.2688658237457275,
+    "stdout": "Saved: output/submission.csv | candidate=trackman_direct_recent_w0125 | rows=5 | mean=0.444298 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.44429776515646396,
+    "min": 0.3729165651008432,
+    "max": 0.5162418838966417
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "test_row_aggregation": false,
+    "weight_informed_by_public_scores": true,
+    "negative_weight_geometry_extrapolation": true,
+    "isolated_crc": "passed",
+    "isolated_sample_inference": "passed",
+    "permutation_max_abs": 0.0,
+    "singleton_max_abs": 0.0,
+    "python": "3.12.10"
+  },
+  "total_seconds": 3.0406200885772705
+}

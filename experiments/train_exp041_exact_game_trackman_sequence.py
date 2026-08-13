@@ -62,6 +62,7 @@ TRACKMAN_COLUMNS = [
     "game_dayofweek",
     "trackman_game_id",
     "pitch_no",
+    "pitch_of_pa",
     "inning",
     "top_bottom",
     "balls_before",
@@ -154,6 +155,9 @@ def trackman_games(
     work = frame.copy()
     work["fine_pitch_type"] = sequence.canonical_pitch_type(
         work["tagged_pitch_type"]
+    )
+    work["auto_fine_type"] = sequence.canonical_pitch_type(
+        work["auto_pitch_type"]
     )
     work["pitcher_team"] = work["pitcher_team"].replace(ALIASES)
     work["batter_team"] = work["batter_team"].replace(ALIASES)
@@ -272,9 +276,14 @@ def exact_aligned_rows() -> tuple[pd.DataFrame, dict[str, object]]:
                     "fine_pitch_type": trackman_work.iloc[right][
                         "fine_pitch_type"
                     ].to_numpy(),
+                    "auto_fine_type": trackman_work.iloc[right][
+                        "auto_fine_type"
+                    ].to_numpy(),
                     "pitch_type_group": trackman_work.iloc[right][
                         "pitch_type_group"
                     ].to_numpy(),
+                    "pitch_no": trackman_work.iloc[right]["pitch_no"].to_numpy(),
+                    "pitch_of_pa": trackman_work.iloc[right]["pitch_of_pa"].to_numpy(),
                     "rel_speed": trackman_work.iloc[right]["rel_speed"].to_numpy(),
                     "spin_rate": trackman_work.iloc[right]["spin_rate"].to_numpy(),
                     "induced_vert_break": trackman_work.iloc[right][

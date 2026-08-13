@@ -692,7 +692,6 @@ def main() -> None:
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
         "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
         "trackman_physical_recent_w015",
     }
     if candidate in lowrank_candidates:
@@ -712,7 +711,6 @@ def main() -> None:
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
         "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
         "trackman_physical_recent_w015",
     }
     if candidate in aggressive_candidates:
@@ -750,7 +748,6 @@ def main() -> None:
         "trackman_recent_consensus_25",
         "public_simplex_act_25_60_15",
         "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
         "trackman_physical_recent_w015",
     }:
         recency_state = json.loads(
@@ -810,10 +807,7 @@ def main() -> None:
             + 0.60 * recency_predictions
             + 0.15 * exact_prediction
         )
-    elif candidate in {
-        "trackman_direct_recent_w010",
-        "trackman_direct_recent_w0125",
-    }:
+    elif candidate == "trackman_direct_recent_w010":
         exact_state = json.loads(
             (MODEL_DIR / "exact_pitchtype_control.json").read_text(
                 encoding="utf-8"
@@ -821,14 +815,8 @@ def main() -> None:
         )
         exact_correction = map_exact_pitchtype_control(frame, exact_state)
         recent_prediction = 0.5 * recency_predictions + 0.5 * aggressive_predictions
-        correction_weight = {
-            "trackman_direct_recent_w010": 0.10,
-            "trackman_direct_recent_w0125": 0.125,
-        }[candidate]
         predictions = np.clip(
-            recent_prediction + correction_weight * exact_correction,
-            0.0,
-            1.0,
+            recent_prediction + 0.10 * exact_correction, 0.0, 1.0
         )
     elif candidate == "trackman_physical_recent_w015":
         exact_state = json.loads(

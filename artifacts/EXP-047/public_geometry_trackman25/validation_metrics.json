@@ -1,0 +1,84 @@
+{
+  "experiment": "EXP-047",
+  "candidate": "trackman_recent_consensus_25",
+  "validation": {
+    "season_briers": {
+      "2022": 0.24481771179798634,
+      "2023": 0.2476870510792365,
+      "2024": 0.24761339875997945
+    },
+    "season_skills": {
+      "2022": 1744.1937786001226,
+      "2023": 925.1788435183039,
+      "2024": 878.0893409509605
+    },
+    "mean_skill": 1182.487321023129,
+    "min_skill": 878.0893409509605,
+    "latest_2024_skill": 878.0893409509605
+  },
+  "public_geometry": {
+    "known_public_scores": {
+      "recentaggr": 1046.9889925352,
+      "trackman_recent_50": 1046.9499938833,
+      "strict": 1043.6074197937,
+      "aggressive": 1043.1871309639,
+      "strict_aggressive_50": 1045.1827084551
+    },
+    "2024": {
+      "diversity": 6.975386864602472,
+      "estimated_exact_component_score": 1043.423301799099,
+      "estimated_optimal_trackman_weight": 0.24440910552247613,
+      "estimated_score_trackman_0_25": 1047.4054548882877
+    },
+    "pooled_2022_2024": {
+      "diversity": 4.716807301835623,
+      "estimated_exact_component_score": 1044.5525915804824,
+      "estimated_optimal_trackman_weight": 0.2417319811041051,
+      "estimated_score_trackman_0_25": 1047.2642936656148
+    },
+    "diagnostic_only": true,
+    "leaderboard_overfit_risk": true
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp047_track25.zip",
+    "bytes": 4456318,
+    "sha256": "44d638904e0c043ba1e4b8fa9effaa5bafa9ca31da67aeb23c34947bb5996fab",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/exact_pitchtype_control.json",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.3483119010925293,
+    "stdout": "Saved: output/submission.csv | candidate=trackman_recent_consensus_25 | rows=5 | mean=0.443868 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.44386795866850665,
+    "min": 0.3729165651008432,
+    "max": 0.5162418838966417
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "test_row_aggregation": false,
+    "weight_informed_by_public_scores": true,
+    "python": "3.12.10"
+  },
+  "total_seconds": 3.1195411682128906
+}

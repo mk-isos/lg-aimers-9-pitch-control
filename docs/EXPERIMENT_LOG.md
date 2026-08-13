@@ -33,7 +33,7 @@
 | EXP-015 | 2026-08-10 | 개선 LightGBM + 고정 2025 `-0.005` 동시 변경 | Public 2025 | - | 927.712979 | EXP-013 Public보다 하락, 원인 분리 불완전 |
 | EXP-017 | 2026-08-10 | 현재 시즌 as-of 복원 + residual 후보 탐색 | 2021~2024 | 구성별 | 구성별 | residual 단독의 구조 변화 취약성 확인 |
 | EXP-018 | 2026-08-10 | 계층적 기준값 + 그룹 효과 + 최근 residual 15% | 2024 | 0.247820261 | 795.28 | Public 895.84, EXP-013보다 하락해 비채택 |
-| EXP-032 | 2026-08-12 | strict·aggressive·recency bounded consensus | 2022~2024 | 0.247618091 | 876.21 | recentaggr Public 1046.99, 현재 리더보드 선택 |
+| EXP-032 | 2026-08-12 | strict·aggressive·recency bounded consensus | 2022~2024 | 0.247618091 | 876.21 | recentaggr Public 1046.99, 당시 리더보드 선택 |
 | EXP-033 | 2026-08-12 | TrackMan sequence·fine-pitch·시간 추세 residual | 2022~2024 | 0.247639600 | 867.60 | 2023·2024 하락, 비채택 |
 | EXP-034 | 2026-08-12 | EXP-033 매핑 비용 범위 확장 | 2022~2024 | 0.247641946 | 866.66 | 매핑 확대도 하락, 비채택 |
 | EXP-035 | 2026-08-12 | TrackMan 타자·matchup profile residual | 2022~2024 | 0.247638519 | 868.03 | 기준보다 하락, 비채택 |
@@ -46,6 +46,32 @@
 | EXP-042 | 2026-08-12 | EXP-041 + source recency2 정책 | 2022~2024 | 0.247647232 | 864.55 | 최신 성능 하락, 비채택 |
 | EXP-043 | 2026-08-12 | exact fine-pitch control empirical Bayes | 2022~2024 | 0.247616774 | 876.74 | 2023·2024 개선, hard gate 미달 |
 | EXP-044 | 2026-08-12 | exact TrackMan control + recentaggr 50:50 | 2022~2024 | 0.247611615 | 878.80 | Public 1046.95, recentaggr보다 낮아 비채택 |
+| EXP-045 | 2026-08-13 | exact TrackMan 물리 residual Ridge | 2022~2024 | 0.247608391 | 880.09 | 2022 하락, 비채택 |
+| EXP-046 | 2026-08-13 | 타자별 fine-pitch control EB | 2022~2024 | 0.247619854 | 875.51 | 기준 하락, 비채택 |
+| EXP-047 | 2026-08-13 | recentaggr 75% + exact TrackMan 25% | 2022~2024 | 0.247613399 | 878.09 | Public-informed 진단 후보, 제출 보류 |
+| EXP-048 | 2026-08-13 | aggressive 25% + recency 60% + TrackMan 15% | 2022~2024 | 0.247617199 | 876.57 | 추정 ceiling 1100 미달, 제출 보류 |
+| EXP-050 | 2026-08-13 | 투수·타자 이중 pitch propensity | 2022~2024 | 0.247604318 | 881.72 | 2022 하락, 비채택 |
+| EXP-051 | 2026-08-13 | recentaggr + exact TrackMan 직접 보정 10% | 2022~2024 | 0.247608043 | 880.23 | Public 1047.979152, 최종 선택 |
+| EXP-052 | 2026-08-13 | TrackMan control source-season 정책 | 2022~2024 | 0.247608043 | 880.23 | pooled 최상, 추가 정책 비채택 |
+| EXP-053 | 2026-08-13 | EXP-051 + TrackMan 물리 Ridge 15% | 2022~2024 | 0.247600355 | 883.31 | Public 1046.766478, 비채택 |
+| EXP-054 | 2026-08-13 | 물리→제어 repertoire 적분 | 2022~2024 | 0.247605986 | 881.06 | 최신 개선이 과거 하락과 교차 |
+| EXP-055 | 2026-08-13 | TrackMan workload·휴식 residual | 2022~2024 | 0.247610283 | 879.34 | 기준 하락, 비채택 |
+| EXP-056 | 2026-08-13 | 현재 공식 pitchmix adaptation | 2022~2024 | 0.247610735 | 879.16 | hard gate 미달 |
+| EXP-057 | 2026-08-13 | calendar·시즌 진행도 EB | 2022~2024 | 0.247631007 | 871.04 | 시간 전이 실패 |
+| EXP-058 | 2026-08-13 | TrackMan 직접 보정 12.5% | 2022~2024 | 0.247606476 | 880.86 | Public 1047.830066, EXP-051보다 낮음 |
+| EXP-059 | 2026-08-13 | 시즌 정규화 arsenal geometry | 2022~2024 | 0.247608227 | 880.16 | hard gate 미달 |
+| EXP-060 | 2026-08-13 | 447~473개 unique OOF convex 상한 감사 | 2022~2024 | 0.247567012 | 896.66 | 2023·2024 certified upper 1000 미달 |
+| EXP-061 | 2026-08-13 | TrackMan 역할·휴식·팀 이동 | 2022~2024 | 0.247604122 | 881.80 | 2023 하락, 비채택 |
+| EXP-062 | 2026-08-13 | tagged·auto 구종 공동 제어 | 2022~2024 | 0.247605846 | 881.11 | 개선 미미, 비채택 |
+| EXP-063 | 2026-08-13 | 불확실 확률 구간 residual | 2022~2024 | 0.247593994 | 885.86 | 2024 개선·2023 하락 |
+| EXP-064 | 2026-08-13 | count·손·주자·확률 bin 안정 EB | 2022~2024 | 0.247599798 | 883.53 | source-season 전이 부족 |
+| EXP-065 | 2026-08-13 | conflict-free relaxed exact 정렬 | 2022~2024 | 0.247608419 | 880.08 | 추가 exact coverage 이득 없음 |
+| EXP-066 | 2026-08-13 | 고신뢰 partial game-sequence 정렬 | 2022~2024 | 0.247598163 | 884.19 | 114만 행 확보, hard gate 미달 |
+| EXP-067 | 2026-08-13 | partial-aligned 물리 제어 | 2022~2024 | 0.247604985 | 881.46 | 2022·2023 하락 |
+| EXP-068 | 2026-08-13 | partial outs·inning phase 제어 | 2022~2024 | 0.247604116 | 881.81 | 최신 소폭 개선, 비채택 |
+| EXP-069 | 2026-08-13 | partial 타자·matchup 제어 | 2022~2024 | 0.247602791 | 882.34 | 투수 단독 최상, 비채택 |
+| EXP-070 | 2026-08-13 | 투수 ID×정규화 물리 LightGBM | 2022~2024 | 0.247593046 | 886.24 | 2022 하락, 비채택 |
+| EXP-071 | 2026-08-13 | EXP-051 OOF 잔차 기반 투수 물리 | 2022~2024 | 0.247604672 | 881.58 | 2023 개선·2022 하락, 비채택 |
 
 ## EXP-000 — 운영진 베이스라인 구조 확인
 
@@ -1079,9 +1105,9 @@ EXP-021 strict, EXP-021 aggressive R/F gate, EXP-037 recency2 low-rank branch는
 
 - [ ] dualrank 채택
 - [ ] stableaggr 채택
-- [x] recentaggr 채택 — 현재 확인 기준 리더보드 1위
+- [x] recentaggr 채택 — 당시 확인 기준 리더보드 1위
 
-strict·aggressive 단독 후보가 각각 `1043.6074197937`, `1043.1871309639`였고, recentaggr는 aggressive보다 `+3.8018615713` 높았다. 현재 선택은 recency low-rank와 R/F-gated aggressive 신호의 50:50 결합이다.
+strict·aggressive 단독 후보가 각각 `1043.6074197937`, `1043.1871309639`였고, recentaggr는 aggressive보다 `+3.8018615713` 높았다. 당시 선택은 recency low-rank와 R/F-gated aggressive 신호의 50:50 결합이었다.
 
 다음 작업은 bounded consensus 비율 탐색이 아니라 TrackMan처럼 기존 branch와 독립적인 새 행별 신호의 과거 OOF 검증이다.
 
@@ -1121,9 +1147,144 @@ EXP-044의 exact game alignment는 4,868개 공식 게임 중 2,418개를 exact 
 - [ ] EXP-033~042 채택
 - [ ] EXP-043 단독 채택
 - [ ] EXP-044 채택
-- [x] EXP-032 recentaggr 유지
+- [x] 당시 EXP-032 recentaggr 유지
 
 다음 실험은 기존 TrackMan 결합의 weight를 다시 탐색하지 않고, 2023·2024·Public에서 동시에 재현될 수 있는 독립 행별 신호가 확보될 때만 과거 OOF 선택 절차로 검증한다.
+
+---
+
+## EXP-045~059 — exact TrackMan 확장과 Public 후보
+
+### 목적과 가설
+
+EXP-044까지는 exact game alignment에서 얻은 투수×구종 control만 사용했다. EXP-045~059는 같은 과거 정렬을 물리 측정값, 타자 propensity, workload, 현재 공식 pitchmix와 calendar로 확장하고, Public에서 확인된 recentaggr·TrackMan 조합의 제한된 후보를 검증했다. 물리·구종 선택·사용량 변화가 서로 독립적인 행별 신호라면 EXP-032 recentaggr의 2023·2024 오차를 함께 줄일 수 있다는 가설이었다.
+
+공통 rolling-origin outer fold는 2021~2024이고 보고 기간은 2022·2023·2024다. 검증 season의 TrackMan history와 정답은 모델 적합·mapping·후보 선택에 사용하지 않았으며, 실제 현재 구종·물리값과 test 행 간 집계도 사용하지 않았다. EXP-047·048·051·058의 가중치는 과거 component와 이미 관측한 Public geometry를 사용한 post-hoc 진단임을 JSON에 명시했다.
+
+### 기준 실험과 모델·주요 파라미터
+
+- EXP-045~050 기준: EXP-032 recentaggr의 2022/2023/2024 Skill `1730.52 / 925.88 / 876.21`.
+- EXP-051 이후 기준: EXP-051의 Skill `1726.23 / 930.21 / 880.23`, Public `1047.9791516638`.
+- 모든 확률은 identity calibration을 유지했고 임의 고정 offset을 추가하지 않았다.
+
+| 실험 | 기준과 달라진 점 | 모델·주요 파라미터 |
+| --- | --- | --- |
+| EXP-045 | exact-aligned 물리값 residual 추가 | 8개 TrackMan 물리값, Ridge `alpha=1000/10000`, 선택 `alpha=1000`, weight `.25`, clip `.03` |
+| EXP-046 | 투수 대신 타자 fine-pitch control·propensity | EB smoothing 타자/type/context `700/300/150`, direct weight `.10` |
+| EXP-047 | recentaggr와 exact TrackMan control 고정 결합 | recentaggr `.75`, exact TrackMan `.25`; Public geometry 진단 |
+| EXP-048 | 세 배포 branch의 nonnegative simplex | aggressive `.25`, recency `.60`, TrackMan `.15`; Public-informed, non-nested |
+| EXP-050 | 타자 및 matchup pitch propensity 추가 | batter propensity smoothing `30`, matchup `40`, correction clip `.03`, pitcher weight `.25` |
+| EXP-051 | exact TrackMan direct correction을 recentaggr에 직접 외삽 | correction weight `.10`, clip `.03`; 현재 행 실제 구종 미사용 |
+| EXP-052 | pooled control을 source-season 정책으로 분해 | smoothing pitcher/type/context `150/60/30`, `equal/recency2/last`, weight `.10` |
+| EXP-053 | EXP-051에 physical Ridge correction 추가 | 100개 feature, 771,257 fit rows, source-season equal weight, physical correction `.15` |
+| EXP-054 | 과거 repertoire 물리값을 제어 기대값으로 적분 | LightGBM 200 trees, leaves `15`, min child `3000`, smoothing `100`, direct/integrated `.10/.10` |
+| EXP-055 | 과거 경기 workload·휴식·타석 순번 추가 | 47 features, Ridge `alpha=1000` 및 LGB 160 trees/leaves `7`, 선택 LGB weight `.25` |
+| EXP-056 | 공식 현재 pitchmix로 과거 fine-type control 재가중 | smoothing grid `0/30/100/300`, 선택 `300`, correction weight `.10` |
+| EXP-057 | 월·요일·game type·inning phase EB | smoothing month/weekday `5000`, month-game `3000`, month-phase `2500`, clip `.02` |
+| EXP-058 | EXP-051 correction 강도만 `.10→.125` | 고정 weight `.125`; Public-informed bounded follow-up |
+| EXP-059 | 물리값을 season×fine-type×손 peer 기준으로 정규화 | 168 features, Ridge `alpha=1000/10000`, 선택 `10000`, weight `.025`, clip `.03` |
+
+### rolling 검증 결과
+
+아래 수치는 각 `validation_metrics.json`의 선택 후보다.
+
+| 실험 | 선택 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 / 최저 Skill |
+| --- | --- | --- | --- | --- | ---: |
+| EXP-045 | `ridge_a1000_w025` | 0.244857495 / 1728.23 | 0.247681176 / 927.53 | 0.247608391 / 880.09 | 1178.62 / 880.09 |
+| EXP-046 | `batter_direct_w010` | 0.244859264 / 1727.52 | 0.247686871 / 925.25 | 0.247619854 / 875.51 | 1176.09 / 875.51 |
+| EXP-047 | `trackman_recent_consensus_25` | 0.244817712 / 1744.19 | 0.247687051 / 925.18 | 0.247613399 / 878.09 | 1182.49 / 878.09 |
+| EXP-048 | `public_simplex_act_25_60_15` | 0.244777209 / 1760.45 | 0.247700401 / 919.84 | 0.247617199 / 876.57 | 1185.62 / 876.57 |
+| EXP-050 | `pitcher_prop_w025` | 0.244890309 / 1715.06 | 0.247671124 / 931.55 | 0.247604318 / 881.72 | 1176.11 / 881.72 |
+| EXP-051 | `trackman_direct_recent_w010` | 0.244862459 / 1726.23 | 0.247674466 / 930.21 | 0.247608043 / 880.23 | 1178.89 / 880.23 |
+| EXP-052 | `pooled_w010` | 0.244862459 / 1726.23 | 0.247674466 / 930.21 | 0.247608043 / 880.23 | 1178.89 / 880.23 |
+| EXP-053 | `trackman_physical_recent_w015` | 0.244860526 / 1727.01 | 0.247667178 / 933.13 | 0.247600355 / 883.31 | 1181.15 / 883.31 |
+| EXP-054 | `direct010_integrated010` | 0.244876579 / 1720.57 | 0.247676320 / 929.47 | 0.247605986 / 881.06 | 1177.03 / 881.06 |
+| EXP-055 | `workload_lgb_w025` | 0.244888642 / 1715.73 | 0.247691157 / 923.54 | 0.247610283 / 879.34 | 1172.87 / 879.34 |
+| EXP-056 | `mixadapt_k300` | 0.244863539 / 1725.80 | 0.247677550 / 928.98 | 0.247610735 / 879.16 | 1177.98 / 879.16 |
+| EXP-057 | `calendar_additive` | 0.244778221 / 1760.04 | 0.247774424 / 890.23 | 0.247631007 / 871.04 | 1173.77 / 871.04 |
+| EXP-058 | `trackman_direct_recent_w0125` | 0.244866116 / 1724.77 | 0.247672832 / 930.87 | 0.247606476 / 880.86 | 1178.83 / 880.86 |
+| EXP-059 | `normgeo_a10000_w025` | 0.244863014 / 1726.01 | 0.247674944 / 930.02 | 0.247608227 / 880.16 | 1178.73 / 880.16 |
+
+### 기준 대비 변화·Public 결과와 해석
+
+- EXP-045는 recentaggr의 2024 `876.21`을 `880.09`로 높였지만 2022 `1730.52→1728.23`으로 하락했다. EXP-046은 2024도 `875.51`로 낮아 타자 fine-pitch branch를 채택하지 않았다.
+- EXP-050은 2023/2024를 `925.88/876.21→931.55/881.72`로 높였지만 2022가 `1730.52→1715.06`으로 하락해 단독 채택하지 않았다.
+- EXP-051은 로컬 hard gate를 통과하지 못했지만 Public `1047.9791516638`로 EXP-032 recentaggr `1046.9889925352`를 넘어 최종 리더보드 선택이 됐다.
+- EXP-053은 로컬 2023/2024 `933.13/883.31`로 EXP-051보다 높았으나 실제 Public `1046.7664784878`로 하락했다. 물리 Ridge의 로컬 개선은 2025로 전이되지 않았다.
+- EXP-058은 Public `1047.8300661031`을 2026-08-13 `09:38:46`, `10:40:05`에 동일 ZIP으로 두 번 기록했다. `.125`가 `.10`보다 낮았으므로 TrackMan direct weight 추가 확장은 중단한다.
+- EXP-047·048은 JSON의 Public 추정 ceiling 자체가 1100 미달이고 EXP-051 이후 정보 가치가 낮아 제출하지 않는다.
+
+### 결론과 다음 실험
+
+- [x] EXP-051 채택 — Public `1047.9791516638`
+- [ ] EXP-045~050·052~059 채택
+- 다음 실험은 Public-informed weight 탐색이 아니라 2023·2024에서 함께 전이되는 독립 신호만 허용한다.
+
+---
+
+## EXP-060~071 — 전체 OOF 상한·partial alignment·투수 물리 상호작용
+
+### 목적과 가설
+
+EXP-060은 지금까지 저장된 모든 OOF 예측을 같은 fold 정답으로 최적으로 섞는 비배포 convex oracle을 계산해 기존 후보 재가중의 절대 상한을 확인했다. 상한이 목표에 못 미친 뒤 EXP-061~071은 TrackMan 역할·휴식, tagged/auto taxonomy, 불확실 확률 구간, 고신뢰 partial game alignment와 투수별 물리 상호작용처럼 기존 후보와 구조적으로 다른 신호만 제한적으로 검증했다.
+
+EXP-065는 full sequence의 손 조건을 완화했고, EXP-066은 동일 season/month/day/team pair 안에서 core-state `SequenceMatcher` score `.98`, length ratio `.75`, mutual one-to-one 조건으로 같은 상태의 matching block만 정렬했다. exact 2,418경기를 정확도 `1.0`으로 재식별한 상태에서 3,768경기·1,143,829행을 받아들였다. 모든 downstream fold는 validation season보다 과거 TrackMan만 사용했다.
+
+### 모델과 주요 파라미터
+
+| 실험 | 기준과 달라진 점 | 모델·주요 파라미터 |
+| --- | --- | --- |
+| EXP-060 | 모든 저장 OOF 후보의 convex 상한 | Frank-Wolfe 최대 80회, unique 후보 2022/23/24 `447/469/473`, 배포 불가 진단 |
+| EXP-061 | starter/reliever·workload·rest·팀 이동 | 160 features, LGB 160 trees, leaves `7`, min child `5000`, weight `.25` |
+| EXP-062 | tagged 8종×auto 8종 joint taxonomy | 64 joint types, smoothing pitcher/tag/joint/context/propensity `500/200/100/100/20`, weight `.25` |
+| EXP-063 | EXP-051 예측이 `.5`에 가까운 행만 residual 보정 | threshold `.02/.04/.06`, 57 ID-free features, LGB 200 trees/leaves `7`, last-source weight `.25` |
+| EXP-064 | count·손/주자·prediction bin EB | p-bin 폭 `.025`, smoothing `500`, common-sign stable cell, blend weight `.50`, clip `.02` |
+| EXP-065 | full sequence에서 손 필드를 뺀 conflict-free exact match | 2,460경기·740,796행, direct/기존 blend `.10` |
+| EXP-066 | high-confidence partial sequence alignment | score `.98`, length ratio `.75`, 3,768경기·1,143,829행, partial delta `.25` |
+| EXP-067 | partial-aligned 물리→제어 | 8개 물리값, LGB 200 trees/leaves `15`, min child `3000`, weight `.10` |
+| EXP-068 | partial fine-pitch에 outs·inning phase 추가 | smoothing pitcher/type/base/extended/propensity `500/200/100/150/30`, direct `.10` |
+| EXP-069 | partial 타자 propensity와 matchup 추가 | pitcher/dual/matchup correction `.10`; 선택 pitcher-only |
+| EXP-070 | 투수 ID×season-normalized 물리 상호작용 | 9개 물리값, LGB 250 trees/leaves `15`, min child `3000`, pitcher ID categorical, weight `.15` |
+| EXP-071 | raw 성공률 대신 EXP-051 OOF residual 학습 | source residual season-center, source-season equal weight, EXP-070 구조, weight `.25` |
+
+### rolling 검증 결과
+
+| 실험 | 선택 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 / 최저 Skill |
+| --- | --- | --- | --- | --- | ---: |
+| EXP-061 | `role_lgb_w025` | 0.244747425 / 1772.40 | 0.247740431 / 903.83 | 0.247604122 / 881.80 | 1186.01 / 881.80 |
+| EXP-062 | `tag010_joint_delta_w025` | 0.244866026 / 1724.80 | 0.247674800 / 930.08 | 0.247605846 / 881.11 | 1178.67 / 881.11 |
+| EXP-063 | `close060_last_w025` | 0.244809042 / 1747.67 | 0.247691287 / 923.48 | 0.247593994 / 885.86 | 1185.67 / 885.86 |
+| EXP-064 | `stable_blend_w050` | 0.244833616 / 1737.81 | 0.247682557 / 926.98 | 0.247599798 / 883.53 | 1182.77 / 883.53 |
+| EXP-065 | `exact_relaxed_blend_w010` | 0.244862255 / 1726.32 | 0.247673885 / 930.45 | 0.247608419 / 880.08 | 1178.95 / 880.08 |
+| EXP-066 | `exact010_partial_delta_w025` | 0.244869591 / 1723.37 | 0.247675455 / 929.82 | 0.247598163 / 884.19 | 1179.13 / 884.19 |
+| EXP-067 | `partial_physical_w010` | 0.244876574 / 1720.57 | 0.247676862 / 929.25 | 0.247604985 / 881.46 | 1177.09 / 881.46 |
+| EXP-068 | `outs_direct_w010` | 0.244864168 / 1725.55 | 0.247672627 / 930.95 | 0.247604116 / 881.81 | 1179.43 / 881.81 |
+| EXP-069 | `partial_pitcher_w010` | 0.244863580 / 1725.78 | 0.247673089 / 930.76 | 0.247602791 / 882.34 | 1179.63 / 882.34 |
+| EXP-070 | `playerphys_w015` | 0.244892837 / 1714.04 | 0.247673298 / 930.68 | 0.247593046 / 886.24 | 1176.99 / 886.24 |
+| EXP-071 | `playerphys_resid_w025` | 0.244900654 / 1710.91 | 0.247660514 / 935.79 | 0.247604672 / 881.58 | 1176.09 / 881.58 |
+
+EXP-060의 비배포 oracle 결과는 다음과 같다.
+
+| 시즌 | unique 후보 | Oracle Brier / Skill | Certified upper Skill | Skill 1000 가능 |
+| --- | ---: | --- | ---: | --- |
+| 2022 | 447 | 0.243206654 / 2390.78 | 2390.78 | 가능 |
+| 2023 | 469 | 0.247643423 / 942.63 | 942.77 | 불가능 |
+| 2024 | 473 | 0.247567012 / 896.66 | 897.27 | 불가능 |
+
+### 기준 대비 변화와 결과 해석
+
+- EXP-061은 EXP-051 대비 2022를 `1726.23→1772.40`으로 높였지만 2023은 `930.21→903.83`으로 역전됐다. 역할·휴식 변화는 미래 season에 안정적으로 전이되지 않았다.
+- EXP-063·064·066·070은 2024를 각각 `885.86/883.53/884.19/886.24`로 높였지만 2023 또는 2022에서 손실이 발생했다. 최신 한 시즌 개선만으로는 채택하지 않았다.
+- EXP-066은 정렬 label coverage를 728,342행에서 1,143,829행으로 늘렸지만 downstream EXP-067~071이 세 시즌 hard gate를 통과하지 못했다. coverage 증가와 시간 일반화는 별개였다.
+- EXP-070에서 `pitcher_code`가 가장 큰 LightGBM gain feature였으므로 투수 ID가 억제된 것이 병목은 아니었다. EXP-071의 OOF residual 직접 학습도 2023 `935.79`와 2024 `881.58`에 그쳤다.
+- EXP-060은 같은 fold 정답까지 사용하는 낙관적 상한인데도 2023·2024 Skill 1000을 인증하지 못했다. 현재 저장 신호의 추가 convex 재가중으로 목표에 도달하는 경로는 닫혔다.
+
+### 채택 여부와 다음 실험
+
+- [ ] EXP-060~071 채택
+- [x] 최종 제출 선택은 EXP-051 유지
+- 현재 목표는 blocked다. 공식 입력 48개와 TrackMan 30개를 모두 사용 또는 감사했고, 2023·2024에서 함께 1000을 넘길 새로운 규정 내 행 단위 신호가 확인되지 않았다.
+- 신규 규정 내 데이터·새 공식 피처 의미·기존과 독립적인 행 단위 supervision이 확보될 때만 재개한다. 기존 예측 weight, fixed offset, TrackMan 물리 구조의 추가 탐색은 중단한다.
 
 ---
 

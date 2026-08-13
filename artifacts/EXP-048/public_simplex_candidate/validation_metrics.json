@@ -1,0 +1,134 @@
+{
+  "experiment": "EXP-048",
+  "candidate": "public_simplex_act_25_60_15",
+  "validation": {
+    "season_briers": {
+      "2022": 0.24477720920739893,
+      "2023": 0.2477004005981016,
+      "2024": 0.2476171988082328
+    },
+    "season_skills": {
+      "2022": 1760.4491984510528,
+      "2023": 919.8390359331898,
+      "2024": 876.568146842105
+    },
+    "mean_skill": 1185.6187937421157,
+    "min_skill": 876.568146842105,
+    "latest_2024_skill": 876.568146842105
+  },
+  "public_geometry": {
+    "known_public_scores": {
+      "strict": 1043.6074197937,
+      "aggressive": 1043.1871309639,
+      "strict_aggressive_50": 1045.1827084551,
+      "strict_rspecific_50": 1042.9008134487,
+      "strict_rspecific_aggressive_equal": 1044.4711201305,
+      "recency_aggressive_50": 1046.9889925352,
+      "trackman_recent_50": 1046.9499938833
+    },
+    "candidate_weights": {
+      "aggressive": 0.25,
+      "recency": 0.6,
+      "trackman": 0.15
+    },
+    "scenarios": {
+      "2024": {
+        "seasons": [
+          2024
+        ],
+        "vertex_score_estimates": {
+          "strict": 1043.6074197937,
+          "aggressive": 1043.1871309639,
+          "rspecific": 1041.0413156543225,
+          "recency": 1046.3517738291605,
+          "trackman": 1043.423301799099
+        },
+        "threeway_reconstruction": 1044.4441368509874,
+        "threeway_actual": 1044.4711201305,
+        "threeway_reconstruction_error": -0.026983279512478475,
+        "candidate_estimated_score": 1047.488520901272,
+        "simplex_optimum_estimated_score": 1047.5186662867143,
+        "simplex_optimum_weights": {
+          "strict": 0.0,
+          "aggressive": 0.2805752289,
+          "rspecific": 0.0,
+          "recency": 0.5197154913,
+          "trackman": 0.1997092798
+        },
+        "simplex_ceiling_below_1100": true
+      },
+      "pooled_2022_2024": {
+        "seasons": [
+          2022,
+          2023,
+          2024
+        ],
+        "vertex_score_estimates": {
+          "strict": 1043.6074197937,
+          "aggressive": 1043.1871309639,
+          "rspecific": 1040.4559637090874,
+          "recency": 1046.9095807951928,
+          "trackman": 1044.5525915804824
+        },
+        "threeway_reconstruction": 1044.3783865056835,
+        "threeway_actual": 1044.4711201305,
+        "threeway_reconstruction_error": -0.09273362481644654,
+        "candidate_estimated_score": 1047.4933084362335,
+        "simplex_optimum_estimated_score": 1047.4961410788335,
+        "simplex_optimum_weights": {
+          "strict": 0.0,
+          "aggressive": 0.2419063938,
+          "rspecific": 0.0,
+          "recency": 0.6303308478,
+          "trackman": 0.1277627584
+        },
+        "simplex_ceiling_below_1100": true
+      }
+    },
+    "candidate_selection": "rounded maximin of the 2024 and pooled Public geometries",
+    "diagnostic_only": true,
+    "leaderboard_overfit_risk": true
+  },
+  "zip": {
+    "path": "/Users/moonki/Desktop/open/submit_exp048_simplex.zip",
+    "bytes": 4456705,
+    "sha256": "68ec4bec58beb68c5d1377ebc434615a300390631a668771face308ca5a7948f",
+    "crc": "passed",
+    "files": [
+      "script.py",
+      "requirements.txt",
+      "model/exact_pitchtype_control.json",
+      "model/feature_schemas.json",
+      "model/group_effects.json",
+      "model/histgradientboosting.json",
+      "model/history_state.json",
+      "model/lowrank_effects.json",
+      "model/lowrank_recency_effects.json",
+      "model/lowrank_rspecific_effects.json",
+      "model/metadata.json",
+      "model/multirate_state.json",
+      "model/pitcher_count_effects.json",
+      "model/rfull_lightgbm.txt",
+      "model/team_effects.json"
+    ]
+  },
+  "smoke": {
+    "runtime_seconds": 1.3148138523101807,
+    "stdout": "Saved: output/submission.csv | candidate=public_simplex_act_25_60_15 | rows=5 | mean=0.443890 | min=0.372917 | max=0.516242",
+    "rows": 5,
+    "row_id_order": "passed",
+    "row_id_unique": "passed",
+    "missing": 0,
+    "range": "passed",
+    "mean": 0.4438898364627093,
+    "min": 0.3729165651008432,
+    "max": 0.5162418838966416
+  },
+  "qa": {
+    "current_fold_labels_used_to_fit_components": false,
+    "test_row_aggregation": false,
+    "weight_informed_by_public_scores": true,
+    "python": "3.12.10"
+  },
+  "total_seconds": 3.211973190307617
+}
