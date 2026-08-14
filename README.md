@@ -88,6 +88,8 @@
 | EXP-069 | 부분 정렬 타자·matchup 제어 | 0.247602791 | 882.34 | 투수 단독이 최상, 타자·matchup 추가 이득 없음 |
 | EXP-070 | 투수 ID×정규화 TrackMan 물리 LightGBM | 0.247593046 | 886.24 | 2024 개선·2022 하락, 비채택 |
 | EXP-071 | EXP-051 OOF 잔차 기반 투수 물리 모델 | 0.247604672 | 881.58 | 2023 개선·2022 하락, 비채택 |
+| EXP-072 | 과거 시즌 투수 잠재 제구력 AR(1) + 현재 행 posterior | 0.247604267 | 881.74 | strict 평균 1181.28, 2023 하락·same-fold 상한 886.01로 비채택 |
+| EXP-073 | 투수·타자 잠재 상태 AR(1) 70:30 결합 | 0.247605160 | 881.39 | 타자 상태 추가 이득 없음, 동적 상태 계열 중단 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -108,6 +110,8 @@ EXP-031은 앞선 두 pitchmix 모델과 구조를 달리해 fastball·breaking�
 EXP-032의 recentaggr는 recency2 low-rank 효과와 aggressive branch를 50:50으로 고정 결합한 제출 후보이며 Public `1046.9889925352`를 기록했다. EXP-033~043은 TrackMan 과거 이력, source-season 정책, 저장 예측의 convex 상한, exact game-sequence 정렬을 순서대로 검증했다. 단독 후보 중 EXP-043의 exact-aligned fine-pitch control은 2023·2024에서 기준보다 높았지만, 세 시즌 Skill 1000 hard gate를 넘지 못해 전체 학습 후보로는 채택하지 않았다. EXP-044는 그 신호를 recentaggr와 50:50으로 결합해 2024 Brier `0.24761161511381488`, Skill `878.803350841606`, Public `1046.9499938833`을 기록했다. Public은 recentaggr보다 `0.03899865189987395` 낮아 당시 리더보드 선택은 EXP-032 recentaggr로 유지했다.
 
 EXP-045~071은 exact·partial TrackMan 정렬, 물리·구종·역할·달력·불확실 구간 신호와 Public-informed bounded blend를 검증했다. EXP-051의 `recentaggr + 0.10 × exact TrackMan direct correction`이 Public `1047.9791516638`로 새 최고를 기록했다. 물리 Ridge를 더한 EXP-053은 Public `1046.7664784878`, 보정 강도를 `0.125`로 늘린 EXP-058은 동일 ZIP을 두 번 제출해 모두 `1047.8300661031`이었으므로 최종 선택은 EXP-051이다. 고신뢰 부분 정렬은 1,143,829행까지 TrackMan label coverage를 넓혔지만 어떤 후보도 2022·2023·2024 Skill을 모두 1000 이상으로 만들지 못했다. EXP-060의 447~473개 unique 저장 예측 convex oracle 감사도 2023 certified upper Skill `942.7742472055578`, 2024 `897.2735431238888`로 1000 미달을 인증했다. 따라서 현재 신호의 재가중·TrackMan 구조 변경은 중단하고, 규정 내 신규 행 단위 신호가 확인될 때만 실험을 재개한다.
+
+EXP-072~073은 기존 누적 평균과 다른 동적 선수 상태를 검증했다. validation season보다 앞선 시즌만으로 선수별 league-centered 잠재 log-odds와 AR(1) 지속계수를 구하고, 현재 행의 공식 누적값에서 복원한 현재 시즌 표본과 결합했다. EXP-072 strict Skill은 `1734.02`, `928.06`, `881.74`, EXP-073은 `1732.02`, `928.61`, `881.39`였다. 2024 정답을 사용한 비배포 1차원 oracle조차 각각 `886.01`, `885.94`로 1000에 못 미쳤다. 선수 상태의 시즌 지속성은 존재하지만 EXP-051의 잔차를 설명할 해상도는 부족하므로 ZIP을 만들지 않고 이 계열도 중단한다.
 
 ## 베이스라인과 노트북
 
@@ -185,6 +189,7 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-053 물리 Ridge와 EXP-058 direct weight `.125`는 Public에서 EXP-051보다 낮았으므로 추가 강도 탐색을 중단하기
 - EXP-060 certified convex upper가 2023 `942.77`, 2024 `897.27`로 Skill 1000에 못 미쳤으므로 저장 예측 재가중을 중단하기
 - EXP-066 partial alignment로 1,143,829행을 확보했지만 EXP-067~071이 hard gate를 통과하지 못했으므로 TrackMan 구조 변경을 중단하기
+- EXP-072~073의 동적 투수·타자 상태도 2024 same-fold 상한이 `886.01` 이하이므로 상태공간 posterior 탐색을 중단하기
 - 규정 내 신규 행 단위 신호가 확인될 때만 blocked 목표를 재개하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 

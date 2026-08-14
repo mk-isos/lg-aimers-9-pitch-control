@@ -339,6 +339,29 @@ EXP-051·053·058의 로컬 개선과 실제 Public 순서가 달랐고, EXP-058
 - EXP-058 artifact에 두 제출 시각과 동일 점수를 기록했다.
 - 앞으로 제출 추천 전 `docs/SUBMISSION_LOG.md`, artifact의 `public_result`, ZIP SHA-256을 함께 확인한다.
 
+## STUDY-012 — 선수 상태 지속성과 예측 해상도
+
+### 공부하게 된 이유
+
+경력 전체 누적 prior와 source-season 동일 평균이 선수의 최근 기량 변화를 희석할 가능성을 확인하기 위해 EXP-072~073에서 동적 AR(1) 상태를 검증했다.
+
+### 공부한 내용
+
+- 투수 잠재 제구 상태의 prior-only AR 계수는 약 `0.36~0.45`, 타자는 `0.17~0.41`로 양의 지속성이 있었다. 선수 상태가 매 시즌 완전히 독립이라는 가정도 정확하지 않다.
+- 지속성이 존재하는 것과 target 잔차를 충분히 설명하는 것은 다르다. EXP-072의 2024 same-fold 최적 상한은 Skill `886.01`로 EXP-051 `880.23`보다 높지만 1000에는 크게 못 미쳤다.
+- 현재 시즌 표본 수에 따라 과거 상태를 자동 축소하는 posterior도 2022 이득과 2023 손실이 교차했다. 합리적인 계층 모델이더라도 다음 시즌의 구조 변화까지 해결하지는 못한다.
+- 현재 fold label을 쓰지 않는 strict 선택과, 정답을 써서 계산한 비배포 family ceiling을 분리하면 작은 파라미터 탐색을 계속할지 빠르게 결정할 수 있다.
+
+### 프로젝트에 적용한 방법
+
+- career 누적 `asof_*`에서 frozen prior-season end state를 빼 현재 시즌 count를 행 독립적으로 복원했다.
+- 선수·시즌 성공률을 league-centered EB log-odds로 바꾸고, prior consecutive-season pair만으로 bounded AR(1)을 학습했다.
+- 2024 same-fold oracle이 1000 미달이어서 posterior strength와 correction weight의 추가 탐색을 중단했다.
+
+### 다음 학습
+
+- 새로운 행 단위 supervision이 기존 EXP-051 오차와 충분히 낮은 상관을 갖는지 학습 전 ceiling으로 확인하는 방법
+
 ## 다음에 공부할 내용
 
 - [ ] 베이스라인 Brier Score를 직접 계산한다.
