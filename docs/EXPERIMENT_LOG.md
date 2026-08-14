@@ -1339,6 +1339,51 @@ EXP-072의 투수 `rho`는 2021~2024 prediction fold에서 `0.3573`, `0.3771`, `
 
 ---
 
+## EXP-074~076 — career-stage와 홈구장 시간 전이
+
+### 실험 목적과 가설
+
+EXP-074는 선수의 누적 성공률에 포함되지 않은 데뷔 연차, 이전 시즌 workload, 휴식 시즌, 최근 3시즌 잠재 기량 추세가 EXP-051 잔차를 설명하는지 확인했다. EXP-075는 현재 행의 `top_bottom`, `pitcher_team_id`, `batter_team_id`로 홈 팀을 정확히 복원해 구장·홈/원정 side 효과를 추정했다. EXP-076은 park 효과의 same-fold 해상도와 낮은 시즌 상관을 분리하기 위해 최근 두 과거 OOF 시즌에서 부호가 같은 key만 전이했다.
+
+### 기준 실험과 달라진 점·주요 파라미터
+
+| 실험 | 기준과 달라진 점 | 모델·주요 파라미터 |
+| --- | --- | --- |
+| EXP-074 | pitcher career-stage 16개 행별 피처 | Ridge alpha `1000/10000`, correction weight `.25/.50`, clip `.03`, source residual season-center·동일 총가중치 |
+| EXP-075 | `home_team = pitcher_team if T else batter_team` | park smoothing `2000`, park×side/month `1000`, source-season equal mean, missing key `0` |
+| EXP-076 | 최근 두 source season에서 동일 non-zero sign인 park key만 사용 | stable key effect의 두 시즌 단순 평균, 2개 source 미만이면 correction `0` |
+
+EXP-074의 피처는 seasons played, years since debut, seasons since last, last/mean workload, last/mean latent control, 최근 3시즌 slope, volatility, regular-season share, 현재 시즌 row-local 표본 신뢰도, team change다. 모든 값은 validation season 이전 `train.csv`와 현재 행 공식 입력만 사용했다.
+
+### 검증 기간과 실제 결과
+
+보고 기간은 2022·2023·2024이며, 후보 선택과 effect fit은 현재 fold보다 앞선 OOF만 사용했다.
+
+| 실험 | strict 선택 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill | 평균 / 최저 Skill |
+| --- | --- | --- | --- | --- | ---: |
+| EXP-051 기준 | 고정 | 0.244862459 / 1726.23 | 0.247674466 / 930.21 | 0.247608043 / 880.23 | 1178.89 / 880.23 |
+| EXP-074 | prior-fold Ridge path | 0.244822594 / 1742.23 | 0.247799765 / 880.09 | 0.247630581 / 871.21 | 1164.51 / 871.21 |
+| EXP-075 | park prior-fold path | 0.245039279 / 1655.27 | 0.247781162 / 887.53 | 0.247661862 / 858.69 | 1133.83 / 858.69 |
+| EXP-076 | `stable_main` | 0.244862459 / 1726.23 | 0.247743500 / 902.60 | 0.247638119 / 868.19 | 1165.68 / 868.19 |
+
+### 기준 대비 변화와 결과 해석
+
+- EXP-074는 2022를 `+16.00` 높였지만 2023 `-50.12`, 2024 `-9.02`로 악화됐다. 2024 정답으로 같은 fold에 Ridge를 적합한 비배포 상한도 Brier `0.247575900`, Skill `893.10`이었다.
+- EXP-075의 같은 fold park×month oracle은 2023 Skill `1103.86`, 2024 `1027.68`이었다. 현재 시즌의 팀·구장 key에는 target 해상도가 실제로 존재한다.
+- 그러나 park main 효과의 인접 시즌 상관은 2021→2022 `0.348`, 2022→2023 `-0.110`, 2023→2024 `0.100`이었다. park×side와 park×month도 2022→2023 및 2023→2024 상관이 음수였다.
+- EXP-076은 최소 두 source season을 요구해 2022를 기준과 동일하게 유지했지만, 2023·2024가 각각 `-27.61`, `-12.04` Skill 하락했다. 과거 부호 일치는 다음 시즌 방향의 충분한 조건이 아니었다.
+
+### 채택 여부와 다음 실험
+
+- [ ] EXP-074 채택
+- [ ] EXP-075 채택
+- [ ] EXP-076 채택
+- [x] EXP-051 Public `1047.9791516638` 유지
+- 세 실험 모두 strict 시즌별 1000 hard gate에 실패해 final fit과 제출 ZIP을 만들지 않는다.
+- park 효과는 같은 시즌 label 없이는 배포할 수 없는 신호로 판정한다. 동일 key smoothing·source weight·sign filter 추가 탐색을 중단한다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown
