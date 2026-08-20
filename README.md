@@ -67,7 +67,7 @@
 | EXP-047 | recentaggr 75% + exact TrackMan 25% | 0.247613399 | 878.09 | Public 추정 기반 진단 후보, 제출 보류 |
 | EXP-048 | aggressive 25% + recency 60% + TrackMan 15% | 0.247617199 | 876.57 | Public simplex ceiling이 1100 미달, 제출 보류 |
 | EXP-050 | 투수·타자 이중 구종 propensity | 0.247604318 | 881.72 | 2023·2024 개선, 2022 하락으로 비채택 |
-| EXP-051 | recentaggr + exact TrackMan 직접 보정 10% | **0.247608043** | **880.23** | **Public 1047.979152, 현재 리더보드 선택** |
+| EXP-051 | recentaggr + exact TrackMan 직접 보정 10% | **0.247608043** | **880.23** | Public 1047.979152, EXP-071 이전 리더보드 선택 |
 | EXP-052 | TrackMan control source-season 정책 | 0.247608043 | 880.23 | pooled가 최상, recency 정책 추가 이득 없음 |
 | EXP-053 | EXP-051 + TrackMan 물리 Ridge 15% | 0.247600355 | 883.31 | Public 1046.766478로 EXP-051보다 하락 |
 | EXP-054 | 물리→제어 repertoire 적분 | 0.247605986 | 881.06 | 최신 개선이 2022·평균 하락으로 전이되지 않음 |
@@ -79,16 +79,16 @@
 | EXP-060 | 저장 OOF 전체 convex oracle 상한 감사 | 0.247567012 | 896.66 | 2023 상한 942.77·2024 상한 897.27, 재가중 중단 |
 | EXP-061 | TrackMan 역할·휴식·팀 이동 | 0.247604122 | 881.80 | 2023 하락, 비채택 |
 | EXP-062 | tagged·auto 구종 공동 제어 | 0.247605846 | 881.11 | 새 taxonomy도 최신 개선 미미 |
-| EXP-063 | EXP-051 불확실 확률 구간 residual | 0.247593994 | 885.86 | 2024 개선·2023 하락, 비채택 |
-| EXP-064 | count·손·주자·확률 bin 안정 EB | 0.247599798 | 883.53 | source-season 전이 부족 |
+| EXP-063 | EXP-051 불확실 확률 구간 residual `close060_last_w025` | 0.247593994 | 885.86 | Public 1052.499947, EXP-051 상회·EXP-071 미달 |
+| EXP-064 | 안정 count·주자·확률 bin EB `stable_count_runners_pbin_w050` | 0.247602076 | 882.62 | Public 1049.040612, EXP-051 소폭 상회 |
 | EXP-065 | 손 정보를 완화한 conflict-free exact 정렬 | 0.247608419 | 880.08 | 추가 정렬 97경기의 이득 없음 |
 | EXP-066 | 고신뢰 부분 game-sequence 정렬 | 0.247598163 | 884.19 | 114만 정렬 행 확보, hard gate 미달 |
 | EXP-067 | 부분 정렬 물리→제어 모델 | 0.247604985 | 881.46 | 2022·2023 하락, 비채택 |
 | EXP-068 | 부분 정렬 outs·inning phase 제어 EB | 0.247604116 | 881.81 | 최신 소폭 개선, hard gate 미달 |
 | EXP-069 | 부분 정렬 타자·matchup 제어 | 0.247602791 | 882.34 | 투수 단독이 최상, 타자·matchup 추가 이득 없음 |
-| EXP-070 | 투수 ID×정규화 TrackMan 물리 LightGBM | 0.247593046 | 886.24 | 2024 개선·2022 하락, 비채택 |
-| EXP-071 | EXP-051 OOF 잔차 기반 투수 물리 모델 | 0.247604672 | 881.58 | 2023 개선·2022 하락, 비채택 |
-| EXP-072 | 과거 시즌 투수 잠재 제구력 AR(1) + 현재 행 posterior | 0.247604267 | 881.74 | strict 평균 1181.28, 2023 하락·same-fold 상한 886.01로 비채택 |
+| EXP-070 | 투수 ID×정규화 TrackMan 물리 expected-control | 0.247593046 | 886.24 | Public 1044.068035, EXP-051보다 하락 |
+| EXP-071 | EXP-051 OOF 잔차 기반 투수 물리 lookup | 0.247604672 | 881.58 | **Public 1053.861552, 신규 최고·리더보드 선택** |
+| EXP-072 | 투수 잠재 제구력 AR(1) `ar_k30_w050` | 0.247601118 | 883.01 | Public 1053.558525, EXP-071 다음 순위 |
 | EXP-073 | 투수·타자 잠재 상태 AR(1) 70:30 결합 | 0.247605160 | 881.39 | 타자 상태 추가 이득 없음, 동적 상태 계열 중단 |
 | EXP-074 | 선수 career-stage·workload·기량 추세 Ridge | 0.247630581 | 871.21 | same-fold 상한 893.10, 비채택 |
 | EXP-075 | 공식 팀·공수 정보로 복원한 홈구장 EB | 0.247661862 | 858.69 | same-fold 상한 1027.68이나 과거 시즌 전이 실패 |
@@ -115,6 +115,8 @@ EXP-032의 recentaggr는 recency2 low-rank 효과와 aggressive branch를 50:50�
 EXP-045~071은 exact·partial TrackMan 정렬, 물리·구종·역할·달력·불확실 구간 신호와 Public-informed bounded blend를 검증했다. EXP-051의 `recentaggr + 0.10 × exact TrackMan direct correction`이 Public `1047.9791516638`로 새 최고를 기록했다. 물리 Ridge를 더한 EXP-053은 Public `1046.7664784878`, 보정 강도를 `0.125`로 늘린 EXP-058은 동일 ZIP을 두 번 제출해 모두 `1047.8300661031`이었으므로 최종 선택은 EXP-051이다. 고신뢰 부분 정렬은 1,143,829행까지 TrackMan label coverage를 넓혔지만 어떤 후보도 2022·2023·2024 Skill을 모두 1000 이상으로 만들지 못했다. EXP-060의 447~473개 unique 저장 예측 convex oracle 감사도 2023 certified upper Skill `942.7742472055578`, 2024 `897.2735431238888`로 1000 미달을 인증했다. 따라서 현재 신호의 재가중·TrackMan 구조 변경은 중단하고, 규정 내 신규 행 단위 신호가 확인될 때만 실험을 재개한다.
 
 EXP-072~073은 기존 누적 평균과 다른 동적 선수 상태를 검증했다. validation season보다 앞선 시즌만으로 선수별 league-centered 잠재 log-odds와 AR(1) 지속계수를 구하고, 현재 행의 공식 누적값에서 복원한 현재 시즌 표본과 결합했다. EXP-072 strict Skill은 `1734.02`, `928.06`, `881.74`, EXP-073은 `1732.02`, `928.61`, `881.39`였다. 2024 정답을 사용한 비배포 1차원 oracle조차 각각 `886.01`, `885.94`로 1000에 못 미쳤다. 선수 상태의 시즌 지속성은 존재하지만 EXP-051의 잔차를 설명할 해상도는 부족하므로 ZIP을 만들지 않고 이 계열도 중단한다.
+
+2026-08-20에는 로컬 hard gate와 별개인 제한적 Public 확인으로 EXP-063/064/070/071/072의 사전 고정 후보를 frozen row-local 패키지로 제출했다. Public은 EXP-071 `1053.8615519684`, EXP-072 `1053.5585249357`, EXP-063 `1052.4999474745`, EXP-064 `1049.0406115485`, EXP-070 `1044.0680347318` 순이었다. 이에 리더보드 선택을 EXP-051에서 **EXP-071 `playerphys_resid_w025`**로 갱신한다. 이 결과로 Public-informed weight 재탐색은 하지 않으며, EXP-072는 독립적인 runner-up 근거로 보존한다.
 
 EXP-074는 데뷔 연차·휴식 시즌·이전 workload·최근 3시즌 기량 추세를 prior-only Ridge에 넣었지만 strict Skill `1742.23`, `880.09`, `871.21`로 악화됐다. EXP-075는 `top_bottom`과 양 팀 ID로 홈구장 팀을 행별 복원했다. 같은 fold 정답을 사용한 park×month 상한은 2023 `1103.86`, 2024 `1027.68`로 처음 1000을 넘었지만, 과거 시즌 효과 전이는 `1655.27`, `887.53`, `858.69`에 그쳤다. 인접 시즌 park 효과 상관이 `-0.11~0.35`였고, 최근 두 과거 시즌에서 부호가 일치한 효과만 쓰는 EXP-076도 `1726.23`, `902.60`, `868.19`로 실패했다. 구장 신호는 동시즌 해상도는 있으나 2025에 배포할 시간 안정성이 없어 ZIP을 만들지 않는다.
 
@@ -190,7 +192,9 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 
 ## 다음 단계
 
-- EXP-051 Public `1047.9791516638`을 현재 최종 리더보드 선택으로 유지하기
+- EXP-071 `playerphys_resid_w025` Public `1053.8615519684`을 현재 리더보드 선택으로 유지하기
+- EXP-072 `ar_k30_w050` Public `1053.5585249357`은 runner-up으로 보존하고 Public 점수 기반 재가중은 하지 않기
+- EXP-063·064는 EXP-051을 상회했지만 EXP-071보다 낮고, EXP-070은 EXP-051보다 낮으므로 추가 변형을 중단하기
 - EXP-053 물리 Ridge와 EXP-058 direct weight `.125`는 Public에서 EXP-051보다 낮았으므로 추가 강도 탐색을 중단하기
 - EXP-060 certified convex upper가 2023 `942.77`, 2024 `897.27`로 Skill 1000에 못 미쳤으므로 저장 예측 재가중을 중단하기
 - EXP-066 partial alignment로 1,143,829행을 확보했지만 EXP-067~071이 hard gate를 통과하지 못했으므로 TrackMan 구조 변경을 중단하기

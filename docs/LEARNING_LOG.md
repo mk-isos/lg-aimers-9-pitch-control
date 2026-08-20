@@ -335,7 +335,7 @@ EXP-051·053·058의 로컬 개선과 실제 Public 순서가 달랐고, EXP-058
 
 ### 프로젝트에 적용한 방법
 
-- 최종 리더보드 선택은 Public 최고 EXP-051로 고정했다.
+- 당시 리더보드 선택은 Public 최고 EXP-051로 고정했다.
 - EXP-058 artifact에 두 제출 시각과 동일 점수를 기록했다.
 - 앞으로 제출 추천 전 `docs/SUBMISSION_LOG.md`, artifact의 `public_result`, ZIP SHA-256을 함께 확인한다.
 
@@ -384,6 +384,32 @@ EXP-075의 park 효과는 같은 fold 정답을 허용하면 2023·2024 Skill 10
 ### 다음 학습
 
 - 현재 시즌 label 없이도 안정적으로 관측 가능한 구장 물리 속성이나 외부 규정 내 상태가 제공되는지 확인
+
+## STUDY-014 — absolute target과 residual target의 Public 전이
+
+### 공부하게 된 이유
+
+같은 partial-aligned TrackMan 물리 표현을 사용한 EXP-070과 EXP-071은 학습 target만 달랐다. EXP-070은 absolute control을, EXP-071은 EXP-051 OOF residual을 학습했으며 2026-08-20 Public에서 각각 `1044.0680347318`, `1053.8615519684`를 기록했다.
+
+### 공부한 내용
+
+- 강한 기준 모델이 이미 있는 경우 absolute target 전체를 다시 설명하기보다 기준이 놓친 residual을 직접 학습하는 편이 보정 신호를 분리할 수 있다.
+- residual source를 시즌별로 center하고 source season에 같은 총가중치를 주면 시즌 전체 성공률 변화보다 행별 상대 효과를 학습하도록 제한할 수 있다.
+- 같은 frozen historical lookup 구조라도 target 정의에 따라 미래 시즌 Public 전이가 크게 달라질 수 있다.
+- EXP-072의 AR(1) dynamic state도 Public `1053.5585249357`을 기록했다. rolling hard gate 실패가 다음 시즌의 모든 유용성을 부정하지는 않지만, 한 Public 결과를 새 weight 선택 데이터로 사용해서는 안 된다.
+- 여러 탐색 후보를 제출했다면 ZIP hash, 제출 ID, 시각, 실행 시간과 Public을 함께 기록해야 후보 정의와 결과를 정확히 연결할 수 있다.
+
+### 프로젝트에 적용한 방법
+
+- EXP-071의 added model은 2021~2024 EXP-051 OOF residual만 학습하고 2019~2024 TrackMan history를 score한 뒤 row-local lookup으로 고정했다.
+- EXP-070/071 모두 현재 투구 실제 TrackMan과 다른 평가 행을 사용하지 않는 동일한 inference 제약으로 비교했다.
+- 신규 리더보드 선택은 EXP-071로 갱신하고 EXP-072는 runner-up으로 보존했다.
+- Public 결과를 이용한 EXP-071/072 가중치 탐색은 하지 않기로 했다.
+
+### 다음 학습
+
+- residual target의 우위가 다른 prediction basis와 다음 시간 구간에서도 반복되는지 strict historical OOF로 확인한다.
+- 서로 다른 correction family를 결합할 때 Public이 아닌 inner OOF만으로 비중을 결정하는 방법을 유지한다.
 
 ## 다음에 공부할 내용
 

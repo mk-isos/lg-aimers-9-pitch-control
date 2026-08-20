@@ -349,8 +349,42 @@ EXP-021 strict backbone에서 이미 시간 검증한 세 prediction branch만 �
 - EXP-051은 이전 recentaggr Public `1046.9889925352`보다 높은 `1047.9791516638`을 기록해 리더보드 선택이 됐다.
 - EXP-053은 로컬 2023·2024가 EXP-051보다 높았지만 Public은 `1046.7664784878`로 하락했다. physical Ridge는 2025에 전이되지 않았다.
 - EXP-058의 `.125`는 `.10`보다 낮아 direct correction의 추가 강도 탐색을 중단한다.
-- 최종 리더보드 선택: **EXP-051**.
-- 추가 제출은 새로운 규정 내 행 단위 신호가 로컬 hard gate를 통과할 때만 검토한다.
+- 당시 리더보드 선택: **EXP-051**.
+- 당시에는 새로운 규정 내 행 단위 신호가 로컬 hard gate를 통과할 때만 추가 제출하기로 했다.
+
+---
+
+## SUB-063/064/070/071/072 — post-EXP-058 탐색 제출 결과
+
+### 제출 파일과 무결성
+
+| 실험 | 제출 ZIP | 크기 | SHA-256 |
+| --- | --- | ---: | --- |
+| EXP-063 | `EXP-063-UNCERTAIN.zip` | 4,513,694 | `7e2a7cd24ed6993ec99716d2c4503a1f96affbaccd55260f28f7f853c276bebd` |
+| EXP-064 | `EXP-064-STABLERUNNERS.zip` | 4,460,453 | `418219aa732642f93b24ae8c5c370a32c51bd601a13d551ea4b11141eab82232` |
+| EXP-070 | `EXP-070-PLAYERPHYS.zip` | 4,798,958 | `49113b2a39ef344ec37c4f5727244a33a4700406de0cb8e4eef74f477b0346da` |
+| EXP-071 | `EXP-071-PLAYERPHYS-RESID.zip` | 4,817,145 | `27ab6adbc4e2f460d705438dc5b6cbd0d9dffd9a0d519354a47d26aa6d240ad3` |
+| EXP-072 | `submit_exp072_dynamic_ar_k30_w050.zip` | 4,571,393 | `c5609837619119b7104935f381b7501236d55b918dc2cb17fd28bf4a6360b268` |
+
+다섯 ZIP 모두 CRC, root 구조, 확률 범위와 full/reverse/split/singleton/duplicate 행 독립성 검사를 통과했다. 학습 데이터, model state, prediction array와 ZIP 자체는 Git에 포함하지 않는다.
+
+### 실제 제출 결과
+
+| 제출 ID | 실험 | 제출 일시 | Public Score | 실행 시간 | 결과 |
+| ---: | --- | --- | ---: | ---: | --- |
+| 57427 | EXP-071 | 2026-08-20 21:35:47 | **1053.8615519684** | 12초 | **신규 최고·최종 선택** |
+| 57429 | EXP-070 | 2026-08-20 21:36:23 | 1044.0680347318 | 13초 | EXP-051보다 하락 |
+| 57431 | EXP-064 | 2026-08-20 21:36:35 | 1049.0406115485 | 13초 | EXP-051 상회 |
+| 57432 | EXP-063 | 2026-08-20 21:36:51 | 1052.4999474745 | 12초 | EXP-051 상회, EXP-071 미달 |
+| 57435 | EXP-072 | 2026-08-20 21:37:35 | 1053.5585249357 | 17초 | runner-up |
+
+### 최종 상태
+
+- 리더보드 선택: **EXP-071 `playerphys_resid_w025`**.
+- runner-up: EXP-072 `ar_k30_w050`.
+- EXP-063·064는 이전 최고 EXP-051을 상회했지만 EXP-071보다 낮다.
+- EXP-070 absolute expected-control correction은 EXP-051보다 낮아 비채택한다.
+- Public 결과에 맞춘 후보 혼합 또는 correction weight 재탐색은 하지 않는다.
 
 ---
 

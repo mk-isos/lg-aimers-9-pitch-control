@@ -51,7 +51,7 @@
 | EXP-047 | 2026-08-13 | recentaggr 75% + exact TrackMan 25% | 2022~2024 | 0.247613399 | 878.09 | Public-informed 진단 후보, 제출 보류 |
 | EXP-048 | 2026-08-13 | aggressive 25% + recency 60% + TrackMan 15% | 2022~2024 | 0.247617199 | 876.57 | 추정 ceiling 1100 미달, 제출 보류 |
 | EXP-050 | 2026-08-13 | 투수·타자 이중 pitch propensity | 2022~2024 | 0.247604318 | 881.72 | 2022 하락, 비채택 |
-| EXP-051 | 2026-08-13 | recentaggr + exact TrackMan 직접 보정 10% | 2022~2024 | 0.247608043 | 880.23 | Public 1047.979152, 최종 선택 |
+| EXP-051 | 2026-08-13 | recentaggr + exact TrackMan 직접 보정 10% | 2022~2024 | 0.247608043 | 880.23 | Public 1047.979152, EXP-071 이전 선택 |
 | EXP-052 | 2026-08-13 | TrackMan control source-season 정책 | 2022~2024 | 0.247608043 | 880.23 | pooled 최상, 추가 정책 비채택 |
 | EXP-053 | 2026-08-13 | EXP-051 + TrackMan 물리 Ridge 15% | 2022~2024 | 0.247600355 | 883.31 | Public 1046.766478, 비채택 |
 | EXP-054 | 2026-08-13 | 물리→제어 repertoire 적분 | 2022~2024 | 0.247605986 | 881.06 | 최신 개선이 과거 하락과 교차 |
@@ -63,15 +63,93 @@
 | EXP-060 | 2026-08-13 | 447~473개 unique OOF convex 상한 감사 | 2022~2024 | 0.247567012 | 896.66 | 2023·2024 certified upper 1000 미달 |
 | EXP-061 | 2026-08-13 | TrackMan 역할·휴식·팀 이동 | 2022~2024 | 0.247604122 | 881.80 | 2023 하락, 비채택 |
 | EXP-062 | 2026-08-13 | tagged·auto 구종 공동 제어 | 2022~2024 | 0.247605846 | 881.11 | 개선 미미, 비채택 |
-| EXP-063 | 2026-08-13 | 불확실 확률 구간 residual | 2022~2024 | 0.247593994 | 885.86 | 2024 개선·2023 하락 |
-| EXP-064 | 2026-08-13 | count·손·주자·확률 bin 안정 EB | 2022~2024 | 0.247599798 | 883.53 | source-season 전이 부족 |
+| EXP-063 | 2026-08-13 | 불확실 확률 구간 residual `close060_last_w025` | 2022~2024 | 0.247593994 | 885.86 | Public 1052.499947, EXP-051 상회 |
+| EXP-064 | 2026-08-13 | 안정 count·주자·확률 bin EB `stable_count_runners_pbin_w050` | 2022~2024 | 0.247602076 | 882.62 | Public 1049.040612, EXP-051 상회 |
 | EXP-065 | 2026-08-13 | conflict-free relaxed exact 정렬 | 2022~2024 | 0.247608419 | 880.08 | 추가 exact coverage 이득 없음 |
 | EXP-066 | 2026-08-13 | 고신뢰 partial game-sequence 정렬 | 2022~2024 | 0.247598163 | 884.19 | 114만 행 확보, hard gate 미달 |
 | EXP-067 | 2026-08-13 | partial-aligned 물리 제어 | 2022~2024 | 0.247604985 | 881.46 | 2022·2023 하락 |
 | EXP-068 | 2026-08-13 | partial outs·inning phase 제어 | 2022~2024 | 0.247604116 | 881.81 | 최신 소폭 개선, 비채택 |
 | EXP-069 | 2026-08-13 | partial 타자·matchup 제어 | 2022~2024 | 0.247602791 | 882.34 | 투수 단독 최상, 비채택 |
-| EXP-070 | 2026-08-13 | 투수 ID×정규화 물리 LightGBM | 2022~2024 | 0.247593046 | 886.24 | 2022 하락, 비채택 |
-| EXP-071 | 2026-08-13 | EXP-051 OOF 잔차 기반 투수 물리 | 2022~2024 | 0.247604672 | 881.58 | 2023 개선·2022 하락, 비채택 |
+| EXP-070 | 2026-08-13 | 투수 ID×정규화 물리 expected-control | 2022~2024 | 0.247593046 | 886.24 | Public 1044.068035, EXP-051보다 하락 |
+| EXP-071 | 2026-08-13 | EXP-051 OOF 잔차 기반 투수 물리 lookup | 2022~2024 | 0.247604672 | 881.58 | **Public 1053.861552, 신규 최고·채택** |
+| EXP-072 | 2026-08-13 | 투수 잠재 제구력 AR(1) `ar_k30_w050` | 2022~2024 | 0.247601118 | 883.01 | Public 1053.558525, runner-up |
+
+## 2026-08-20 post-EXP-058 탐색 제출과 EXP-071 신규 최고
+
+### 실험 목적과 가설
+
+EXP-063/064/070/071/072는 원래 rolling hard gate를 통과하지 못해 제출하지 않았지만, 모두 EXP-058 이후에 만든 서로 다른 historical correction이다. 2025 Public이 2022~2024 rolling과 다른 regime일 가능성을 제한적으로 확인하기 위해 후보별 사전 고정식을 그대로 full-fit하고, EXP-051 위에 한 번만 적용하는 탐색 제출을 수행했다. Public 결과를 보고 weight나 후보 공식을 다시 맞추지 않는 것을 전제로 했다.
+
+가설은 다음과 같았다.
+
+- EXP-063: EXP-051이 `0.5`에 가까운 불확실 행에서만 최근 source residual expert가 추가 해상도를 제공한다.
+- EXP-064: 여러 source season에서 부호가 같은 count·주자·확률-bin 효과는 다음 시즌에도 안정적으로 전이된다.
+- EXP-070: 과거 TrackMan 물리로 추정한 투수 문맥 expected control과 공식 as-of 성공률의 차이가 현재 행의 잔차를 설명한다.
+- EXP-071: absolute control보다 EXP-051 OOF residual을 직접 학습한 투수 물리 lookup이 더 안정적인 보정 basis가 된다.
+- EXP-072: 투수별 잠재 제구 상태의 bounded AR(1) 지속성이 2025 current-season posterior의 prior를 개선한다.
+
+### 기준 실험과 달라진 점
+
+기준은 EXP-051 `trackman_direct_recent_w010`, Public `1047.9791516638`이다. 각 제출은 EXP-051 전체 추론을 보존하고 아래 frozen correction 하나만 추가했다. 모든 상태는 2019~2024 train/TrackMan에서 고정했으며, 현재 투구의 실제 결과·실제 TrackMan 값·다른 평가 행을 사용하지 않았다.
+
+### 모델과 주요 파라미터
+
+| 실험 | 제출 후보 | 주요 파라미터 |
+| --- | --- | --- |
+| EXP-063 | `close060_last_w025` | `abs(p051-0.5)<0.06`, LGB 200 trees/leaves `7`, residual season-center, correction clip `.03`, weight `.25` |
+| EXP-064 | `stable_count_runners_pbin_w050` | count·runners·p-bin 폭 `.025`, smoothing `500`, 2021~2024 공통 nonzero/common-sign 95 cells, clip `.02`, weight `.50` |
+| EXP-070 | `playerphys_w015` | partial-aligned 1,143,829 rows, 9 normalized physical values, LGB 250 trees/leaves `15`, frozen pitcher/count/batter-hand expected-control lookup, weight `.15` |
+| EXP-071 | `playerphys_resid_w025` | 2021~2024 aligned OOF residual 765,944 rows, season-center/equal weight, EXP-070 표현, frozen residual lookup, weight `.25` |
+| EXP-072 | `ar_k30_w050` | season-state smoothing `200`, bounded zero-intercept AR(1), current posterior strength `30`, correction weight `.50` |
+
+### 검증 기간과 실제 validation 결과
+
+검증 기간은 2022·2023·2024 rolling-origin이다. 아래 값은 각 실험의 추적된 `validation_metrics.json`에 기록된 제출 후보 수치다.
+
+| 후보 | 2022 Brier / Skill | 2023 Brier / Skill | 2024 Brier / Skill |
+| --- | ---: | ---: | ---: |
+| EXP-051 기준 | 0.244862459 / 1726.23 | 0.247674466 / 930.21 | 0.247608043 / 880.23 |
+| EXP-063 `close060_last_w025` | 0.244809042 / 1747.67 | 0.247691287 / 923.48 | 0.247593994 / 885.86 |
+| EXP-064 `stable_count_runners_pbin_w050` | 0.244827149 / 1740.41 | 0.247674830 / 930.07 | 0.247602076 / 882.62 |
+| EXP-070 `playerphys_w015` | 0.244892837 / 1714.04 | 0.247673298 / 930.68 | 0.247593046 / 886.24 |
+| EXP-071 `playerphys_resid_w025` | 0.244900654 / 1710.91 | 0.247660514 / 935.79 | 0.247604672 / 881.58 |
+| EXP-072 `ar_k30_w050` | 0.244850581 / 1731.00 | 0.247679914 / 928.03 | 0.247601118 / 883.01 |
+
+EXP-063/064/072는 2022·2024에서 EXP-051보다 낮은 Brier를 기록했지만 2023은 높았다. EXP-070/071은 2023·2024 Brier가 EXP-051보다 낮았지만 2022는 높았다. 어떤 후보도 기존의 세 시즌 hard gate를 통과하지 못한 상태에서 Public 확인을 진행했다.
+
+### Public 결과
+
+| 제출 ID | 실험 | 제출 일시 | Public Score | 실행 시간 | 판정 |
+| ---: | --- | --- | ---: | ---: | --- |
+| 57427 | EXP-071 | 2026-08-20 21:35:47 | **1053.8615519684** | 12초 | **신규 최고·리더보드 선택** |
+| 57429 | EXP-070 | 2026-08-20 21:36:23 | 1044.0680347318 | 13초 | EXP-051보다 하락 |
+| 57431 | EXP-064 | 2026-08-20 21:36:35 | 1049.0406115485 | 13초 | EXP-051 상회, EXP-071 미달 |
+| 57432 | EXP-063 | 2026-08-20 21:36:51 | 1052.4999474745 | 12초 | EXP-051 상회, EXP-071 미달 |
+| 57435 | EXP-072 | 2026-08-20 21:37:35 | 1053.5585249357 | 17초 | runner-up |
+
+### 결과 해석
+
+- EXP-071의 frozen player-physics residual lookup이 가장 높은 Public을 기록해, absolute expected-control을 보정한 EXP-070보다 이 데이터에서는 residual target이 더 유효했다.
+- EXP-072도 EXP-071 다음 점수를 기록해 투수 latent state의 AR(1) 지속성이 2025에서 유용할 가능성을 확인했다.
+- EXP-063·064까지 EXP-051을 상회해 post-EXP-058 historical correction 네 개가 Public에서 기준을 넘었지만, EXP-070은 하락했다.
+- 로컬 hard gate는 다음 시즌 Public의 모든 순서를 설명하지 못했다. 반대로 이 한 번의 Public 결과만으로 가중치를 다시 선택하면 leaderboard overfitting이 되므로 추가 weight 탐색 근거로 사용하지 않는다.
+
+### 패키지와 독립성 감사
+
+- EXP-063/064/070/071/072 각각 frozen inference builder와 unit test를 추가했다.
+- cutoff-2023 상태로 기존 2024 저장 예측을 재구성한 parity와 full/reverse/split/singleton/duplicate 행 독립성 검사를 통과했다.
+- 제출 ZIP, model state, prediction array, synthetic output은 Git에 포함하지 않는다.
+- 신규 dependency는 없으며 기존 `lightgbm==4.6.0`, NumPy, pandas로 재현한다.
+
+### 채택 여부와 다음 실험
+
+- [x] EXP-071 `playerphys_resid_w025` 채택 — Public `1053.8615519684`
+- [x] EXP-072 `ar_k30_w050` runner-up 보존 — Public `1053.5585249357`
+- [ ] EXP-063/064/070 리더보드 선택
+- Public 점수에 맞춘 EXP-071/072 혼합 비율 탐색은 하지 않는다.
+- 다음 실험은 새 prediction basis를 사전 고정해 rolling 검증하거나, 기존 두 basis의 결합이 필요하면 Public과 독립적인 historical OOF에서만 결정한다.
+
+---
 
 ## EXP-000 — 운영진 베이스라인 구조 확인
 
@@ -1331,11 +1409,11 @@ EXP-072의 투수 `rho`는 2021~2024 prediction fold에서 `0.3573`, `0.3771`, `
 
 ### 채택 여부와 다음 실험
 
-- [ ] EXP-072 채택
+- [x] 로컬 hard gate 기준으로는 EXP-072 비채택
 - [ ] EXP-073 채택
-- [x] EXP-051 Public `1047.9791516638`을 최종 리더보드 선택으로 유지
-- 두 실험 모두 시즌별 Skill 1000 및 평균 1100 hard gate를 통과하지 못했으므로 전체 2019~2024 final fit과 제출 ZIP은 만들지 않는다.
-- 동적 선수 상태, 동일 신호의 posterior strength·가중치 추가 탐색을 중단한다. 새로운 규정 내 행 단위 supervision이 생기기 전에는 제출 기회를 쓰지 않는다.
+- [x] 2026-08-20 사전 고정 `ar_k30_w050` Public 확인 — `1053.5585249357`, EXP-071 runner-up
+- Public 결과에 맞춘 posterior strength·가중치 추가 탐색은 하지 않는다.
+- 상세 제출 결과는 위 `2026-08-20 post-EXP-058 탐색 제출` 절에 기록한다.
 
 ---
 
