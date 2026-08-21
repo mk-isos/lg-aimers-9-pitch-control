@@ -436,6 +436,35 @@ EXP-063·064·071·072의 완성 예측 오차는 거의 같은데 각 모델이
 
 - correction 조합을 다시 시도하려면 기존 basis의 계수 탐색보다 새로운 독립 행 단위 신호를 먼저 확인한다.
 
+## STUDY-016 — 새로운 함수 공간과 시간 전이의 분리
+
+### 공부하게 된 이유
+
+EXP-112~115에서 기존 EXP와 다른 high-order interaction, switching state, hierarchical random-slope posterior를 실제로 구현했지만 survivor가 나오지 않은 이유를 구분하기 위해 기록한다.
+
+### 공부한 내용
+
+- ablation에서 새 항이 크게 활성화됐다는 사실은 novelty를 증명하지만, 다음 시즌 Brier 개선을 보장하지 않는다. EXP-112의 order-3 항은 분명 활성화됐으나 2023·2024 residual 방향이 모두 불리했다.
+- switching model은 state 수보다 state occupancy와 out-of-time 방향성이 중요하다. EXP-114는 transition-conditioned posterior를 만들었지만 작은 state가 약 2%로 붕괴했고 2024에서 역전됐다.
+- joint hierarchical posterior는 기존 EB와 다른 inductive bias를 만들 수 있다. EXP-115 random slopes는 두 fold를 모두 개선했지만 pooled ΔBrier가 약 `-4.9e-6`이고 error correlation이 `0.999988`이라 독립적인 strong basis는 아니었다.
+- same-fold oracle, bootstrap, novelty gate와 promotion gate를 함께 보면 “신호가 존재함”과 “제출 후보로 충분함”을 분리할 수 있다.
+
+### 프로젝트에 적용한 방법
+
+- 결과 전에 family, configuration, seed, correction weight와 survivor gate를 SHA256으로 잠갔다.
+- interaction 제거, transition 제거, slope 제거 ablation으로 각 모델이 기존 구조를 단순 재현하지 않았는지 확인했다.
+- cheap 2023/2024에서 survivor가 없었으므로 full rolling, ensemble, final fit과 ZIP을 실행하지 않았다.
+
+### 결과물
+
+- 코드: `experiments/train_exp112_hofm_ahofm_residual.py`~`train_exp115_variational_random_slopes.py`
+- 보고서: `docs/ULTRA_MODEL_RESEARCH_REPORT.md`
+- 실험 ID: EXP-112~115
+
+### 다음 학습
+
+- architecture 확장보다 intended location이나 current-pitch physics proxy처럼 새로운 독립 row-level 정보가 제공될 때의 conditional marginalization 방법
+
 ## 다음에 공부할 내용
 
 - [ ] 베이스라인 Brier Score를 직접 계산한다.

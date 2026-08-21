@@ -1,0 +1,444 @@
+{
+  "candidate": "D1-mix",
+  "configuration": {
+    "batch_size": 8192,
+    "categorical_fields": [
+      "game_month",
+      "game_dayofweek",
+      "inning",
+      "top_bottom",
+      "game_type",
+      "balls_before",
+      "strikes_before",
+      "outs_before",
+      "base_state",
+      "pitcher_id",
+      "batter_id",
+      "pitcher_hand",
+      "batter_hand",
+      "pitcher_team_id",
+      "batter_team_id"
+    ],
+    "correction": "clip(p071 + 0.25 * 0.03 * tanh(raw), 0, 1)",
+    "cross_experts": 4,
+    "cross_layers": 2,
+    "cross_rank": 32,
+    "deep_widths": [
+      256,
+      128
+    ],
+    "dropout": 0.1,
+    "epochs": 6,
+    "excluded_predictors": [
+      "row_id",
+      "season",
+      "control_success"
+    ],
+    "id_dropout": 0.15,
+    "learning_rate": 0.001,
+    "numeric_fields": [
+      "run_top_before",
+      "run_bot_before",
+      "run_total_before",
+      "score_diff_home",
+      "score_diff_pitcher_team",
+      "runner_on_1b",
+      "runner_on_2b",
+      "runner_on_3b",
+      "num_runners_on",
+      "home_win_expectancy",
+      "away_win_expectancy",
+      "li",
+      "asof_pitcher_n",
+      "asof_pitcher_success_rate",
+      "asof_pitcher_reverse_rate",
+      "asof_pitcher_middle_rate",
+      "asof_pitcher_ball_rate",
+      "asof_pitcher_strike_rate",
+      "asof_pitcher_prev1_game_success_rate",
+      "asof_pitcher_prev3_game_success_rate",
+      "asof_pitcher_prev5_game_success_rate",
+      "asof_pitcher_prev1_game_middle_rate",
+      "asof_pitcher_prev3_game_middle_rate",
+      "asof_pitcher_prev5_game_middle_rate",
+      "asof_batter_n",
+      "asof_batter_success_rate",
+      "asof_batter_middle_rate",
+      "asof_pitcher_pitchmix_n",
+      "asof_pitcher_fastball_rate",
+      "asof_pitcher_breaking_rate",
+      "asof_pitcher_offspeed_rate"
+    ],
+    "optimizer": "AdamW",
+    "other_category_width": 2,
+    "player_embedding_width": 12,
+    "pwl_knots": 16,
+    "pwl_width": 8,
+    "seed": 20260821,
+    "structure_embedding_width": 4,
+    "weight_decay": 0.0003
+  },
+  "environment": {
+    "device": "cpu",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "platform": "macOS-15.3.2-arm64-arm-64bit",
+    "python": "3.12.10",
+    "torch": "2.7.1"
+  },
+  "experiment": "EXP-113",
+  "family": "dcnv2_all_field_exp071_residual",
+  "folds": {
+    "2023": {
+      "cross_ablation_prediction_rms": 4.433188475501084e-05,
+      "cross_novelty_gate_rms_at_least_1e_4": false,
+      "memory": {
+        "peak_rss_after_mb": 1461.015625,
+        "peak_rss_before_mb": 1203.375
+      },
+      "metrics_vs_exp051": {
+        "actual_rate": 0.49995723449750534,
+        "baseline_brier": 0.24767446621578296,
+        "baseline_skill": 930.2127889365463,
+        "candidate_brier": 0.24779401338091459,
+        "candidate_mean": 0.49855221841208847,
+        "candidate_skill": 882.3939225340749,
+        "correction_rms": 0.00792384871508594,
+        "correction_target_residual_correlation": -0.0076332416496715984,
+        "delta_brier_vs_exp071": 0.00011954716513160496,
+        "delta_skill": -47.818866402472736,
+        "game_block_bootstrap": {
+          "ci95": [
+            7.76442874720325e-05,
+            0.00015791292938614082
+          ],
+          "games": 809,
+          "observed_delta_brier": 0.00011954716513160496,
+          "probability_delta_brier_negative": 0.0,
+          "replicates": 2000,
+          "seed": 20262844
+        },
+        "oracle": {
+          "brier": 0.247661638504776,
+          "coefficient_unclipped": -0.4519999724832073,
+          "coefficient_used": -0.4519999724832073,
+          "deployable": false,
+          "gain_vs_exp071": 1.2827711006968556e-05
+        },
+        "paired_loss_mean": 0.00011954716513160496,
+        "paired_loss_std": 0.007885821027253352,
+        "prediction_correlation": 0.9864574423177972,
+        "rows": 245525,
+        "target_error_correlation": 0.9998744128164662
+      },
+      "metrics_vs_exp071": {
+        "actual_rate": 0.49995723449750534,
+        "baseline_brier": 0.24766051386953197,
+        "baseline_skill": 935.7937274777628,
+        "candidate_brier": 0.24779401338091459,
+        "candidate_mean": 0.49855221841208847,
+        "candidate_skill": 882.3939225340749,
+        "correction_rms": 0.007275089606372299,
+        "correction_target_residual_correlation": -0.011658775900410907,
+        "delta_brier_vs_exp071": 0.00013349951138261182,
+        "delta_skill": -53.39980494369393,
+        "game_block_bootstrap": {
+          "ci95": [
+            9.56433767864308e-05,
+            0.00017032135333100784
+          ],
+          "games": 809,
+          "observed_delta_brier": 0.00013349951138261182,
+          "probability_delta_brier_negative": 0.0,
+          "replicates": 2000,
+          "seed": 20262844
+        },
+        "oracle": {
+          "brier": 0.24762984922859832,
+          "coefficient_unclipped": -0.7611681280019427,
+          "coefficient_used": -0.7611681280019427,
+          "deployable": false,
+          "gain_vs_exp071": 3.0664640933653065e-05
+        },
+        "paired_loss_mean": 0.00013349951138261182,
+        "paired_loss_std": 0.0072410370450072,
+        "prediction_correlation": 0.9885304113365271,
+        "rows": 245525,
+        "target_error_correlation": 0.9998944184383067
+      },
+      "model": {
+        "bytes": 1209630,
+        "input_dimension": 310,
+        "parameters": 299645,
+        "path": "artifacts/EXP-113/dcnv2_all_field_residual/fold_2023/model.pt",
+        "sha256": "59b1c824eecf871c144240adeaa22b45049929fd5f59cf8b1bc810b5eedba583"
+      },
+      "preprocessor_path": "artifacts/EXP-113/dcnv2_all_field_residual/fold_2023/preprocessor.json",
+      "row_independence": {
+        "literal_exact_identity_passed": true,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_differences": {
+          "duplicate_first": 0.0,
+          "duplicate_second": 0.0,
+          "permutation": 0.0,
+          "reverse": 0.0,
+          "singleton": 0.0,
+          "split": 0.0
+        },
+        "rows": 64,
+        "seed": 20260821,
+        "semantic_tolerance_1e_12_passed": true,
+        "vectorized_vs_scalar_max_difference": 7.413811786705082e-09
+      },
+      "runtime": {
+        "fold_total_seconds": 37.739647959009744,
+        "preprocessing_seconds": 3.1340082910028286,
+        "training_seconds": 30.48565824999241,
+        "validation_inference_seconds": 1.771952541981591,
+        "validation_rows_per_second": 138561.8373985497
+      },
+      "source_rows": 247472,
+      "source_season_equal_weight": true,
+      "source_seasons": [
+        2022
+      ],
+      "training_history": [
+        {
+          "epoch": 1.0,
+          "scaled_weighted_mse": 4352.234637434993,
+          "seconds": 5.009978290996514
+        },
+        {
+          "epoch": 2.0,
+          "scaled_weighted_mse": 4348.744806672573,
+          "seconds": 4.862339041981613
+        },
+        {
+          "epoch": 3.0,
+          "scaled_weighted_mse": 4346.4159794150955,
+          "seconds": 4.866391125018708
+        },
+        {
+          "epoch": 4.0,
+          "scaled_weighted_mse": 4345.204933822059,
+          "seconds": 4.88412299999618
+        },
+        {
+          "epoch": 5.0,
+          "scaled_weighted_mse": 4344.928182058223,
+          "seconds": 5.066899833997013
+        },
+        {
+          "epoch": 6.0,
+          "scaled_weighted_mse": 4344.508143819048,
+          "seconds": 4.927200417005224
+        }
+      ],
+      "validation_rows": 245525,
+      "validation_season": 2023
+    },
+    "2024": {
+      "cross_ablation_prediction_rms": 9.411864994197163e-05,
+      "cross_novelty_gate_rms_at_least_1e_4": false,
+      "memory": {
+        "peak_rss_after_mb": 1483.75,
+        "peak_rss_before_mb": 1461.015625
+      },
+      "metrics_vs_exp051": {
+        "actual_rate": 0.4861049201797189,
+        "baseline_brier": 0.24760804255875157,
+        "baseline_skill": 880.2334773435838,
+        "candidate_brier": 0.24767419918137376,
+        "candidate_mean": 0.495140628488672,
+        "candidate_skill": 853.7503755813192,
+        "correction_rms": 0.007972060355183502,
+        "correction_target_residual_correlation": 0.00533950867107685,
+        "delta_brier_vs_exp071": 6.615662262218568e-05,
+        "delta_skill": -26.483101762265292,
+        "game_block_bootstrap": {
+          "ci95": [
+            2.4529487784962238e-05,
+            0.00010855717328264516
+          ],
+          "games": 822,
+          "observed_delta_brier": 6.615662262218568e-05,
+          "probability_delta_brier_negative": 0.0,
+          "replicates": 2000,
+          "seed": 20262845
+        },
+        "oracle": {
+          "brier": 0.24760801590821754,
+          "coefficient_unclipped": -0.02047775675517832,
+          "coefficient_used": -0.02047775675517832,
+          "deployable": false,
+          "gain_vs_exp071": 2.6650534029615258e-08
+        },
+        "paired_loss_mean": 6.615662262218568e-05,
+        "paired_loss_std": 0.007931796870640178,
+        "prediction_correlation": 0.9903821164458424,
+        "rows": 253507,
+        "target_error_correlation": 0.9999009489408146
+      },
+      "metrics_vs_exp071": {
+        "actual_rate": 0.4861049201797189,
+        "baseline_brier": 0.24760467246802623,
+        "baseline_skill": 881.5825555173129,
+        "candidate_brier": 0.24767419918137376,
+        "candidate_mean": 0.495140628488672,
+        "candidate_skill": 853.7503755813192,
+        "correction_rms": 0.007313153399692418,
+        "correction_target_residual_correlation": 0.004037742811844203,
+        "delta_brier_vs_exp071": 6.952671334753015e-05,
+        "delta_skill": -27.832179935997267,
+        "game_block_bootstrap": {
+          "ci95": [
+            2.912992228608753e-05,
+            0.00010947213597987773
+          ],
+          "games": 822,
+          "observed_delta_brier": 6.952671334753015e-05,
+          "probability_delta_brier_negative": 0.0,
+          "replicates": 2000,
+          "seed": 20262845
+        },
+        "oracle": {
+          "brier": 0.24760346914270565,
+          "coefficient_unclipped": -0.14999847524883128,
+          "coefficient_used": -0.14999847524883128,
+          "deployable": false,
+          "gain_vs_exp071": 1.2033253205812056e-06
+        },
+        "paired_loss_mean": 6.952671334753015e-05,
+        "paired_loss_std": 0.007277433999702742,
+        "prediction_correlation": 0.9925335879406958,
+        "rows": 253507,
+        "target_error_correlation": 0.9999255849766213
+      },
+      "model": {
+        "bytes": 1219038,
+        "input_dimension": 310,
+        "parameters": 302009,
+        "path": "artifacts/EXP-113/dcnv2_all_field_residual/fold_2024/model.pt",
+        "sha256": "a17e5d069021a550664a6e3a5db5efa5deac91bfdf78d1110d501a8cf474f4c0"
+      },
+      "preprocessor_path": "artifacts/EXP-113/dcnv2_all_field_residual/fold_2024/preprocessor.json",
+      "row_independence": {
+        "literal_exact_identity_passed": true,
+        "maximum_absolute_difference": 0.0,
+        "maximum_absolute_differences": {
+          "duplicate_first": 0.0,
+          "duplicate_second": 0.0,
+          "permutation": 0.0,
+          "reverse": 0.0,
+          "singleton": 0.0,
+          "split": 0.0
+        },
+        "rows": 64,
+        "seed": 20260821,
+        "semantic_tolerance_1e_12_passed": true,
+        "vectorized_vs_scalar_max_difference": 3.7034207922559403e-09
+      },
+      "runtime": {
+        "fold_total_seconds": 65.53395758400438,
+        "preprocessing_seconds": 5.202461999986554,
+        "training_seconds": 56.157194458995946,
+        "validation_inference_seconds": 1.7208846249850467,
+        "validation_rows_per_second": 147312.025640419
+      },
+      "source_rows": 492997,
+      "source_season_equal_weight": true,
+      "source_seasons": [
+        2022,
+        2023
+      ],
+      "training_history": [
+        {
+          "epoch": 1.0,
+          "scaled_weighted_mse": 4377.176049904334,
+          "seconds": 9.855515750008635
+        },
+        {
+          "epoch": 2.0,
+          "scaled_weighted_mse": 4375.346091795141,
+          "seconds": 9.300099999993108
+        },
+        {
+          "epoch": 3.0,
+          "scaled_weighted_mse": 4374.657257723667,
+          "seconds": 9.393391416990198
+        },
+        {
+          "epoch": 4.0,
+          "scaled_weighted_mse": 4373.728784335805,
+          "seconds": 9.125330707989633
+        },
+        {
+          "epoch": 5.0,
+          "scaled_weighted_mse": 4373.577091878131,
+          "seconds": 9.146638750011334
+        },
+        {
+          "epoch": 6.0,
+          "scaled_weighted_mse": 4373.185501961084,
+          "seconds": 9.304025334015023
+        }
+      ],
+      "validation_rows": 253507,
+      "validation_season": 2024
+    }
+  },
+  "literal_row_independence_all_folds": true,
+  "novelty_gate_all_folds": false,
+  "peak_rss_mb": 1483.75,
+  "pooled_2023_2024": {
+    "baseline_brier": 0.24763214657811275,
+    "candidate_brier": 0.24773314806910493,
+    "correction_target_residual_correlation": -0.005952380389327804,
+    "delta_brier_vs_exp071": 0.00010100149099217704,
+    "oracle": {
+      "brier": 0.24762141474425836,
+      "coefficient_unclipped": -0.44910136440131326,
+      "coefficient_used": -0.44910136440131326,
+      "deployable": false,
+      "gain_vs_exp071": 1.073183385438825e-05
+    },
+    "prediction_correlation": 0.9900313003456462,
+    "rows": 499032,
+    "seasons": [
+      2023,
+      2024
+    ],
+    "target_error_correlation": 0.9999047390394267
+  },
+  "preregistration": {
+    "path": "docs/MODEL_DISCOVERY_EXP112_ULTRA.md",
+    "sha256": "1bc9dd6384a721d93205521f6058ff4c0d368d1a2efbb5fa44a32942723184d0",
+    "validated_before_run": true
+  },
+  "promotion_gate": {
+    "diversity_route": false,
+    "fast_kill_both_above_1e_4": false,
+    "metric_survivor": false,
+    "pooled_delta_brier": 0.00010100149099217703,
+    "season_delta_brier": {
+      "2023": 0.00013349951138261182,
+      "2024": 6.952671334753015e-05
+    },
+    "tier_a_route": false,
+    "tier_b_route": false
+  },
+  "status": "cheap_falsification_complete",
+  "survivor": false,
+  "total_seconds": 106.79900875000749,
+  "validation_contract": {
+    "cheap_folds": [
+      2023,
+      2024
+    ],
+    "public_score_used": false,
+    "query_peer_features": false,
+    "source_exp071_oof_strictly_prior": true,
+    "source_season_equal_weight": true,
+    "validation_labels_used_for_fit_or_selection": false
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "configuration_summaries": {
+    "V1-diagonal": {
+      "cheap_survivor": false,
+      "fold_metrics": {
+        "2023": {
+          "actual_rate": 0.49995723449750534,
+          "baseline_brier": 0.24766051386953197,
+          "baseline_skill": 935.7937274777628,
+          "candidate_brier": 0.24765200192106063,
+          "candidate_mean": 0.49936408665824067,
+          "candidate_skill": 939.1985068912145,
+          "correction_rms": 0.0026693801714171997,
+          "correction_target_residual_correlation": 0.004084572018871735,
+          "delta_brier_vs_exp071": -8.51194847133359e-06,
+          "delta_skill": 3.4047794134461813,
+          "game_block_bootstrap": {
+            "ci95": [
+              -2.5207253550910212e-05,
+              7.216114029752523e-06
+            ],
+            "games": 809,
+            "observed_delta_brier": -8.51194847133359e-06,
+            "probability_delta_brier_negative": 0.8525,
+            "replicates": 2000,
+            "seed": 20262844
+          },
+          "oracle": {
+            "brier": 0.24765193448845885,
+            "coefficient_unclipped": 1.0972802164160662,
+            "coefficient_used": 1.0972802164160662,
+            "deployable": false,
+            "gain_vs_exp071": 8.579381073126058e-06
+          },
+          "paired_loss_mean": -8.51194847133359e-06,
+          "paired_loss_std": 0.0026555926416301358,
+          "prediction_correlation": 0.9990047172837329,
+          "rows": 245525,
+          "target_error_correlation": 0.9999906871488333
+        },
+        "2024": {
+          "actual_rate": 0.4861049201797189,
+          "baseline_brier": 0.24760467246802623,
+          "baseline_skill": 881.5825555173129,
+          "candidate_brier": 0.24760360912021753,
+          "candidate_mean": 0.49237570432640404,
+          "candidate_skill": 882.0082233810922,
+          "correction_rms": 0.0029851729583592916,
+          "correction_target_residual_correlation": 0.008620925721242664,
+          "delta_brier_vs_exp071": -1.0633478086824185e-06,
+          "delta_skill": 0.4256678637776043,
+          "game_block_bootstrap": {
+            "ci95": [
+              -1.4670677229319334e-05,
+              1.3456520067741669e-05
+            ],
+            "games": 822,
+            "observed_delta_brier": -1.0633478086824185e-06,
+            "probability_delta_brier_negative": 0.534,
+            "replicates": 2000,
+            "seed": 20262845
+          },
+          "oracle": {
+            "brier": 0.24760188125837185,
+            "coefficient_unclipped": 0.5596631731147699,
+            "coefficient_used": 0.5596631731147699,
+            "deployable": false,
+            "gain_vs_exp071": 2.7912096543791787e-06
+          },
+          "paired_loss_mean": -1.0633478086824185e-06,
+          "paired_loss_std": 0.002971814373352247,
+          "prediction_correlation": 0.998543856431947,
+          "rows": 253507,
+          "target_error_correlation": 0.9999854877693061
+        }
+      },
+      "novelty_gate_all_folds": true,
+      "novelty_gate_by_fold": {
+        "2023": true,
+        "2024": true
+      },
+      "pooled_metrics": {
+        "baseline_brier": 0.24763214657811275,
+        "candidate_brier": 0.24762741850003084,
+        "correction_target_residual_correlation": 0.006987839841335357,
+        "delta_brier_vs_exp071": -4.728078081886196e-06,
+        "oracle": {
+          "brier": 0.2476270786220421,
+          "coefficient_unclipped": 0.7943017419339736,
+          "coefficient_used": 0.7943017419339736,
+          "deployable": false,
+          "gain_vs_exp071": 5.067956070636814e-06
+        },
+        "prediction_correlation": 0.9987669736092271,
+        "rows": 499032,
+        "seasons": [
+          2023,
+          2024
+        ],
+        "target_error_correlation": 0.9999880096209527
+      },
+      "promotion_gate": {
+        "diversity_route": false,
+        "fast_kill_both_above_1e_4": false,
+        "metric_survivor": false,
+        "pooled_delta_brier": -4.728078081886199e-06,
+        "season_delta_brier": {
+          "2023": -8.51194847133359e-06,
+          "2024": -1.0633478086824185e-06
+        },
+        "tier_a_route": false,
+        "tier_b_route": false
+      }
+    },
+    "V2-rank2": {
+      "cheap_survivor": false,
+      "fold_metrics": {
+        "2023": {
+          "actual_rate": 0.49995723449750534,
+          "baseline_brier": 0.24766051386953197,
+          "baseline_skill": 935.7937274777628,
+          "candidate_brier": 0.24765156259633958,
+          "candidate_mean": 0.4993627684569611,
+          "candidate_skill": 939.374236780921,
+          "correction_rms": 0.002675787240050911,
+          "correction_target_residual_correlation": 0.004290963585541572,
+          "delta_brier_vs_exp071": -8.951273192385206e-06,
+          "delta_skill": 3.580509303150372,
+          "game_block_bootstrap": {
+            "ci95": [
+              -2.5724896717004155e-05,
+              6.756006164127915e-06
+            ],
+            "games": 809,
+            "observed_delta_brier": -8.951273192385206e-06,
+            "probability_delta_brier_negative": 0.86,
+            "replicates": 2000,
+            "seed": 20262844
+          },
+          "oracle": {
+            "brier": 0.2476514505392423,
+            "coefficient_unclipped": 1.1251031098744275,
+            "coefficient_used": 1.1251031098744275,
+            "deployable": false,
+            "gain_vs_exp071": 9.063330289660332e-06
+          },
+          "paired_loss_mean": -8.951273192385206e-06,
+          "paired_loss_std": 0.0026619052251595572,
+          "prediction_correlation": 0.998996644295446,
+          "rows": 245525,
+          "target_error_correlation": 0.9999906095715358
+        },
+        "2024": {
+          "actual_rate": 0.4861049201797189,
+          "baseline_brier": 0.24760467246802623,
+          "baseline_skill": 881.5825555173129,
+          "candidate_brier": 0.24760365114378666,
+          "candidate_mean": 0.4923673110392622,
+          "candidate_skill": 881.9914009616015,
+          "correction_rms": 0.002994705326436551,
+          "correction_target_residual_correlation": 0.008548495768532501,
+          "delta_brier_vs_exp071": -1.0213242395460036e-06,
+          "delta_skill": 0.4088454442914378,
+          "game_block_bootstrap": {
+            "ci95": [
+              -1.4481552567107892e-05,
+              1.3414323136260787e-05
+            ],
+            "games": 822,
+            "observed_delta_brier": -1.0213242395460036e-06,
+            "probability_delta_brier_negative": 0.5275,
+            "replicates": 2000,
+            "seed": 20262845
+          },
+          "oracle": {
+            "brier": 0.2476018906632723,
+            "coefficient_unclipped": 0.5569410476745564,
+            "coefficient_used": 0.5569410476745564,
+            "deployable": false,
+            "gain_vs_exp071": 2.7818047539374113e-06
+          },
+          "paired_loss_mean": -1.0213242395460036e-06,
+          "paired_loss_std": 0.0029811214439272806,
+          "prediction_correlation": 0.9985284301721064,
+          "rows": 253507,
+          "target_error_correlation": 0.9999853282519817
+        }
+      },
+      "novelty_gate_all_folds": true,
+      "novelty_gate_by_fold": {
+        "2023": true,
+        "2024": true
+      },
+      "pooled_metrics": {
+        "baseline_brier": 0.24763214657811275,
+        "candidate_brier": 0.24762722369902973,
+        "correction_target_residual_correlation": 0.0070456826282984724,
+        "delta_brier_vs_exp071": -4.92287908301465e-06,
+        "oracle": {
+          "brier": 0.24762691553533012,
+          "coefficient_unclipped": 0.8046897365564554,
+          "coefficient_used": 0.8046897365564554,
+          "deployable": false,
+          "gain_vs_exp071": 5.2310427826329775e-06
+        },
+        "prediction_correlation": 0.9987549416835126,
+        "rows": 499032,
+        "seasons": [
+          2023,
+          2024
+        ],
+        "target_error_correlation": 0.9999878884720035
+      },
+      "promotion_gate": {
+        "diversity_route": false,
+        "fast_kill_both_above_1e_4": false,
+        "metric_survivor": false,
+        "pooled_delta_brier": -4.922879083014649e-06,
+        "season_delta_brier": {
+          "2023": -8.951273192385206e-06,
+          "2024": -1.0213242395460036e-06
+        },
+        "tier_a_route": false,
+        "tier_b_route": false
+      }
+    }
+  },
+  "configurations_run": [
+    "V1-diagonal",
+    "V2-rank2"
+  ],
+  "experiment": "EXP-115",
+  "family_selection": {
+    "at_most_one_family_survivor_slot": true,
+    "both_configurations_qualified": false,
+    "eligible_configurations": [],
+    "primary_wins_if_both_qualify": true,
+    "selected_configuration": null
+  },
+  "full_rolling_or_submission_created": false,
+  "research_lock": "docs/MODEL_DISCOVERY_EXP112_ULTRA.md",
+  "research_lock_sha256": "1bc9dd6384a721d93205521f6058ff4c0d368d1a2efbb5fa44a32942723184d0",
+  "stage": "cheap_2023_2024_only"
+}

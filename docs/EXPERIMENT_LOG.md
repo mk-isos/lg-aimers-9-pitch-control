@@ -1523,6 +1523,97 @@ EXP-105의 correction pairwise correlation은 `0.006818096758999085~0.1104324351
 
 ---
 
+## 2026-08-21 ultra model discovery: EXP-112~115
+
+### 실험 목적과 가설
+
+EXP-071 Public `1053.8615519684`를 기준으로, 기존 실험을 미세 조정하지 않고 실제로 다른 함수 공간이 recent rolling residual에서 `5e-5~1e-4` Brier 개선을 만들 수 있는지 검증했다. EXP-001~111, LG Aimers 강의자료, 2023~2026 1차 문헌을 먼저 감사하고 26개 family를 7축으로 평가했다.
+
+- EXP-112 가설: 명시적 order-2/3 field interaction은 기존 EXP-021의 제한된 player×context factor보다 안정적인 residual을 학습한다.
+- EXP-113 가설: DCNv2의 low-rank cross expert는 tree·MLP가 놓친 player×state×history 교차를 공유한다.
+- EXP-114 가설: 투수 제구 상태는 scalar AR(1)이 아니라 여러 hidden regime 사이를 전이한다.
+- EXP-115 가설: pitcher random slope와 crossed intercept의 joint posterior pooling이 독립 EB lookup보다 희소 문맥을 안정적으로 축소한다.
+
+결과 전에 `docs/MODEL_DISCOVERY_EXP112_ULTRA.md`와 다음 공통 규칙을 SHA256 `1bc9dd6384a721d93205521f6058ff4c0d368d1a2efbb5fa44a32942723184d0`으로 잠갔다.
+
+- outer 2023은 2022 strict EXP-071 OOF residual만 학습한다.
+- outer 2024는 2022·2023 residual을 source-season equal total weight로 학습한다.
+- correction은 `p071 + 0.25 × 0.03 × tanh(raw)`로 고정한다.
+- 결과 뒤 architecture, rank, state 수, 부호, epoch, correction weight, gate를 바꾸지 않는다.
+- candidate는 Tier A/B/diversity gate 중 하나를 통과해야 full 2022/2023/2024 rolling으로 승격한다.
+- 모든 scored inference는 singleton/batch/reverse/permutation/split/duplicate 행 독립성 검사를 통과해야 한다.
+
+### 기준 실험과 달라진 점
+
+- 공통 기준은 frozen EXP-071 `playerphys_resid_w025`이며 absolute target을 다시 학습하지 않고 strict OOF residual만 target으로 사용했다.
+- EXP-112는 모든 official field의 2·3차 ANOVA factor와 nonlinear spline factor를 명시적으로 학습했다.
+- EXP-113은 2개 low-rank mixture cross layer와 deep tower를 결합한 within-row DCNv2를 사용했다.
+- EXP-114는 source pitcher-game sequence에서 target-free sticky HMM을 적합하고 query마다 frozen terminal prior와 해당 행 emission만 사용했다.
+- EXP-115는 pitcher별 7개 random slope와 batter·team·count/hand crossed intercept를 하나의 variational posterior로 학습했다.
+- validation/test peer의 통계·attention·retrieval·state update는 사용하지 않았다.
+
+### 모델과 주요 파라미터
+
+| EXP | Configuration | 주요 고정 파라미터 |
+| --- | --- | --- |
+| EXP-112 F1 | HOFM | order-2/3 rank `16/16`, AdamW, lr `1e-3`, effective batch `8192`, epoch `8` |
+| EXP-112 F2 | AHOFM | cubic spline basis `6`, marginal df `4`, order-2/3 rank `8/8`, 동일 optimizer |
+| EXP-113 D1 | DCNv2 | cross layer `2`, expert `4`, rank `32`, tower `256→128`, dropout `.10`, epoch `6` |
+| EXP-114 H1/H2 | sticky HMM | state `3/4`, deterministic init `5`, transition pseudocount diagonal/off-diagonal `20/1`, residual smoothing `300` |
+| EXP-115 V1/V2 | variational random slopes | 7 pitcher slopes, covariance diagonal/rank-2-plus-diagonal, crossed intercept 4종, Adam lr `3e-3`, batch `16384`, epoch `12`, prior scale `[1e-4,.05]` |
+
+모든 configuration은 seed `20260821`과 correction `clip(p071 + 0.25 × 0.03 × tanh(raw), 0, 1)`을 공통으로 사용했다.
+
+### 검증 기간
+
+- outer 2023: source season `2022`, validation season `2023` 전체 `245,525`행.
+- outer 2024: source season `2022·2023`을 season-equal total weight로 사용, validation season `2024` 전체 `253,507`행.
+- 신규 2022 fold는 cheap survivor만 full rolling한다는 사전 규칙 때문에 실행하지 않았다.
+
+### Brier Score와 Skill Score
+
+`Δ`는 candidate Brier minus EXP-071 Brier이며 음수가 개선이다. EXP-071 기준은 2023 `0.247660513870 / 935.79`, 2024 `0.247604672468 / 881.58`이다.
+
+| EXP / configuration | 핵심 모델 | 2023 Brier / Skill / Δ | 2024 Brier / Skill / Δ | Recent pooled Δ | 판정 |
+| --- | --- | --- | --- | ---: | --- |
+| EXP-112 F1 | rank-16 order-2/3 all-field HOFM | `0.247761846427 / 895.26 / +1.013326e-4` | `0.247639746801 / 867.54 / +3.507433e-5` | `+6.767355e-5` | 폐기 |
+| EXP-112 F2 | spline rank-8 order-2/3 AHOFM | `0.247776279336 / 889.49 / +1.157655e-4` | `0.247646973729 / 864.65 / +4.230126e-5` | `+7.844584e-5` | 폐기 |
+| EXP-113 D1 | two-layer, four-expert rank-32 DCNv2 | `0.247794013381 / 882.39 / +1.334995e-4` | `0.247674199181 / 853.75 / +6.952671e-5` | `+1.010015e-4` | 폐기 |
+| EXP-114 H1 | sticky 3-state source HMM | `0.247656166709 / 937.53 / -4.347161e-6` | `0.247623967189 / 873.86 / +1.929472e-5` | `+7.662856e-6` | 폐기 |
+| EXP-114 H2 | sticky 4-state source HMM | `0.247658903309 / 936.44 / -1.610561e-6` | `0.247624040775 / 873.83 / +1.936831e-5` | `+9.046651e-6` | 폐기 |
+| EXP-115 V1 | diagonal-covariance variational random slopes | `0.247652001921 / 939.20 / -8.511948e-6` | `0.247603609120 / 882.01 / -1.063348e-6` | `-4.728078e-6` | gate 미달 |
+| EXP-115 V2 | rank-2-plus-diagonal variational random slopes | `0.247651562596 / 939.37 / -8.951273e-6` | `0.247603651144 / 881.99 / -1.021324e-6` | **`-4.922879e-6`** | best new, gate 미달 |
+
+### 기준 실험 대비 변화
+
+- EXP-112 F1/F2 recent pooled ΔBrier는 각각 `+6.767354619164027e-5`, `+7.84458352411872e-5`로 EXP-071보다 악화됐다.
+- EXP-113 D1 pooled ΔBrier는 `+1.0100149099217704e-4`였고 두 fold 모두 악화됐다.
+- EXP-114 H1/H2는 2023 `-4.347160810469108e-6 / -1.6105608088333593e-6` 개선 뒤 2024 `+1.9294720787861507e-5 / +1.9368307025329393e-5`로 역전됐다.
+- EXP-115 V1/V2는 두 fold 모두 개선했지만 pooled ΔBrier `-4.728078081886196e-6 / -4.92287908301465e-6`로 Tier-A 최소 개선량을 넘지 못했다.
+
+### 결과 해석
+
+- EXP-112의 order-3 제거 RMS는 F1 `0.007106/0.006778`, F2 `0.004524/0.005584`였다. 새로운 고차 항은 강하게 활성화됐지만 다음 시즌 residual 방향이 보존되지 않았다.
+- EXP-113 cross 제거 RMS는 `4.433e-5/9.412e-5`로 `1e-4` novelty gate에 실패했다. 두 fold의 bootstrap `P(Δ<0)`도 모두 `0`이었다.
+- EXP-114는 transition-conditioned posterior를 만들었지만 minimum state occupancy가 `2.155%/1.879%`로 5% gate를 실패했고, 2023 gain이 2024 harm으로 역전됐다.
+- EXP-115 V2만 두 fold를 모두 개선했다. 그러나 bootstrap `P(Δ<0)`는 `0.8600/0.5275`, CI95는 모두 0을 포함했고, pooled error correlation `0.999988`, oracle gain `5.231043e-6`이었다.
+- 전체 cheap runtime / peak RSS는 EXP-112 `155.7s / 1,851.6MB`, EXP-113 `106.8s / 1,483.8MB`, EXP-114 `988.0s / 1,088.0MB`, EXP-115 `11.7s / 795.5MB`였다.
+- deterministic scored export의 행 독립성 max diff는 모두 `0`이었다. EXP-113 batched vector path와 scalar path 차이는 `7.41e-9`였으나 성능·novelty gate에서 이미 탈락해 package를 만들지 않았다.
+
+### 채택 여부와 다음 실험
+
+- [ ] EXP-112 채택
+- [ ] EXP-113 채택
+- [ ] EXP-114 채택
+- [ ] EXP-115 채택
+- [x] EXP-071 Public 선택 유지
+
+Cheap survivor는 0개다. 사전등록대로 신규 2022 full rolling, survivor ensemble, final 2025 fit, Public Candidate A/B, 제출 ZIP을 만들지 않았고 DACON 제출도 실행하지 않았다. 같은 family의 rank/layer/state/sign/weight sweep과 EXP-115 사후 blend 탐색을 중단한다.
+
+상세 연구 결과는 `docs/ULTRA_MODEL_RESEARCH_REPORT.md`, 전체 26-family matrix와 실행 상태는 `docs/ULTRA_MODEL_DISCOVERY.md`, 불변 preregistration은 `docs/MODEL_DISCOVERY_EXP112_ULTRA.md`에 기록했다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown

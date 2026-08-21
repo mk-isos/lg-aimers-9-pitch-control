@@ -1,0 +1,1834 @@
+{
+  "artifact_root": "/Users/moonki/Desktop/open/artifacts/EXP-114/sticky_switching_regime",
+  "baseline": "EXP-071 playerphys_resid_w025",
+  "configurations": {
+    "H1-sticky3": {
+      "cheap_survivor": false,
+      "family_novelty_gate_passed": false,
+      "folds": {
+        "2023": {
+          "configuration": "H1-sticky3",
+          "hmm": {
+            "converged": true,
+            "initial_probability": [
+              0.0015360983102918587,
+              0.9969278033794163,
+              0.0015360983102918587
+            ],
+            "initializations": [
+              {
+                "converged": true,
+                "initialization": 0,
+                "iterations": 13,
+                "likelihood_history": [
+                  168199.36270082975,
+                  184141.89719573595,
+                  193231.9664495721,
+                  193853.73273507587,
+                  194016.88234361282,
+                  194069.07551387176,
+                  194088.49920188892,
+                  194096.31577900503,
+                  194099.58238775522,
+                  194100.97894736426,
+                  194101.58819292908,
+                  194101.860293296,
+                  194101.98548241713
+                ],
+                "occupancy": [
+                  0.20289193539875464,
+                  0.7755561971053195,
+                  0.02155186749592576
+                ],
+                "seconds": 35.95700762499473,
+                "seed": 20290842,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 194102.04524821375
+              },
+              {
+                "converged": true,
+                "initialization": 1,
+                "iterations": 13,
+                "likelihood_history": [
+                  167293.36324160348,
+                  183475.9128943191,
+                  193055.20915497147,
+                  193797.71603176964,
+                  193997.68920082928,
+                  194061.76189866156,
+                  194085.53748387715,
+                  194095.08006308696,
+                  194099.0572027203,
+                  194100.75196950958,
+                  194101.48813744818,
+                  194101.81504863087,
+                  194101.96434335268
+                ],
+                "occupancy": [
+                  0.2029160305112237,
+                  0.021551867495925782,
+                  0.7755321019928505
+                ],
+                "seconds": 35.055172166990815,
+                "seed": 20291851,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 194102.0349696622
+              },
+              {
+                "converged": true,
+                "initialization": 2,
+                "iterations": 13,
+                "likelihood_history": [
+                  168298.6496632407,
+                  184275.39185517127,
+                  193250.07813322725,
+                  193859.12986845535,
+                  194018.70729233895,
+                  194069.7691428485,
+                  194088.78004179042,
+                  194096.43304542042,
+                  194099.63229814288,
+                  194101.00056297588,
+                  194101.5977488083,
+                  194101.8646308982,
+                  194101.98751877111
+                ],
+                "occupancy": [
+                  0.7755586118272985,
+                  0.021551867495925765,
+                  0.20288952067677574
+                ],
+                "ordered_mean_success_logit": [
+                  0.08315262482033668,
+                  0.1221282797881834,
+                  0.37501637102684154
+                ],
+                "seconds": 34.691840540996054,
+                "seed": 20292860,
+                "selected_by_source_likelihood": true,
+                "source_log_likelihood": 194102.04624397788
+              },
+              {
+                "converged": true,
+                "initialization": 3,
+                "iterations": 9,
+                "likelihood_history": [
+                  155871.1328091278,
+                  155877.6223229246,
+                  156095.58829855223,
+                  162274.75912135333,
+                  169729.76493540345,
+                  173001.86566077318,
+                  181848.09404683457,
+                  189852.0012770659,
+                  189852.07995100945
+                ],
+                "occupancy": [
+                  0.8513985432534007,
+                  0.1270495892506735,
+                  0.021551867495925765
+                ],
+                "seconds": 24.194264999998268,
+                "seed": 20293869,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 189852.07995100945
+              },
+              {
+                "converged": true,
+                "initialization": 4,
+                "iterations": 9,
+                "likelihood_history": [
+                  155871.1328091278,
+                  155877.6223229246,
+                  156095.58829855223,
+                  162274.75912135333,
+                  169729.76493540345,
+                  173001.86566077318,
+                  181848.09404683457,
+                  189852.0012770659,
+                  189852.07995100945
+                ],
+                "occupancy": [
+                  0.8513985432534007,
+                  0.021551867495925765,
+                  0.1270495892506735
+                ],
+                "seconds": 24.602702417003457,
+                "seed": 20294878,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 189852.07995100945
+              }
+            ],
+            "iterations": 13,
+            "selected_initialization_seed": 20292860,
+            "selected_source_log_likelihood": 194102.04624397788,
+            "stationary_distribution": [
+              0.7962359319650844,
+              7.116404401140183e-05,
+              0.20369290399090428
+            ],
+            "terminal_posterior_entries": 1487,
+            "transition": [
+              [
+                0.8622234622273364,
+                4.369073562791131e-05,
+                0.1377328470370357
+              ],
+              [
+                0.6204422889295047,
+                0.03225806451612903,
+                0.34729964655436624
+              ],
+              [
+                0.5383519731197008,
+                0.00016731214205205924,
+                0.46148071473824703
+              ]
+            ],
+            "transition_pseudocount_diagonal": 20.0,
+            "transition_pseudocount_off_diagonal": 1.0,
+            "variance_floor": 0.0025000000000000005
+          },
+          "legality": {
+            "current_pitch_outcome_used_by_hmm": false,
+            "hmm_target_free": true,
+            "one_transition_per_season_gap": true,
+            "query_posterior_row_emission_only": true,
+            "query_prior_source_frozen": true,
+            "source_residual_rows_use_prior_season_terminal_only": true,
+            "validation_or_test_peer_used": false
+          },
+          "metrics": {
+            "actual_rate": 0.49995723449750534,
+            "baseline_brier": 0.24766051386953197,
+            "baseline_skill": 935.7937274777628,
+            "candidate_brier": 0.2476561667087215,
+            "candidate_mean": 0.5002048886450573,
+            "candidate_skill": 937.5325918146715,
+            "correction_rms": 0.0028580415652766722,
+            "correction_target_residual_correlation": 0.0012941824855074297,
+            "delta_brier_vs_exp071": -4.347160810469108e-06,
+            "delta_skill": 1.738864336906328,
+            "game_block_bootstrap": {
+              "ci95": [
+                -2.3216076333634278e-05,
+                1.584024413278134e-05
+              ],
+              "games": 809,
+              "observed_delta_brier": -4.347160810469108e-06,
+              "probability_delta_brier_negative": 0.6815,
+              "replicates": 2000,
+              "seed": 20262844
+            },
+            "oracle": {
+              "brier": 0.2476557198073012,
+              "coefficient_unclipped": 0.7660961733568051,
+              "coefficient_used": 0.7660961733568051,
+              "deployable": false,
+              "gain_vs_exp071": 4.794062230778495e-06
+            },
+            "paired_loss_mean": -4.347160810469108e-06,
+            "paired_loss_std": 0.0028436842759789723,
+            "prediction_correlation": 0.9994984900257889,
+            "rows": 245525,
+            "target_error_correlation": 0.9999953909220461
+          },
+          "novelty": {
+            "fold_novelty_gate_passed": false,
+            "minimum_source_state_occupancy": 0.021551867495925765,
+            "occupancy_gate_0_05_passed": false,
+            "posterior_confidence_gate_0_60_passed": true,
+            "query_emission_fields": [
+              "asof_pitcher_prev1_game_success_rate",
+              "asof_pitcher_prev3_game_success_rate",
+              "asof_pitcher_prev5_game_success_rate",
+              "asof_pitcher_prev1_game_middle_rate",
+              "asof_pitcher_prev3_game_middle_rate",
+              "asof_pitcher_prev5_game_middle_rate"
+            ],
+            "query_median_maximum_posterior": 0.9997691449519321,
+            "query_peer_state_updates": false,
+            "season_gap_mean_seen_query": 1.0681370395044578,
+            "source_state_occupancy": [
+              0.7755586118272985,
+              0.021551867495925765,
+              0.20288952067677574
+            ],
+            "source_terminal_prior_query_rate": 0.8620181244272478,
+            "transition_correction_rms_gate_1e_4_passed": true,
+            "transition_vs_emission_only_correction_rms": 0.00010227869175703575,
+            "transition_vs_emission_only_posterior_rms": 0.01962333096600091
+          },
+          "residual_map": {
+            "emission_only_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.013076710210455708,
+              "effective_mass_max": 27559.735861940582,
+              "effective_mass_mean_positive": 3437.111111111121,
+              "positive_cells": 72,
+              "smoothing": 300.0,
+              "total_cells": 72
+            },
+            "query_contract_used_for_source_rows": "prior-season terminal posterior plus this row emission only",
+            "raw_residual_mean_by_season": {
+              "2022": 0.01077806418179239
+            },
+            "rows": 247472,
+            "source_prior_diagnostics": {
+              "2022": {
+                "rows": 247472,
+                "season_gap_mean_seen": 1.1675410748026587,
+                "source_terminal_prior_rate": 0.842608456714295
+              }
+            },
+            "source_season_equal_weight_totals": {
+              "2022": 247472.0
+            },
+            "source_seasons": [
+              2022
+            ],
+            "transition_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.01317800980156503,
+              "effective_mass_max": 27547.310963377127,
+              "effective_mass_mean_positive": 3437.11111111112,
+              "positive_cells": 72,
+              "smoothing": 300.0,
+              "total_cells": 72
+            }
+          },
+          "row_independence": {
+            "literal_exact_identity_passed": true,
+            "maximum_absolute_difference": 0.0,
+            "maximum_absolute_differences": {
+              "duplicate_first": 0.0,
+              "duplicate_second": 0.0,
+              "permutation": 0.0,
+              "reverse": 0.0,
+              "singleton": 0.0,
+              "split": 0.0
+            },
+            "rows": 64,
+            "seed": 20260821,
+            "semantic_tolerance_1e_12_passed": true
+          },
+          "runtime": {
+            "inference_rows_per_second": 842269.1448805826,
+            "inference_seconds": 0.2915042079985142,
+            "peak_rss_mb": 952.921875,
+            "total_seconds": 157.89912712498335,
+            "train_seconds": 156.94249899999704
+          },
+          "secondary_exp051_control": {
+            "candidate_delta_brier_vs_exp051": -1.8299507061475973e-05,
+            "exp051_brier": 0.24767446621578296,
+            "prediction_correlation_with_exp051": 0.9978788415677778
+          },
+          "source_seasons": [
+            2019,
+            2020,
+            2021,
+            2022
+          ],
+          "state_count": 3,
+          "state_size": {
+            "bytes": 37752,
+            "mib": 0.03600311279296875,
+            "residual_effect_cells_per_map": 72,
+            "terminal_posterior_entries": 1487
+          },
+          "validation_season": 2023
+        },
+        "2024": {
+          "configuration": "H1-sticky3",
+          "hmm": {
+            "converged": true,
+            "initial_probability": [
+              0.0014005602240896359,
+              0.9971988795518207,
+              0.0014005602240896359
+            ],
+            "initializations": [
+              {
+                "converged": true,
+                "initialization": 0,
+                "iterations": 13,
+                "likelihood_history": [
+                  207248.3008496308,
+                  227983.46236836375,
+                  239198.5155132637,
+                  240264.85147797322,
+                  240586.16725098796,
+                  240691.07437841737,
+                  240728.4569017648,
+                  240742.82455098513,
+                  240748.6248271938,
+                  240751.03886872492,
+                  240752.06630769456,
+                  240752.51317780776,
+                  240752.7125622127
+                ],
+                "occupancy": [
+                  0.7806270459962961,
+                  0.018792620394354292,
+                  0.20058033360934968
+                ],
+                "seconds": 44.30940100000589,
+                "seed": 20290842,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 240752.80441123518
+              },
+              {
+                "converged": true,
+                "initialization": 1,
+                "iterations": 13,
+                "likelihood_history": [
+                  207238.7364280429,
+                  227946.4669504232,
+                  239196.0934724835,
+                  240264.1347612385,
+                  240585.93287064173,
+                  240690.9919341447,
+                  240728.42564342468,
+                  240742.81206051123,
+                  240748.61967043634,
+                  240751.0366910818,
+                  240752.06536924714,
+                  240752.51276398715,
+                  240752.7123744185
+                ],
+                "occupancy": [
+                  0.7806268787566124,
+                  0.018792620394354278,
+                  0.20058050084903328
+                ],
+                "seconds": 43.64560075002373,
+                "seed": 20291851,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 240752.80432289868
+              },
+              {
+                "converged": true,
+                "initialization": 2,
+                "iterations": 13,
+                "likelihood_history": [
+                  207293.5515951945,
+                  228019.70578687146,
+                  239209.8322846955,
+                  240268.64984124602,
+                  240587.47147574034,
+                  240691.54530356763,
+                  240728.63786006422,
+                  240742.89731571745,
+                  240748.65495136747,
+                  240751.05160488348,
+                  240752.07179926822,
+                  240752.5156001264,
+                  240752.7136617366
+                ],
+                "occupancy": [
+                  0.7806280271195658,
+                  0.0187926203943543,
+                  0.20057935248607991
+                ],
+                "ordered_mean_success_logit": [
+                  0.058615270691970665,
+                  0.09960134677093287,
+                  0.3500583855186929
+                ],
+                "seconds": 42.34669533299166,
+                "seed": 20292860,
+                "selected_by_source_likelihood": true,
+                "source_log_likelihood": 240752.80492856633
+              },
+              {
+                "converged": true,
+                "initialization": 3,
+                "iterations": 13,
+                "likelihood_history": [
+                  206642.94703270195,
+                  227720.57789711136,
+                  239026.85734526956,
+                  240205.48406049225,
+                  240565.47771050173,
+                  240683.55987115976,
+                  240725.5643456423,
+                  240741.66124643787,
+                  240748.14345641466,
+                  240750.83552346742,
+                  240751.9787352256,
+                  240752.47461316557,
+                  240752.69509478452
+                ],
+                "occupancy": [
+                  0.7806118112051716,
+                  0.200595568400474,
+                  0.018792620394354285
+                ],
+                "seconds": 41.07284341700142,
+                "seed": 20293869,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 240752.79621465766
+              },
+              {
+                "converged": true,
+                "initialization": 4,
+                "iterations": 13,
+                "likelihood_history": [
+                  207226.70630152198,
+                  227988.7262791034,
+                  239194.26079552056,
+                  240263.38183445946,
+                  240585.66181854007,
+                  240690.89230130162,
+                  240728.38707826645,
+                  240742.796505728,
+                  240748.61322291224,
+                  240751.03396394913,
+                  240752.06419325844,
+                  240752.51224530215,
+                  240752.71213902102
+                ],
+                "occupancy": [
+                  0.7806266691286656,
+                  0.018792620394354285,
+                  0.20058071047698012
+                ],
+                "seconds": 43.03461916701053,
+                "seed": 20294878,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 240752.80421216917
+              }
+            ],
+            "iterations": 13,
+            "selected_initialization_seed": 20292860,
+            "selected_source_log_likelihood": 240752.80492856633,
+            "stationary_distribution": [
+              0.7989762305938597,
+              5.6038058166436004e-05,
+              0.20096773134797383
+            ],
+            "terminal_posterior_entries": 1869,
+            "transition": [
+              [
+                0.8648157926490816,
+                3.444868958293778e-05,
+                0.1351497586613355
+              ],
+              [
+                0.6284480288868819,
+                0.029411764705882353,
+                0.34214020640723564
+              ],
+              [
+                0.5372690963550997,
+                0.00013368412756114244,
+                0.4625972195173391
+              ]
+            ],
+            "transition_pseudocount_diagonal": 20.0,
+            "transition_pseudocount_off_diagonal": 1.0,
+            "variance_floor": 0.0025000000000000005
+          },
+          "legality": {
+            "current_pitch_outcome_used_by_hmm": false,
+            "hmm_target_free": true,
+            "one_transition_per_season_gap": true,
+            "query_posterior_row_emission_only": true,
+            "query_prior_source_frozen": true,
+            "source_residual_rows_use_prior_season_terminal_only": true,
+            "validation_or_test_peer_used": false
+          },
+          "metrics": {
+            "actual_rate": 0.4861049201797189,
+            "baseline_brier": 0.24760467246802623,
+            "baseline_skill": 881.5825555173129,
+            "candidate_brier": 0.2476239671888141,
+            "candidate_mean": 0.4925392431619128,
+            "candidate_skill": 873.8587021244637,
+            "correction_rms": 0.0020162877725179175,
+            "correction_target_residual_correlation": -0.00042824737216064717,
+            "delta_brier_vs_exp071": 1.9294720787861507e-05,
+            "delta_skill": -7.723853392849351,
+            "game_block_bootstrap": {
+              "ci95": [
+                7.019558813311743e-06,
+                3.05279626475803e-05
+              ],
+              "games": 822,
+              "observed_delta_brier": 1.9294720787861507e-05,
+              "probability_delta_brier_negative": 0.001,
+              "replicates": 2000,
+              "seed": 20262845
+            },
+            "oracle": {
+              "brier": 0.2475904099859747,
+              "coefficient_unclipped": -1.873031317919119,
+              "coefficient_used": -1.873031317919119,
+              "deployable": false,
+              "gain_vs_exp071": 1.4262482051524694e-05
+            },
+            "paired_loss_mean": 1.9294720787861507e-05,
+            "paired_loss_std": 0.002007670625942515,
+            "prediction_correlation": 0.9996027902479143,
+            "rows": 253507,
+            "target_error_correlation": 0.9999961958278393
+          },
+          "novelty": {
+            "fold_novelty_gate_passed": false,
+            "minimum_source_state_occupancy": 0.0187926203943543,
+            "occupancy_gate_0_05_passed": false,
+            "posterior_confidence_gate_0_60_passed": true,
+            "query_emission_fields": [
+              "asof_pitcher_prev1_game_success_rate",
+              "asof_pitcher_prev3_game_success_rate",
+              "asof_pitcher_prev5_game_success_rate",
+              "asof_pitcher_prev1_game_middle_rate",
+              "asof_pitcher_prev3_game_middle_rate",
+              "asof_pitcher_prev5_game_middle_rate"
+            ],
+            "query_median_maximum_posterior": 0.9997630410235845,
+            "query_peer_state_updates": false,
+            "season_gap_mean_seen_query": 1.0950044054164472,
+            "source_state_occupancy": [
+              0.7806280271195658,
+              0.0187926203943543,
+              0.20057935248607991
+            ],
+            "source_terminal_prior_query_rate": 0.8013940443459155,
+            "transition_correction_rms_gate_1e_4_passed": false,
+            "transition_vs_emission_only_correction_rms": 8.113112092339037e-05,
+            "transition_vs_emission_only_posterior_rms": 0.015790871081730405
+          },
+          "residual_map": {
+            "emission_only_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.012053393761070274,
+              "effective_mass_max": 56573.181750869066,
+              "effective_mass_mean_positive": 6847.180555555573,
+              "positive_cells": 72,
+              "smoothing": 300.0,
+              "total_cells": 72
+            },
+            "query_contract_used_for_source_rows": "prior-season terminal posterior plus this row emission only",
+            "raw_residual_mean_by_season": {
+              "2022": 0.01077806418179239,
+              "2023": 0.002178344705474474
+            },
+            "rows": 492997,
+            "source_prior_diagnostics": {
+              "2022": {
+                "rows": 247472,
+                "season_gap_mean_seen": 1.1675410748026587,
+                "source_terminal_prior_rate": 0.842608456714295
+              },
+              "2023": {
+                "rows": 245525,
+                "season_gap_mean_seen": 1.0681370395044578,
+                "source_terminal_prior_rate": 0.8620181244272478
+              }
+            },
+            "source_season_equal_weight_totals": {
+              "2022": 246498.50000000006,
+              "2023": 246498.49999999994
+            },
+            "source_seasons": [
+              2022,
+              2023
+            ],
+            "transition_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.012101193390394428,
+              "effective_mass_max": 56495.78725902623,
+              "effective_mass_mean_positive": 6847.18055555557,
+              "positive_cells": 72,
+              "smoothing": 300.0,
+              "total_cells": 72
+            }
+          },
+          "row_independence": {
+            "literal_exact_identity_passed": true,
+            "maximum_absolute_difference": 0.0,
+            "maximum_absolute_differences": {
+              "duplicate_first": 0.0,
+              "duplicate_second": 0.0,
+              "permutation": 0.0,
+              "reverse": 0.0,
+              "singleton": 0.0,
+              "split": 0.0
+            },
+            "rows": 64,
+            "seed": 20260821,
+            "semantic_tolerance_1e_12_passed": true
+          },
+          "runtime": {
+            "inference_rows_per_second": 846590.3495407606,
+            "inference_seconds": 0.2994447079836391,
+            "peak_rss_mb": 1087.984375,
+            "total_seconds": 218.75420579200727,
+            "train_seconds": 217.7713851669978
+          },
+          "secondary_exp051_control": {
+            "candidate_delta_brier_vs_exp051": 1.5924630062517037e-05,
+            "exp051_brier": 0.24760804255875157,
+            "prediction_correlation_with_exp051": 0.9983089189554513
+          },
+          "source_seasons": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023
+          ],
+          "state_count": 3,
+          "state_size": {
+            "bytes": 46920,
+            "mib": 0.04474639892578125,
+            "residual_effect_cells_per_map": 72,
+            "terminal_posterior_entries": 1869
+          },
+          "validation_season": 2024
+        }
+      },
+      "pooled": {
+        "baseline_brier": 0.24763214657811275,
+        "candidate_brier": 0.2476398094336506,
+        "correction_target_residual_correlation": 0.0026770190531049034,
+        "delta_brier_vs_exp071": 7.662855537877288e-06,
+        "oracle": {
+          "brier": 0.24763204416011542,
+          "coefficient_unclipped": -0.12974485079281298,
+          "coefficient_used": -0.12974485079281298,
+          "deployable": false,
+          "gain_vs_exp071": 1.0241799733301526e-07
+        },
+        "prediction_correlation": 0.9995079097347093,
+        "rows": 499032,
+        "seasons": [
+          2023,
+          2024
+        ],
+        "target_error_correlation": 0.999995345509998
+      },
+      "promotion_gate": {
+        "diversity_route": false,
+        "fast_kill_both_above_1e_4": false,
+        "metric_survivor": false,
+        "pooled_delta_brier": 7.66285553787729e-06,
+        "season_delta_brier": {
+          "2023": -4.347160810469108e-06,
+          "2024": 1.9294720787861507e-05
+        },
+        "tier_a_route": false,
+        "tier_b_route": false
+      }
+    },
+    "H2-sticky4": {
+      "cheap_survivor": false,
+      "family_novelty_gate_passed": false,
+      "folds": {
+        "2023": {
+          "configuration": "H2-sticky4",
+          "hmm": {
+            "converged": true,
+            "initial_probability": [
+              0.0015337423312883436,
+              0.995398773006135,
+              0.0015337423312883436,
+              0.0015337423312883436
+            ],
+            "initializations": [
+              {
+                "converged": true,
+                "initialization": 0,
+                "iterations": 22,
+                "likelihood_history": [
+                  203144.9584925484,
+                  206898.92340823947,
+                  207202.67689998136,
+                  210573.68724276414,
+                  210843.96103590727,
+                  210996.32472112039,
+                  211094.43282788803,
+                  211159.81727165775,
+                  211204.2115205352,
+                  211234.32540344505,
+                  211254.7444991506,
+                  211268.52543123873,
+                  211277.69630904432,
+                  211283.69234704692,
+                  211287.54682442278,
+                  211289.98743946242,
+                  211291.5126974639,
+                  211292.4556449883,
+                  211293.0337659572,
+                  211293.38617292471,
+                  211293.6002731693,
+                  211293.7301967037
+                ],
+                "occupancy": [
+                  0.12704958925067356,
+                  0.38599663297147274,
+                  0.021551867495925775,
+                  0.46540191028192796
+                ],
+                "seconds": 57.14199004200054,
+                "seed": 20300849,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 211293.80909879872
+              },
+              {
+                "converged": true,
+                "initialization": 1,
+                "iterations": 22,
+                "likelihood_history": [
+                  203387.64684106893,
+                  209816.76516980652,
+                  210162.34871726003,
+                  210333.11966479724,
+                  210457.03754170748,
+                  210569.48811389238,
+                  210907.04123229295,
+                  211106.74456014013,
+                  211172.09915607472,
+                  211213.00323638372,
+                  211240.40296947307,
+                  211258.9092761115,
+                  211271.34480864636,
+                  211279.57716307533,
+                  211284.9304962205,
+                  211288.35248662622,
+                  211290.50636442332,
+                  211291.84407806548,
+                  211292.66587874296,
+                  211293.16657117626,
+                  211293.46989322064,
+                  211293.6530457788
+                ],
+                "occupancy": [
+                  0.38605590664477,
+                  0.021551867495925768,
+                  0.1270495892506735,
+                  0.46534263660863073
+                ],
+                "seconds": 56.70633745798841,
+                "seed": 20301858,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 211293.76351321238
+              },
+              {
+                "converged": true,
+                "initialization": 2,
+                "iterations": 22,
+                "likelihood_history": [
+                  203129.1627373723,
+                  206899.96544725742,
+                  207204.51271896533,
+                  210575.59504047994,
+                  210845.55357133658,
+                  210997.38183481412,
+                  211095.09393961713,
+                  211160.22704560545,
+                  211204.4636411823,
+                  211234.48196218914,
+                  211254.84344187722,
+                  211268.5874465814,
+                  211277.7337075018,
+                  211283.71357155,
+                  211287.55790480552,
+                  211289.9925378294,
+                  211291.51451607925,
+                  211292.45582421453,
+                  211293.0332354476,
+                  211293.38542119475,
+                  211293.59953277258,
+                  211293.72956115668
+                ],
+                "occupancy": [
+                  0.12704958925067353,
+                  0.3859873747931649,
+                  0.02155186749592577,
+                  0.4654111684602357
+                ],
+                "seconds": 56.22038587499992,
+                "seed": 20302867,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 211293.8085916073
+              },
+              {
+                "converged": true,
+                "initialization": 3,
+                "iterations": 22,
+                "likelihood_history": [
+                  203132.6670842946,
+                  206897.6466004502,
+                  207201.07835525516,
+                  210572.08735052403,
+                  210842.6907741408,
+                  210995.49130263823,
+                  211093.90283749255,
+                  211159.478440646,
+                  211203.99510214792,
+                  211234.1862234686,
+                  211254.65393839855,
+                  211268.46696149016,
+                  211277.65957463585,
+                  211283.6701117503,
+                  211287.53392346838,
+                  211289.9803006388,
+                  211291.5089641692,
+                  211292.4538364592,
+                  211293.03299351517,
+                  211293.3859259303,
+                  211293.60027080076,
+                  211293.73029194077
+                ],
+                "occupancy": [
+                  0.465397175172484,
+                  0.38600136808091673,
+                  0.021551867495925768,
+                  0.1270495892506735
+                ],
+                "ordered_mean_success_logit": [
+                  -0.15731864223810263,
+                  0.1221282797881834,
+                  0.3061487876817978,
+                  0.4631194721831831
+                ],
+                "seconds": 53.87897583399899,
+                "seed": 20303876,
+                "selected_by_source_likelihood": true,
+                "source_log_likelihood": 211293.80921942188
+              },
+              {
+                "converged": true,
+                "initialization": 4,
+                "iterations": 22,
+                "likelihood_history": [
+                  203187.00159213835,
+                  206898.31782498723,
+                  207202.20109306843,
+                  210573.2830228881,
+                  210843.659721076,
+                  210996.12973267323,
+                  211094.30787237803,
+                  211159.73613604964,
+                  211204.15876316998,
+                  211234.29092831028,
+                  211254.72178074747,
+                  211268.51058349526,
+                  211277.68683158566,
+                  211283.6864758026,
+                  211287.54330034874,
+                  211289.98539096233,
+                  211291.51154543163,
+                  211292.45502006053,
+                  211293.03344123298,
+                  211293.38601366596,
+                  211293.6002018353,
+                  211293.73017000649
+                ],
+                "occupancy": [
+                  0.46540111617652796,
+                  0.02155186749592576,
+                  0.12704958925067347,
+                  0.38599742707687285
+                ],
+                "seconds": 56.852266957983375,
+                "seed": 20304885,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 211293.80909333652
+              }
+            ],
+            "iterations": 22,
+            "selected_initialization_seed": 20303876,
+            "selected_source_log_likelihood": 211293.80921942188,
+            "stationary_distribution": [
+              0.39868979139301397,
+              0.00010723869170128847,
+              0.47063562644907453,
+              0.13056734346621027
+            ],
+            "terminal_posterior_entries": 1487,
+            "transition": [
+              [
+                0.8145986266822282,
+                8.756547007280973e-05,
+                0.0754436044995569,
+                0.10987020334814228
+              ],
+              [
+                0.28745015529366247,
+                0.03220611916264089,
+                0.5708429203907177,
+                0.10950080515297902
+              ],
+              [
+                0.10671621320286938,
+                7.308353037572103e-05,
+                0.7666096126222581,
+                0.12660109064449673
+              ],
+              [
+                0.1812272241456881,
+                0.0002640612622128331,
+                0.6104284399683866,
+                0.20808027462371248
+              ]
+            ],
+            "transition_pseudocount_diagonal": 20.0,
+            "transition_pseudocount_off_diagonal": 1.0,
+            "variance_floor": 0.0025000000000000005
+          },
+          "legality": {
+            "current_pitch_outcome_used_by_hmm": false,
+            "hmm_target_free": true,
+            "one_transition_per_season_gap": true,
+            "query_posterior_row_emission_only": true,
+            "query_prior_source_frozen": true,
+            "source_residual_rows_use_prior_season_terminal_only": true,
+            "validation_or_test_peer_used": false
+          },
+          "metrics": {
+            "actual_rate": 0.49995723449750534,
+            "baseline_brier": 0.24766051386953197,
+            "baseline_skill": 935.7937274777628,
+            "candidate_brier": 0.24765890330872314,
+            "candidate_mean": 0.5002023679069565,
+            "candidate_skill": 936.4379518060128,
+            "correction_rms": 0.0029544694245549705,
+            "correction_target_residual_correlation": -0.00013014329561809873,
+            "delta_brier_vs_exp071": -1.6105608088333593e-06,
+            "delta_skill": 0.6442243282444742,
+            "game_block_bootstrap": {
+              "ci95": [
+                -2.017370488779152e-05,
+                1.822809600473194e-05
+              ],
+              "games": 809,
+              "observed_delta_brier": -1.6105608088333593e-06,
+              "probability_delta_brier_negative": 0.568,
+              "replicates": 2000,
+              "seed": 20262844
+            },
+            "oracle": {
+              "brier": 0.24765745207589349,
+              "coefficient_unclipped": 0.5922546215046149,
+              "coefficient_used": 0.5922546215046149,
+              "deployable": false,
+              "gain_vs_exp071": 3.0617936384869093e-06
+            },
+            "paired_loss_mean": -1.6105608088333593e-06,
+            "paired_loss_std": 0.002939724557694599,
+            "prediction_correlation": 0.9993855917448242,
+            "rows": 245525,
+            "target_error_correlation": 0.9999942347069984
+          },
+          "novelty": {
+            "fold_novelty_gate_passed": false,
+            "minimum_source_state_occupancy": 0.021551867495925768,
+            "occupancy_gate_0_05_passed": false,
+            "posterior_confidence_gate_0_60_passed": true,
+            "query_emission_fields": [
+              "asof_pitcher_prev1_game_success_rate",
+              "asof_pitcher_prev3_game_success_rate",
+              "asof_pitcher_prev5_game_success_rate",
+              "asof_pitcher_prev1_game_middle_rate",
+              "asof_pitcher_prev3_game_middle_rate",
+              "asof_pitcher_prev5_game_middle_rate"
+            ],
+            "query_median_maximum_posterior": 0.9896804156530633,
+            "query_peer_state_updates": false,
+            "season_gap_mean_seen_query": 1.0681370395044578,
+            "source_state_occupancy": [
+              0.38600136808091673,
+              0.021551867495925768,
+              0.465397175172484,
+              0.1270495892506735
+            ],
+            "source_terminal_prior_query_rate": 0.8620181244272478,
+            "transition_correction_rms_gate_1e_4_passed": true,
+            "transition_vs_emission_only_correction_rms": 0.00046849669315959493,
+            "transition_vs_emission_only_posterior_rms": 0.11887664466794128
+          },
+          "residual_map": {
+            "emission_only_map": {
+              "effect_clip_count": 0,
+              "effect_max_abs": 0.029868066960478785,
+              "effect_rms": 0.012178160411006325,
+              "effective_mass_max": 15188.221341570748,
+              "effective_mass_mean_positive": 2577.8333333333308,
+              "positive_cells": 96,
+              "smoothing": 300.0,
+              "total_cells": 96
+            },
+            "query_contract_used_for_source_rows": "prior-season terminal posterior plus this row emission only",
+            "raw_residual_mean_by_season": {
+              "2022": 0.01077806418179239
+            },
+            "rows": 247472,
+            "source_prior_diagnostics": {
+              "2022": {
+                "rows": 247472,
+                "season_gap_mean_seen": 1.1675410748026587,
+                "source_terminal_prior_rate": 0.842608456714295
+              }
+            },
+            "source_season_equal_weight_totals": {
+              "2022": 247472.0
+            },
+            "source_seasons": [
+              2022
+            ],
+            "transition_map": {
+              "effect_clip_count": 0,
+              "effect_max_abs": 0.029868066960478785,
+              "effect_rms": 0.012185237496920567,
+              "effective_mass_max": 14982.388731167244,
+              "effective_mass_mean_positive": 2577.833333333335,
+              "positive_cells": 96,
+              "smoothing": 300.0,
+              "total_cells": 96
+            }
+          },
+          "row_independence": {
+            "literal_exact_identity_passed": true,
+            "maximum_absolute_difference": 0.0,
+            "maximum_absolute_differences": {
+              "duplicate_first": 0.0,
+              "duplicate_second": 0.0,
+              "permutation": 0.0,
+              "reverse": 0.0,
+              "singleton": 0.0,
+              "split": 0.0
+            },
+            "rows": 64,
+            "seed": 20260821,
+            "semantic_tolerance_1e_12_passed": true
+          },
+          "runtime": {
+            "inference_rows_per_second": 861867.4770126898,
+            "inference_seconds": 0.2848755830200389,
+            "peak_rss_mb": 952.921875,
+            "total_seconds": 284.2107177079888,
+            "train_seconds": 283.1932796660112
+          },
+          "secondary_exp051_control": {
+            "candidate_delta_brier_vs_exp051": -1.556290705984022e-05,
+            "exp051_brier": 0.24767446621578296,
+            "prediction_correlation_with_exp051": 0.997766184046831
+          },
+          "source_seasons": [
+            2019,
+            2020,
+            2021,
+            2022
+          ],
+          "state_count": 4,
+          "state_size": {
+            "bytes": 50288,
+            "mib": 0.0479583740234375,
+            "residual_effect_cells_per_map": 96,
+            "terminal_posterior_entries": 1487
+          },
+          "validation_season": 2023
+        },
+        "2024": {
+          "configuration": "H2-sticky4",
+          "hmm": {
+            "converged": true,
+            "initial_probability": [
+              0.0013986013986013986,
+              0.9958041958041958,
+              0.0013986013986013986,
+              0.0013986013986013986
+            ],
+            "initializations": [
+              {
+                "converged": true,
+                "initialization": 0,
+                "iterations": 21,
+                "likelihood_history": [
+                  253292.88273572145,
+                  261380.9287116492,
+                  261825.00592782488,
+                  262050.41626018594,
+                  262288.821240696,
+                  262563.5519260185,
+                  262749.5483920558,
+                  262830.0808231011,
+                  262884.05393537943,
+                  262920.7503229165,
+                  262945.60592347593,
+                  262962.2611351587,
+                  262973.21621162404,
+                  262980.24147472036,
+                  262984.6229059948,
+                  262987.28830647614,
+                  262988.87839121826,
+                  262989.81339684903,
+                  262990.357538341,
+                  262990.67190411495,
+                  262990.8526083363
+                ],
+                "occupancy": [
+                  0.4741087174901085,
+                  0.018792620394354292,
+                  0.3822638574424918,
+                  0.12483480467304546
+                ],
+                "seconds": 68.65525725000771,
+                "seed": 20300849,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 262990.9561370032
+              },
+              {
+                "converged": true,
+                "initialization": 1,
+                "iterations": 20,
+                "likelihood_history": [
+                  253104.32002951318,
+                  258078.7347058845,
+                  262053.36664855512,
+                  262415.4413274389,
+                  262608.30684502085,
+                  262728.85614951403,
+                  262812.8804289257,
+                  262871.92848933884,
+                  262912.3882867572,
+                  262939.8752424883,
+                  262958.39259688015,
+                  262970.6658244521,
+                  262978.60773215024,
+                  262983.60505756974,
+                  262986.668351639,
+                  262988.50700828433,
+                  262989.5934635198,
+                  262990.22827407764,
+                  262990.5962782168,
+                  262990.8084669165
+                ],
+                "occupancy": [
+                  0.38215027134126833,
+                  0.018792620394354274,
+                  0.12483480467304534,
+                  0.47422230359133205
+                ],
+                "seconds": 65.27433720900444,
+                "seed": 20301858,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 262990.9303871307
+              },
+              {
+                "converged": true,
+                "initialization": 2,
+                "iterations": 21,
+                "likelihood_history": [
+                  253297.34045249783,
+                  261382.28662608913,
+                  261826.2183632068,
+                  262051.37899830026,
+                  262292.1150290287,
+                  262564.63596237096,
+                  262750.17011237325,
+                  262830.509931198,
+                  262884.3459372674,
+                  262920.9460269082,
+                  262945.7358689429,
+                  262962.34629972785,
+                  262973.27092180564,
+                  262980.2757220312,
+                  262984.6437936293,
+                  262987.30077084014,
+                  262988.8857048971,
+                  262989.8176342909,
+                  262990.3599701521,
+                  262990.6732895599,
+                  262990.85339317314
+                ],
+                "occupancy": [
+                  0.1248348046730454,
+                  0.47411249485439516,
+                  0.018792620394354285,
+                  0.3822600800782052
+                ],
+                "ordered_mean_success_logit": [
+                  -0.19087222850860752,
+                  0.09960134677093287,
+                  0.28331940588923116,
+                  0.43817869724851205
+                ],
+                "seconds": 68.17679058297654,
+                "seed": 20302867,
+                "selected_by_source_likelihood": true,
+                "source_log_likelihood": 262990.956579594
+              },
+              {
+                "converged": true,
+                "initialization": 3,
+                "iterations": 20,
+                "likelihood_history": [
+                  253127.90175628965,
+                  258085.98028542736,
+                  262057.34026746446,
+                  262417.4178441559,
+                  262609.27015959186,
+                  262729.39960448316,
+                  262813.215957553,
+                  262872.1465379317,
+                  262912.5416384447,
+                  262939.9870048876,
+                  262958.47295411833,
+                  262970.72178071406,
+                  262978.6453995001,
+                  262983.6296875693,
+                  262986.6841108314,
+                  262988.5169458882,
+                  262989.5996753232,
+                  262990.23213943286,
+                  262990.5986797593,
+                  262990.80995971157
+                ],
+                "occupancy": [
+                  0.1248348046730454,
+                  0.47420697589748995,
+                  0.018792620394354285,
+                  0.3821655990351103
+                ],
+                "seconds": 65.17025620801724,
+                "seed": 20303876,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 262990.93131675065
+              },
+              {
+                "converged": true,
+                "initialization": 4,
+                "iterations": 16,
+                "likelihood_history": [
+                  221934.4535011631,
+                  234702.50762312638,
+                  249729.6333974894,
+                  251588.06105005014,
+                  252225.99734985732,
+                  252489.21492826374,
+                  252606.40234686155,
+                  252661.2627594048,
+                  252687.53632533902,
+                  252700.24759753663,
+                  252706.43368013008,
+                  252709.45936786028,
+                  252710.94764171715,
+                  252711.68493901842,
+                  252712.0536444984,
+                  252712.24032357763
+                ],
+                "occupancy": [
+                  0.728634090999132,
+                  0.01879262039435428,
+                  0.244776069174257,
+                  0.0077972194322566985
+                ],
+                "seconds": 52.5572133329988,
+                "seed": 20304885,
+                "selected_by_source_likelihood": false,
+                "source_log_likelihood": 252712.33637551204
+              }
+            ],
+            "iterations": 21,
+            "selected_initialization_seed": 20302867,
+            "selected_source_log_likelihood": 262990.956579594,
+            "stationary_distribution": [
+              0.3952881408309588,
+              8.45739480510852e-05,
+              0.47679612336228205,
+              0.12783116185870808
+            ],
+            "terminal_posterior_entries": 1869,
+            "transition": [
+              [
+                0.816648689815941,
+                7.021304217696681e-05,
+                0.07775418638190833,
+                0.10552691075997372
+              ],
+              [
+                0.27693844380362237,
+                0.02936857562408222,
+                0.5909029658880076,
+                0.10279001468428778
+              ],
+              [
+                0.10433318662537695,
+                5.681937054540385e-05,
+                0.7698660632589236,
+                0.12574393074515394
+              ],
+              [
+                0.1776367944469543,
+                0.00021312872975277075,
+                0.617546496260633,
+                0.20460358056265993
+              ]
+            ],
+            "transition_pseudocount_diagonal": 20.0,
+            "transition_pseudocount_off_diagonal": 1.0,
+            "variance_floor": 0.0025000000000000005
+          },
+          "legality": {
+            "current_pitch_outcome_used_by_hmm": false,
+            "hmm_target_free": true,
+            "one_transition_per_season_gap": true,
+            "query_posterior_row_emission_only": true,
+            "query_prior_source_frozen": true,
+            "source_residual_rows_use_prior_season_terminal_only": true,
+            "validation_or_test_peer_used": false
+          },
+          "metrics": {
+            "actual_rate": 0.4861049201797189,
+            "baseline_brier": 0.24760467246802623,
+            "baseline_skill": 881.5825555173129,
+            "candidate_brier": 0.24762404077505154,
+            "candidate_mean": 0.49249489085907505,
+            "candidate_skill": 873.8292448798645,
+            "correction_rms": 0.002003141089801949,
+            "correction_target_residual_correlation": -0.0008262197778838542,
+            "delta_brier_vs_exp071": 1.9368307025329393e-05,
+            "delta_skill": -7.753310637447076,
+            "game_block_bootstrap": {
+              "ci95": [
+                8.03706318987798e-06,
+                3.019554596652042e-05
+              ],
+              "games": 822,
+              "observed_delta_brier": 1.9368307025329393e-05,
+              "probability_delta_brier_negative": 0.0,
+              "replicates": 2000,
+              "seed": 20262845
+            },
+            "oracle": {
+              "brier": 0.24758998124260867,
+              "coefficient_unclipped": -1.9134515570459953,
+              "coefficient_used": -1.9134515570459953,
+              "deployable": false,
+              "gain_vs_exp071": 1.4691225417556852e-05
+            },
+            "paired_loss_mean": 1.9368307025329393e-05,
+            "paired_loss_std": 0.001994239548106891,
+            "prediction_correlation": 0.9995902699143225,
+            "rows": 253507,
+            "target_error_correlation": 0.9999960419245131
+          },
+          "novelty": {
+            "fold_novelty_gate_passed": false,
+            "minimum_source_state_occupancy": 0.018792620394354285,
+            "occupancy_gate_0_05_passed": false,
+            "posterior_confidence_gate_0_60_passed": true,
+            "query_emission_fields": [
+              "asof_pitcher_prev1_game_success_rate",
+              "asof_pitcher_prev3_game_success_rate",
+              "asof_pitcher_prev5_game_success_rate",
+              "asof_pitcher_prev1_game_middle_rate",
+              "asof_pitcher_prev3_game_middle_rate",
+              "asof_pitcher_prev5_game_middle_rate"
+            ],
+            "query_median_maximum_posterior": 0.9931573728038117,
+            "query_peer_state_updates": false,
+            "season_gap_mean_seen_query": 1.0950044054164472,
+            "source_state_occupancy": [
+              0.3822600800782052,
+              0.018792620394354285,
+              0.47411249485439516,
+              0.1248348046730454
+            ],
+            "source_terminal_prior_query_rate": 0.8013940443459155,
+            "transition_correction_rms_gate_1e_4_passed": true,
+            "transition_vs_emission_only_correction_rms": 0.0003377863480294248,
+            "transition_vs_emission_only_posterior_rms": 0.10384418125142297
+          },
+          "residual_map": {
+            "emission_only_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.011079547511920114,
+              "effective_mass_max": 30748.14041014325,
+              "effective_mass_mean_positive": 5135.385416666667,
+              "positive_cells": 96,
+              "smoothing": 300.0,
+              "total_cells": 96
+            },
+            "query_contract_used_for_source_rows": "prior-season terminal posterior plus this row emission only",
+            "raw_residual_mean_by_season": {
+              "2022": 0.01077806418179239,
+              "2023": 0.002178344705474474
+            },
+            "rows": 492997,
+            "source_prior_diagnostics": {
+              "2022": {
+                "rows": 247472,
+                "season_gap_mean_seen": 1.1675410748026587,
+                "source_terminal_prior_rate": 0.842608456714295
+              },
+              "2023": {
+                "rows": 245525,
+                "season_gap_mean_seen": 1.0681370395044578,
+                "source_terminal_prior_rate": 0.8620181244272478
+              }
+            },
+            "source_season_equal_weight_totals": {
+              "2022": 246498.50000000006,
+              "2023": 246498.49999999994
+            },
+            "source_seasons": [
+              2022,
+              2023
+            ],
+            "transition_map": {
+              "effect_clip_count": 1,
+              "effect_max_abs": 0.03,
+              "effect_rms": 0.011034596716963127,
+              "effective_mass_max": 29958.13093020521,
+              "effective_mass_mean_positive": 5135.3854166666715,
+              "positive_cells": 96,
+              "smoothing": 300.0,
+              "total_cells": 96
+            }
+          },
+          "row_independence": {
+            "literal_exact_identity_passed": true,
+            "maximum_absolute_difference": 0.0,
+            "maximum_absolute_differences": {
+              "duplicate_first": 0.0,
+              "duplicate_second": 0.0,
+              "permutation": 0.0,
+              "reverse": 0.0,
+              "singleton": 0.0,
+              "split": 0.0
+            },
+            "rows": 64,
+            "seed": 20260821,
+            "semantic_tolerance_1e_12_passed": true
+          },
+          "runtime": {
+            "inference_rows_per_second": 728242.646037865,
+            "inference_seconds": 0.3481078750046436,
+            "peak_rss_mb": 1087.984375,
+            "total_seconds": 324.3146100419981,
+            "train_seconds": 323.2198554170027
+          },
+          "secondary_exp051_control": {
+            "candidate_delta_brier_vs_exp051": 1.5998216299984927e-05,
+            "exp051_brier": 0.24760804255875157,
+            "prediction_correlation_with_exp051": 0.9983009051624492
+          },
+          "source_seasons": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023
+          ],
+          "state_count": 4,
+          "state_size": {
+            "bytes": 62512,
+            "mib": 0.0596160888671875,
+            "residual_effect_cells_per_map": 96,
+            "terminal_posterior_entries": 1869
+          },
+          "validation_season": 2024
+        }
+      },
+      "pooled": {
+        "baseline_brier": 0.24763214657811275,
+        "candidate_brier": 0.24764119322936254,
+        "correction_target_residual_correlation": 0.0017551992899169215,
+        "delta_brier_vs_exp071": 9.046651249782317e-06,
+        "oracle": {
+          "brier": 0.24763185588587433,
+          "coefficient_unclipped": -0.21424540670506034,
+          "coefficient_used": -0.21424540670506034,
+          "deployable": false,
+          "gain_vs_exp071": 2.9069223841937664e-07
+        },
+        "prediction_correlation": 0.9994443507230952,
+        "rows": 499032,
+        "seasons": [
+          2023,
+          2024
+        ],
+        "target_error_correlation": 0.9999946574514414
+      },
+      "promotion_gate": {
+        "diversity_route": false,
+        "fast_kill_both_above_1e_4": false,
+        "metric_survivor": false,
+        "pooled_delta_brier": 9.046651249782315e-06,
+        "season_delta_brier": {
+          "2023": -1.6105608088333593e-06,
+          "2024": 1.9368307025329393e-05
+        },
+        "tier_a_route": false,
+        "tier_b_route": false
+      }
+    }
+  },
+  "data_path": "/Users/moonki/Desktop/open/data/train.csv",
+  "environment": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "experiment": "EXP-114",
+  "family": "sticky_switching_pitcher_regime",
+  "fixed_definition": {
+    "configuration_state_counts": {
+      "H1-sticky3": 3,
+      "H2-sticky4": 4
+    },
+    "correction": "0.03*tanh(raw), integrated at weight 0.25",
+    "diagnostic_seasons": [
+      2023,
+      2024
+    ],
+    "emission_features": [
+      "asof_pitcher_prev1_game_success_rate",
+      "asof_pitcher_prev3_game_success_rate",
+      "asof_pitcher_prev5_game_success_rate",
+      "asof_pitcher_prev1_game_middle_rate",
+      "asof_pitcher_prev3_game_middle_rate",
+      "asof_pitcher_prev5_game_middle_rate",
+      "missing__asof_pitcher_prev1_game_success_rate",
+      "missing__asof_pitcher_prev3_game_success_rate",
+      "missing__asof_pitcher_prev5_game_success_rate",
+      "missing__asof_pitcher_prev1_game_middle_rate",
+      "missing__asof_pitcher_prev3_game_middle_rate",
+      "missing__asof_pitcher_prev5_game_middle_rate"
+    ],
+    "initializations": 5,
+    "model_seed": 20260821,
+    "rate_columns": [
+      "asof_pitcher_prev1_game_success_rate",
+      "asof_pitcher_prev3_game_success_rate",
+      "asof_pitcher_prev5_game_success_rate",
+      "asof_pitcher_prev1_game_middle_rate",
+      "asof_pitcher_prev3_game_middle_rate",
+      "asof_pitcher_prev5_game_middle_rate"
+    ],
+    "residual_map": "posterior state x count_index x batter_hand",
+    "residual_map_smoothing": 300.0,
+    "selection": "maximum source HMM likelihood only",
+    "state_order": "ascending mean of three success-rate logits",
+    "sticky_transition_pseudocounts": {
+      "diagonal": 20.0,
+      "off_diagonal": 1.0
+    },
+    "variance_floor": 0.0025000000000000005
+  },
+  "peak_rss_mb": 1087.984375,
+  "preregistration": "docs/MODEL_DISCOVERY_EXP112_ULTRA.md",
+  "preregistration_sha256": "1bc9dd6384a721d93205521f6058ff4c0d368d1a2efbb5fa44a32942723184d0",
+  "selection": {
+    "full_rolling_authorized": false,
+    "primary_configuration": "H1-sticky3",
+    "primary_wins_if_both_qualify": true,
+    "promoted_configuration": null,
+    "qualifying_configurations": []
+  },
+  "source_preparation": {
+    "2023": {
+      "control_success_used_by_hmm": false,
+      "emission_transform": {
+        "centers": [
+          0.16089004254032663,
+          0.13497547916349076,
+          0.13386833789188482,
+          -2.7186152859128727,
+          -1.9473467810369216,
+          -1.8901022848621702,
+          0.021551867495925765,
+          0.021551867495925765,
+          0.021551867495925765,
+          0.021551867495925765,
+          0.021551867495925765,
+          0.021551867495925765
+        ],
+        "feature_names": [
+          "asof_pitcher_prev1_game_success_rate",
+          "asof_pitcher_prev3_game_success_rate",
+          "asof_pitcher_prev5_game_success_rate",
+          "asof_pitcher_prev1_game_middle_rate",
+          "asof_pitcher_prev3_game_middle_rate",
+          "asof_pitcher_prev5_game_middle_rate",
+          "missing__asof_pitcher_prev1_game_success_rate",
+          "missing__asof_pitcher_prev3_game_success_rate",
+          "missing__asof_pitcher_prev5_game_success_rate",
+          "missing__asof_pitcher_prev1_game_middle_rate",
+          "missing__asof_pitcher_prev3_game_middle_rate",
+          "missing__asof_pitcher_prev5_game_middle_rate"
+        ],
+        "rate_epsilon": 0.0001,
+        "rate_logit_medians": [
+          0.1335300533388679,
+          0.11778398010085402,
+          0.11507080592482853,
+          -1.9095448011826908,
+          -1.8425329530178072,
+          -1.8294987259862459
+        ],
+        "scales": [
+          1.339565668627377,
+          0.45770249016856,
+          0.3960975068440249,
+          2.580571814304341,
+          0.8520891231392886,
+          0.6191625396009269,
+          0.14521495964045758,
+          0.14521495964045758,
+          0.14521495964045758,
+          0.14521495964045758,
+          0.14521495964045758,
+          0.14521495964045758
+        ],
+        "source_rows": 30067,
+        "source_seasons": [
+          2019,
+          2020,
+          2021,
+          2022
+        ]
+      },
+      "hmm_fit_columns": [
+        "asof_pitcher_prev1_game_success_rate",
+        "asof_pitcher_prev3_game_success_rate",
+        "asof_pitcher_prev5_game_success_rate",
+        "asof_pitcher_prev1_game_middle_rate",
+        "asof_pitcher_prev3_game_middle_rate",
+        "asof_pitcher_prev5_game_middle_rate",
+        "missing__asof_pitcher_prev1_game_success_rate",
+        "missing__asof_pitcher_prev3_game_success_rate",
+        "missing__asof_pitcher_prev5_game_success_rate",
+        "missing__asof_pitcher_prev1_game_middle_rate",
+        "missing__asof_pitcher_prev3_game_middle_rate",
+        "missing__asof_pitcher_prev5_game_middle_rate"
+      ],
+      "maximum_sequence_length": 270,
+      "median_sequence_length": 22.0,
+      "minimum_sequence_length": 1,
+      "observation_unit": "first row of target-free reconstructed pitcher-game",
+      "official_source_rows": 976060,
+      "pitcher_game_observations": 30067,
+      "pitcher_sequences": 648,
+      "preparation_seconds": 0.28913379201549105,
+      "reconstructed_games": 3237,
+      "source_seasons": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "target_free_hmm_fit": true
+    },
+    "2024": {
+      "control_success_used_by_hmm": false,
+      "emission_transform": {
+        "centers": [
+          0.12823187342196957,
+          0.11234680894127641,
+          0.11307805433455163,
+          -2.6894205161209404,
+          -1.9292559089963957,
+          -1.8704297194704733,
+          0.018792620394354285,
+          0.018792620394354285,
+          0.018792620394354285,
+          0.018792620394354285,
+          0.018792620394354285,
+          0.018792620394354285
+        ],
+        "feature_names": [
+          "asof_pitcher_prev1_game_success_rate",
+          "asof_pitcher_prev3_game_success_rate",
+          "asof_pitcher_prev5_game_success_rate",
+          "asof_pitcher_prev1_game_middle_rate",
+          "asof_pitcher_prev3_game_middle_rate",
+          "asof_pitcher_prev5_game_middle_rate",
+          "missing__asof_pitcher_prev1_game_success_rate",
+          "missing__asof_pitcher_prev3_game_success_rate",
+          "missing__asof_pitcher_prev5_game_success_rate",
+          "missing__asof_pitcher_prev1_game_middle_rate",
+          "missing__asof_pitcher_prev3_game_middle_rate",
+          "missing__asof_pitcher_prev5_game_middle_rate"
+        ],
+        "rate_epsilon": 0.0001,
+        "rate_logit_medians": [
+          0.10536136010228947,
+          0.09730069297556536,
+          0.09614198723494365,
+          -1.8845423545782436,
+          -1.8245483630190993,
+          -1.8146422771398634
+        ],
+        "scales": [
+          1.334749652605619,
+          0.4505745315438429,
+          0.38888815605314514,
+          2.568162138442286,
+          0.8407198488555825,
+          0.5916802508434849,
+          0.13579196520071665,
+          0.13579196520071665,
+          0.13579196520071665,
+          0.13579196520071665,
+          0.13579196520071665,
+          0.13579196520071665
+        ],
+        "source_rows": 37834,
+        "source_seasons": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023
+        ]
+      },
+      "hmm_fit_columns": [
+        "asof_pitcher_prev1_game_success_rate",
+        "asof_pitcher_prev3_game_success_rate",
+        "asof_pitcher_prev5_game_success_rate",
+        "asof_pitcher_prev1_game_middle_rate",
+        "asof_pitcher_prev3_game_middle_rate",
+        "asof_pitcher_prev5_game_middle_rate",
+        "missing__asof_pitcher_prev1_game_success_rate",
+        "missing__asof_pitcher_prev3_game_success_rate",
+        "missing__asof_pitcher_prev5_game_success_rate",
+        "missing__asof_pitcher_prev1_game_middle_rate",
+        "missing__asof_pitcher_prev3_game_middle_rate",
+        "missing__asof_pitcher_prev5_game_middle_rate"
+      ],
+      "maximum_sequence_length": 337,
+      "median_sequence_length": 24.0,
+      "minimum_sequence_length": 1,
+      "observation_unit": "first row of target-free reconstructed pitcher-game",
+      "official_source_rows": 1221585,
+      "pitcher_game_observations": 37834,
+      "pitcher_sequences": 711,
+      "preparation_seconds": 0.38063104200409725,
+      "reconstructed_games": 4046,
+      "source_seasons": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "target_free_hmm_fit": true
+    }
+  },
+  "stage": "cheap_2023_2024",
+  "total_seconds": 987.9712178750196
+}

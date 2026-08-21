@@ -100,6 +100,13 @@
 | EXP-109 | centered SVD rank-2 correction 합성 | 0.247607794 | 880.33 | 저차원 basis도 EXP-071보다 악화, tier C |
 | EXP-110 | EXP-071 + 물리 lookup 부재 구간 보조 correction | 0.247591508 | 886.85 | 신규 조합 중 유일한 2024 개선·tier B, 아직 Public 미제출 |
 | EXP-111 | fixed Fourier temporal control feasibility audit | — | — | exact timestamp 부재와 행 독립성 제약으로 실행하지 않음 |
+| EXP-112 F1 | rank-16 order-2/3 all-field HOFM residual | 0.247639747 | 867.54 | 2023·2024 모두 EXP-071보다 악화, 비채택 |
+| EXP-112 F2 | spline rank-8 order-2/3 AHOFM residual | 0.247646974 | 864.65 | 고차 항은 활성화됐지만 시간 전이 실패, 비채택 |
+| EXP-113 D1 | 2-layer·4-expert rank-32 DCNv2 residual | 0.247674199 | 853.75 | 두 fold 악화·cross novelty gate 실패, 비채택 |
+| EXP-114 H1 | sticky 3-state source HMM residual | 0.247623967 | 873.86 | 2023 소폭 개선 뒤 2024 역전·희소 state 붕괴, 비채택 |
+| EXP-114 H2 | sticky 4-state source HMM residual | 0.247624041 | 873.83 | 2024 악화·state occupancy gate 실패, 비채택 |
+| EXP-115 V1 | diagonal-covariance variational random slopes | 0.247603609 | 882.01 | 두 fold 소폭 개선했지만 pooled survivor gate 미달 |
+| EXP-115 V2 | rank-2-plus-diagonal variational random slopes | 0.247603651 | 881.99 | best new이지만 pooled ΔBrier `-4.922879e-6`, 비채택 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -127,6 +134,8 @@ EXP-072~073은 기존 누적 평균과 다른 동적 선수 상태를 검증했�
 
 EXP-074는 데뷔 연차·휴식 시즌·이전 workload·최근 3시즌 기량 추세를 prior-only Ridge에 넣었지만 strict Skill `1742.23`, `880.09`, `871.21`로 악화됐다. EXP-075는 `top_bottom`과 양 팀 ID로 홈구장 팀을 행별 복원했다. 같은 fold 정답을 사용한 park×month 상한은 2023 `1103.86`, 2024 `1027.68`로 처음 1000을 넘었지만, 과거 시즌 효과 전이는 `1655.27`, `887.53`, `858.69`에 그쳤다. 인접 시즌 park 효과 상관이 `-0.11~0.35`였고, 최근 두 과거 시즌에서 부호가 일치한 효과만 쓰는 EXP-076도 `1726.23`, `902.60`, `868.19`로 실패했다. 구장 신호는 동시즌 해상도는 있으나 2025에 배포할 시간 안정성이 없어 ZIP을 만들지 않는다.
 
+EXP-112~115는 결과 전에 잠근 26-family discovery에서 explicit high-order interaction, switching latent state, correlated hierarchical posterior를 선택해 EXP-071 residual에 cheap 2023/2024 검증했다. EXP-112·113은 두 fold 모두 악화했고, EXP-114는 2023의 작은 개선이 2024에서 역전됐다. EXP-115 V2만 2023 `0.247651562596 / 939.37`, 2024 `0.247603651144 / 881.99`로 두 fold를 모두 개선했지만 recent pooled ΔBrier는 `-0.00000492287908301465`이고 survivor gate는 `false`였다. survivor가 없어 신규 2022 full rolling, ensemble, final fit과 ZIP을 만들지 않았으며 EXP-071을 유지한다.
+
 ## 베이스라인과 노트북
 
 - `[Baseline_Train]_RandomForest를 활용한 모델 학습 및 피쳐엔지니어링 (학습).ipynb`: 베이스라인 학습과 시간 기준 검증
@@ -142,7 +151,7 @@ EXP-074는 데뷔 연차·휴식 시즌·이전 workload·최근 3시즌 기량 
 ├── [Baseline_Train]_....ipynb
 ├── [Baseline_Inference]_....ipynb
 ├── [EXP-002_Train]_....ipynb
-├── experiments/              # EXP-002~071 학습·검증·패키징 코드
+├── experiments/              # EXP-002~115 학습·검증·감사·패키징 코드
 ├── submissions/              # 모델을 제외한 추론 코드와 환경 명세
 ├── artifacts/                # 작은 validation_metrics.json만 추적
 ├── docs/                     # 실험·학습·환경·제출 기록
@@ -192,6 +201,9 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 ## 기록 문서
 
 - [`docs/EXPERIMENT_LOG.md`](docs/EXPERIMENT_LOG.md): 가설, 변경 내용, 검증 결과와 다음 실험
+- [`docs/MODEL_DISCOVERY_EXP112_ULTRA.md`](docs/MODEL_DISCOVERY_EXP112_ULTRA.md): EXP-112+ 불변 사전등록과 26-family novelty matrix
+- [`docs/ULTRA_MODEL_DISCOVERY.md`](docs/ULTRA_MODEL_DISCOVERY.md): 26-family ranking, 실행 상태와 terminal decision
+- [`docs/ULTRA_MODEL_RESEARCH_REPORT.md`](docs/ULTRA_MODEL_RESEARCH_REPORT.md): EXP-112~115 지표·bootstrap·oracle·행 독립성 최종 보고
 - [`docs/LEARNING_LOG.md`](docs/LEARNING_LOG.md): 프로젝트를 진행하며 공부한 개념과 블로그 기록
 - [`docs/DATA_NOTES.md`](docs/DATA_NOTES.md): 데이터 의미, 피처 후보와 누수 점검
 - [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md): 로컬·평가 서버 환경과 호환성
@@ -210,7 +222,10 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-110은 2024 Brier `0.24759150775995106`, Skill `886.8525086951795`로 correction 합성 중 유일한 tier B이지만 2023은 EXP-071보다 낮으므로 로컬 후보로만 보존하기
 - EXP-106~109는 tier C로 종료하고, EXP-111은 exact timestamp가 없어 실행하지 않기
 - EXP-110을 평가한다면 현재 고정식과 ZIP hash를 그대로 한 번만 사용하고 Public 결과로 재가중하지 않기
-- 규정 내 신규 행 단위 신호가 확인될 때만 blocked 목표를 재개하기
+- EXP-112 HOFM/AHOFM과 EXP-113 DCNv2는 high-order interaction이 다음 시즌 residual 방향을 보존하지 못했으므로 rank·layer·부호 sweep을 중단하기
+- EXP-114 switching state는 희소 state 붕괴와 2024 역전으로 종료하고, EXP-115 random slopes는 두 fold 소폭 개선에도 pooled survivor gate 미달이므로 blend 탐색하지 않기
+- EXP-112~115 survivor가 없으므로 신규 full rolling·ensemble·final fit·ZIP을 만들지 않고 EXP-071을 계속 유지하기
+- Public `1053.8615519684`가 목표 1100에는 못 미치므로 규정 내 신규 행 단위 신호가 확인될 때만 연구를 재개하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 
 ## 관련 글
