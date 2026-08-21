@@ -13,6 +13,7 @@
 | STUDY-005 | 2026-08-10 | 시간축 검증과 확률 보정의 일반화 | EXP-014 적용 |
 | STUDY-006 | 2026-08-10 | 행별 현재 시즌 복원과 constrained residual | EXP-018 적용 |
 | STUDY-007 | 2026-08-10 | source-season EB, low-rank 문맥과 convex oracle 상한 | EXP-019~021 적용 |
+| STUDY-015 | 2026-08-21 | 완성 예측과 correction-space의 상관 차이 | EXP-105~110 적용 |
 
 ## STUDY-001 — 문제와 데이터를 이해하며 첫 번째 글 작성
 
@@ -410,6 +411,30 @@ EXP-075의 park 효과는 같은 fold 정답을 허용하면 2023·2024 Skill 10
 
 - residual target의 우위가 다른 prediction basis와 다음 시간 구간에서도 반복되는지 strict historical OOF로 확인한다.
 - 서로 다른 correction family를 결합할 때 Public이 아닌 inner OOF만으로 비중을 결정하는 방법을 유지한다.
+
+## STUDY-015 — 완성 예측과 correction-space의 상관 차이
+
+### 공부하게 된 이유
+
+EXP-063·064·071·072의 완성 예측 오차는 거의 같은데 각 모델이 EXP-051에 더한 correction은 서로 다른지 확인할 필요가 있었다.
+
+### 공부한 내용
+
+- 강한 공통 기준 예측이 있으면 완성 예측끼리의 높은 상관이 작은 보정 신호의 차이를 가릴 수 있다.
+- 후보의 다양성은 `prediction`뿐 아니라 `candidate - base` correction 공간에서도 확인해야 한다.
+- correction끼리 상관이 낮아도 target residual과의 관계가 약하면 자유로운 선형 조합은 시간축에서 불안정할 수 있다.
+- nested historical OOF로 계수를 고르고 outer 시즌을 적합에 쓰지 않아야 조합 성능을 정직하게 평가할 수 있다.
+- 결측 mechanism을 보존한 규칙 기반 조합은 전체 공간의 자유 회귀보다 전이 위험을 제한할 수 있지만, 모든 시즌 개선을 보장하지는 않는다.
+
+### 프로젝트에 적용한 방법
+
+- EXP-105에서 correction correlation과 complete prediction error correlation을 분리해 기록했다.
+- EXP-106~109는 strict historical OOF 조합으로 평가하고, EXP-110은 물리 lookup unavailable 구간에만 보조 correction을 적용했다.
+- EXP-110은 tier B 로컬 후보로만 남기고 Public 결과를 이용한 재가중은 금지했다.
+
+### 다음 학습
+
+- correction 조합을 다시 시도하려면 기존 basis의 계수 탐색보다 새로운 독립 행 단위 신호를 먼저 확인한다.
 
 ## 다음에 공부할 내용
 

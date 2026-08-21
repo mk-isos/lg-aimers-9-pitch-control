@@ -1,0 +1,60 @@
+{
+  "experiment_batch": "EXP-105~111",
+  "source_report": "artifacts/EXP-105/correction_geometry/report.json",
+  "validation_periods": [2022, 2023, 2024],
+  "reference": {
+    "experiment": "EXP-071",
+    "folds": {
+      "2022": {"brier_score": 0.24490065427938507, "skill_score": 1710.9054175580063},
+      "2023": {"brier_score": 0.24766051386953197, "skill_score": 935.7937274777628},
+      "2024": {"brier_score": 0.24760467246802623, "skill_score": 881.5825555173129}
+    }
+  },
+  "results": {
+    "EXP-106": {
+      "candidate_tier": "C",
+      "folds": {
+        "2022": {"brier_score": 0.24486234446945226, "skill_score": 1726.2807808578696},
+        "2023": {"brier_score": 0.24779881060850875, "skill_score": 880.475031482364},
+        "2024": {"brier_score": 0.2476077689785506, "skill_score": 880.3429940029139}
+      }
+    },
+    "EXP-107": {
+      "candidate_tier": "C",
+      "folds": {
+        "2022": {"brier_score": 0.24486234446945226, "skill_score": 1726.2807808578696},
+        "2023": {"brier_score": 0.24770199439883625, "skill_score": 919.2015156346711},
+        "2024": {"brier_score": 0.24760546909968736, "skill_score": 881.2636565694421}
+      }
+    },
+    "EXP-108": {
+      "candidate_tier": "C",
+      "folds": {
+        "2022": {"brier_score": 0.2448624369055885, "skill_score": 1726.243682287576},
+        "2023": {"brier_score": 0.24776844160922726, "skill_score": 892.6226312838348},
+        "2024": {"brier_score": 0.24760787804604897, "skill_score": 880.2993332846953}
+      }
+    },
+    "EXP-109": {
+      "candidate_tier": "C",
+      "folds": {
+        "2022": {"brier_score": 0.24486231441062423, "skill_score": 1726.2928447496552},
+        "2023": {"brier_score": 0.24767629004528693, "skill_score": 929.4832571296153},
+        "2024": {"brier_score": 0.247607794312326, "skill_score": 880.3328526606701}
+      }
+    },
+    "EXP-110": {
+      "candidate_tier": "B",
+      "folds": {
+        "2022": {"brier_score": 0.2448309042038907, "skill_score": 1738.8991025384382},
+        "2023": {"brier_score": 0.24767272321475817, "skill_score": 930.9099893515582},
+        "2024": {"brier_score": 0.24759150775995106, "skill_score": 886.8525086951795}
+      }
+    }
+  },
+  "EXP-111": {
+    "status": "skipped_after_feasibility_audit",
+    "executed": false,
+    "reason": "The released rows do not contain the exact continuous timestamp required by the fixed Fourier method, and row-order reconstruction would violate row independence."
+  }
+}

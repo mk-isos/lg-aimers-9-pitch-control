@@ -388,6 +388,20 @@ EXP-021 strict backbone에서 이미 시간 검증한 세 prediction branch만 �
 
 ---
 
+## 2026-08-21 EXP-110 correction composition 준비 — 미제출
+
+| EXP | ZIP | Bytes | SHA256 | 상태 |
+|---|---|---:|---|---|
+| EXP-110 | `ready_to_submit/2026-08-21-correction-composition/EXP-110-MECHANISM-COMPOSITION.zip` | 4,989,667 | `12b27e9ae50ae3e4d93eac107c8ae413fe0c67d63f22978f7065a75dd596552e` | tier B, 제출 전 |
+
+- Formula: `p051 + c071 + mean(active c063, active c064, c072 only when physical lookup unavailable)`; historical OOF auxiliary shrinkage `1.0`.
+- 2023~2024 pooled ΔBrier vs EXP-071: `-6.8061e-7`; 강한 local evidence가 아니라 mixed-local candidate다.
+- ZIP CRC와 batch/singleton/reverse/random permutation/split/duplicate independence 검사를 통과했고 max diff는 `0.0`이다.
+- Canonical test/sample은 build와 QA에서 열지 않았다.
+- Codex는 실제 DACON 제출을 수행하지 않았다. Public 결과와 제출 ID는 아직 없다.
+
+---
+
 ## 새 제출 템플릿
 
 ```markdown

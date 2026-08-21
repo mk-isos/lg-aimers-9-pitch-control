@@ -1462,6 +1462,67 @@ EXP-074의 피처는 seasons played, years since debut, seasons since last, last
 
 ---
 
+## 2026-08-21 correction-space composition: EXP-105~111
+
+### 실험 목적과 가설
+
+Public-positive EXP-063/064/071/072를 완성 확률이 아니라 EXP-051 주변의 correction field로 분해했다. 완성 예측은 공통 EXP-051 오차 때문에 거의 같아 보여도 correction 자체가 서로 낮은 상관을 보인다면, strict historical OOF로만 조합한 correction은 EXP-071의 다음 시즌 전이를 보완할 수 있다는 가설이다.
+
+### 기준 실험과 달라진 점
+
+- 기준은 EXP-071 `playerphys_resid_w025`의 frozen OOF 예측이다.
+- EXP-105는 EXP-063·064·071·072를 `candidate - EXP-051` correction으로 정렬해 geometry를 진단했다. 2021~2024 OOF base/target 최대 차이는 `0.0`이고, prior residual source가 없는 EXP-071의 2021 correction은 `0`으로 두었다.
+- EXP-106은 네 correction을 zero-intercept Ridge로 결합했다.
+- EXP-107은 EXP-106에 계수 nonnegative와 계수 합 `2.0` 이하 제약을 추가했다.
+- EXP-108은 correction을 source reliability로 먼저 축소한 뒤 Ridge로 결합했다.
+- EXP-109는 centered correction matrix를 SVD basis로 압축한 뒤 Ridge를 적합했다.
+- EXP-110은 EXP-071 correction을 유지하고, 물리 lookup이 없는 행에서만 EXP-063·064·072의 활성 correction 평균을 더하는 mechanism-preserving 규칙이다.
+- EXP-111은 continuous timestamp 기반 fixed Fourier temporal control의 구현 가능성만 감사했다.
+
+### 모델과 주요 파라미터
+
+| 실험 | 모델·규칙 | 최종 주요 파라미터 |
+| --- | --- | --- |
+| EXP-106 | season-equal zero-intercept Ridge | lambda `10`, 계수 `[0.5743777416474062, 0.4991943111341311, 0.014702573939977584, 0.2667719527233341]` |
+| EXP-107 | nonnegative·sum-bound Ridge | lambda `10`, 계수 `[0.5743777416473895, 0.49919431113412027, 0.014702573939978652, 0.2667719527233345]` |
+| EXP-108 | reliability-scaled Ridge | lambda `10`, 계수 `[0.5782595627366187, 0.28550129685735537, 0.06889524677192824, 0.15483804443324117]` |
+| EXP-109 | centered SVD + Ridge | rank `2`, lambda `1`, basis 계수 `[-1.0653934243121537, 0.7623153195544636]` |
+| EXP-110 | mechanism-preserving rule | historical OOF auxiliary shrinkage `1.0` |
+
+Ridge lambda 후보는 `[1, 10, 100, 1000]`, SVD rank 후보는 `[1, 2, 3, 4]`였고 outer validation label은 적합에 사용하지 않았다.
+
+### 검증 기간과 실제 기록값
+
+rolling-origin 검증 기간은 2022·2023·2024이며, 각 fold는 해당 시즌보다 이전인 2021부터의 OOF correction만 사용했다. 아래 값은 `artifacts/EXP-105/correction_geometry/report.json`에서 그대로 옮긴 Brier Score / Skill Score다.
+
+| 실험 | 2022 | 2023 | 2024 | tier |
+| --- | --- | --- | --- | --- |
+| EXP-071 기준 | `0.24490065427938507 / 1710.9054175580063` | `0.24766051386953197 / 935.7937274777628` | `0.24760467246802623 / 881.5825555173129` | 리더보드 선택 |
+| EXP-106 | `0.24486234446945226 / 1726.2807808578696` | `0.24779881060850875 / 880.475031482364` | `0.2476077689785506 / 880.3429940029139` | C |
+| EXP-107 | `0.24486234446945226 / 1726.2807808578696` | `0.24770199439883625 / 919.2015156346711` | `0.24760546909968736 / 881.2636565694421` | C |
+| EXP-108 | `0.2448624369055885 / 1726.243682287576` | `0.24776844160922726 / 892.6226312838348` | `0.24760787804604897 / 880.2993332846953` | C |
+| EXP-109 | `0.24486231441062423 / 1726.2928447496552` | `0.24767629004528693 / 929.4832571296153` | `0.247607794312326 / 880.3328526606701` | C |
+| EXP-110 | `0.2448309042038907 / 1738.8991025384382` | `0.24767272321475817 / 930.9099893515582` | `0.24759150775995106 / 886.8525086951795` | B |
+
+EXP-105의 correction pairwise correlation은 `0.006818096758999085~0.11043243510506409`, complete prediction error correlation은 `0.9999636017191623~0.9999845759521889`였다. EXP-111은 exact timestamp가 없고 row order 기반 복원은 independence를 위반하므로 실행하지 않았다.
+
+### 기준 실험 대비 변화와 결과 해석
+
+- EXP-106~110은 모두 2022에서 EXP-071보다 낮은 Brier를 기록했지만 2023에서는 모두 기준보다 높았다.
+- 2024에서 EXP-110만 EXP-071보다 낮은 Brier와 높은 Skill을 기록했다. EXP-106~109는 제약, reliability scaling, low-rank 변환을 적용해도 기준을 넘지 못했다.
+- 낮은 correction 상관은 조합 가능성을 보여 줬지만, 각 correction과 residual의 pooled correlation이 작아 자유로운 회귀 계수는 다음 시즌에 안정적으로 전이되지 않았다.
+- EXP-110의 장점은 물리 correction을 대체하지 않고 unavailable 행에서만 보조 correction을 사용해 원래 mechanism을 보존한 점이다. 다만 2023 역전 때문에 확정 개선으로 해석하지 않는다.
+
+### 채택 여부와 다음 실험
+
+- EXP-106~109는 tier C로 비채택하고 같은 correction basis의 추가 계수 탐색을 중단한다.
+- EXP-110은 tier B 로컬 후보로만 채택한다. EXP-071 Public `1053.8615519684`는 현재 리더보드 선택으로 유지하며 EXP-110은 아직 Public에 제출하지 않았다.
+- EXP-110 후보 ZIP은 생성했지만 ZIP·모델 파일은 Git에 포함하지 않는다. SHA256은 `12b27e9ae50ae3e4d93eac107c8ae413fe0c67d63f22978f7065a75dd596552e`이고 batch/singleton/reverse/random permutation/split/duplicate max diff는 `0.0`이다.
+- 다음 평가는 현재 고정식과 hash를 바꾸지 않는 사전 고정 one-shot 평가만 허용한다. 그 결과로 계수를 재탐색하지 않으며, 이후 연구는 새로운 행 단위 신호가 있을 때만 재개한다.
+- 상세 문서는 `docs/CORRECTION_GEOMETRY_EXP105.md`, `docs/RESEARCH_REPORT_EXP105_PLUS.md`다.
+
+---
+
 ## 새 실험 템플릿
 
 ```markdown

@@ -93,6 +93,13 @@
 | EXP-074 | 선수 career-stage·workload·기량 추세 Ridge | 0.247630581 | 871.21 | same-fold 상한 893.10, 비채택 |
 | EXP-075 | 공식 팀·공수 정보로 복원한 홈구장 EB | 0.247661862 | 858.69 | same-fold 상한 1027.68이나 과거 시즌 전이 실패 |
 | EXP-076 | 최근 2시즌 부호 일치 park 효과만 전이 | 0.247638119 | 868.19 | 안정성 필터도 2023·2024 하락, 비채택 |
+| EXP-105 | EXP-051 주변 correction-space geometry 진단 | — | — | correction 상관은 낮지만 완성 예측 오차 상관은 0.99996 이상임을 확인 |
+| EXP-106 | 네 correction field 무제약 Ridge 합성 | 0.247607769 | 880.34 | 2023·2024 모두 EXP-071보다 악화, tier C |
+| EXP-107 | nonnegative·합계 2 이하 correction 합성 | 0.247605469 | 881.26 | 제약을 추가해도 EXP-071을 넘지 못해 tier C |
+| EXP-108 | source reliability-scaled correction 합성 | 0.247607878 | 880.30 | reliability scaling도 최근 시즌 전이 실패, tier C |
+| EXP-109 | centered SVD rank-2 correction 합성 | 0.247607794 | 880.33 | 저차원 basis도 EXP-071보다 악화, tier C |
+| EXP-110 | EXP-071 + 물리 lookup 부재 구간 보조 correction | 0.247591508 | 886.85 | 신규 조합 중 유일한 2024 개선·tier B, 아직 Public 미제출 |
+| EXP-111 | fixed Fourier temporal control feasibility audit | — | — | exact timestamp 부재와 행 독립성 제약으로 실행하지 않음 |
 
 EXP-014의 2024년 최고 구성은 엔지니어드 피처, 원-핫 인코딩, `num_leaves=63`, `min_child_samples=1000`인 LightGBM이다. 보정 후 Brier Score `0.24785724834181783`, Skill Score `780.4741206669407`로 EXP-013의 JSON 기록(`0.247862497`, `778.37`)보다 소폭 개선됐다. 그러나 같은 설정의 2023년 보정 점수는 Brier Score `0.24989886191192345`, Skill Score `40.4545039712767`로 급락했다. 따라서 EXP-014는 2024년 로컬 최고로 기록하되, 시간 일반화가 확인되지 않아 최종 모델로는 채택하지 않는다.
 
@@ -200,6 +207,9 @@ python experiments/train_exp003_histgb.py --validation-season 2023
 - EXP-066 partial alignment로 1,143,829행을 확보했지만 EXP-067~071이 hard gate를 통과하지 못했으므로 TrackMan 구조 변경을 중단하기
 - EXP-072~073의 동적 투수·타자 상태도 2024 same-fold 상한이 `886.01` 이하이므로 상태공간 posterior 탐색을 중단하기
 - EXP-075 park 신호는 same-fold 1000을 넘지만 EXP-076 prior-sign 필터까지 전이에 실패했으므로 현재 시즌 label 없는 구장 효과 외삽을 중단하기
+- EXP-110은 2024 Brier `0.24759150775995106`, Skill `886.8525086951795`로 correction 합성 중 유일한 tier B이지만 2023은 EXP-071보다 낮으므로 로컬 후보로만 보존하기
+- EXP-106~109는 tier C로 종료하고, EXP-111은 exact timestamp가 없어 실행하지 않기
+- EXP-110을 평가한다면 현재 고정식과 ZIP hash를 그대로 한 번만 사용하고 Public 결과로 재가중하지 않기
 - 규정 내 신규 행 단위 신호가 확인될 때만 blocked 목표를 재개하기
 - 학습·추론 피처 parity와 테스트 행 독립성 검사를 계속 유지하기
 
